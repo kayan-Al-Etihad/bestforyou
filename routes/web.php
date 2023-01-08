@@ -11,7 +11,10 @@
 |
 */
 
-use App\Http\Controllers\ContactUsController;
+use App\Http\Controllers\Front\ContactFormController;
+use App\Http\Controllers\Front\ContactUsForm;
+use App\Http\Controllers\Front\FranchiseController;
+use App\Http\Controllers\Front\JoinUsController;
 use Illuminate\Support\Facades\Route;
 
 //Route::get('/test', function () {
@@ -31,13 +34,23 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/showBrand/{slug}', 'Front\homeController@showBrand')->name('front.showBrand')
         ->where(['slug' => '[-A-Za-z0-9]+']);
     /*---------------Contact us------------------*/
-    Route::get('/contact', function() {
-        return view('Front.contact-us.contact-us', [ContactUsController::class]);
-    });
     /*---------------About us------------------*/
     Route::get('/about', function() {
         return view('Front.about.about');
     });
+    /*---------------About us------------------*/
+    // Route::get('/cart', function() {
+    //     return view('Front.cart.cart');
+    // });
+    /*---------------franchise------------------*/
+    Route::get('/franchise', 'Front\FranchiseController@index')->name('franchise.index');
+    Route::post('/franchise', [FranchiseController::class, 'store'])->name('franchise.store');
+    /*---------------Join us------------------*/
+    Route::get('/join-us', 'Front\JoinUsController@index')->name('join-us.index');
+    Route::post('/join-us', [JoinUsController::class, 'store'])->name('join-us.store');
+    /*---------------Join us------------------*/
+    Route::get('/contact', 'Front\ContactFormController@index')->name('contact.index');
+    Route::post('/contact', [ContactFormController::class, 'store'])->name('contact.store');
     /*---------------Categories------------------*/
     Route::get('/categories', function() {
         return view('Front.categories.categories');
@@ -79,7 +92,7 @@ Route::group(['middleware' => 'web'], function () {
     ])->name('front.lists');
 
     /*---------------CART------------------*/
-    Route::resource('/cart', 'Front\cartController')->except(['create', 'edit', 'update']);
+    // Route::resource('/cart', 'Front\cartController')->except(['create', 'edit', 'update']);
     Route::post('/cart/edit', 'Front\cartController@update')->name('cart.update');
     Route::get('/carts/clear', 'Front\cartController@clear')->name('cart.clear');
     Route::view('/empty-shopping-cart', 'Front.check-out.empty-cart')->name('cart.empty');

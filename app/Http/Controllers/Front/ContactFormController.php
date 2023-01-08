@@ -1,14 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\ContactUs;
-use App\Models\Contact;
+use App\Http\Requests\ContactFormRequest;
 use App\Models\ContactForm;
 use Illuminate\Http\Request;
 
-class ContactUsController extends Controller
+class ContactFormController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +16,6 @@ class ContactUsController extends Controller
      */
     public function index()
     {
-        // $contact = Contact::all();
         return view('Front.contact-us.contact-us');
     }
 
@@ -37,10 +35,10 @@ class ContactUsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ContactUs $request)
+    public function store(ContactFormRequest $request)
     {
-        $validated = $request->all();
-        $contact_form = ContactForm::create($validated);
+        $data = $request->all();
+        $contact_form = ContactForm::create($data);
         $contact_form->save();
         return redirect()->route('contact.index')->with('status','تم تقديم طلبك بنجاح');
     }

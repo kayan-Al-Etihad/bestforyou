@@ -3,174 +3,153 @@
 {{ $category->category_name }}
 @endsection
 @section('content')
-			<!-- HEADING-BANNER START -->
-			<div class="heading-banner-area overlay-bg">
-				<div class="container">
-					<div class="row">
-						<div class="col-md-12">
-							<div class="heading-banner">
-								<div class="heading-banner-title">
-									<h2>{{ $category->category_name }}</h2>
-								</div>
-								<div class="breadcumbs pb-15">
-									<ul>
-										<li><a href="{{ route('home') }}">Home</a></li>
-										<li><a href="/categories">Categories</a></li>
-										<li>{{ $category->category_name }}</li>
-									</ul>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- HEADING-BANNER END -->
-			<!-- PRODUCT-AREA START -->
-			<div class="product-area pt-80 pb-80 product-style-2">
-				<div class="container">
-					<div class="row">
-						<div class="col-lg-12 order-1">
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="product-option mb-30 clearfix">
-                                        <!-- Nav tabs -->
-                                        <ul class="nav d-block shop-tab">
-                                            <li><a href="#grid-view" data-bs-toggle="tab"><i class="zmdi zmdi-view-module"></i></a></li>
-                                            <li><a class="active" href="#list-view"  data-bs-toggle="tab"><i class="zmdi zmdi-view-list"></i></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                <!-- Widget-Search start -->
-                                <aside class="widget widget-search mb-30">
-                                    <form action="#">
-                                        <input id="search" type="text" placeholder="Search here..." />
-                                        <button type="submit">
-                                            <i class="zmdi zmdi-search"></i>
-                                        </button>
-                                    </form>
-                                </aside>
-                                <!-- Widget-search end -->
+<!-- MAIN -->
+<div id="main" class="theme-clearfix" role="document" style="margin: 50px 0">
+
+    <div class="breadcrumbs theme-clearfix d-block" style="display: block">
+        <div class="container">
+            <ul class="breadcrumb">
+                <li>
+                    <a id="home" href="{{ route('home') }}">Home</a>
+                    <span class="go-page"></span>
+                </li>
+                <li>
+                    <span>Categories</span>
+                    <span class="go-page"></span>
+                </li>
+
+                <li class="active">
+                    <span>{{ $category->category_name }}</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <input type="text" class="form-control" placeholder="Search for any thing....." id="search">
+            </div>
+        </div>
+        <div class="row">
+
+            <div id="contents" class="content col-lg-12 col-md-8 col-sm-0" role="main">
+                <div id="container">
+                    <div id="content" role="main">
+                        <div class="products-wrapper">
+                            <div class="image-category">
+                                <div class="textwidget">
+                                    <img src="images/cover_facebook_indiawebsite.png" alt="">
                                 </div>
                             </div>
-							<!-- Shop-Content End -->
-							<div class="shop-content mt-tab-30 mb-30 mb-lg-0">
 
-								<!-- Tab panes -->
-								<div class="tab-content">
-									<div class="tab-pane" id="grid-view">
-										<div class="row">
-                                            @php
-                                                $data = \Carbon\Carbon::today()->subDays(7)
-                                            @endphp
-                                            @foreach ($category->products as $product)
-                                            <!-- Single-product start -->
-                                            <div class="col-lg-4 col-md-6 category">
-                                                <div class="single-product">
-                                                    <div class="product-img">
-                                                        {{-- <span class="pro-label new-label">new</span> --}}
-                                                        @if($product->is_off == 1)
-                                                        <span class="pro-label new-label">Sale {{ $product->off }}% Off</span>
-                                                        @else
-                                                        <span class=""></span>
-                                                        @endif
-                                                        @if($product->created_at < $data)
-                                                            <span class="pro-label new-label">New</span>
-                                                            @else
-                                                            <span class=""></span>
-                                                        @endif
-                                                        @if($product->status != 1)
-                                                            <span class="pro-label new-label">comming soon!</span>
-                                                        @endif
-                                                        <span class="pro-price-2">$ {{ $product->price }}</span>
-                                                        <a href="{{ route('front.show',$product->product_slug) }}"><img src="{{ $product->cover }}" alt="" /></a>
-                                                    </div>
-                                                    <div class="product-info clearfix text-center">
-                                                        <div class="fix">
-                                                            <h4 class="post-title"><a href="{{ route('front.show',$product->product_slug) }}">{{ $product->product_name }}</a></h4>
-                                                        </div>
-                                                        <div class="product-action clearfix d-flex align-items-center justify-content-center">
-                                                            <a href="wishlist.html" data-bs-toggle="tooltip" data-placement="top" title="Wishlist"><i class="zmdi zmdi-favorite-outline"></i></a>
-                                                            <a onclick="onCahnge('{{ $product->product_name }}', '{{ $product->cover }}', '{{ $product->description }}')" href="#" data-bs-toggle="modal"  data-bs-target="#productModal" title="Quick View"><i class="zmdi zmdi-zoom-in"></i></a>
-                                                        </div>
-                                                    </div>
+                            <ul class="products-loop grid clearfix">
+
+                                <li class="clearfix divider-product">
+                                @foreach ($category->products as $product)
+                                <li class="col-lg-3 col-md-4 col-sm-6 col-xs-12 category">
+                                    <div class="products-entry clearfix">
+                                        <div class="products-thumb">
+                                            <a href="" class="woocommerce-LoopProduct-link">
+
+                                            </a>
+
+                                            <a href="">
+                                                <div class="product-thumb-hover">
+                                                    <img 	width="300" height="300" class="attachment-shop_catalog size-shop_catalog wp-post-image" alt=""
+                                                            src="{{ asset('images/sample-pr.jpg') }}"
+                                                            {{-- srcset="images/post14.png 300w, images/2-3-260x260.jpg 260w, images/2-3.jpg 600w, images/2-3-180x180.jpg 180w"  --}}
+                                                            sizes="(max-width: 300px) 100vw, 300px" />
+                                                </div>
+                                            </a>
+
+                                            <a href="{{ asset('best/ajax/fancybox/example.html') }}" data-fancybox-type="ajax" class="fancybox fancybox.ajax sm_quickview_handler-list" title="Quick View Product">Quick View</a>
+                                        </div>
+
+                                        <div class="products-content">
+                                            <div class="item-content">
+                                                <h4>
+                                                    <a href="" class="post-title" title="Steak veniam">{{ $product->product_name }}</a>
+                                                </h4>
+
+
+
+                                                <div class="item-price">
+                                                    <span>
+                                                        {{-- <del>
+                                                            <span class="woocommerce-Price-amount amount">
+                                                                <span class="woocommerce-Price-currencySymbol">EGP </span>86.00
+                                                            </span>
+                                                        </del>
+                                                         --}}
+                                                        <ins>
+                                                            <span class="woocommerce-Price-amount amount">
+                                                                <span class="woocommerce-Price-currencySymbol">EGP </span>{{ $product->price }}
+                                                            </span>
+                                                        </ins>
+                                                    </span>
+                                                </div>
+
+                                                <div class="desc std">
+                                                    <p>{{ $product->description }}</p>
+                                                </div>
+
+                                                <div class="item-bottom clearfix">
+
+                                                    <div class="clear"></div>
+
+                                                    <a rel="nofollow" href="" class="button product_type_simple add_to_cart_button ajax_add_to_cart"> Add to cart </a>
+
+                                                    <!-- <div class="woocommerce product compare-button">
+                                                        <a href="javascript:void(0)" class="compare button" rel="nofollow">Compare</a>
+                                                    </div> -->
                                                 </div>
                                             </div>
-                                            <!-- Single-product end -->
-                                            @endforeach
-										</div>
-									</div>
-									<div class="tab-pane active" id="list-view">
-										<div class="row shop-list">
-											@foreach ($category->products as $product)
-                                            <!-- Single-product start -->
-                                            <div class="col-lg-12 category">
-                                                <div class="single-product clearfix">
-                                                    <div class="product-img">
-                                                        @if($product->is_off == 1)
-                                                        <span class="pro-label new-label">Sale {{ $product->off }}% Off</span>
-                                                        @else
-                                                        <span class=""></span>
-                                                        @endif
-                                                        @if($product->created_at < $data)
-                                                            <span class="pro-label new-label">New</span>
-                                                            @else
-                                                            <span class=""></span>
-                                                        @endif
-                                                        @if($product->status != 1)
-                                                            <span class="pro-label new-label">comming soon!</span>
-                                                        @endif
-                                                        <span class="pro-price-2">$ {{ $product->price }}</span>
-                                                        <a href="{{ route('front.show',$product->product_slug) }}"><img src="{{ $product->cover }}" alt="" /></a>
-                                                    </div>
-                                                    <div class="product-info">
-                                                        <div class="fix">
-                                                            <h4 class="post-title floatleft"><a href="{{ route('front.show',$product->product_slug) }}">{{ $product->product_name }}</a></h4>
-                                                        </div>
-                                                        <div class="fix mb-20">
-                                                            <span class="pro-price">$ {{ $product->price }}</span>
-                                                        </div>
-                                                        <div class="product-description">
-                                                            <p>{{ $product->description }}.</p>
-                                                        </div>
-                                                        <div class="clearfix">
-                                                            <div class="product-action clearfix d-flex align-items-center justify-content-center">
-                                                                <a href="wishlist.html" data-bs-toggle="tooltip" data-placement="top" title="Wishlist"><i class="zmdi zmdi-favorite-outline"></i></a>
-                                                                <a onclick="onCahnge('{{ $product->product_name }}', '{{ $product->cover }}', '{{ $product->description }}')" href="#" data-bs-toggle="modal"  data-bs-target="#productModal" title="Quick View"><i class="zmdi zmdi-zoom-in"></i></a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- Single-product end -->
-                                            @endforeach
-										</div>
-									</div>
-								</div>
-							</div>
-							<!-- Shop-Content End -->
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- PRODUCT-AREA END -->
-            <script type="text/javascript">
-                const search = document.getElementById('search');
-                search.addEventListener("input", (e)=>{
-                    e.preventDefault();
-                    const val = e.target.value.toLowerCase();
-                    console.log(val);
-                    const categories = document.querySelectorAll(".category");
-                    // console.log(categories);
-                    categories.forEach(category => {
-                        const dot = category.querySelector('.post-title').textContent;
-                        console.log(dot);
-                        if(dot.toLowerCase().includes(val)){
-                            category.style.display = "block";
-                        }else{
-                            category.style.display = "none";
-                        }
-                    });
-                })
-            </script>
+                                        </div>
+                                    </div>
+                                </li>
+                                @endforeach
+                            </ul>
+
+                         {{-- <div class="products-nav">
+
+                                <nav class="woocommerce-pagination">
+                                    <ul class="page-numbers">
+                                         {!! $products->links() !!}
+                                    </ul>
+                                </nav>
+                                <style>
+                                    .pagination .page-item.active sapn.page-link{
+                                        background-color: orangered !important;
+                                    }
+                                </style>
+                            </div> --}}
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END MAIN -->
+<script type="text/javascript">
+    const search = document.getElementById('search');
+    search.addEventListener("input", (e)=>{
+        e.preventDefault();
+        const val = e.target.value.toLowerCase();
+        console.log(val);
+        const categories = document.querySelectorAll(".category");
+        // console.log(categories);
+        categories.forEach(category => {
+            const dot = category.querySelector('.post-title').textContent;
+            console.log(dot);
+            if(dot.toLowerCase().includes(val)){
+                category.style.display = "block";
+            }else{
+                category.style.display = "none";
+            }
+        });
+    })
+</script>
 @endsection

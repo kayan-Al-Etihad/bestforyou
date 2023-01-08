@@ -113,6 +113,12 @@
                                 <div class="vc_column-inner ">
                                     <div class="wpb_wrapper">
                                         <div class="wpb_text_column wpb_content_element ">
+                                            @if ($message = Session::get('status'))
+                                            <div class="alert alert-success alert-block">
+                                                <button type="button" class="close" data-dismiss="alert">×</button>
+                                                <strong>{{ $message }}</strong>
+                                            </div>
+                                            @endif
                                             <div class="wpb_wrapper">
                                                 <div class="page-title">
                                                     <h3>Send your comments</h3>
@@ -122,16 +128,16 @@
 
                                         <div role="form" class="wpcf7" id="wpcf7-f715-p641-o1" lang="en-US" dir="ltr">
                                             <div class="screen-reader-response"></div>
-                                            <form action="{{route('store')}}" method="post" class="wpcf7-form" novalidate="novalidate">
+                                            <form action="{{route('contact.store')}}" method="post" class="wpcf7-form" novalidate="novalidate">
                                                 @csrf
-                                                <p class="border-dashed text-right" style="width:100%">
+                                                <p class="border-dashed" style="width:100%">
                                                     <span class="wpcf7-form-control-wrap your-name">
+                                                        Name :
                                                         <input type="text" name="name"
                                                             size="40"
-                                                            class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required text-right"
+                                                            class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required"
                                                             aria-required="true" aria-invalid="false" />
                                                     </span>
-                                                   : الاسم
                                                    <br>
                                                    @error('name')
                                                         <span class=" invalid-feedback">
@@ -140,14 +146,14 @@
                                                     @enderror
                                                 </p>
 
-                                                <p class="border-dashed text-right" style="width:100%">
+                                                <p class="border-dashed" style="width:100%">
                                                     <span class="wpcf7-form-control-wrap your-email">
+                                                        Email :
                                                         <input type="email" name="email"
                                                             value="" size="40"
-                                                            class="wpcf7-form-control text-right wpcf7-text wpcf7-email wpcf7-validates-as-required wpcf7-validates-as-email"
+                                                            class="wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-required wpcf7-validates-as-email"
                                                             aria-required="true" aria-invalid="false" />
                                                     </span>
-                                                    : الايمل
                                                     <br>
                                                     @error('email')
                                                         <span class=" invalid-feedback">
@@ -156,14 +162,14 @@
                                                     @enderror
                                                 </p>
 
-                                                <p class="border-dashed text-right" style="width:100%">
+                                                <p class="border-dashed" style="width:100%">
                                                     <span class="wpcf7-form-control-wrap your-subject">
+                                                        Subject :
                                                         <input type="text" name="subject"
                                                             value="" size="40"
-                                                            class="wpcf7-form-control text-right wpcf7-text"
+                                                            class="wpcf7-form-control wpcf7-text"
                                                             aria-invalid="false" />
                                                     </span>
-                                                    : الموضوع
                                                     <br>
                                                     @error('subject')
                                                         <span class=" invalid-feedback">
@@ -172,9 +178,9 @@
                                                     @enderror
                                                 </p>
 
-                                                <p class=" text-right">التعليق  :<br />
+                                                <p class=""> Your Comment :<br />
                                                     <span class="wpcf7-form-control-wrap your-message">
-                                                        <textarea name="message" cols="40" rows="10" class="wpcf7-form-control text-right wpcf7-textarea"
+                                                        <textarea name="message" cols="40" rows="10" class="wpcf7-form-control wpcf7-textarea"
                                                             aria-invalid="false"></textarea>
                                                     </span>
                                                     @error('message')
@@ -183,7 +189,7 @@
                                                         </span>
                                                     @enderror
                                                     <br />
-                                                    <input type="submit" value="ارسل الايميل"
+                                                    <input type="submit" value="Send"
                                                         class="wpcf7-form-control wpcf7-submit" />
                                                 </p>
                                             </form>

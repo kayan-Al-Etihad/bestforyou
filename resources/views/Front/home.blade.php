@@ -51,7 +51,7 @@
     </div>
 
     <div class="container">
-        <div class="row">
+        <div class="row" style="margin: 50px 0">
             <div id="contents" role="main" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="single post-150 page type-page status-publish hentry">
                     <div class="entry">
@@ -70,15 +70,15 @@
                                                     <div class="wrapper_vertical_menu vertical_megamenu">
                                                         <ul id="menu-left-menu" class="nav vertical-megamenu">
                                                             @foreach ($categories as $category)
-                                                                <li class="dropdown menu-smartphones-accessories ya-mega-menu level1">
-                                                                    <a href="#" class="item-link dropdown-toggle">
+                                                                <li class=" menu-smartphones-accessories ya-mega-menu level1">
+                                                                    <a href="{{ route('front.showCategory', $category->category_slug) }}" class="item-link dropdown-toggle">
                                                                         <span class="have-title">
                                                                             <span class="menu-title">
                                                                                 {{ $category->category_name }}</span>
                                                                         </span>
                                                                     </a>
 
-                                                                    <ul class="dropdown-menu nav-level1 one-column">
+                                                                    {{-- <ul class="dropdown-menu nav-level1 one-column">
                                                                         <li class="dropdown-submenu one-column menu-categories-1">
                                                                             <span class="have-title">
                                                                                 <span class="menu-title">Categories 1</span>
@@ -214,7 +214,7 @@
                                                                                 </span>
                                                                             </span>
                                                                         </li>
-                                                                    </ul>
+                                                                    </ul> --}}
                                                                 </li>
                                                             @endforeach
                                                         </ul>
@@ -361,11 +361,11 @@
                                                                                                             <a href="{{ route('front.show', $product->product_slug) }}">
                                                                                                                 <div class="product-thumb-hover">
                                                                                                                     <img 	width="300" height="300" class="attachment-shop_catalog size-shop_catalog wp-post-image" alt="J10"
-                                                                                                                            src="{{ $product->cover }}" />
+                                                                                                                            src="{{ asset('images/') }}/{{ $product->cover }}" />
                                                                                                                 </div>
                                                                                                             </a>
 
-                                                                                                            <a href="ajax/fancybox/example.html" data-fancybox-type="ajax" class="sm_quickview_handler-list fancybox fancybox.ajax">Quick View </a>
+                                                                                                            <a onclick="onCahnge('{{ $product->product_name }}', '{{ $product->cover }}', '{{ $product->description }}')"  href="{{ asset('best/ajax/fancybox/example.html') }}" data-fancybox-type="ajax" class="sm_quickview_handler-list fancybox fancybox.ajax">Quick View </a>
                                                                                                         </div>
 
                                                                                                         <div class="item-content">
@@ -376,11 +376,6 @@
 
                                                                                                             <div class="item-price">
                                                                                                                 <span>
-                                                                                                                    <del>
-                                                                                                                        <span class="woocommerce-Price-amount amount">
-                                                                                                                            <span class="woocommerce-Price-currencySymbol">$</span>{{ $product->price }}
-                                                                                                                        </span>
-                                                                                                                    </del>
 
                                                                                                                     <ins>
                                                                                                                         <span class="woocommerce-Price-amount amount">

@@ -37,6 +37,13 @@
     <link rel="stylesheet" href="{{ asset('best/css/theme/app-orange-cyan2.min.css') }}" id="theme">
     <link rel="stylesheet" href="{{ asset('best/css/theme/app-orange-cyan2.min.css') }}">
     <link rel="stylesheet" href="/best/css/theme/app-orange-cyan2.min.css">
+    <style>
+        @media screen and (max-width:900px){
+            .navbar-toggle{
+                display: block !important;
+            }
+        }
+    </style>
 </head>
 <body id="body_wrapper" class="page-template-page-home vc_responsive">
 
@@ -51,24 +58,9 @@
 								<!-- INFORMATION -->
 								<div class="yt-header-topv2">
 									<div class="row">
-										<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 sl-header-text">
-											<div class="offer-wrapper">
-												<div class="offer-header">
-													<ul id="offer-info">
-														<li>
-															<i class="sp-ic fa fa-phone-square">&nbsp;</i>Telephone: <a title="0123 456 7891" href="#">0123 456 7891</a>
-														</li>
-
-														<li>
-															<i class="sp-ic fa fa-envelope">&nbsp;</i>E-mail: <a title="Contact@domain.com" href="mailto:Contact@domain.com">Contact@domain.com</a>
-														</li>
-													</ul>
-												</div>
-											</div>
-										</div>
 
 										<!-- LANGUAGE -->
-										<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 top-links-action">
+										<div class="col-lg-6 col-md-6 text-left col-sm-12 col-xs-12 top-links-action" style="display:flex">
 											<div class="block-action-header language-switcher pull-right">
 												<div class="textwidget">
 													<div id="lang_sel">
@@ -97,29 +89,10 @@
 											</div>
 											<!-- END LANGUAGE -->
 
-											<!-- CURRENCY -->
-											<div class="block-action-header block-currency pull-right">
-												<ul class="currency_w">
-													<li>
-														<a href="#" >USD</a>
-														<ul class="currency_switcher">
-															<li>
-																<a href="#" class="reset default active" data-currencycode="USD">USD</a>
-															</li>
-															<li>
-																<a href="#"  data-currencycode="EUR">EUR</a>
-															</li>
-														</ul>
-													</li>
-												</ul>
-											</div>
-											<!-- END CURRENCY -->
-
 										</div>
 									</div>
 								</div>
 								<!-- END INFORMATION -->
-
 								<!-- HEADER MENU -->
 								<div class="yt-header-middle" style="position: relative; z-index: 30; top: 0px; left: 0px; right: 0px;">
 									<div class="row">
@@ -157,16 +130,7 @@
 																			<a class="item-link dropdown-toggle" href="#">About</a>
 																		</li>
 
-																		<li class="style3 res-dropdown menu-daily-deals">
-																			<a class="item-link dropdown-toggle" href="#">Daily Deals</a>
-																			<span class="show-dropdown"></span>
 
-																			<ul class="dropdown-resmenu">
-																				<li class="menu-product-tab">
-																					<a href="home_style_2_shop_product_default.html">Product tab</a>
-																				</li>
-																			</ul>
-																		</li>
 																	</ul>
 																</div>
 																<!-- END LIST MOBILE MENU ITEMS -->
@@ -196,6 +160,27 @@
 																		</span>
 																	</a>
 																</li>
+																<li class=" menu-shop ya-mega-menu level1">
+																	<a href="{{ route('franchise.index') }}" class="item-link">
+																		<span class="have-title">
+																			<span class="menu-title">franchise</span>
+																		</span>
+																	</a>
+																</li>
+																<li class=" menu-shop ya-mega-menu level1">
+																	<a href="{{ route('join-us.index') }}" class="item-link">
+																		<span class="have-title">
+																			<span class="menu-title">Join us</span>
+																		</span>
+																	</a>
+																</li>
+																<li class=" menu-shop ya-mega-menu level1">
+																	<a href="{{ route('contact.index') }}" class="item-link">
+																		<span class="have-title">
+																			<span class="menu-title">Contact us</span>
+																		</span>
+																	</a>
+																</li>
 
 																<li class="style3 dropdown menu-daily-deals ya-mega-menu level1">
 																	<a href="#" class="item-link dropdown-toggle">
@@ -209,56 +194,29 @@
 																			<div class="listing-tab-shortcode">
 																				<div class="tabbable tabs">
 																					<ul class="nav nav-tabs">
+                                                                                        @foreach ($categories as $category)
 																						<li class="active">
-																							<a href="#listing_category_01" data-toggle="tabs">Apparel & Accessories</a>
+																							<a href="#listing_category_0{{ $category->category_id }}" data-toggle="tabs">{{ $category->category_name }}</a>
 																						</li>
-
-																						<li class="">
-																							<a href="#listing_category_02" data-toggle="tabs">Basketballs</a>
-																						</li>
-
-																						<li class="">
-																							<a href="#listing_category_03" data-toggle="tabs">Memory Cards</a>
-																						</li>
-
-																						<li class="">
-																							<a href="#listing_category_04" data-toggle="tabs">Drivers</a>
-																						</li>
-
-																						<li class="">
-																							<a href="#listing_category_05" data-toggle="tabs">Golf</a>
-																						</li>
-
-																						<li class="">
-																							<a href="#listing_category_06" data-toggle="tabs">Samsung</a>
-																						</li>
-
-																						<li class="">
-																							<a href="#listing_category_07" data-toggle="tabs">Jiteme catem</a>
-																						</li>
-
-																						<li class="">
-																							<a href="#listing_category_08" data-toggle="tabs">Fashion</a>
-																						</li>
+                                                                                        @endforeach
 																					</ul>
 
 																					<div class="tab-content">
-																						<div id="listing_category_01" class="tab-pane clearfix active">
-																							<div class="item">
+
+                                                                                        @foreach ($categories as $category)
+                                                                                        <div id="listing_category_0{{ $category->category_id }}" class="tab-pane clearfix active">
+																							@foreach ($category->products->take(3) as $products)
+                                                                                            <div class="item">
 																								<div class="item-wrap">
 																									<div class="item-detail">
 																										<div class="item-img products-thumb">
 																											<span class="onsale">Sale!</span>
-																											<a href="home_style_2_shop_product_default.html">
+																											<a href="{{ route('front.show',$product->product_slug) }}">
 																												<div class="product-thumb-hover">
-																													<img 	width="300" height="300" src="images/12-300x300.jpg" class="attachment-shop_catalog size-shop_catalog wp-post-image" alt="12"
-																															src="images/12-300x300.jpg"
-																															srcset="images/12-300x300.jpg 300w, images/12-260x260.jpg 260w, images/12.jpg 600w, images/12-180x180.jpg 180w"
-																															sizes="(max-width: 300px) 100vw, 300px" />
+																													<img 	width="300" height="300" src="images/{{ $products->cover }}" class="attachment-shop_catalog size-shop_catalog wp-post-image" alt="12"
+																															src="images/{{ $products->cover }}"/>
 																													<img 	width="300" height="300" class="hover-image back"
-																															src="images/111-300x300.jpg" alt="11"
-																															srcset="images/111-300x300.jpg 300w, images/111-260x260.jpg 260w, images/111.jpg 600w, images/111-180x180.jpg 180w"
-																															sizes="(max-width: 300px) 100vw, 300px" />
+																															src="images/{{ $products->cover }}" alt="11">
 																												</div>
 																											</a>
 																										</div>
@@ -269,19 +227,14 @@
 																											</div>
 
 																											<h4>
-																												<a href="home_style_2_shop_product_default.html" title="Dolore turkey">Dolore turkey</a>
+																												<a href="{{ route('front.show',$product->product_slug) }}" title="{{ $products->product_name }}">{{ $products->product_name }}</a>
 																											</h4>
 
 																											<div class="item-price">
 																												<span>
-																													<del>
-																														<span class="woocommerce-Price-amount amount">
-																															<span class="woocommerce-Price-currencySymbol">$</span>440.00
-																														</span>
-																													</del>
 																													<ins>
 																														<span class="woocommerce-Price-amount amount">
-																															<span class="woocommerce-Price-currencySymbol">$</span>400.00
+																															<span class="woocommerce-Price-currencySymbol">$</span>{{ $products->price }}
 																														</span>
 																													</ins>
 																												</span>
@@ -290,878 +243,9 @@
 																									</div>
 																								</div>
 																							</div>
-
-																							<div class="item">
-																								<div class="item-wrap">
-																									<div class="item-detail">
-																										<div class="item-img products-thumb">
-																											<span class="onsale">Sale!</span>
-																												<a href="home_style_2_shop_product_default.html">
-																													<div class="product-thumb-hover">
-																														<img 	width="300" height="300" class="attachment-shop_catalog size-shop_catalog wp-post-image" alt="9"
-																																src="images/9-300x300.jpg"
-																																srcset="images/9-300x300.jpg 300w, images/9-260x260.jpg 260w, images/9.jpg 600w, images/9-180x180.jpg 180w"
-																																sizes="(max-width: 300px) 100vw, 300px" />
-																														<img 	width="300" height="300" class="hover-image back" alt="12"
-																																src="images/12-300x300.jpg"
-																																srcset="images/12-300x300.jpg 300w, images/12-260x260.jpg 260w, images/12.jpg 600w, images/12-180x180.jpg 180w"
-																																sizes="(max-width: 300px) 100vw, 300px" />
-																													</div>
-																												</a>
-																										</div>
-
-																										<div class="item-content">
-																											<div class="reviews-content">
-																												<span style="width:56px"></span>
-																											</div>
-
-																											<h4>
-																												<a href="home_style_2_shop_product_default.html" title="Jowl ullamco">Jowl ullamco</a>
-																											</h4>
-
-																											<div class="item-price">
-																												<span>
-																													<del>
-																														<span class="woocommerce-Price-amount amount">
-																															<span class="woocommerce-Price-currencySymbol">$</span>77.00
-																														</span>
-																													</del>
-
-																													<ins>
-																														<span class="woocommerce-Price-amount amount">
-																															<span class="woocommerce-Price-currencySymbol">$</span>60.00
-																														</span>
-																													</ins>
-																												</span>
-																											</div>
-																										</div>
-																									</div>
-																								</div>
-																							</div>
-
-																							<div class="item">
-																								<div class="item-wrap">
-																									<div class="item-detail">
-																										<div class="item-img products-thumb">
-																											<a href="home_style_2_shop_product_default.html">
-																												<div class="product-thumb-hover">
-																													<img 	width="300" height="300" class="attachment-shop_catalog size-shop_catalog wp-post-image" alt="5"
-																															src="images/51-300x300.jpg"
-																															srcset="images/51-300x300.jpg 300w, images/51-260x260.jpg 260w, images/51.jpg 600w, images/51-180x180.jpg 180w"
-																															sizes="(max-width: 300px) 100vw, 300px" />
-																													<img 	width="300" height="300" class="hover-image back" alt="5"
-																															src="images/51-300x300.jpg"
-																															srcset="images/51-300x300.jpg 300w, images/51-260x260.jpg 260w, images/51.jpg 600w, images/51-180x180.jpg 180w"
-																															sizes="(max-width: 300px) 100vw, 300px" />
-																												</div>
-																											</a>
-																										</div>
-
-																										<div class="item-content">
-																											<div class="reviews-content">
-																												<span style="width:56px"></span>
-																											</div>
-
-																											<h4>
-																												<a href="home_style_2_shop_product_default.html" title="Sint drumstick">Sint drumstick</a>
-																											</h4>
-
-																											<div class="item-price">
-																												<span>
-																													<span class="woocommerce-Price-amount amount">
-																														<span class="woocommerce-Price-currencySymbol">$</span>55.00
-																													</span>
-																												</span>
-																											</div>
-																										</div>
-																									</div>
-																								</div>
-																							</div>
+                                                                                            @endforeach
 																						</div>
-
-																						<div id="listing_category_02" class="tab-pane clearfix ">
-																							<div class="item">
-																								<div class="item-wrap">
-																									<div class="item-detail">
-																										<div class="item-img products-thumb">
-																											<a href="home_style_2_shop_product_default.html">
-																												<div class="product-thumb-hover">
-																													<img 	width="300" height="300" class="attachment-shop_catalog size-shop_catalog wp-post-image" alt="5"
-																															src="images/51-300x300.jpg"
-																															srcset="images/51-300x300.jpg 300w, images/51-260x260.jpg 260w, images/51.jpg 600w, images/51-180x180.jpg 180w"
-																															sizes="(max-width: 300px) 100vw, 300px" />
-																													<img 	width="300" height="300" class="hover-image back" alt="5"
-																															src="images/51-300x300.jpg"
-																															srcset="images/51-300x300.jpg 300w, images/51-260x260.jpg 260w, images/51.jpg 600w, images/51-180x180.jpg 180w"
-																															sizes="(max-width: 300px) 100vw, 300px" />
-																												</div>
-																											</a>
-																										</div>
-
-																										<div class="item-content">
-																											<div class="reviews-content">
-																												<span style="width:56px"></span>
-																											</div>
-
-																											<h4>
-																												<a href="home_style_2_shop_product_default.html" title="Sint drumstick">Sint drumstick</a>
-																											</h4>
-
-																											<div class="item-price">
-																												<span>
-																													<span class="woocommerce-Price-amount amount">
-																														<span class="woocommerce-Price-currencySymbol">$</span>55.00
-																													</span>
-																												</span>
-																											</div>
-																										</div>
-																									</div>
-																								</div>
-																							</div>
-
-																							<div class="item">
-																								<div class="item-wrap">
-																									<div class="item-detail">
-																										<div class="item-img products-thumb">
-																											<a href="home_style_2_shop_product_default.html">
-																												<div class="product-thumb-hover">
-																													<img 	width="300" height="300" class="attachment-shop_catalog size-shop_catalog wp-post-image" alt="19"
-																															src="images/19-300x300.jpg"
-																															srcset="images/19-300x300.jpg 300w, images/19-180x180.jpg 180w"
-																															sizes="(max-width: 300px) 100vw, 300px" />
-																													<img 	width="300" height="300" class="hover-image back" alt="28_1"
-																															src="images/28_1-300x300.jpg"
-																															srcset="images/28_1-300x300.jpg 300w, images/28_1-260x260.jpg 260w, images/28_1.jpg 600w, images/28_1-180x180.jpg 180w"
-																															sizes="(max-width: 300px) 100vw, 300px" />
-																												</div>
-																											</a>
-																										</div>
-
-																										<div class="item-content">
-																											<div class="reviews-content">
-																												<span style="width:0px"></span>
-																											</div>
-
-																											<h4>
-																												<a href="home_style_2_shop_product_default.html" title="External/Affiliate product">External/Affiliate product</a>
-																											</h4>
-
-																											<div class="item-price">
-																												<span>
-																													<span class="woocommerce-Price-amount amount">
-																														<span class="woocommerce-Price-currencySymbol">$</span>180.00
-																													</span>
-																												</span>
-																											</div>
-																										</div>
-																									</div>
-																								</div>
-																							</div>
-
-																							<div class="item">
-																								<div class="item-wrap">
-																									<div class="item-detail">
-																										<div class="item-img products-thumb">
-																											<a href="home_style_2_shop_product_default.html">
-																												<div class="product-thumb-hover">
-																													<img 	width="300" height="300" class="attachment-shop_catalog size-shop_catalog wp-post-image" alt="12"
-																															src="images/12-300x300.jpg"
-																															srcset="images/12-300x300.jpg 300w, images/12-260x260.jpg 260w, images/12.jpg 600w, images/12-180x180.jpg 180w"
-																															sizes="(max-width: 300px) 100vw, 300px" />
-																													<img 	width="300" height="300" class="hover-image back" alt="12"
-																															src="images/12-300x300.jpg"
-																															srcset="images/12-300x300.jpg 300w, images/12-260x260.jpg 260w, images/12.jpg 600w, images/12-180x180.jpg 180w"
-																															sizes="(max-width: 300px) 100vw, 300px" />
-																												</div>
-																											</a>
-																										</div>
-
-																										<div class="item-content">
-																											<div class="reviews-content">
-																												<span style="width:0px"></span>
-																											</div>
-
-																											<h4>
-																												<a href="home_style_2_shop_product_default.html" title="Huma saren mazem kae">Huma saren mazem kae</a>
-																											</h4>
-
-																											<div class="item-price">
-																												<span>
-																													<span class="woocommerce-Price-amount amount">
-																														<span class="woocommerce-Price-currencySymbol">$</span>4.99
-																													</span>
-																												</span>
-																											</div>
-																										</div>
-																									</div>
-																								</div>
-																							</div>
-																						</div>
-
-																						<div id="listing_category_03" class="tab-pane clearfix">
-																							<div class="item">
-																								<div class="item-wrap">
-																									<div class="item-detail">
-																										<div class="item-img products-thumb">
-																											<span class="onsale">Sale!</span>
-																												<a href="home_style_2_shop_product_default.html">
-																													<div class="product-thumb-hover">
-																														<img 	width="300" height="300" class="attachment-shop_catalog size-shop_catalog wp-post-image" alt="9"
-																																src="images/9-300x300.jpg"
-																																srcset="images/9-300x300.jpg 300w, images/9-260x260.jpg 260w, images/9.jpg 600w, images/9-180x180.jpg 180w"
-																																sizes="(max-width: 300px) 100vw, 300px" />
-																														<img 	width="300" height="300" class="hover-image back" alt="12"
-																																src="images/12-300x300.jpg"
-																																srcset="images/12-300x300.jpg 300w, images/12-260x260.jpg 260w, images/12.jpg 600w, images/12-180x180.jpg 180w"
-																																sizes="(max-width: 300px) 100vw, 300px" />
-																													</div>
-																												</a>
-																										</div>
-
-																										<div class="item-content">
-																											<div class="reviews-content">
-																												<span style="width:56px"></span>
-																											</div>
-
-																											<h4>
-																												<a href="home_style_2_shop_product_default.html" title="Jowl ullamco">Jowl ullamco</a>
-																											</h4>
-
-																											<div class="item-price">
-																												<span>
-																													<del>
-																														<span class="woocommerce-Price-amount amount">
-																															<span class="woocommerce-Price-currencySymbol">$</span>77.00
-																														</span>
-																													</del>
-																													<ins>
-																														<span class="woocommerce-Price-amount amount">
-																															<span class="woocommerce-Price-currencySymbol">$</span>60.00
-																														</span>
-																													</ins>
-																												</span>
-																											</div>
-																										</div>
-																									</div>
-																								</div>
-																							</div>
-
-																							<div class="item">
-																								<div class="item-wrap">
-																									<div class="item-detail">
-																										<div class="item-img products-thumb">
-																											<a href="home_style_2_shop_product_default.html">
-																												<div class="product-thumb-hover">
-																													<img 	width="300" height="300" class="attachment-shop_catalog size-shop_catalog wp-post-image" alt="5"
-																															src="images/51-300x300.jpg"
-																															srcset="images/51-300x300.jpg 300w, images/51-260x260.jpg 260w, images/51.jpg 600w, images/51-180x180.jpg 180w"
-																															sizes="(max-width: 300px) 100vw, 300px" />
-																													<img 	width="300" height="300" class="hover-image back" alt="5"
-																															src="images/51-300x300.jpg"
-																															srcset="images/51-300x300.jpg 300w, images/51-260x260.jpg 260w, images/51.jpg 600w, images/51-180x180.jpg 180w"
-																															sizes="(max-width: 300px) 100vw, 300px" />
-																												</div>
-																											</a>
-																										</div>
-
-																										<div class="item-content">
-																											<div class="reviews-content">
-																												<span style="width:56px"></span>
-																											</div>
-
-																											<h4>
-																												<a href="home_style_2_shop_product_default.html" title="Sint drumstick">Sint drumstick</a>
-																											</h4>
-
-																											<div class="item-price">
-																												<span>
-																													<span class="woocommerce-Price-amount amount">
-																														<span class="woocommerce-Price-currencySymbol">$</span>55.00
-																													</span>
-																												</span>
-																											</div>
-																										</div>
-																									</div>
-																								</div>
-																							</div>
-
-																							<div class="item">
-																								<div class="item-wrap">
-																									<div class="item-detail">
-																										<div class="item-img products-thumb">
-																											<span class="onsale">Sale!</span>
-																											<a href="home_style_2_shop_product_default.html">
-																												<div class="product-thumb-hover">
-																													<img 	width="300" height="300" class="attachment-shop_catalog size-shop_catalog wp-post-image" alt="4"
-																															src="images/4-300x300.jpg"
-																															srcset="images/4-300x300.jpg 300w, images/4-260x260.jpg 260w, images/4.jpg 600w, images/4-180x180.jpg 180w"
-																															sizes="(max-width: 300px) 100vw, 300px" />
-																													<img 	width="300" height="300" class="hover-image back" alt="5"
-																															src="images/51-300x300.jpg"
-																															srcset="images/51-300x300.jpg 300w, images/51-260x260.jpg 260w, images/51.jpg 600w, images/51-180x180.jpg 180w"
-																															sizes="(max-width: 300px) 100vw, 300px" />
-																												</div>
-																											</a>
-																										</div>
-
-																										<div class="item-content">
-																											<div class="reviews-content">
-																												<span style="width:0px"></span>
-																											</div>
-
-																											<h4>
-																												<a href="home_style_2_shop_product_default.html" title="Aliqua minim">Aliqua minim</a>
-																											</h4>
-
-																											<div class="item-price">
-																												<span>
-																													<del>
-																														<span class="woocommerce-Price-amount amount">
-																															<span class="woocommerce-Price-currencySymbol">$</span>880.00
-																														</span>
-																													</del>
-
-																													<ins>
-																														<span class="woocommerce-Price-amount amount">
-																															<span class="woocommerce-Price-currencySymbol">$</span>800.00
-																														</span>
-																													</ins>
-																												</span>
-																											</div>
-																										</div>
-																									</div>
-																								</div>
-																							</div>
-																						</div>
-
-																						<div id="listing_category_04" class="tab-pane clearfix ">
-																							<div class="item">
-																								<div class="item-wrap">
-																									<div class="item-detail">
-																										<div class="item-img products-thumb">
-																											<span class="onsale">Sale!</span>
-																											<a href="home_style_2_shop_product_default.html">
-																												<div class="product-thumb-hover">
-																													<img 	width="300" height="300" class="attachment-shop_catalog size-shop_catalog wp-post-image" alt="30_1"
-																															src="images/30_1-300x300.jpg"
-																															srcset="images/30_1-300x300.jpg 300w, images/30_1-260x260.jpg 260w, images/30_1.jpg 600w, images/30_1-180x180.jpg 180w"
-																															sizes="(max-width: 300px) 100vw, 300px" />
-																													<img 	width="300" height="300" class="hover-image back" alt="28_1"
-																															src="images/28_1-300x300.jpg"
-																															srcset="images/28_1-300x300.jpg 300w, images/28_1-260x260.jpg 260w, images/28_1.jpg 600w, images/28_1-180x180.jpg 180w"
-																															sizes="(max-width: 300px) 100vw, 300px" />
-																												</div>
-																											</a>
-																										</div>
-
-																										<div class="item-content">
-																											<div class="reviews-content">
-																												<span style="width:0px"></span>
-																											</div>
-
-																											<h4>
-																												<a href="home_style_2_shop_product_default.html" title="Umas tika lorem narem">Umas tika lorem narem</a>
-																											</h4>
-
-																											<div class="item-price">
-																												<span>
-																													<del>
-																														<span class="woocommerce-Price-amount amount">
-																															<span class="woocommerce-Price-currencySymbol">$</span>545.00
-																														</span>
-																													</del>
-
-																													<ins>
-																														<span class="woocommerce-Price-amount amount">
-																															<span class="woocommerce-Price-currencySymbol">$</span>345.00
-																														</span>
-																													</ins>
-																												</span>
-																											</div>
-																										</div>
-																									</div>
-																								</div>
-																							</div>
-
-																							<div class="item">
-																								<div class="item-wrap">
-																									<div class="item-detail">
-																										<div class="item-img products-thumb">
-																											<a href="home_style_2_shop_product_default.html">
-																												<div class="product-thumb-hover">
-																													<img 	width="300" height="300" class="attachment-shop_catalog size-shop_catalog wp-post-image" alt="31"
-																															src="images/31-300x300.jpg"
-																															srcset="images/31-300x300.jpg 300w, images/31-260x260.jpg 260w, images/31.jpg 600w, images/31-180x180.jpg 180w"
-																															sizes="(max-width: 300px) 100vw, 300px" />
-																													<img 	width="300" height="300" class="hover-image back" alt="31"
-																															src="images/31-300x300.jpg"
-																															srcset="images/31-300x300.jpg 300w, images/31-260x260.jpg 260w, images/31.jpg 600w, images/31-180x180.jpg 180w"
-																															sizes="(max-width: 300px) 100vw, 300px" />
-																												</div>
-																											</a>
-																										</div>
-
-																										<div class="item-content">
-																											<div class="reviews-content">
-																												<span style="width:0px"></span>
-																											</div>
-
-																											<h4>
-																												<a href="home_style_2_shop_product_default.html" title="Euismod leo diam nazem">Euismod leo diam nazem</a>
-																											</h4>
-
-																											<div class="item-price">
-																												<span>
-																													<span class="woocommerce-Price-amount amount">
-																														<span class="woocommerce-Price-currencySymbol">$</span>510.00
-																													</span>
-																												</span>
-																											</div>
-																										</div>
-																									</div>
-																								</div>
-																							</div>
-																						</div>
-
-																						<div id="listing_category_05" class="tab-pane clearfix ">
-																							<div class="item">
-																								<div class="item-wrap">
-																									<div class="item-detail">
-																										<div class="item-img products-thumb">
-																											<a href="home_style_2_shop_product_default.html">
-																												<div class="product-thumb-hover">
-																													<img 	width="300" height="300" class="attachment-shop_catalog size-shop_catalog wp-post-image" alt="23_1"
-																															src="images/23_1-300x300.jpg"
-																															srcset="images/23_1-300x300.jpg 300w, images/23_1-260x260.jpg 260w, images/23_1.jpg 600w, images/23_1-180x180.jpg 180w"
-																															sizes="(max-width: 300px) 100vw, 300px" />
-																													<img 	width="300" height="300" class="hover-image back" alt="23_1"
-																															src="images/23_1-300x300.jpg"
-																															srcset="images/23_1-300x300.jpg 300w, images/23_1-260x260.jpg 260w, images/23_1.jpg 600w, images/23_1-180x180.jpg 180w"
-																															sizes="(max-width: 300px) 100vw, 300px" />
-																												</div>
-																											</a>
-																										</div>
-
-																										<div class="item-content">
-																											<div class="reviews-content"><span style="width:0px"></span></div>
-
-																											<h4>
-																												<a href="home_style_2_shop_product_default.html" title="Wiru mise kaztem">Wiru mise kaztem</a>
-																											</h4>
-
-																											<div class="item-price">
-																												<span>
-																													<span class="woocommerce-Price-amount amount">
-																														<span class="woocommerce-Price-currencySymbol">$</span>1.99
-																													</span>
-																												</span>
-																											</div>
-																										</div>
-																									</div>
-																								</div>
-																							</div>
-
-																							<div class="item">
-																								<div class="item-wrap">
-																									<div class="item-detail">
-																										<div class="item-img products-thumb">
-																											<a href="home_style_2_shop_product_default.html">
-																												<div class="product-thumb-hover">
-																													<img 	width="300" height="300" class="attachment-shop_catalog size-shop_catalog wp-post-image" alt="6_5"
-																															src="images/6_5-300x300.jpg"
-																															srcset="images/6_5-300x300.jpg 300w, images/6_5-260x260.jpg 260w, images/6_5.jpg 600w, images/6_5-180x180.jpg 180w"
-																															sizes="(max-width: 300px) 100vw, 300px" />
-																													<img 	width="300" height="300" class="hover-image back" alt="6_5"
-																															src="images/6_5-300x300.jpg"
-																															srcset="images/6_5-300x300.jpg 300w, images/6_5-260x260.jpg 260w, images/6_5.jpg 600w, images/6_5-180x180.jpg 180w"
-																															sizes="(max-width: 300px) 100vw, 300px" />
-																												</div>
-																											</a>
-																										</div>
-
-																										<div class="item-content">
-																											<div class="reviews-content">
-																												<span style="width:70px"></span>
-																											</div>
-
-																											<h4>
-																												<a href="home_style_2_shop_product_default.html" title="Rika mire pisan">Rika mire pisan</a>
-																											</h4>
-
-																											<div class="item-price">
-																												<span>
-																													<span class="woocommerce-Price-amount amount">
-																														<span class="woocommerce-Price-currencySymbol">$</span>0.99
-																													</span>
-																												</span>
-																											</div>
-																										</div>
-																									</div>
-																								</div>
-																							</div>
-																						</div>
-
-																						<div id="listing_category_06" class="tab-pane clearfix ">
-																							<div class="item">
-																								<div class="item-wrap">
-																									<div class="item-detail">
-																										<div class="item-img products-thumb">
-																											<span class="onsale">Sale!</span>
-																											<a href="home_style_2_shop_product_default.html">
-																												<div class="product-thumb-hover">
-																													<img 	width="300" height="300" class="attachment-shop_catalog size-shop_catalog wp-post-image" alt="12"
-																															src="images/12-300x300.jpg"
-																															srcset="images/12-300x300.jpg 300w, images/12-260x260.jpg 260w, images/12.jpg 600w, images/12-180x180.jpg 180w"
-																															sizes="(max-width: 300px) 100vw, 300px" />
-																													<img	width="300" height="300" class="hover-image back" alt="11"
-																															src="images/111-300x300.jpg"
-																															srcset="images/111-300x300.jpg 300w, images/111-260x260.jpg 260w, images/111.jpg 600w, images/111-180x180.jpg 180w"
-																															sizes="(max-width: 300px) 100vw, 300px" />
-																												</div>
-																											</a>
-																										</div>
-
-																										<div class="item-content">
-																											<div class="reviews-content">
-																												<span style="width:0px"></span>
-																											</div>
-
-																											<h4>
-																												<a href="home_style_2_shop_product_default.html" title="Dolore turkey">Dolore turkey</a>
-																											</h4>
-
-																											<div class="item-price">
-																												<span>
-																													<del>
-																														<span class="woocommerce-Price-amount amount">
-																															<span class="woocommerce-Price-currencySymbol">$</span>440.00
-																														</span>
-																													</del>
-																													<ins>
-																														<span class="woocommerce-Price-amount amount">
-																															<span class="woocommerce-Price-currencySymbol">$</span>400.00
-																														</span>
-																													</ins>
-																												</span>
-																											</div>
-																										</div>
-																									</div>
-																								</div>
-																							</div>
-
-																							<div class="item">
-																								<div class="item-wrap">
-																									<div class="item-detail">
-																										<div class="item-img products-thumb">
-																											<span class="onsale">Sale!</span>
-																												<a href="home_style_2_shop_product_default.html">
-																													<div class="product-thumb-hover">
-																														<img 	width="300" height="300" class="attachment-shop_catalog size-shop_catalog wp-post-image" alt="9"
-																																src="images/9-300x300.jpg"
-																																srcset="images/9-300x300.jpg 300w, images/9-260x260.jpg 260w, images/9.jpg 600w, images/9-180x180.jpg 180w"
-																																sizes="(max-width: 300px) 100vw, 300px" />
-																														<img 	width="300" height="300" class="hover-image back" alt="12"
-																																src="images/12-300x300.jpg"
-																																srcset="images/12-300x300.jpg 300w, images/12-260x260.jpg 260w, images/12.jpg 600w, images/12-180x180.jpg 180w"
-																																sizes="(max-width: 300px) 100vw, 300px" />
-																													</div>
-																												</a>
-																										</div>
-
-																										<div class="item-content">
-																											<div class="reviews-content">
-																												<span style="width:56px"></span>
-																											</div>
-
-																											<h4>
-																												<a href="home_style_2_shop_product_default.html" title="Jowl ullamco">Jowl ullamco</a>
-																											</h4>
-
-																											<div class="item-price">
-																												<span>
-																													<del>
-																														<span class="woocommerce-Price-amount amount">
-																															<span class="woocommerce-Price-currencySymbol">$</span>77.00
-																														</span>
-																													</del>
-
-																													<ins>
-																														<span class="woocommerce-Price-amount amount">
-																															<span class="woocommerce-Price-currencySymbol">$</span>60.00
-																														</span>
-																													</ins>
-																												</span>
-																											</div>
-																										</div>
-																									</div>
-																								</div>
-																							</div>
-
-																							<div class="item">
-																								<div class="item-wrap">
-																									<div class="item-detail">
-																										<div class="item-img products-thumb">
-																											<a href="home_style_2_shop_product_default.html">
-																												<div class="product-thumb-hover">
-																													<img 	width="300" height="300" class="attachment-shop_catalog size-shop_catalog wp-post-image" alt="5"
-																															src="images/51-300x300.jpg"
-																															srcset="images/51-300x300.jpg 300w, images/51-260x260.jpg 260w, images/51.jpg 600w, images/51-180x180.jpg 180w"
-																															sizes="(max-width: 300px) 100vw, 300px" />
-																													<img 	width="300" height="300" class="hover-image back" alt="5"
-																															src="images/51-300x300.jpg"
-																															srcset="images/51-300x300.jpg 300w, images/51-260x260.jpg 260w, images/51.jpg 600w, images/51-180x180.jpg 180w"
-																															sizes="(max-width: 300px) 100vw, 300px" />
-																												</div>
-																											</a>
-																										</div>
-
-																										<div class="item-content">
-																											<div class="reviews-content">
-																												<span style="width:56px"></span>
-																											</div>
-
-																											<h4>
-																												<a href="home_style_2_shop_product_default.html" title="Sint drumstick">Sint drumstick</a>
-																											</h4>
-
-																											<div class="item-price">
-																												<span>
-																													<span class="woocommerce-Price-amount amount">
-																														<span class="woocommerce-Price-currencySymbol">$</span>55.00
-																													</span>
-																												</span>
-																											</div>
-																										</div>
-																									</div>
-																								</div>
-																							</div>
-																						</div>
-
-																						<div id="listing_category_07" class="tab-pane clearfix ">
-																							<div class="item">
-																								<div class="item-wrap">
-																									<div class="item-detail">
-																										<div class="item-img products-thumb">
-																											<span class="onsale">Sale!</span>
-																											<a href="home_style_2_shop_product_default.html">
-																												<div class="product-thumb-hover">
-																													<img 	width="300" height="300" class="attachment-shop_catalog size-shop_catalog wp-post-image" alt="30_1"
-																															src="images/30_1-300x300.jpg"
-																															srcset="images/30_1-300x300.jpg 300w, images/30_1-260x260.jpg 260w, images/30_1.jpg 600w, images/30_1-180x180.jpg 180w"
-																															sizes="(max-width: 300px) 100vw, 300px" />
-																													<img 	width="300" height="300" class="hover-image back" alt="28_1"
-																															src="images/28_1-300x300.jpg"
-																															srcset="images/28_1-300x300.jpg 300w, images/28_1-260x260.jpg 260w, images/28_1.jpg 600w, images/28_1-180x180.jpg 180w"
-																															sizes="(max-width: 300px) 100vw, 300px" />
-																												</div>
-																											</a>
-																										</div>
-
-																										<div class="item-content">
-																											<div class="reviews-content">
-																												<span style="width:0px"></span>
-																											</div>
-
-																											<h4>
-																												<a href="home_style_2_shop_product_default.html" title="Umas tika lorem narem">Umas tika lorem narem</a>
-																											</h4>
-
-																											<div class="item-price">
-																												<span>
-																													<del>
-																														<span class="woocommerce-Price-amount amount">
-																															<span class="woocommerce-Price-currencySymbol">$</span>545.00
-																														</span>
-																													</del>
-
-																													<ins>
-																														<span class="woocommerce-Price-amount amount">
-																															<span class="woocommerce-Price-currencySymbol">$</span>345.00
-																														</span>
-																													</ins>
-																												</span>
-																											</div>
-																										</div>
-																									</div>
-																								</div>
-																							</div>
-
-																							<div class="item">
-																								<div class="item-wrap">
-																									<div class="item-detail">
-																										<div class="item-img products-thumb">
-																											<span class="onsale">Sale!</span>
-																											<a href="home_style_2_shop_product_default.html">
-																												<div class="product-thumb-hover">
-																													<img 	width="300" height="300" class="attachment-shop_catalog size-shop_catalog wp-post-image" alt="17"
-																															src="images/17-300x300.jpg"
-																															srcset="images/17-300x300.jpg 300w, images/17-260x260.jpg 260w, images/17.jpg 600w, images/17-180x180.jpg 180w"
-																															sizes="(max-width: 300px) 100vw, 300px" />
-																													<img 	width="300" height="300" class="hover-image back" alt="13_1"
-																															src="images/13_1-300x300.jpg"
-																															srcset="images/13_1-300x300.jpg 300w, images/13_1-260x260.jpg 260w, images/13_1.jpg 600w, images/13_1-180x180.jpg 180w"
-																															sizes="(max-width: 300px) 100vw, 300px" />
-																												</div>
-																											</a>
-																										</div>
-
-																										<div class="item-content">
-																											<div class="reviews-content">
-																												<span style="width:0px"></span>
-																											</div>
-
-																											<h4>
-																												<a href="home_style_2_shop_product_default.html" title="Morbi vulputate diam">Morbi vulputate diam</a>
-																											</h4>
-
-																											<div class="item-price">
-																												<span>
-																													<del>
-																														<span class="woocommerce-Price-amount amount">
-																															<span class="woocommerce-Price-currencySymbol">$</span>560.00
-																														</span>
-																													</del>
-
-																													<ins>
-																														<span class="woocommerce-Price-amount amount">
-																															<span class="woocommerce-Price-currencySymbol">$</span>520.00
-																														</span>
-																													</ins>
-																												</span>
-																											</div>
-																										</div>
-																									</div>
-																								</div>
-																							</div>
-																						</div>
-
-																						<div id="listing_category_08" class="tab-pane clearfix ">
-																							<div class="item">
-																								<div class="item-wrap">
-																									<div class="item-detail">
-																										<div class="item-img products-thumb">
-																											<span class="onsale">Sale!</span>
-																											<a href="home_style_2_shop_product_default.html">
-																												<div class="product-thumb-hover">
-																													<img 	width="300" height="300" class="attachment-shop_catalog size-shop_catalog wp-post-image" alt="1"
-																															src="images/1-2-300x300.jpg"
-																															srcset="images/1-2-300x300.jpg 300w, images/1-2-180x180.jpg 180w"
-																															sizes="(max-width: 300px) 100vw, 300px" />
-																													<img 	width="300" height="300" class="hover-image back" alt="1"
-																															src="images/1-2-300x300.jpg"
-																															srcset="images/1-2-300x300.jpg 300w, images/1-2-180x180.jpg 180w"
-																															sizes="(max-width: 300px) 100vw, 300px" />
-																												</div>
-																											</a>
-																										</div>
-
-																										<div class="item-content">
-																											<div class="reviews-content">
-																												<span style="width:0px"></span>
-																											</div>
-
-																											<h4>
-																												<a href="home_style_2_shop_product_default.html" title="Nulla in diam">Nulla in diam</a>
-																											</h4>
-
-																											<div class="item-price">
-																												<span>
-																													<del>
-																														<span class="woocommerce-Price-amount amount">
-																															<span class="woocommerce-Price-currencySymbol">$</span>345.00
-																														</span>
-																													</del>
-
-																													<ins>
-																														<span class="woocommerce-Price-amount amount">
-																															<span class="woocommerce-Price-currencySymbol">$</span>235.00
-																														</span>
-																													</ins>
-																												</span>
-																											</div>
-																										</div>
-																									</div>
-																								</div>
-																							</div>
-
-																							<div class="item">
-																								<div class="item-wrap">
-																									<div class="item-detail">
-																										<div class="item-img products-thumb">
-																											<a>
-																												<div class="product-thumb-hover">
-																													<img 	width="300" height="300" class="attachment-shop_catalog size-shop_catalog wp-post-image" alt="2"
-																															src="images/2-2-300x300.jpg"
-																															srcset="images/2-2-300x300.jpg 300w, images/2-2-180x180.jpg 180w"
-																															sizes="(max-width: 300px) 100vw, 300px" />
-																													<img 	width="300" height="300" class="hover-image back" alt="2"
-																															src="images/2-2-300x300.jpg"
-																															srcset="images/2-2-300x300.jpg 300w, images/2-2-180x180.jpg 180w"
-																															sizes="(max-width: 300px) 100vw, 300px" />
-																												</div>
-																											</a>
-																										</div>
-
-																										<div class="item-content">
-																											<div class="reviews-content">
-																												<span style="width:0px"></span>
-																											</div>
-
-																											<h4>
-																												<a href="home_style_2_shop_product_default.html" title="Praesent metus elit">Praesent metus elit</a>
-																											</h4>
-
-																											<div class="item-price">
-																												<span>
-																													<span class="woocommerce-Price-amount amount">
-																														<span class="woocommerce-Price-currencySymbol">$</span>280.00
-																													</span>
-																												</span>
-																											</div>
-																										</div>
-																									</div>
-																								</div>
-																							</div>
-
-																							<div class="item">
-																								<div class="item-wrap">
-																									<div class="item-detail">
-																										<div class="item-img products-thumb">
-																											<a>
-																												<div class="product-thumb-hover">
-																													<img 	width="300" height="300" class="attachment-shop_catalog size-shop_catalog wp-post-image" alt="2"
-																															src="images/2-2-300x300.jpg"
-																															srcset="images/2-2-300x300.jpg 300w, images/2-2-180x180.jpg 180w"
-																															sizes="(max-width: 300px) 100vw, 300px" />
-																													<img 	width="300" height="300" class="hover-image back" alt="2"
-																															src="images/2-2-300x300.jpg"
-																															srcset="images/2-2-300x300.jpg 300w, images/2-2-180x180.jpg 180w"
-																															sizes="(max-width: 300px) 100vw, 300px" />
-																												</div>
-																											</a>
-																										</div>
-
-																										<div class="item-content">
-																											<div class="reviews-content">
-																												<span style="width:0px"></span>
-																											</div>
-
-																											<h4>
-																												<a href="home_style_2_shop_product_default.html" title="Praesent metus elit">Praesent metus elit</a>
-																											</h4>
-
-																											<div class="item-price">
-																												<span>
-																													<span class="woocommerce-Price-amount amount">
-																														<span class="woocommerce-Price-currencySymbol">$</span>280.00
-																													</span>
-																												</span>
-																											</div>
-																										</div>
-																									</div>
-																								</div>
-																							</div>
-																						</div>
+                                                                                        @endforeach
 																					</div>
 																				</div>
 																			</div>
@@ -1213,10 +297,7 @@
 													<div class="top-form top-form-minicart minicart-product-style pull-right">
 														<div class="top-minicart pull-right">
 															<a class="cart-contents" href="#" title="View your shopping cart">
-																<span class="minicart-number">0</span> item -
-																<span class="woocommerce-Price-amount amount">
-																	<span class="woocommerce-Price-currencySymbol">$</span>0.00
-																</span>
+																<span class="minicart-number">0</span> item
 															</a>
 														</div>
 													</div>
@@ -1612,6 +693,37 @@
 	<script type="text/javascript">
 		(function($){jQuery('.phone-icon-search').on('click',function(){jQuery('.sm-serachbox-pro').toggle("slide")});var sticky_navigation_offset=$(".yt-header-middle").offset();var sticky_navigation_offset_top=sticky_navigation_offset.top;var sticky_navigation=function(){var scroll_top=$(window).scrollTop();if(scroll_top>sticky_navigation_offset_top){$(".yt-header-middle").addClass("sticky-menu");$(".yt-header-middle").css({"position":"fixed","top":0,"left":0,"right":0,"z-index":800})}else{$(".yt-header-middle").removeClass("sticky-menu");$(".yt-header-middle").css({"position":"relative","z-index":30})}};sticky_navigation();$(window).scroll(function(){sticky_navigation()});$(document).ready(function(){$(".show-dropdown").each(function(){$(this).on("click",function(){$(this).toggleClass("show");$(this).parent().find("> ul").toggle(300)})})})}(jQuery))
 	</script>
+    <script>
+        function onCahnge(name, image, description) {
+           console.log(name);
+           console.log(image);
+           console.log(description);
+           const model = document.getElementById('Product');
+           console.log(model);
+           let modelName = model.querySelector("h1.product_title");
+           modelName.textContent = name;
+           console.log(modelName);
+           let modelDescription = model.querySelector("p.quick-desc");
+           console.log(modelDescription);
+           modelDescription.innerHTML = description;
+        //    const qvImage = document.getElementById("qv-img");
+        //    console.log(lastFive);
+        //    function subStr(string, character, position) {
+        //     if(position=='b')
+        //     return string.substring(string.indexOf(character) + 1);
+        //     else if(position=='a')
+        //     return string.substring(0, string.indexOf(character));
+        //     else
+        //     return string;
+        // }
+        // $path = subStr(image, 's','b');
+        // qvImage.src = "/images/" + $path;
+        // console.log(subStr('Tutorix & Tutorialspoint','&','a'));
+        // console.log("</br>");
+        // console.log(subStr(image, 's','b'));
+        }
+
+   </script>
 </body>
 
 </html>
