@@ -11,6 +11,7 @@
 |
 */
 
+use App\Http\Controllers\Front\Cart;
 use App\Http\Controllers\Front\ContactFormController;
 use App\Http\Controllers\Front\ContactUsForm;
 use App\Http\Controllers\Front\FranchiseController;
@@ -25,6 +26,7 @@ Route::group(['middleware' => 'web'], function () {
 
 
     /********************---------------FRONT ROUTES------------------************************/
+
     Route::get('/', 'Front\homeController@home')->name('home');
     Route::get('/home', 'Front\homeController@home');
     Route::get('/show/{slug}', 'Front\homeController@show')->name('front.show')
@@ -71,6 +73,13 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/category', function() {
         return view('Front.categories.singleCategory');
     });
+    /*---------------cart------------------*/
+
+    Route::post('cart', [Cart::class, 'addToCart'])->name('cart.store');
+    Route::get('cart', [Cart::class, 'cartList'])->name('cart.list');
+    Route::post('update-cart', [Cart::class, 'updateCart'])->name('cart.update');
+    Route::get('remove', [Cart::class, 'removeCart'])->name('cart.remove');
+    Route::post('clear', [Cart::class, 'clearAllCart'])->name('cart.clear');
     /*---------------CHECKOUT------------------*/
     Route::get('/inter-checkout', 'Front\checkOutController@interCheckOut')->name('front.inter.checkout');
     Route::get('/checkout', 'Front\checkOutController@index')->name('front.checkout');

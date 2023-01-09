@@ -71,13 +71,13 @@
 																</a>
 																<ul>
 																	<li class="icl-en active">
-																		<a>
+																		<a href="">
 																			<img class="iclflag" title="English" alt="en" src="{{ asset('best/images/en.png') }}" width="18" height="12">&nbsp;ENG
 																		</a>
 																	</li>
 
 																	<li class="icl-ar">
-																		<a>
+																		<a href="">
 																			<img class="iclflag" title="Arabic" alt="ar" src="{{ asset('best/images/ar.png') }}" width="18" height="12">&nbsp;ARA
 																		</a>
 																	</li>
@@ -124,10 +124,19 @@
 																		</li>
 
 																		<li class="res-dropdown menu-shop">
-																			<a class="item-link dropdown-toggle" href="#">Shop</a>
+																			<a class="item-link dropdown-toggle" href="/products">Shop</a>
 																		</li>
 																		<li class="res-dropdown menu-shop">
-																			<a class="item-link dropdown-toggle" href="#">About</a>
+																			<a class="item-link dropdown-toggle" href="/about">About</a>
+																		</li>
+																		<li class="res-dropdown menu-shop">
+																			<a class="item-link dropdown-toggle" href="{{ route('franchise.index') }}">Franchise</a>
+																		</li>
+																		<li class="res-dropdown menu-shop">
+																			<a class="item-link dropdown-toggle" href="{{ route('join-us.index') }}">Join us</a>
+																		</li>
+																		<li class="res-dropdown menu-shop">
+																			<a class="item-link dropdown-toggle" href="{{ route('contact.index') }}">Contact us</a>
 																		</li>
 
 
@@ -210,13 +219,12 @@
 																								<div class="item-wrap">
 																									<div class="item-detail">
 																										<div class="item-img products-thumb">
-																											<span class="onsale">Sale!</span>
-																											<a href="{{ route('front.show',$product->product_slug) }}">
+																											<a href="{{ route('front.show',$products->product_slug) }}">
 																												<div class="product-thumb-hover">
-																													<img 	width="300" height="300" src="images/{{ $products->cover }}" class="attachment-shop_catalog size-shop_catalog wp-post-image" alt="12"
-																															src="images/{{ $products->cover }}"/>
+																													<img 	width="300" height="300" src="{{ $products->cover }}" class="attachment-shop_catalog size-shop_catalog wp-post-image" alt="12"
+																															src="{{ $products->cover }}"/>
 																													<img 	width="300" height="300" class="hover-image back"
-																															src="images/{{ $products->cover }}" alt="11">
+																															src="{{ $products->cover }}" alt="11">
 																												</div>
 																											</a>
 																										</div>
@@ -227,7 +235,7 @@
 																											</div>
 
 																											<h4>
-																												<a href="{{ route('front.show',$product->product_slug) }}" title="{{ $products->product_name }}">{{ $products->product_name }}</a>
+																												<a href="{{ route('front.show',$products->product_slug) }}" title="{{ $products->product_name }}">{{ $products->product_name }}</a>
 																											</h4>
 
 																											<div class="item-price">

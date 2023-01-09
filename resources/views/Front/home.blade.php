@@ -5,15 +5,6 @@
 @section('content')
 <!-- MAIN -->
 <div id="main" class="theme-clearfix" role="document">
-    <div class="breadcrumbs theme-clearfix">
-        <div class="container">
-            <ul class="breadcrumb">
-                <li class="active">
-                    <span>Home</span>
-                </li>
-            </ul>
-        </div>
-    </div>
 
     <div class="vc_row wpb_row vc_row-fluid no-margin">
         <div class="wpb_column vc_column_container vc_col-sm-12">
@@ -28,13 +19,13 @@
                                         <div class="module slideshow no-margin">
                                             @foreach ($setting as $setting)
                                             <div class="item">
-                                                <a href="home_style_2_shop_product_default.html"><img src="{{ asset('best/images') }}/{{ $setting->slider_image1 }}" alt="slider1" class="img-responsive" height="559"></a>
+                                                <a><img src="{{ asset('best/images') }}/{{ $setting->slider_image1 }}" alt="slider1" class="img-responsive" height="559"></a>
                                             </div>
                                             <div class="item">
-                                                <a href="home_style_2_shop_product_default.html"><img src="{{ asset('best/images') }}/{{ $setting->slider_image2 }}" alt="slider2" class="img-responsive" height="559"></a>
+                                                <a><img src="{{ asset('best/images') }}/{{ $setting->slider_image2 }}" alt="slider2" class="img-responsive" height="559"></a>
                                             </div>
                                             <div class="item">
-                                                <a href="home_style_2_shop_product_default.html"><img src="{{ asset('best/images') }}/{{ $setting->slider_image3 }}" alt="slider3" class="img-responsive" height="559"></a>
+                                                <a><img src="{{ asset('best/images') }}/{{ $setting->slider_image3 }}" alt="slider3" class="img-responsive" height="559"></a>
                                             </div>
                                             @endforeach
                                         </div>

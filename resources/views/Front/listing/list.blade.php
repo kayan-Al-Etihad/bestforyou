@@ -49,7 +49,7 @@
                                             <a href="">
                                                 <div class="product-thumb-hover">
                                                     <img 	width="300" height="300" class="attachment-shop_catalog size-shop_catalog wp-post-image" alt=""
-                                                            src="{{ asset('images/sample-pr.jpg') }}"
+                                                            src="{{ $product->cover }}"
                                                             {{-- srcset="images/post14.png 300w, images/2-3-260x260.jpg 260w, images/2-3.jpg 600w, images/2-3-180x180.jpg 180w"  --}}
                                                             sizes="(max-width: 300px) 100vw, 300px" />
                                                 </div>
@@ -61,7 +61,7 @@
                                         <div class="products-content">
                                             <div class="item-content">
                                                 <h4>
-                                                    <a href="" class="post-title" title="Steak veniam">{{ $product->product_name }}</a>
+                                                    <a href="" class="post-title" title="{{ $product->product_name }}">{{ $product->product_name }}</a>
                                                 </h4>
 
 
@@ -89,8 +89,20 @@
                                                 <div class="item-bottom clearfix">
 
                                                     <div class="clear"></div>
-
-                                                    <a rel="nofollow" href="" class="button product_type_simple add_to_cart_button ajax_add_to_cart">أضافه إلى السلة</a>
+                                                    @if (session('success'))
+                                                    <div class="alert">
+                                                        {{ session('success') }}
+                                                    </div>
+                                                    @endif
+                                                    <form action="{{ route('cart.store') }}" method="post">
+                                                        @csrf
+                                                        <input type="hidden" name="name" value="{{ $product->product_name }}">
+                                                        <input type="hidden" name="price" value="{{ $product->price }}">
+                                                        <input type="hidden" name="id" value="{{ $product->product_id }}">
+                                                        <input type="hidden" name="quantity" value="1">
+                                                        <input type="hidden" name="image" value="{{ $product->cover }}">
+                                                        <input type="submit" value="Add to cart" class="button product_type_simple add_to_cart_button ajax_add_to_cart">
+                                                    </form>
 
                                                     <!-- <div class="woocommerce product compare-button">
                                                         <a href="javascript:void(0)" class="compare button" rel="nofollow">Compare</a>
