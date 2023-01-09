@@ -54,7 +54,7 @@
 
                                             </a>
 
-                                            <a href="">
+                                            <a href="{{ route('front.show', $product->product_slug) }}">
                                                 <div class="product-thumb-hover">
                                                     <img 	width="300" height="300" class="attachment-shop_catalog size-shop_catalog wp-post-image" alt=""
                                                             src="{{ asset('images/sample-pr.jpg') }}"
@@ -63,13 +63,13 @@
                                                 </div>
                                             </a>
 
-                                            <a href="{{ asset('best/ajax/fancybox/example.html') }}" data-fancybox-type="ajax" class="fancybox fancybox.ajax sm_quickview_handler-list" title="Quick View Product">Quick View</a>
+                                            <a onclick="onCahnge('{{ $product->product_name }}', '{{ $product->cover }}', '{{ $product->description }}')" class="sm_quickview_handler-list"  href="" data-toggle="modal" data-target="#exampleModalCenter">Quick View </a>
                                         </div>
 
                                         <div class="products-content">
                                             <div class="item-content">
                                                 <h4>
-                                                    <a href="" class="post-title" title="Steak veniam">{{ $product->product_name }}</a>
+                                                    <a href="{{ route('front.show', $product->product_slug) }}" class="post-title" title="Steak veniam">{{ $product->product_name }}</a>
                                                 </h4>
 
 

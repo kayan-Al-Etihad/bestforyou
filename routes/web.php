@@ -11,21 +11,23 @@
 |
 */
 
+use App\Http\Controllers\Front\About;
+use App\Http\Controllers\Front\AboutController;
 use App\Http\Controllers\Front\Cart;
 use App\Http\Controllers\Front\ContactFormController;
 use App\Http\Controllers\Front\ContactUsForm;
 use App\Http\Controllers\Front\FranchiseController;
+use App\Http\Controllers\Front\homeController;
 use App\Http\Controllers\Front\JoinUsController;
+use App\Http\Controllers\Front\LanguageController;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Middleware\SetLocale;
+Route::get('/lang/{lang}', [LanguageController::class, 'lang']);
 //Route::get('/test', function () {
 //    return view('test');
 //})->name('test');
 
-Route::group(['middleware' => 'web'], function () {
-
-
-    /********************---------------FRONT ROUTES------------------************************/
+Route::group(['middleware' => 'lang'], function () {
 
     Route::get('/', 'Front\homeController@home')->name('home');
     Route::get('/home', 'Front\homeController@home');
@@ -37,9 +39,7 @@ Route::group(['middleware' => 'web'], function () {
         ->where(['slug' => '[-A-Za-z0-9]+']);
     /*---------------Contact us------------------*/
     /*---------------About us------------------*/
-    Route::get('/about', function() {
-        return view('Front.about.about');
-    });
+    Route::get('/about', [AboutController::class, 'index'])->name('about.index');
     /*---------------About us------------------*/
     // Route::get('/cart', function() {
     //     return view('Front.cart.cart');
@@ -73,6 +73,19 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/category', function() {
         return view('Front.categories.singleCategory');
     });
+    /*---------------LISTS------------------*/
+    Route::match(['get', 'post'], '/products', 'Front\homeController@productsList')->name('front.productsList');
+    Route::match(['get', 'post'], '/products/{list}/{slug}', 'Front\homeController@list')->where([
+        'list' => '[A-za-z]+',
+        'slug' => '[-A-Za-z0-9]+'
+    ])->name('front.lists');
+});
+Route::group(['middleware' => 'web'], function () {
+
+
+    /********************---------------FRONT ROUTES------------------************************/
+
+
     /*---------------cart------------------*/
 
     Route::post('cart', [Cart::class, 'addToCart'])->name('cart.store');
@@ -93,12 +106,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/payment/success', 'Front\PayPalController@success')->name('payment.success');
     Route::post('/paypal/notify', 'Front\PaypalController@notify')->name('paypal.notify');
 
-    /*---------------LISTS------------------*/
-    Route::match(['get', 'post'], '/products', 'Front\homeController@productsList')->name('front.productsList');
-    Route::match(['get', 'post'], '/products/{list}/{slug}', 'Front\homeController@list')->where([
-        'list' => '[A-za-z]+',
-        'slug' => '[-A-Za-z0-9]+'
-    ])->name('front.lists');
+
 
     /*---------------CART------------------*/
     // Route::resource('/cart', 'Front\cartController')->except(['create', 'edit', 'update']);

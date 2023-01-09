@@ -2,7 +2,6 @@
 @section('title')
    {{ $product->product_name }}
 @endsection
-
 @section('content')
 <!-- MAIN -->
 <div id="main" style="margin-top:80px" class="theme-clearfix" role="document">
@@ -247,11 +246,11 @@
                                                         <div id="review_form">
                                                             <div id="respond" class="comment-respond">
                                                                 <h4>Write your comment</h4>
-                                                                <form action="" method="post" id="commentform" class="comment-form">
-
+                                                                <form action="{{ route('comment.store') }}" method="post" id="commentform" class="comment-form">
+                                                                    @csrf
                                                                     <p class="comment-form-comment">
                                                                         <label for="comment">Your Review</label>
-                                                                        <textarea id="comment" class="form-control" name="comment" cols="45" rows="8" aria-required="true"></textarea>
+                                                                        <textarea id="comment" class="form-control" name="message" cols="45" rows="8" aria-required="true"></textarea>
                                                                     </p>
 
                                                                     <p class="comment-form-author">
