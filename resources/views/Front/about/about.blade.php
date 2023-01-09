@@ -4,20 +4,6 @@
 @section('content')
 <!-- MAIN -->
 <div id="main" class="theme-clearfix" role="document">
-    <div class="breadcrumbs theme-clearfix">
-        <div class="container">
-            <ul class="breadcrumb">
-                <li>
-                    <a id="home" href="home_style_2.html">Home</a>
-                    <span class="go-page"></span>
-                </li>
-
-                <li class="active">
-                    <span>About us 1</span>
-                </li>
-            </ul>
-        </div>
-    </div>
 
     <div class="container">
         <div class="row">
@@ -37,17 +23,15 @@
                                                 </p>
 
                                                 <div class="page-title">
-                                                    <h2>ABOUT US</h2>
+                                                    <h2>@lang('auth.about_title')</h2>
                                                 </div>
 
                                                 <p>
-                                                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.
+                                                    @lang('auth.about_description1').
                                                 </p>
 
                                                 <p>
-                                                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.
-                                                    <br>
-                                                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.
+                                                    @lang('auth.about_description2').
                                                 </p>
                                             </div>
                                         </div>
@@ -63,7 +47,7 @@
                                         <div class="wpb_text_column wpb_content_element ">
                                             <div class="wpb_wrapper">
                                                 <div class="page-title">
-                                                    <h2 style="text-align: center;">OUR TEAM</h2>
+                                                    <h2 style="text-align: center;">@lang('auth.about_team')</h2>
                                                 </div>
                                             </div>
                                         </div>
@@ -86,10 +70,10 @@
                                                                 </div>
 
                                                                 <div class="item-content">
-                                                                    <h3>Dolor at tincidunt mollis</h3>
+                                                                    <h3>@lang('auth.about_team_title1')</h3>
 
                                                                     <div class="item-desc">
-                                                                       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer condimentum
+                                                                       @lang('auth.about_team_description1')
                                                                     </div>
 
                                                                     <div class="item-social">
@@ -139,10 +123,10 @@
                                                                 </div>
 
                                                                 <div class="item-content">
-                                                                    <h3>Dolor at tincidunt mollis</h3>
+                                                                    <h3>@lang('auth.about_team_title2')</h3>
 
                                                                     <div class="item-desc">
-                                                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer condimentum
+                                                                        @lang('auth.about_team_description2')
                                                                     </div>
 
                                                                     <div class="item-social">
@@ -192,10 +176,10 @@
                                                                 </div>
 
                                                                 <div class="item-content">
-                                                                    <h3>Dolor at tincidunt mollis</h3>
+                                                                    <h3>@lang('auth.about_team_title3')</h3>
 
                                                                     <div class="item-desc">
-                                                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer condimentum
+                                                                        @lang('auth.about_team_description3')
                                                                     </div>
 
                                                                     <div class="item-social">
@@ -245,63 +229,10 @@
                                                                 </div>
 
                                                                 <div class="item-content">
-                                                                    <h3>Dolor at tincidunt mollis</h3>
+                                                                    <h3>@lang('auth.about_team_title4')</h3>
 
                                                                     <div class="item-desc">
-                                                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer condimentum
-                                                                    </div>
-
-                                                                    <div class="item-social">
-                                                                        <div class="team-facebook">
-                                                                          <a href="#"><i class="fa fa-facebook"></i></a>
-                                                                        </div>
-
-                                                                        <div class="team-twitter">
-                                                                            <a href="#"><i class="fa fa-twitter"></i></a>
-                                                                        </div>
-
-                                                                        <div class="team-gplus">
-                                                                            <a href="#"><i class="fa fa-google-plus"></i></a>
-                                                                        </div>
-
-                                                                        <div class="team-linkedin">
-                                                                            <a href="#"><i class="fa fa-linkedin"></i></a>
-                                                                        </div>
-                                                                    </div>
-
-                                                                    <ul class="au_contact">
-                                                                        <li>
-                                                                            <span class="fa fa-mobile-phone" style="font-size: 18px; position: relative; top: 4px;">&nbsp;</span>
-                                                                            <a title="Call:0123-4567-8910" href="tel:+84123456789">0123-4567-8910</a>
-                                                                        </li>
-
-                                                                        <li>
-                                                                            <span class="fa fa-envelope" style="font-size: 11px; position: relative;">&nbsp;</span>
-                                                                            <a title="maria@test.domain" href="mailto:maria@test.domain">maria@test.domain</a>
-                                                                        </li>
-
-                                                                        <li>
-                                                                            <span class="fa fa-skype" style="font-size: 16px; position: relative; top: 1px;">&nbsp;</span>test.skype
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                       <div class="item">
-                                                            <div class="item-wrap">
-                                                                <div class="item-img item-height">
-                                                                    <div class="item-img-info">
-                                                                        <img 	width="270" height="270" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt=""
-                                                                                src="{{ asset('best/images/team1.jpg') }}"/>
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="item-content">
-                                                                    <h3>Dolor at tincidunt mollis</h3>
-
-                                                                    <div class="item-desc">
-                                                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer condimentum
+                                                                        @lang('auth.about_team_description4')
                                                                     </div>
 
                                                                     <div class="item-social">

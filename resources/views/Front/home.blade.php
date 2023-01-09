@@ -55,7 +55,7 @@
                                                 <div class="vc_wp_custommenu wpb_content_element">
                                                     <!-- CATEGORIES -->
                                                     <div class="mega-left-title">
-                                                        <strong>Categories</strong>
+                                                        <strong>@lang('auth.categories')</strong>
                                                     </div>
 
                                                     <div class="wrapper_vertical_menu vertical_megamenu">
@@ -68,144 +68,6 @@
                                                                                 {{ $category->category_name }}</span>
                                                                         </span>
                                                                     </a>
-
-                                                                    {{-- <ul class="dropdown-menu nav-level1 one-column">
-                                                                        <li class="dropdown-submenu one-column menu-categories-1">
-                                                                            <span class="have-title">
-                                                                                <span class="menu-title">Categories 1</span>
-                                                                            </span>
-
-                                                                            <ul class="dropdown-sub nav-level2">
-                                                                                <li class="menu-camera-camcorders">
-                                                                                    <a href="#">
-                                                                                        <span class="have-title">
-                                                                                            <span class="menu-title">Camera & Camcorders</span>
-                                                                                        </span>
-                                                                                    </a>
-                                                                                </li>
-
-                                                                                <li class="menu-cosmetic">
-                                                                                    <a href="#">
-                                                                                        <span class="have-title">
-                                                                                            <span class="menu-title">Cosmetic</span>
-                                                                                        </span>
-                                                                                    </a>
-                                                                                </li>
-
-                                                                                <li class="menu-electronic">
-                                                                                    <a href="#">
-                                                                                        <span class="have-title">
-                                                                                            <span class="menu-title">Electronic</span>
-                                                                                        </span>
-                                                                                    </a>
-                                                                                </li>
-
-                                                                                <li class="menu-laptop-computer">
-                                                                                    <a href="#">
-                                                                                        <span class="have-title">
-                                                                                            <span class="menu-title">Laptop & Computer</span>
-                                                                                        </span>
-                                                                                    </a>
-                                                                                </li>
-
-                                                                                <li class="menu-medical-healthcare">
-                                                                                    <a href="#">
-                                                                                        <span class="have-title">
-                                                                                            <span class="menu-title">Medical & Healthcare</span>
-                                                                                        </span>
-                                                                                    </a href="#">
-                                                                                </li>
-
-                                                                                <li class="menu-phasellus-laoreet">
-                                                                                    <a href="#">
-                                                                                        <span class="have-title">
-                                                                                            <span class="menu-title">Phasellus laoreet</span>
-                                                                                        </span>
-                                                                                    </a>
-                                                                                </li>
-
-                                                                                <li class="menu-etiam-id-finibus">
-                                                                                    <a href="#">
-                                                                                        <span class="have-title">
-                                                                                            <span class="menu-title">Etiam id finibus</span>
-                                                                                        </span>
-                                                                                    </a>
-                                                                                </li>
-                                                                            </ul>
-                                                                        </li>
-
-                                                                        <li class="dropdown-submenu one-column menu-categories-2">
-                                                                            <span class="have-title">
-                                                                                <span class="menu-title">Categories 2</span>
-                                                                            </span>
-
-                                                                            <ul class="dropdown-sub nav-level2">
-                                                                                <li class="menu-camera-camcorders">
-                                                                                    <a href="#">
-                                                                                        <span class="have-title">
-                                                                                            <span class="menu-title">Camera & Camcorders</span>
-                                                                                        </span>
-                                                                                    </a>
-                                                                                </li>
-
-                                                                                <li class="menu-cosmetic">
-                                                                                    <a href="#">
-                                                                                        <span class="have-title">
-                                                                                            <span class="menu-title">Cosmetic</span>
-                                                                                        </span>
-                                                                                    </a>
-                                                                                </li>
-
-                                                                                <li class="menu-electronic">
-                                                                                    <a href="#">
-                                                                                        <span class="have-title">
-                                                                                            <span class="menu-title">Electronic</span>
-                                                                                        </span>
-                                                                                    </a>
-                                                                                </li>
-
-                                                                                <li class="menu-laptop-computer">
-                                                                                    <a href="#">
-                                                                                        <span class="have-title">
-                                                                                            <span class="menu-title">Laptop & Computer</span>
-                                                                                        </span>
-                                                                                    </a>
-                                                                                </li>
-
-                                                                                <li class="menu-medical-healthcare">
-                                                                                    <a href="#">
-                                                                                        <span class="have-title">
-                                                                                            <span class="menu-title">Medical & Healthcare</span>
-                                                                                        </span>
-                                                                                    </a>
-                                                                                </li>
-
-                                                                                <li class="menu-aliquam-in-risus">
-                                                                                    <a href="#">
-                                                                                        <span class="have-title">
-                                                                                            <span class="menu-title">Aliquam in risus</span>
-                                                                                        </span>
-                                                                                    </a>
-                                                                                </li>
-
-                                                                                <li class="menu-scelerisque-odio">
-                                                                                    <a href="#">
-                                                                                        <span class="have-title">
-                                                                                            <span class="menu-title">Scelerisque odio</span>
-                                                                                        </span>
-                                                                                    </a>
-                                                                                </li>
-                                                                            </ul>
-                                                                        </li>
-
-                                                                        <li class="one-column menu-img-menu">
-                                                                            <span>
-                                                                                <span class="menu-img">
-                                                                                    <img src="images/static-img-ver-item.jpg" alt="Menu Image" width="286" height="515" />
-                                                                                </span>
-                                                                            </span>
-                                                                        </li>
-                                                                    </ul> --}}
                                                                 </li>
                                                             @endforeach
                                                         </ul>
@@ -218,19 +80,19 @@
                                                     <div class="wpb_wrapper">
                                                         <div class="block-subscribe sn-lettter">
                                                             <div class="block-title">
-                                                                <strong>newsletter<br></strong>
+                                                                <strong>@lang('auth.newsletter')<br></strong>
                                                             </div>
 
                                                             <div class="block-content">
                                                                 <div class="form-subscribe-header">
-                                                                    <label for="newsletter">You a Client, large or small, and want to participate in this adventure, please send us an email to support@nik.com </label>
+                                                                    <label for="newsletter">@lang('auth.newsletter_description') </label>
                                                                 </div>
 
                                                                 <div class="input-box">
                                                                     <form id="mc4wp-form-1" class="mc4wp-form mc4wp-form-7267 mc4wp-form-basic" method="post" data-id="7267" data-name="Default sign-up form">
                                                                         <div class="mc4wp-form-fields">
                                                                             <div class="input-box">
-                                                                                <input type="email" name="email" title="Sign up for our newsletter" class="newsletter input-text required-entry validate-email" placeholder="Enter your email address" required="required" />
+                                                                                <input type="email" name="email" class="newsletter input-text required-entry validate-email" placeholder="@lang('auth.newsletter_input')" required="required" />
                                                                             </div>
 
                                                                             <div class="actions">
@@ -250,7 +112,7 @@
                                                 <div id="lastDealCountDown" class="sw-woo-container-slider responsive-slider countdown-style2" data-lg="1" data-md="1" data-sm="1" data-xs="1" data-mobile="1" data-speed="1000" data-scroll="1" data-interval="5000" data-autoplay="false" data-circle="false">
                                                     <div class="box-slider-title">
                                                         <h2>
-                                                            <span>LATEST DEALS</span>
+                                                            <span>@lang('auth.latest_deals')</span>
                                                         </h2>
                                                     </div>
 
@@ -273,7 +135,7 @@
                                                                                     </div>
                                                                                 </a>
 
-                                                                                <a href="ajax/fancybox/example.html" data-fancybox-type="ajax" class="sm_quickview_handler-list fancybox fancybox.ajax">Quick View </a>
+                                                                                <a onclick="onCahnge('{{ $latestDeals->product_name }}', '{{ $latestDeals->cover }}', '{{ $latestDeals->description }}')" class="sm_quickview_handler-list"  href="" data-toggle="modal" data-target="#exampleModalCenter">Quick View </a>
                                                                             </div>
 
                                                                             <div class="item-content">
@@ -301,7 +163,7 @@
                                                                                 </div>
                                                                                 <!-- price -->
                                                                                 <div class="add-info">
-                                                                                    <a rel="nofollow" href="#" class="button product_type_simple add_to_cart_button ajax_add_to_cart">Add to cart</a>
+                                                                                    <a rel="nofollow" href="#" class="button product_type_simple add_to_cart_button ajax_add_to_cart">@lang('auth.add_to_cart')</a>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -333,7 +195,7 @@
                                                         <div class="category-slider-content clearfix">
                                                             <div class="category-slider-content clearfix">
                                                                 <div class="top-tab-slider clearfix">
-                                                                    <h2 style="margin-top: 5px">Best Selling Products</h2>
+                                                                    <h2 style="margin-top: 5px">@lang('auth.best_seller')</h2>
 
                                                                     <div class="tab-content clearfix">
                                                                         <!-- Product tab slider -->
@@ -352,11 +214,11 @@
                                                                                                             <a href="{{ route('front.show', $product->product_slug) }}">
                                                                                                                 <div class="product-thumb-hover">
                                                                                                                     <img 	width="300" height="300" class="attachment-shop_catalog size-shop_catalog wp-post-image" alt="J10"
-                                                                                                                            src="{{ asset('images/') }}/{{ $product->cover }}" />
+                                                                                                                            src="{{ $product->cover }}" />
                                                                                                                 </div>
                                                                                                             </a>
 
-                                                                                                            <a onclick="onCahnge('{{ $product->product_name }}', '{{ $product->cover }}', '{{ $product->description }}')"  href="{{ asset('best/ajax/fancybox/example.html') }}" data-fancybox-type="ajax" class="sm_quickview_handler-list fancybox fancybox.ajax">Quick View </a>
+                                                                                                            <a onclick="onCahnge('{{ $product->product_name }}', '{{ $product->cover }}', '{{ $product->description }}')" class="sm_quickview_handler-list"  href="" data-toggle="modal" data-target="#exampleModalCenter">Quick View </a>
                                                                                                         </div>
 
                                                                                                         <div class="item-content">
@@ -378,7 +240,7 @@
 
                                                                                                             <!-- add to cart, wishlist, compare -->
                                                                                                             <div class="add-info">
-                                                                                                                <a rel="nofollow" href="#" class="button product_type_simple add_to_cart_button ajax_add_to_cart">Add to cart</a>
+                                                                                                                <a rel="nofollow" href="#" class="button product_type_simple add_to_cart_button ajax_add_to_cart">@lang('auth.add_to_cart')</a>
                                                                                                             </div>
                                                                                                         </div>
                                                                                                     </div>
@@ -433,7 +295,7 @@
                                                     <div class="resp-tab" style="position:relative;">
                                                         <div class="top-tab-slider clearfix">
                                                             <div class="order-title">
-                                                                <span>SPECIAL PRODUCTS</span>
+                                                                <span>@lang('auth.special_products')</span>
                                                             </div>
 
                                                             <button class="navbar-toggle collapsed pull-right" type="button" data-toggle="collapse" data-target="#nav_tabs_res_01" aria-expanded="false">
@@ -463,7 +325,7 @@
                                                                                                     </div>
                                                                                                 </a>
 
-                                                                                                <a href="ajax/fancybox/example.html" data-fancybox-type="ajax" class="sm_quickview_handler-list fancybox fancybox.ajax">Quick View </a>
+                                                                                                <a onclick="onCahnge('{{ $product->product_name }}', '{{ $product->cover }}', '{{ $product->description }}')" class="sm_quickview_handler-list"  href="" data-toggle="modal" data-target="#exampleModalCenter">Quick View </a>
                                                                                             </div>
 
                                                                                             <div class="item-content">
@@ -483,7 +345,7 @@
 
                                                                                                 <!-- add to cart, wishlist, compare -->
                                                                                                 <div class="add-info">
-                                                                                                    <a rel="nofollow" href="#" class="button product_type_simple add_to_cart_button ajax_add_to_cart">Add to cart</a>
+                                                                                                    <a rel="nofollow" href="#" class="button product_type_simple add_to_cart_button ajax_add_to_cart">@lang('auth.add_to_cart')</a>
                                                                                                 </div>
                                                                                             </div>
                                                                                         </div>
@@ -500,7 +362,7 @@
                                                                                                     </div>
                                                                                                 </a>
 
-                                                                                                <a href="ajax/fancybox/example.html" data-fancybox-type="ajax" class="sm_quickview_handler-list fancybox fancybox.ajax">Quick View </a>
+                                                                                                <a onclick="onCahnge('{{ $product->product_name }}', '{{ $product->cover }}', '{{ $product->description }}')" class="sm_quickview_handler-list"  href="" data-toggle="modal" data-target="#exampleModalCenter">Quick View </a>
                                                                                             </div>
 
                                                                                             <div class="item-content">
@@ -520,7 +382,7 @@
 
                                                                                                 <!-- add to cart, wishlist, compare -->
                                                                                                 <div class="add-info">
-                                                                                                    <a rel="nofollow" href="#" class="button product_type_simple add_to_cart_button ajax_add_to_cart">Add to cart</a>
+                                                                                                    <a rel="nofollow" href="#" class="button product_type_simple add_to_cart_button ajax_add_to_cart">@lang('auth.add_to_cart')</a>
                                                                                                 </div>
                                                                                             </div>
                                                                                         </div>

@@ -86,7 +86,6 @@ class homeController extends Controller
         $has_commented = in_array(auth()->id(),$product->comments()->pluck('commenter_id','commenter_id')->toArray());
         $categories = Category::all();
         $relatedProducts = Product::all()->where("product_slug", "!=", $slug)->take(8);
-        $dailyCat = Category::with('products')->get(3);
         return view('front.product.show', compact('product', 'related_products','has_commented', 'categories', 'relatedProducts'));
     }
 

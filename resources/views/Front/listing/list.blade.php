@@ -20,7 +20,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <input type="text" class="form-control" placeholder="Search for any thing....." id="search">
+                <input type="text" class="form-control" placeholder="@lang('auth.product_list_search')" id="search">
             </div>
         </div>
         <div class="row">
@@ -55,7 +55,7 @@
                                                 </div>
                                             </a>
 
-                                            <a href="{{ asset('best/ajax/fancybox/example.html') }}" data-fancybox-type="ajax" class="fancybox fancybox.ajax sm_quickview_handler-list" title="Quick View Product">Quick View</a>
+                                            <a onclick="onCahnge('{{ $product->product_name }}', '{{ $product->cover }}', '{{ $product->description }}')" class="sm_quickview_handler-list"  href="" data-toggle="modal" data-target="#exampleModalCenter">Quick View </a>
                                         </div>
 
                                         <div class="products-content">
@@ -101,7 +101,7 @@
                                                         <input type="hidden" name="id" value="{{ $product->product_id }}">
                                                         <input type="hidden" name="quantity" value="1">
                                                         <input type="hidden" name="image" value="{{ $product->cover }}">
-                                                        <input type="submit" value="Add to cart" class="button product_type_simple add_to_cart_button ajax_add_to_cart">
+                                                        <input type="submit" value="@lang('auth.add_to_cart')" class="button product_type_simple add_to_cart_button ajax_add_to_cart">
                                                     </form>
 
                                                     <!-- <div class="woocommerce product compare-button">
