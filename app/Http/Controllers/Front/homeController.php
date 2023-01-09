@@ -86,6 +86,7 @@ class homeController extends Controller
         $has_commented = in_array(auth()->id(),$product->comments()->pluck('commenter_id','commenter_id')->toArray());
         $categories = Category::all();
         $relatedProducts = Product::all()->where("product_slug", "!=", $slug)->take(8);
+        $dailyCat = Category::with('products')->get(3);
         return view('front.product.show', compact('product', 'related_products','has_commented', 'categories', 'relatedProducts'));
     }
 
@@ -123,7 +124,7 @@ class homeController extends Controller
             ->whereBetween('sale_price', [$request->priceMin, $request->priceMax])
             ->select(['product_id','product_slug', 'product_name', 'description', 'status',
                     'data_available', 'is_off', 'off_price', 'cover', 'sale_price', 'created_at']
-            )->paginate($request->paginate);
+            )->paginate(12);
 
         if ($request->ajax()) {
             $view = view('Front.listing._data', compact('products'))->render();
