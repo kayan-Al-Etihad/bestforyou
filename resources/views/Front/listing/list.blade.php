@@ -20,7 +20,12 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
+                @if(app()->getLocale() == 'ar')
+                <input type="text" class="form-control text-right" placeholder="@lang('auth.product_list_search')" id="search">
+                @endif
+                @if(app()->getLocale() == 'en')
                 <input type="text" class="form-control" placeholder="@lang('auth.product_list_search')" id="search">
+                @endif
             </div>
         </div>
         <div class="row">
@@ -46,12 +51,10 @@
 
                                             </a>
 
-                                            <a href="">
+                                            <a href="{{ route('front.show', $product->product_slug) }}">
                                                 <div class="product-thumb-hover">
                                                     <img 	width="300" height="300" class="attachment-shop_catalog size-shop_catalog wp-post-image" alt=""
-                                                            src="{{ $product->cover }}"
-                                                            {{-- srcset="images/post14.png 300w, images/2-3-260x260.jpg 260w, images/2-3.jpg 600w, images/2-3-180x180.jpg 180w"  --}}
-                                                            sizes="(max-width: 300px) 100vw, 300px" />
+                                                            src="{{ $product->cover }}" />
                                                 </div>
                                             </a>
 
@@ -61,7 +64,7 @@
                                         <div class="products-content">
                                             <div class="item-content">
                                                 <h4>
-                                                    <a href="" class="post-title" title="{{ $product->product_name }}">{{ $product->product_name }}</a>
+                                                    <a href="{{ route('front.show', $product->product_slug) }}" class="post-title" title="{{ $product->product_name }}">{{ $product->product_name }}</a>
                                                 </h4>
 
 

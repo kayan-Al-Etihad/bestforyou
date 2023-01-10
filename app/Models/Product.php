@@ -162,6 +162,10 @@ class Product extends Model
         return $this->belongsToMany(Tag::class, 'product_tags', 'product_id', 'tag_id');
     }
 
+    public function feedback(){
+        return $this->hasMany(Product_Feedback::class);
+    }
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\hasMany
      */

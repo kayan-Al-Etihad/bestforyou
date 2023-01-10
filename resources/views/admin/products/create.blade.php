@@ -26,8 +26,8 @@
         <div class="row no-gutters">
          {{-- ========================add Products=============================== --}}
 
-         <form method="post" action="{{ route('product.store') }}" id="product_form"
-         enctype="multipart/form-data">
+         <form action="{{ route('product.store') }}" id="product_form"
+         enctype="multipart/form-data" method="post" >
       <div class="row">
          @csrf
          <div class="col-xs-12 col-md-12 col-lg-12">
@@ -160,7 +160,7 @@
          <div class="form-group" style="margin: 3%">
             <div class="btn-group btn-group-justified">
                <div class="btn-group">
-                  <input type="submit" class="btn btn-info " value="SAVE">
+                  <input type="submit" class="btn btn-info " name="submit" value="SAVE">
                </div>
                <div class="btn-group">
                   <a class="btn btn-danger" onclick="history.back()">BACK</a>
@@ -171,7 +171,7 @@
       </div>
    </form>
          {{-- ======================== End add Products=============================== --}}
-        
+
         </div>
     </div>
 
@@ -193,4 +193,4 @@
 </div>
 
 
-@endsection   
+@endsection

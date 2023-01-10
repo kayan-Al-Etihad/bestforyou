@@ -2,6 +2,7 @@
 
 return [
 
+    'calculator' => \Gloudemans\Shoppingcart\Calculation\DefaultCalculator::class,
     /*
     |--------------------------------------------------------------------------
     | Default tax rate

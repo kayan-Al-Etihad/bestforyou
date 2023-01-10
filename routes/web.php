@@ -16,6 +16,7 @@ use App\Http\Controllers\Front\AboutController;
 use App\Http\Controllers\Front\Cart;
 use App\Http\Controllers\Front\ContactFormController;
 use App\Http\Controllers\Front\ContactUsForm;
+use App\Http\Controllers\Front\FeedbackController;
 use App\Http\Controllers\Front\FranchiseController;
 use App\Http\Controllers\Front\homeController;
 use App\Http\Controllers\Front\JoinUsController;
@@ -38,6 +39,7 @@ Route::group(['middleware' => 'lang'], function () {
     Route::get('/showBrand/{slug}', 'Front\homeController@showBrand')->name('front.showBrand')
         ->where(['slug' => '[-A-Za-z0-9]+']);
     /*---------------Contact us------------------*/
+    Route::post('/show/{slug}', [homeController::class, 'storeProductCommets'])->name('feed.store');
     /*---------------About us------------------*/
     Route::get('/about', [AboutController::class, 'index'])->name('about.index');
     /*---------------About us------------------*/
@@ -57,6 +59,9 @@ Route::group(['middleware' => 'lang'], function () {
     Route::get('/categories', function() {
         return view('Front.categories.categories');
     });
+    /*---------------Cart------------------*/
+
+    Route::post('/', [Cart::class, 'store'])->name('cart.store');
     /*---------------brands------------------*/
     Route::get('/brands', function() {
         return view('Front.brands.brands');
@@ -86,13 +91,6 @@ Route::group(['middleware' => 'web'], function () {
     /********************---------------FRONT ROUTES------------------************************/
 
 
-    /*---------------cart------------------*/
-
-    Route::post('cart', [Cart::class, 'addToCart'])->name('cart.store');
-    Route::get('cart', [Cart::class, 'cartList'])->name('cart.list');
-    Route::post('update-cart', [Cart::class, 'updateCart'])->name('cart.update');
-    Route::get('remove', [Cart::class, 'removeCart'])->name('cart.remove');
-    Route::post('clear', [Cart::class, 'clearAllCart'])->name('cart.clear');
     /*---------------CHECKOUT------------------*/
     Route::get('/inter-checkout', 'Front\checkOutController@interCheckOut')->name('front.inter.checkout');
     Route::get('/checkout', 'Front\checkOutController@index')->name('front.checkout');

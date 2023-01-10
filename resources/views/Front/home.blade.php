@@ -54,24 +54,35 @@
                                             <div class="wpb_wrapper">
                                                 <div class="vc_wp_custommenu wpb_content_element">
                                                     <!-- CATEGORIES -->
+                                                    @if(app()->getLocale() == 'en')
                                                     <div class="mega-left-title">
                                                         <strong>@lang('auth.categories')</strong>
                                                     </div>
+                                                    @endif
+                                                    @if(app()->getLocale() == 'ar')
+                                                    <div class="mega-left-title text-right">
+                                                        <strong>@lang('auth.categories')</strong>
+                                                    </div>
+                                                    @endif
+
+                                                    @if(app()->getLocale() == 'en')
 
                                                     <div class="wrapper_vertical_menu vertical_megamenu">
                                                         <ul id="menu-left-menu" class="nav vertical-megamenu">
-                                                            @foreach ($categories as $category)
-                                                                <li class=" menu-smartphones-accessories ya-mega-menu level1">
+                                                            @foreach ($categories->take(15) as $category)
+                                                                <li class=" menu-smartphones-accessories ya-mega-menu level1" dir="auto">
                                                                     <a href="{{ route('front.showCategory', $category->category_slug) }}" class="item-link dropdown-toggle">
                                                                         <span class="have-title">
                                                                             <span class="menu-title">
-                                                                                {{ $category->category_name }}</span>
+                                                                                {{ $category->category_name }}
+                                                                            </span>
                                                                         </span>
                                                                     </a>
                                                                 </li>
                                                             @endforeach
                                                         </ul>
                                                     </div>
+                                                    @endif
                                                     <!-- END CATEGORIES -->
                                                 </div>
 
@@ -111,9 +122,25 @@
                                                 <!-- LASTEST DEAL -->
                                                 <div id="lastDealCountDown" class="sw-woo-container-slider responsive-slider countdown-style2" data-lg="1" data-md="1" data-sm="1" data-xs="1" data-mobile="1" data-speed="1000" data-scroll="1" data-interval="5000" data-autoplay="false" data-circle="false">
                                                     <div class="box-slider-title">
-                                                        <h2>
-                                                            <span>@lang('auth.latest_deals')</span>
-                                                        </h2>
+                                                    @if(app()->getLocale() == 'ar')
+                                                    <h2 class="text-right">
+                                                        <span>@lang('auth.latest_deals')</span>
+                                                    </h2>
+                                                    <style>
+                                                        .slick-prev{
+                                                            left: 0px !important;
+                                                        }
+                                                        .slick-next{
+                                                            left: 40px !important;
+                                                        }
+                                                    </style>
+                                                    @endif
+                                                    @if(app()->getLocale() == 'en')
+
+                                                    <h2>
+                                                        <span>@lang('auth.latest_deals')</span>
+                                                    </h2>
+                                                    @endif
                                                     </div>
 
                                                     <div class="slider-wrapper clearfix">
@@ -155,6 +182,7 @@
                                                                                         </span>
                                                                                     </del>
 
+
                                                                                     <ins>
                                                                                         <span class="woocommerce-Price-amount amount">
                                                                                             <span class="woocommerce-Price-currencySymbol">$</span>{{ $latestDeals->price }}
@@ -162,8 +190,20 @@
                                                                                     </ins>
                                                                                 </div>
                                                                                 <!-- price -->
+                                                                                @if ($message = Session::get('status'))
+                                                                                <div class="alert alert-success alert-block">
+                                                                                    <button type="button" class="close" data-dismiss="alert">×</button>
+                                                                                    <strong>{{ $message }}</strong>
+                                                                                </div>
+                                                                                @endif
                                                                                 <div class="add-info">
-                                                                                    <a rel="nofollow" href="#" class="button product_type_simple add_to_cart_button ajax_add_to_cart">@lang('auth.add_to_cart')</a>
+                                                                                    <form action="{{ route('cart.store') }}" method="post">
+                                                                                        @csrf
+                                                                                        <input type="hidden" name="proID" value="{{ $latestDeals->product_id }}">
+                                                                                        <input type="hidden" name="name" value="{{ $latestDeals->product_name }}">
+                                                                                        <input type="hidden" name="price" value="{{ $latestDeals->price }}">
+                                                                                        <input type="submit" class="" value="@lang('auth.add_to_cart')">
+                                                                                    </form>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -195,8 +235,18 @@
                                                         <div class="category-slider-content clearfix">
                                                             <div class="category-slider-content clearfix">
                                                                 <div class="top-tab-slider clearfix">
-                                                                    <h2 style="margin-top: 5px">@lang('auth.best_seller')</h2>
-
+                                                                    <div class="box-slider-title">
+                                                                        @if(app()->getLocale() == 'ar')
+                                                                        <div class="order-title text-right">
+                                                                            <h2 class="text-right" style="margin-top: 5px">@lang('auth.best_seller')</h2>
+                                                                        </div>
+                                                                        @endif
+                                                                        @if(app()->getLocale() == 'en')
+                                                                        <div class="order-title">
+                                                                            <h2 style="margin-top: 5px">@lang('auth.best_seller')</h2>
+                                                                        </div>
+                                                                        @endif
+                                                                    </div>
                                                                     <div class="tab-content clearfix">
                                                                         <!-- Product tab slider -->
                                                                         <div class="tab-pane active" id="bestsales_402">
@@ -213,7 +263,7 @@
 
                                                                                                             <a href="{{ route('front.show', $product->product_slug) }}">
                                                                                                                 <div class="product-thumb-hover">
-                                                                                                                    <img 	width="300" height="300" class="attachment-shop_catalog size-shop_catalog wp-post-image" alt="J10"
+                                                                                                                    <img 	width="300" height="300" class="attachment-shop_catalog size-shop_catalog wp-post-image " alt="J10"
                                                                                                                             src="{{ $product->cover }}" />
                                                                                                                 </div>
                                                                                                             </a>
@@ -294,9 +344,16 @@
                                                 <div class="sw-woo-tab-cat loading" id="sw_woo_tab_1">
                                                     <div class="resp-tab" style="position:relative;">
                                                         <div class="top-tab-slider clearfix">
-                                                            <div class="order-title">
-                                                                <span>@lang('auth.special_products')</span>
-                                                            </div>
+                                                                @if(app()->getLocale() == 'ar')
+                                                                <div class="order-title text-right">
+                                                                    <span>@lang('auth.special_products')</span>
+                                                                </div>
+                                                                @endif
+                                                                @if(app()->getLocale() == 'en')
+                                                                <div class="order-title">
+                                                                    <span>@lang('auth.special_products')</span>
+                                                                </div>
+                                                                @endif
 
                                                             <button class="navbar-toggle collapsed pull-right" type="button" data-toggle="collapse" data-target="#nav_tabs_res_01" aria-expanded="false">
                                                                 <span class="sr-only">Toggle navigation</span>
@@ -319,9 +376,10 @@
                                                                                             <div class="item-img products-thumb">
 
                                                                                                 <a href="{{ route('front.show', $product->product_slug) }}">
+
                                                                                                     <div class="product-thumb-hover">
-                                                                                                        <img 	width="300" height="300" class="attachment-shop_catalog size-shop_catalog wp-post-image" alt="J10"
-                                                                                                                src="{{ $product->cover }}"/>
+                                                                                                        <img 	width="300" height="300" class="attachment-shop_catalog size-shop_catalog wp-post-image " alt="J10"
+                                                                                                                src="{{ $product->cover }}">
                                                                                                     </div>
                                                                                                 </a>
 
@@ -357,8 +415,8 @@
 
                                                                                                 <a href="{{ route('front.show', $product->product_slug) }}">
                                                                                                     <div class="product-thumb-hover">
-                                                                                                        <img 	width="300" height="300" class="attachment-shop_catalog size-shop_catalog wp-post-image" alt="J10"
-                                                                                                                src="{{ $product->cover }}"/>
+                                                                                                        <img 	width="300" height="300" class="attachment-shop_catalog size-shop_catalog wp-post-image " alt="J10"
+                                                                                                        src="{{ $product->cover }}"/>
                                                                                                     </div>
                                                                                                 </a>
 

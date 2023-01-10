@@ -9,6 +9,9 @@ use App\Models\Product;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\FeedbackRequest;
+use App\Models\Feedback;
+use App\Models\Product_Feedback;
 use App\Models\Setting;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Cookie;
@@ -83,10 +86,12 @@ class homeController extends Controller
             'data_available', 'is_off', 'off_price', 'cover', 'sale_price', 'created_at'])->take(6);
 
         //check if auth user has commented for this products
+        $product_id = $product->product_id;
+        $product_feedback = Product_Feedback::all()->where('product_id', '==', $product_id);
         $has_commented = in_array(auth()->id(),$product->comments()->pluck('commenter_id','commenter_id')->toArray());
         $categories = Category::all();
         $relatedProducts = Product::all()->where("product_slug", "!=", $slug)->take(8);
-        return view('front.product.show', compact('product', 'related_products','has_commented', 'categories', 'relatedProducts'));
+        return view('front.product.show', compact('product', 'related_products','has_commented', 'categories', 'relatedProducts', 'product_feedback'));
     }
 
 
@@ -104,6 +109,16 @@ class homeController extends Controller
         $brand = brand::all()->where('brand_slug', "$slug")->first();
         $setting = Setting::all();
         return view('Front.brands.singleBrand', compact('brand','setting'));
+    }
+
+
+    public function storeProductCommets(FeedbackRequest $request, $slug)
+    {
+
+        $valdated = $request->all();
+        $feedback = Product_Feedback::create($valdated);
+        $feedback->save();
+        return redirect()->route('front.show', compact(['slug']))->with('status' ,'Your comment has been sent successfully');
     }
 
 
