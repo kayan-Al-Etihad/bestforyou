@@ -156,6 +156,8 @@ class productController extends AppBaseController
      */
     public function store(productRequest $request)
     {
+        dd('yfuuy');
+
 
         $product = $this->productRepo->createProduct($request);
         if ($product) {

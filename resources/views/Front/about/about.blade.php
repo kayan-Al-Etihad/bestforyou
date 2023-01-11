@@ -21,7 +21,20 @@
                                                         <img class=" size-full wp-image-6490 alignleft" src="{{ asset('best/images/write-593333_1920.jpg') }}" alt="Shape-133" width="470" height="293" />
                                                     </a>
                                                 </p>
+                                                @if(app()->getLocale() == 'ar')
+                                                <div class="page-title text-right" dir="auto">
+                                                    <h2>@lang('auth.about_title')</h2>
+                                                </div>
 
+                                                <p class=" text-right" dir="auto">
+                                                    @lang('auth.about_description1').
+                                                </p>
+
+                                                <p class=" text-right" dir="auto">
+                                                    @lang('auth.about_description2').
+                                                </p>
+                                                @endif
+                                                @if(app()->getLocale() == 'en')
                                                 <div class="page-title">
                                                     <h2>@lang('auth.about_title')</h2>
                                                 </div>
@@ -32,7 +45,8 @@
 
                                                 <p>
                                                     @lang('auth.about_description2').
-                                                </p>
+                                                </p>v
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
