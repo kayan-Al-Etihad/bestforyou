@@ -143,6 +143,12 @@
                                                     @endif
                                                     </div>
 
+                                                    @if (session('message'))
+                                                    <div class="alert alert-success alert-block">
+                                                        <button type="button" class="close" data-dismiss="alert">×</button>
+                                                        <strong>{{ session('message') }}</strong>
+                                                    </div>
+                                                    @endif
                                                     <div class="slider-wrapper clearfix">
                                                         <!-- Slider Countdown -->
                                                         <div class="resp-slider-container">
@@ -169,7 +175,6 @@
                                                                                 <div class="product-countdown-style1" data-date="1527724800000" data-price="$87" data-starttime="1461888000" data-cdtime="1527724800" data-id="product-count-down-01"></div>
 
 
-
                                                                                 <h4>
                                                                                     <a href="{{ route('front.show', $latestDeals->product_slug) }}" title="{{ $latestDeals->product_name }}">{{ $latestDeals->product_name }}</a>
                                                                                 </h4>
@@ -190,18 +195,13 @@
                                                                                     </ins>
                                                                                 </div>
                                                                                 <!-- price -->
-                                                                                @if ($message = Session::get('status'))
-                                                                                <div class="alert alert-success alert-block">
-                                                                                    <button type="button" class="close" data-dismiss="alert">×</button>
-                                                                                    <strong>{{ $message }}</strong>
-                                                                                </div>
-                                                                                @endif
                                                                                 <div class="add-info">
-                                                                                    <form action="{{ route('cart.store') }}" method="post">
+                                                                                    <form action="{{ route('cart.store') }}" method="POST">
                                                                                         @csrf
-                                                                                        <input type="hidden" name="proID" value="{{ $latestDeals->product_id }}">
+                                                                                        <input type="hidden" name="product_id" value="{{ $latestDeals->product_id }}">
                                                                                         <input type="hidden" name="name" value="{{ $latestDeals->product_name }}">
                                                                                         <input type="hidden" name="price" value="{{ $latestDeals->price }}">
+                                                                                        <input type="hidden" name="quantity" value="1">
                                                                                         <input type="submit" class="" value="@lang('auth.add_to_cart')">
                                                                                     </form>
                                                                                 </div>
@@ -312,27 +312,20 @@
                                                 </div>
 
                                                 <!-- IMAGES CONTENT -->
-                                                <div class="wpb_text_column wpb_content_element  margin-bottom-18">
-                                                    <div class="wpb_wrapper">
-                                                        <div class="content-home-img-v2">
-                                                            <div class="img-effect img-content-homev2">
-                                                                <a class="img-class sn-1" href="">
-                                                                    <img src="{{ asset('best/images/imgv2-1.jpg') }}" alt="img" width="385" height="240" />
-                                                                    <br>
-                                                                </a>
-                                                            </div>
-
-                                                            <div class=" img-content-homev2">
-                                                                <div class="img-effect img-content-homev2-1">
-                                                                    <a class="img-class sn-2" href="">
-                                                                        <img src="{{ asset('best/images/imgv2-2.jpg') }}" alt="img" width="476" height="135" />
-                                                                    </a>
-                                                                </div>
-
-                                                                <div class="img-effect img-content-homev2-2">
-                                                                    <a class="img-class sn-3" href="">
-                                                                        <img src="{{ asset('best/images/imgv2-3.jpg') }}" alt="img" width="476" height="95" />
-                                                                    </a>
+                                                <div class="container">
+                                                    <div class="row top-tab-slider clearfix">
+                                                        <div class="wpb_text_column wpb_content_element  margin-bottom-18">
+                                                            <div class="wpb_wrapper">
+                                                                <div class="content-home-img-v2">
+                                                                    <div class="col-lg-12">
+                                                                        @foreach ($discounts as $discount)
+                                                                        <div class="col-lg-4">
+                                                                            <div class="">
+                                                                                <img src="/images/{{ $discount->image }}" alt="img" width="385" height="240" />
+                                                                            </div>
+                                                                        </div>
+                                                                        @endforeach
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>

@@ -14,7 +14,7 @@ class Product_Feedback extends Model
         'status',
     ];
 
-    public function product(){
+    public function products(){
         return $this->belongsTo(Product::class);
     }
 }

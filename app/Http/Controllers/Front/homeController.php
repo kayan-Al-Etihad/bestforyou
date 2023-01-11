@@ -10,6 +10,7 @@ use App\Models\Tag;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\FeedbackRequest;
+use App\Models\Discount;
 use App\Models\Feedback;
 use App\Models\Product_Feedback;
 use App\Models\Setting;
@@ -51,10 +52,11 @@ class homeController extends Controller
 
         $settings = Setting::all();
 
+        $discounts = Discount::all();
         $latestDeals = Product::orderBy('product_id', 'DESC')->get()->take(5);
         $bestSeller = Product::all()->where('product_type', '==', 'best-seller');
         $specialProducts = Product::all()->where('product_type', '==', 'special-product');
-        return view('Front.home', compact('products','settings', 'latestDeals', 'bestSeller', 'specialProducts'));
+        return view('Front.home', compact('products','settings', 'latestDeals', 'bestSeller', 'specialProducts', 'discounts'));
     }
 
     /**
@@ -120,6 +122,8 @@ class homeController extends Controller
         $feedback->save();
         return redirect()->route('front.show', compact(['slug']))->with('status' ,'Your comment has been sent successfully');
     }
+
+
 
 
 

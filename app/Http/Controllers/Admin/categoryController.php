@@ -41,8 +41,9 @@ class categoryController extends Controller
      */
     public function index()
     {
+        $categories = Category::paginate(10);
         $main_categories = $this->category->with('children')->whereIsRoot()->paginate(10);
-        return view('admin.category.index', compact('main_categories'));
+        return view('admin.category.index', compact('main_categories','categories'));
     }
 
     /**

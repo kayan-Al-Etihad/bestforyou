@@ -26,7 +26,7 @@
         <link type="text/css"
               href="{{ asset('/css/app.rtl.css') }}"
               rel="stylesheet">
-             
+
        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
         <!-- Material Design Icons -->
         <link type="text/css"
@@ -344,66 +344,139 @@
                                  ['menu_name' => 'Orders', 'number' => 'orders' , 'gate' => 'order' ,
                                  'icon' => 'fa-pencil-square-o','subMenu' => 'Not Sent Orders','secondSubMenu' => 'All Orders',
                                  'route_create' => 'order.not_sent' ,'route_list' => 'order.index'])
-                        
+
                               @include('layout.admin._menu',
                               ['menu_name' => 'Payments', 'number' => 'payments' ,'gate' => 'order-edit','icon' => 'fa-credit-card',
                               'subMenu' => 'Failed Payment','secondSubMenu' => 'All Payment',
                               'route_create' => 'payment.failed' ,'route_list' => 'payment.index'])
-                        
+
                               @include('layout.admin._menu',
                               ['menu_name' => 'Comments', 'number' => 'comments' ,'gate' => '-','icon' => 'fa-comment',
                               'subMenu' => 'All reviews','secondSubMenu' => 'Not Approved ',
                               'route_create' => 'comments.index' ,'route_list' => 'comments.new'])
-                        
+
+
                               @include('layout.admin._menu',
                              ['menu_name' => 'Users', 'number' => 'users'  ,'gate' => '-', 'icon' => 'fa-user',
                              'subMenu' => 'All Users','secondSubMenu' => 'Add User',
                              'route_create' => 'user.index' ,'route_list' => 'user.create'])
-                        
+
                               @can('role-list')
                                  @include('layout.admin._menu',
                                 ['menu_name' => 'Roles', 'numbe0r' => '' ,'gate' => 'role','icon' => 'fa-check-square-o',
                                 'subMenu' => 'Role List','secondSubMenu' => 'Add Role',
                                 'route_create' => 'roles.index' ,'route_list' => 'roles.create'])
                               @endcan
-                         
+
                               @can('product-list')
-                        
+
                                  @include('layout.admin._menu',
                                  ['menu_name' => 'Products', 'number' => 'products' ,'gate' => 'product','icon' => 'fa-globe', 'route_create' => 'product.create' ,'route_list' => 'product.index'])
-                        
+
                                  @include('layout.admin._menu',
                                    ['menu_name' => 'Attributes', 'number0' => '' , 'gate' => '-' , 'icon' => 'fa-globe',
                                    'subMenu' => 'Create New','secondSubMenu' => 'Attach to product',
                                    'route_create' => 'attribute.create' ])
-                        
+
                                  @include('layout.admin._menu',
                                  ['menu_name' => 'Categories','gate' => 'product','icon' => 'fa-list', 'number' => 'categories_count' , 'route_create' => 'category.create' ,'route_list' => 'category.index'])
-                        
+
                                  @include('layout.admin._menu',
                                  ['menu_name' => 'Brands', 'number' => 'brands' ,'gate' => 'product' ,'icon' => 'fa-lemon-o', 'route_create' => 'brand.create' ,'route_list' => 'brand.index'])
-                        
+
                               @endcan
                               @can('gift-list')
                                  @include('layout.admin._menu',
                                  ['menu_name' => 'Gift cards', 'number' => 'gift_cards','gate' => 'gift' ,'icon' => 'fa-gift', 'route_create' => 'giftCard.create' ,'route_list' => 'giftCard.index'])
                               @endcan
-                        
                               @can('role-list')
+                              {{-- ======================================================== --}}
+                              <li class="sidebar-menu-item ">
+                                 <a class="sidebar-menu-button" data-toggle="collapse" href="#Discounts">
+                                    <span class="sidebar-menu-text">Discounts</span>
+                                    <span class="ml-auto d-flex align-items-center">
+                                       <span class="sidebar-menu-toggle-icon"></span>
+                                    </span>
+                                 </a>
+                                 <ul class="sidebar-submenu collapse " id="Discounts">
+                                    <li class="sidebar-menu-item ">
+                                       <a class="sidebar-menu-button" href="{{ route('discounts.index') }}"
+                                          data-title="feedback">
+                                          <span class="sidebar-menu-text">Brows</span>
+                                       </a>
+                                    </li>
 
+                                 </ul>
+                              </li>
+                              {{-- ======================================================== --}}
+                              {{-- ======================================================== --}}
+                              <li class="sidebar-menu-item ">
+                                 <a class="sidebar-menu-button" data-toggle="collapse" href="#Contact">
+                                    <span class="sidebar-menu-text">Contact us</span>
+                                    <span class="ml-auto d-flex align-items-center">
+                                       <span class="sidebar-menu-toggle-icon"></span>
+                                    </span>
+                                 </a>
+                                 <ul class="sidebar-submenu collapse " id="Contact">
+                                    <li class="sidebar-menu-item ">
+                                       <a class="sidebar-menu-button" href="{{ route('Admincontact.index') }}"
+                                          data-title="feedback">
+                                          <span class="sidebar-menu-text">Brows Messages</span>
+                                       </a>
+                                    </li>
 
+                                 </ul>
+                              </li>
+                              {{-- ======================================================== --}}
+                              {{-- ======================================================== --}}
+                              <li class="sidebar-menu-item ">
+                                 <a class="sidebar-menu-button" data-toggle="collapse" href="#Franchise">
+                                    <span class="sidebar-menu-text">Franchise</span>
+                                    <span class="ml-auto d-flex align-items-center">
+                                       <span class="sidebar-menu-toggle-icon"></span>
+                                    </span>
+                                 </a>
+                                 <ul class="sidebar-submenu collapse " id="Franchise">
+                                    <li class="sidebar-menu-item ">
+                                       <a class="sidebar-menu-button" href="{{ route('Adminfranchise.index') }}"
+                                          data-title="feedback">
+                                          <span class="sidebar-menu-text">Brows Messages</span>
+                                       </a>
+                                    </li>
+
+                                 </ul>
+                              </li>
+                              {{-- ======================================================== --}}
+                              {{-- ======================================================== --}}
+                              <li class="sidebar-menu-item ">
+                                 <a class="sidebar-menu-button" data-toggle="collapse" href="#Join">
+                                    <span class="sidebar-menu-text">Join us</span>
+                                    <span class="ml-auto d-flex align-items-center">
+                                       <span class="sidebar-menu-toggle-icon"></span>
+                                    </span>
+                                 </a>
+                                 <ul class="sidebar-submenu collapse " id="Join">
+                                    <li class="sidebar-menu-item ">
+                                       <a class="sidebar-menu-button" href="{{ route('Adminjoin-us.index') }}"
+                                          data-title="feedback">
+                                          <span class="sidebar-menu-text">Brows Messages</span>
+                                       </a>
+                                    </li>
+
+                                 </ul>
+                              </li>
+                              {{-- ======================================================== --}}
                               <li class="sidebar-menu-item">
-                                <a class="sidebar-menu-button"
-                                    href="{{ route('settings.index') }}">
-                                   <span class="sidebar-menu-text">Settings</span>
-                               </a>
-                            </li>
-                
-                              @endcan
+                                 <a class="sidebar-menu-button" href="{{ route('settings.index') }}">
+                                    <span class="sidebar-menu-text">Settings</span>
+                                 </a>
+                              </li>
+                           @endcan
 
 
 
-                              
+
+
 
                                 {{-- <div class="sidebar-p-a">
                                     <a href="https://themeforest.net/item/stack-admin-bootstrap-4-dashboard-template/22959011"

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\AppBaseController;
 use App\Http\Controllers\Controller;
+use App\Models\Product_Feedback;
 use App\Repositories\CommentRepository;
 use Illuminate\Http\Request;
 use Laravelista\Comments\Comment;
@@ -26,8 +27,9 @@ class myCommentController extends AppBaseController
 
     public function index()
     {
+        $productComments = Product_Feedback::paginate(20);
         $comments = $this->comment->orderBy('id', 'desc')->with('commenter', 'commentable')->paginate(20);
-        return view('admin.comments.index', compact('comments'));
+        return view('admin.comments.index', compact('comments','productComments'));
     }
 
     public function newComments()
@@ -38,6 +40,7 @@ class myCommentController extends AppBaseController
 
     public function approve($id)
     {
+        dd($id);
         $comment = $this->commentRepo->update(['approved' => 1], $id);
         if ($comment) {
             return $this->sendSuccess(__('models/comments.singular') . ' ' . __('messages.restored'));
@@ -101,6 +104,7 @@ class myCommentController extends AppBaseController
 
     public function destroy($id)
     {
+        dd($id);
         $comment = $this->commentRepo->delete($id);
         return $this->commentRepo->passViewAfterDeleted($comment, 'comments');
     }

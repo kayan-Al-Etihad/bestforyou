@@ -23,8 +23,8 @@
     <div class="card">
 
         <div class="table-responsive">
-            
-{{-- 
+
+{{--
             <div class="m-3">
                 <div class="row">
                     <div class="col-md-4">
@@ -52,18 +52,25 @@
                     </div>
                 </div>
             </div> --}}
-
+            @if (\Session::has('message'))
+            <div class="alert alert-success">
+               <ul>
+                  <li>{!! \Session::get('message') !!}</li>
+               </ul>
+            </div>
+         @endif
             <table class="table mb-0 thead-border-top-0 table-striped">
                 <thead>
                     <tr>
 
-             
 
-                  
-                        
+
+
+
                         <th>Comment</th>
                         <th >USER</th>
                         <th >PRODUCT</th>
+                        <th >Status</th>
                         <th >Created At</th>
                         <th >operatins</th>
                         {{-- <th style="width: 100px; text-align: right;">
@@ -85,12 +92,18 @@
                        id="products">
 
                     {{-- @forelse($comments as $key => $comment) --}}
-                    @foreach($comments as $comment)
+                    @foreach($productComments as $comment)
 
                     <tr>
-                        
+
                         <td>
-                            <div >{{ $comment->comment }}</div>
+                            <div >{{ $comment->feedback }}</div>
+                        </td>
+                        <td>
+                            <div >{{ $comment->name }}</div>
+                        </td>
+                        <td>
+                            <div >{{ $comment->status }}</div>
                         </td>
                         {{-- <td>
                             <img src="{{ $comment->comment }}"
@@ -102,34 +115,31 @@
                         {{-- <td style="width: 120px;"
                             class="text-center">
                             10 items</td> --}}
-                        <td >{{ $comment->commentable->product_name }}</td>
-                        <td >
-
-                           {{ $comment->commentable->product_name }}
-
-                        </td>
 
                         <td >{{ $comment->created_at }}</td>
                         <td>
-                            
-                            
-                            
+
+
+
                             <div class="btn-group">
-                                <form>
+                                <form action="{{ route('comment.destroy', $comment->id) }}" method="POST">
+                                    @csrf
+                                    @method('delete')
                                    <button class="btn btn-xs btn-danger delete_me" data-id="{{ $comment->id }}">
                                       <i class="ace-icon fa fa-trash-o bigger-120">Delete</i></i>
                                    </button>
                                 </form>
-                                @if(!$comment->approved)
-                                   <form>
-                                      <button class="btn btn-success btn-xs approved_me" title="approved"
-                                              data-route="{{ route('comment.approve',$comment->id) }}">
+                                @if($comment->status == 0)
+                                   <form action="{{ route('comment.approve', $comment->id) }}" method="POST">
+                                    @csrf
+                                    @method('update')
+                                      <button class="btn btn-success btn-xs approved_me" title="approved" data-id="{{ $comment->id }}">
                                          <i class="ace-icon fa fa-thumbs-up bigger-120"></i>
                                       </button>
                                    </form>
                                 @endif
                              </div>
-           
+
                         </td>
                     </tr>
 
@@ -151,4 +161,4 @@
 
 
 
- @endsection   
+ @endsection

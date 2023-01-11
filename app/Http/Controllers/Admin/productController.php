@@ -21,6 +21,7 @@ use Illuminate\Http\Response;
 use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
 use Throwable;
+use Illuminate\Support\Facades\Redirect;
 
 class productController extends AppBaseController
 {
@@ -156,15 +157,49 @@ class productController extends AppBaseController
      */
     public function store(productRequest $request)
     {
-        dd('yfuuy');
+        // $request->validate([
+        //     'brand_id'        =>'required',
+        //     'product_name'    =>'required',
+        //     'product_slug'    =>'required',
+        //     'sku'             =>'required',
+        //     'product_ranking' =>'required',
+        //     'status'          =>'required',
+        //     'data_available'  =>'required',
+        //     'of_price'        =>'required',
+        //     'has_size'        =>'required',
+        //     'buy_price'       =>'required',
+        //     'sale_price'      =>'required',
+        //     'quantity'        =>'required',
+        //     'weight'          =>'required',
+        //     'made_in'          =>'required',
+        //     'description'     =>'required',
+        //     'cover'     =>'required',
+        // ]);
 
+        $file_name = time() . '.' . request()->cover->getClientOriginalExtension();
+        request()->cover->move(public_path('images'), $file_name);
 
-        $product = $this->productRepo->createProduct($request);
-        if ($product) {
-            session()->put('create-product', $product);
-        }
+        $product = new Product ;
+        $product->product_name = $request->product_name;
+        $product->brand_id = $request->brand_id;
+        $product->product_slug = $request->product_slug;
+        $product->sku = $request->sku;
+        $product->product_type = $request->product_type;
+        // $product->status =1;
+        $product->data_available = $request->data_available;
+        $product->off_price = $request->off_price;
+        // $product->has_size = 1;
+        $product->buy_price = $request->buy_price;
+        $product->sale_price = $request->sale_price;
+        $product->quantity = $request->quantity;
+        $product->weight = $request->weight;
+        $product->description = $request->description;
+        $product->made_in = $request->made_in;
+        $product->cover = $file_name;
 
-        return $this->productRepo->passViewAfterCreated($product, 'products', 'product.create2');
+        $product->save();
+        // return $this->index();
+        return Redirect::back()->with('success','Operation Successful !');
     }
 
     /**
