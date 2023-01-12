@@ -11,6 +11,7 @@
 |
 */
 
+use App\Http\Controllers\Admin\categoryController;
 use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\DiscountController;
 use App\Http\Controllers\Front\About;
@@ -203,7 +204,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'checkRole'], function () {
     Route::resource('photo', 'Admin\PhotoController');
 
     /*---------------CATEGORIES ROUTE------------------*/
-    Route::resource('category', 'Admin\categoryController')->except(['show', 'edit', 'update']);
+    Route::resource('category', Admin\categoryController::class);
+    Route::post('category', 'Admin\categoryController@storeParentCategory')->name('category.storeParentCategory');
 
     /*---------------BRAND ROUT------------------*/
     Route::resource('brand', 'Admin\brandController')->except(['show']);

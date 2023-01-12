@@ -11,7 +11,7 @@
                     aria-current="page">Forms</li>
             </ol>
         </nav>
-        <h1 class="m-0">Add Category</h1>
+        <h1 class="m-0">Edit Category</h1>
     </div>
 </div>
 <div class="container-fluid page__container">
@@ -21,17 +21,27 @@
         <div class="row no-gutters">
             <div class="col-lg-8 card-form__body card-body">
 
-            <form id="category_form" action="{{ route('category.storeParentCategory') }}" method="post">
+            <form id="category_form" action="/admin/category/{{ $category->category_id }}" method="post">
                 {{ csrf_field() }}
+                @csrf
+                @method('PATCH')
                 <div class="form-group  {{ $errors->has('category_name') ? 'has-error' : '' }} ">
                     <label for="title">Category Name</label>
                     <input name="category_name"
                             maxlength="21"
-                            value="{{old('category_name')}}" required
+                            value="{{ old('category_name', optional($category ?? null)->category_name) }}" required
                             id="title"
                            type="text"
                            class="form-control"
                            placeholder="Category Name">
+                    <span class="text-danger">{{ $errors->first('category_name') }}</span>
+                </div>
+                <div class="form-group  {{ $errors->has('category_name') ? 'has-error' : '' }} ">
+                    <input name="category_id"
+                            maxlength="21"
+                            value="{{ $category->category_id }}"
+                            id="title"
+                           type="hidden">
                     <span class="text-danger">{{ $errors->first('category_name') }}</span>
                 </div>
 
@@ -42,7 +52,7 @@
                             id="category_slug"
                              placeholder="Category Slug"
                            type="text"
-                           value="{{old('category_slug')}}" required
+                           value="{{ old('category_slug', optional($category ?? null)->category_slug) }}" required
                            class="form-control">
                     <span class="text-danger">{{ $errors->first('category_slug') }}</span>
                 </div>
@@ -77,6 +87,13 @@
               </div>
 
            </form>
+           @if (\Session::has('message'))
+           <div class="alert alert-success">
+              <ul>
+                 <li>{!! \Session::get('message') !!}</li>
+              </ul>
+           </div>
+        @endif
             </div>
         </div>
     </div>

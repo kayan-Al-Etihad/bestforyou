@@ -27,6 +27,8 @@
                 <thead>
                     <tr>
                         <th>Name</th>
+                        <th>slug</th>
+                        <th>Parent category</th>
                         <th >Created at</th>
                         <th >Action</th>
                     </tr>
@@ -37,9 +39,24 @@
 
                     <tr>
                         <td >{{ $category->category_name }}</td>
+                        <td >{{ $category->category_slug }}</td>
+                        <td >
+                            @if ($category->parent_id != null)
+                            {{ !$category->parent_id ? '--'.$category->category_name : $category->category_name }}
+                            @endif
+                        </td>
                         <td >{{ $category->created_at->diffForHumans() }}</td>
                         <td>
-                            <a href="" class="btn  btn-dark mx-1 mt-3">Edit</a>
+                            <a href="{{ route('category.edit', $category->category_id) }}" class="btn  btn-dark mx-1">Edit</a>
+                            <div class="btn-group">
+                                <form action="{{ route('category.destroy', $category->category_id) }}" method="POST">
+                                    @csrf
+                                    @method('delete')
+                                   <button class="btn btn-xs btn-danger delete_me" data-id="{{ $category->category_id }}">
+                                      <i class="ace-icon fa fa-trash-o bigger-120">Delete</i></i>
+                                   </button>
+                                </form>
+                             </div>
                         </td>
                     </tr>
 
@@ -49,7 +66,13 @@
             </table>
         </div>
 
-
+        @if (\Session::has('message'))
+        <div class="alert alert-success">
+           <ul>
+              <li>{!! \Session::get('message') !!}</li>
+           </ul>
+        </div>
+     @endif
 
     </div>
 </div>

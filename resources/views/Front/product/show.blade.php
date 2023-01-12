@@ -551,8 +551,15 @@
                                         <div class="product_meta">
                                             <p class="posted_in">
                                                 <b>Category:</b>
-                                                @foreach ($categories as $category)
-                                                <a href="" rel="tag">{{ $category->category_name }}</a>,
+                                                <br>
+                                                @foreach ($product->categories as $category)
+                                                @if ($category->parent['category_name'])
+                                                    Category : <a href="{{ route('front.showCategory', $category->parent['category_slug']) }}">{{ $category->parent['category_name'] }}</a>
+                                                @endif
+
+                                                <br>
+                                                Sub Category : <a href="{{ route('front.showCategory', $category->category_slug) }}">{{ $category->category_name }}</a>
+
                                                 @endforeach
                                             </p>
                                         </div>

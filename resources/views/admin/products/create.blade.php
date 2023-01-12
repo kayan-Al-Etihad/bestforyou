@@ -44,6 +44,7 @@
                                 <option value="">Choose type</option>
                                 <option value="best-seller">best-seller</option>
                                 <option value="special-product">special-product</option>
+                                <option value="none">none</option>
                                </select>
                          </div>
                       </div>
@@ -78,6 +79,31 @@
                                      value="{{ $brand->brand_id }}">{{ $brand->brand_name }}</option>
                                @endforeach
                             </select>
+                         </div>
+                      </div>
+                      <div class="form-group col-md-6 col-lg-6 col-xs-12">
+                         <label class=" control-label no-padding-right" for="category_id">Choose your Category</label>
+                         <div class="clearfix">
+                            <select name="category_id" id="category_id" class="form-control">
+                               <option value="" disabled selected>Choose your Category</option>
+                               @foreach ($categories as $category)
+                                     <optgroup label="{{ $category->category_name }}">
+                                        <option value="{{ $category->category_id }}">{{ $category->category_name }}</option>
+                                        <option>
+                                            @if ($category->parent_id != null)
+                                                <span>
+                                                    Parent: {{ !$category->parent_id ? '--'.$category->parent->category_name : $category->parent->category_name }}
+                                                </span>
+                                            @endif
+                                        </option>
+                                      </optgroup>
+                               @endforeach
+                            </select>
+                         </div>
+                      </div>
+                      <div class="form-group col-md-6 col-lg-6 col-xs-12">
+                         <div class="clearfix">
+                            <input type="hidden" name="product_id" value="">
                          </div>
                       </div>
                       <div class="form-group col-md-6 col-lg-6  col-xs-12">
@@ -193,7 +219,7 @@
                             <input type="submit" class="btn btn-info" value="SAVE">
                          </div>
                          <div class="btn-group">
-                            <a class="btn btn-danger" onclick="history.back()">BACK</a>
+                            <a class="btn btn-danger" href="{{ route('product.index') }}" onclick="history.back()">BACK</a>
                          </div>
                       </div>
                    </div>

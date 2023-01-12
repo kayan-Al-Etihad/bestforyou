@@ -9,6 +9,8 @@ use App\Http\Requests\Products\SecondStepProductRequest;
 use App\Http\Requests\Products\UpdateProductRequest;
 use App\Models\brand;
 use App\Models\Category;
+use App\Models\category_produc;
+use App\Models\category_product;
 use App\Models\Color;
 use App\Models\Product;
 use App\Models\Tag;
@@ -119,8 +121,9 @@ class productController extends AppBaseController
     */
     public function create()
     {
+        $categories = Category::all();
         $brands = brand::all(['brand_id', 'brand_name']);
-        return view($this->productRepo->viewPrefix . 'create', compact('brands'));
+        return view($this->productRepo->viewPrefix . 'create', compact('brands','categories'));
     }
 
 
@@ -155,7 +158,7 @@ class productController extends AppBaseController
      *
      * @return JsonResponse|RedirectResponse
      */
-    public function store(productRequest $request)
+    public function store(Request $request)
     {
         // $request->validate([
         //     'brand_id'        =>'required',
@@ -180,6 +183,10 @@ class productController extends AppBaseController
         request()->cover->move(public_path('images'), $file_name);
 
         $product = new Product ;
+        // dd($product->orderBy('product_id', 'DESC')->first());
+        $product_id = $product->orderBy('product_id', 'DESC')->first();
+        $id = $product_id['product_id'] + 1;
+        // dd($id);
         $product->product_name = $request->product_name;
         $product->brand_id = $request->brand_id;
         $product->product_slug = $request->product_slug;
@@ -196,8 +203,15 @@ class productController extends AppBaseController
         $product->description = $request->description;
         $product->made_in = $request->made_in;
         $product->cover = $file_name;
-
         $product->save();
+
+        $category_product = new category_product;
+        dd($category_product);
+        $category_product->category_id = $id;
+        $category_product->product_id = $product->product_id;
+
+
+        $category_product->save();
         // return $this->index();
         return Redirect::back()->with('success','Operation Successful !');
     }
