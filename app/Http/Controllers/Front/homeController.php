@@ -104,6 +104,19 @@ class homeController extends Controller
         return view('Front.categories.singleCategory', compact('category'));
     }
 
+    public function subCategory(Request $request, $slug)
+    {
+
+        $parent = Category::all()->where('category_slug', '==', $slug);
+        foreach($parent as $p){
+            $par = $p->category_id;
+          };
+        $display = Category::all()->where('parent_id' , '==' , $par);
+        $this->validate($request, ['slug' => 'string']);
+        $category = Category::all()->where('category_slug', "$slug")->first();
+        return view('Front.categories.subCategory', compact('category','display'));
+    }
+
 
     public function showBrand(Request $request, $slug)
     {

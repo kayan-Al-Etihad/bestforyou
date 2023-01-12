@@ -190,7 +190,7 @@
                                             <p class="posted_in">
                                                 <b>@lang('auth.categories') :</b>
                                                 @foreach ($categories as $category)
-                                                <a href="" rel="tag">{{ $category->category_name }}</a>,
+                                                <a href="{{ route('front.subCategory', $category->category_slug) }}" rel="tag">{{ $category->category_name }}</a>,
                                                 @endforeach
                                             </p>
                                         </div>
@@ -390,7 +390,7 @@
         <div class="container">
             <ul class="breadcrumb">
                 <li>
-                    <a id="home" href="home_style_2.html">Home</a>
+                    <a id="home" href="{{ route('home') }}">Home</a>
                     <span class="go-page"></span>
                 </li>
 
@@ -553,12 +553,12 @@
                                                 <b>Category:</b>
                                                 <br>
                                                 @foreach ($product->categories as $category)
-                                                @if ($category->parent['category_name'])
+                                                {{-- @if ($category->parent['category_name'])
                                                     Category : <a href="{{ route('front.showCategory', $category->parent['category_slug']) }}">{{ $category->parent['category_name'] }}</a>
-                                                @endif
+                                                @endif --}}
 
                                                 <br>
-                                                Sub Category : <a href="{{ route('front.showCategory', $category->category_slug) }}">{{ $category->category_name }}</a>
+                                                Sub Category : <a href="{{ route('front.subCategory', $category->category_slug) }}">{{ $category->category_name }}</a>
 
                                                 @endforeach
                                             </p>

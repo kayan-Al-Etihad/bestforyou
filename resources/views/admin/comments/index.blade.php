@@ -102,8 +102,8 @@
                         <td>
                             <div >{{ $comment->name }}</div>
                         </td>
-                        <td>
-                            <div >{{ $comment->status }}</div>
+                        <td>@dd($comment->product_id)
+                            <div >{{ $comment->products }}</div>
                         </td>
                         {{-- <td>
                             <img src="{{ $comment->comment }}"

@@ -55,18 +55,17 @@
                 <div class="form-group {{ $errors->has('parent_id') ? 'has-error' : '' }}">
                     <label class="bolder bigger-110" for="Category">Parent Category </label>
                     <select name="parent_id" id="Category" class="form-control">
-                       @if(count($allCategories) == 0)
-                          <option disabled="">NO CATEGORIES</option>
-                       @else
-                          <option value="">Parent Category</option>
-                          @foreach($allCategories as $Category)
-                          {{ $Category->parent_id }}
-                             <option value="{{ old('category_id',$Category->category_id) }}">
-                                {{ !$Category->parent_id ? '--'.$Category->category_name : $Category->category_name }}
-                             </option>
-                          @endforeach
-                       @endif
-                    </select>
+                        @if(count($allCategories) == 0)
+                           <option disabled="">NO CATEGORIES</option>
+                        @else
+                        <option value="">Categories</option>
+                           @foreach($allCategories as $Category)
+                                 <option value="{{ $Category->category_id }}">
+                                     {{ $Category->category_name }}
+                                 </option>
+                           @endforeach
+                        @endif
+                     </select>
                     <span class="text-danger">{{ $errors->first('parent_id') }}</span>
                 </div>
                <div class="col-lg-4 card-body">

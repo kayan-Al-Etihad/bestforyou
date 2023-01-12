@@ -161,10 +161,11 @@ class Product extends Model
     {
         return $this->belongsToMany(Tag::class, 'product_tags', 'product_id', 'tag_id');
     }
-
-    public function feedback(){
-        return $this->hasMany(Product_Feedback::class);
+    public function feedback()
+    {
+        return $this->belongsToMany(Product_Feedback::class, 'feedback', 'product_id', 'id');
     }
+
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\hasMany

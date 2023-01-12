@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Product_Feedback;
 use App\Repositories\CommentRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Laravelista\Comments\Comment;
 use willvincent\Rateable\Rating;
 
@@ -27,6 +28,11 @@ class myCommentController extends AppBaseController
 
     public function index()
     {
+        $product = DB::table('users')
+            ->join('contacts', 'users.id', '=', 'contacts.user_id')
+            ->join('orders', 'users.id', '=', 'orders.user_id')
+            ->select('users.*', 'contacts.phone', 'orders.price')
+            ->get();
         $productComments = Product_Feedback::paginate(20);
         $comments = $this->comment->orderBy('id', 'desc')->with('commenter', 'commentable')->paginate(20);
         return view('admin.comments.index', compact('comments','productComments'));

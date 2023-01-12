@@ -42,7 +42,7 @@
                         <td >{{ $category->category_slug }}</td>
                         <td >
                             @if ($category->parent_id != null)
-                            {{ !$category->parent_id ? '--'.$category->category_name : $category->category_name }}
+                            {{ $category->parent->category_name }}
                             @endif
                         </td>
                         <td >{{ $category->created_at->diffForHumans() }}</td>

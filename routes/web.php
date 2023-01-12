@@ -46,6 +46,8 @@ Route::group(['middleware' => 'web'], function () {
             ->where(['slug' => '[-A-Za-z0-9]+']);
         Route::get('/showCategory/{slug}', 'Front\homeController@showCategory')->name('front.showCategory')
             ->where(['slug' => '[-A-Za-z0-9]+']);
+        Route::get('/subCategory/{slug}', 'Front\homeController@subCategory')->name('front.subCategory')
+            ->where(['slug' => '[-A-Za-z0-9]+']);
         Route::get('/showBrand/{slug}', 'Front\homeController@showBrand')->name('front.showBrand')
             ->where(['slug' => '[-A-Za-z0-9]+']);
         /*---------------Contact us------------------*/

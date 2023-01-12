@@ -12,6 +12,7 @@
             </ol>
         </nav>
         <h1 class="m-0">Edit Category</h1>
+
     </div>
 </div>
 <div class="container-fluid page__container">
@@ -63,17 +64,16 @@
                            class="form-control">
                 </div> --}}
                 <div class="form-group {{ $errors->has('parent_id') ? 'has-error' : '' }}">
-                    <label class="bolder bigger-110" for="Category">Parent Category </label>
+                    <label class="bolder bigger-110" for="Category">Categories</label>
                     <select name="parent_id" id="Category" class="form-control">
                        @if(count($allCategories) == 0)
                           <option disabled="">NO CATEGORIES</option>
                        @else
-                          <option value="">Parent Category</option>
+                       <option value="">Categories</option>
                           @foreach($allCategories as $Category)
-                          {{ $Category->parent_id }}
-                             <option value="{{ old('category_id',$Category->category_id) }}">
-                                {{ !$Category->parent_id ? '--'.$Category->category_name : $Category->category_name }}
-                             </option>
+                                <option value="{{ $Category->category_id }}">
+                                    {{ $Category->category_name }}
+                                </option>
                           @endforeach
                        @endif
                     </select>

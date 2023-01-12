@@ -43,6 +43,12 @@
                 display: block !important;
             }
         }
+        @media screen and (max-width:800px){
+        #primary-menu .top-links-action{
+            margin-left: 80px;
+            color: #fff !important;
+        }
+        }
     </style>
     @if(app()->getLocale() == 'ar')
     <style>
@@ -57,6 +63,7 @@
             top: 0 !important;
             left: 97% !important;
         }
+
     </style>
     @endif
 </head>
@@ -70,49 +77,6 @@
 					<div class="container">
 						<div class="row">
 							<div class="col-lg-10 col-md-10 col-sm-9 col-xs-12 pull-right">
-								<!-- INFORMATION -->
-								<div class="yt-header-topv2">
-									<div class="row">
-
-										<!-- LANGUAGE -->
-										<div class="col-lg-6 col-md-6 text-left col-sm-12 col-xs-12 top-links-action" style="display:flex">
-											<div class="block-action-header language-switcher pull-right">
-												<div class="textwidget">
-													<div id="lang_sel">
-														<ul class="nav">
-															<li>
-                                                                @if(app()->getLocale() == 'ar')
-                                                                <a style="cursor: pointer" class="lang_sel_sel icl-en">
-																	<img class="iclflag" title="Arabic" alt="ar" src="{{ asset('best/images/en.png') }}" width="18" height="12">&nbsp;AR
-																</a>
-                                                                @else
-                                                                <a style="cursor: pointer" class="lang_sel_sel icl-en">
-                                                                    <img class="iclflag" title="English" alt="en" src="{{ asset('best/images/en.png') }}" width="18" height="12">&nbsp;ENG
-                                                                </a>
-                                                                @endif
-																<ul>
-																	<li class="icl-ar">
-                                                                        @if(app()->getLocale() == 'ar')
-                                                                        <a class="btn btn-default lv1" href="/lang/en">
-                                                                            <img class="iclflag" title="English" alt="en" src="{{ asset('best/images/en.png') }}" width="18" height="12">&nbsp;EN
-                                                                        </a>
-                                                                        @else
-                                                                        <a class="btn btn-default lv1" href="/lang/ar">
-                                                                            <img class="iclflag" title="Arabic" alt="ar" src="{{ asset('best/images/en.png') }}" width="18" height="12">&nbsp;AR
-                                                                        </a>
-                                                                        @endif
-																	</li>
-																</ul>
-															</li>
-														</ul>
-													</div>
-												</div>
-											</div>
-											<!-- END LANGUAGE -->
-
-										</div>
-									</div>
-								</div>
 								<!-- END INFORMATION -->
 								<!-- HEADER MENU -->
 								<div class="yt-header-middle" style="position: relative; z-index: 30; top: 0px; left: 0px; right: 0px;">
@@ -161,7 +125,7 @@
 
 															<!-- LIST NORMAL MENU ITEMS -->
 															<ul id="menu-primary-menu-1" class="nav nav-pills nav-mega flytheme-menures">
-																<li class="active menu-portfolios ya-menu-custom level1">
+																<li class="menu-portfolios ya-menu-custom level1">
 																	<a href="{{ route('home') }}" class="item-link">
 																		<span class="have-title">
 																			<span class="menu-title">@lang('auth.nan_link_home')</span>
@@ -275,9 +239,47 @@
 																		</span>
 																	</a>
 																</li>
+
 															</ul>
 														</div>
 													</div>
+                                                    <!-- LANGUAGE -->
+                                                    <div class="col-lg-6 col-md-6 text-left col-sm-12 col-xs-12 top-links-action" style="display:flex;width:110px !important;margin-top: 8px;">
+                                                        <div class="block-action-header language-switcher pull-right">
+                                                            <div class="textwidget">
+                                                                <div id="lang_sel">
+                                                                    <ul class="nav">
+                                                                        <li>
+                                                                            @if(app()->getLocale() == 'ar')
+                                                                            <a style="cursor: pointer" class="lang_sel_sel icl-en">
+                                                                                <img class="iclflag" title="Arabic" alt="ar" src="{{ asset('best/images/en.png') }}" width="18" height="12">&nbsp;AR
+                                                                            </a>
+                                                                            @else
+                                                                            <a style="cursor: pointer" class="lang_sel_sel icl-en">
+                                                                                <img class="iclflag" title="English" alt="en" src="{{ asset('best/images/en.png') }}" width="18" height="12">&nbsp;ENG
+                                                                            </a>
+                                                                            @endif
+                                                                            <ul>
+                                                                                <li class="icl-ar">
+                                                                                    @if(app()->getLocale() == 'ar')
+                                                                                    <a class="btn btn-default lv1" href="/lang/en">
+                                                                                        <img class="iclflag" title="English" alt="en" src="{{ asset('best/images/en.png') }}" width="18" height="12">&nbsp;EN
+                                                                                    </a>
+                                                                                    @else
+                                                                                    <a class="btn btn-default lv1" href="/lang/ar">
+                                                                                        <img class="iclflag" title="Arabic" alt="ar" src="{{ asset('best/images/en.png') }}" width="18" height="12">&nbsp;AR
+                                                                                    </a>
+                                                                                    @endif
+                                                                                </li>
+                                                                            </ul>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- END LANGUAGE -->
+
+                                                    </div>
 												</nav>
 
 												<!-- HEADER CATEGORIES SEARCH -->
@@ -326,6 +328,7 @@
 													</div>
 												</div>
 												<!-- END SHOPPING CART -->
+
 											</div>
 										</div>
 									</div>

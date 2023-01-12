@@ -203,15 +203,15 @@ class productController extends AppBaseController
         $product->description = $request->description;
         $product->made_in = $request->made_in;
         $product->cover = $file_name;
-        $product->save();
 
         $category_product = new category_product;
-        dd($category_product);
+        // dd($category_product);
         $category_product->category_id = $id;
+        // dd($category_product->category_id);
+        // dd("yugu");
         $category_product->product_id = $product->product_id;
-
-
         $category_product->save();
+        $product->save();
         // return $this->index();
         return Redirect::back()->with('success','Operation Successful !');
     }

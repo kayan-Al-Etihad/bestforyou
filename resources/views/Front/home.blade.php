@@ -69,9 +69,9 @@
 
                                                     <div class="wrapper_vertical_menu vertical_megamenu">
                                                         <ul id="menu-left-menu" class="nav vertical-megamenu">
-                                                            @foreach ($categories->take(15) as $category)
+                                                            @foreach ($categories as $category)
                                                                 <li class=" menu-smartphones-accessories ya-mega-menu level1" dir="auto">
-                                                                    <a href="{{ route('front.showCategory', $category->category_slug) }}" class="item-link dropdown-toggle">
+                                                                    <a href="{{ route('front.subCategory', $category->category_slug) }}" class="item-link dropdown-toggle">
                                                                         <span class="have-title">
                                                                             <span class="menu-title">
                                                                                 {{ $category->category_name }}

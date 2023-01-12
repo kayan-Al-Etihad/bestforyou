@@ -59,7 +59,7 @@ class categoryController extends Controller
 
     public function edit($id)
     {
-        $allCategories = $this->category->all(['category_id', 'category_name', 'parent_id']);
+        $allCategories = $this->category->all();
         $category = Category::findOrfail($id);
         return response(view('admin.category.edit', compact(['category','allCategories'])));
     }
@@ -90,13 +90,14 @@ class categoryController extends Controller
 
     public function update(Request $request)
     {
+
         $category = Category::findOrfail(request()->input('category_id'));
 
-        $validated = $request->all();
+        $validated = request()->all();
+
         $category->fill($validated);
         $category->save();
-        // $discount->fill($image);
-        // $discount->save();
+
         $request->session()->flash('status','Your post has been updated');
         return redirect()->back()->with('message','Opiration Success');
     }
