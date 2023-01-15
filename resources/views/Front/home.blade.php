@@ -65,11 +65,10 @@
                                                     </div>
                                                     @endif
 
-                                                    @if(app()->getLocale() == 'en')
-
+                                                    {{-- @if(app()->getLocale() == 'en') --}}
                                                     <div class="wrapper_vertical_menu vertical_megamenu">
                                                         <ul id="menu-left-menu" class="nav vertical-megamenu">
-                                                            @foreach ($categories as $category)
+                                                            @foreach ($categories->where('sub_category', '==', '0') as $category)
                                                                 <li class=" menu-smartphones-accessories ya-mega-menu level1" dir="auto">
                                                                     <a href="{{ route('front.subCategory', $category->category_slug) }}" class="item-link dropdown-toggle">
                                                                         <span class="have-title">
@@ -82,42 +81,7 @@
                                                             @endforeach
                                                         </ul>
                                                     </div>
-                                                    @endif
-                                                    <!-- END CATEGORIES -->
                                                 </div>
-
-                                                <!-- SUBSCRIBE -->
-                                                <div class="wpb_text_column wpb_content_element  margin-bottom30">
-                                                    <div class="wpb_wrapper">
-                                                        <div class="block-subscribe sn-lettter">
-                                                            <div class="block-title">
-                                                                <strong>@lang('auth.newsletter')<br></strong>
-                                                            </div>
-
-                                                            <div class="block-content">
-                                                                <div class="form-subscribe-header">
-                                                                    <label for="newsletter">@lang('auth.newsletter_description') </label>
-                                                                </div>
-
-                                                                <div class="input-box">
-                                                                    <form id="mc4wp-form-1" class="mc4wp-form mc4wp-form-7267 mc4wp-form-basic" method="post" data-id="7267" data-name="Default sign-up form">
-                                                                        <div class="mc4wp-form-fields">
-                                                                            <div class="input-box">
-                                                                                <input type="email" name="email" class="newsletter input-text required-entry validate-email" placeholder="@lang('auth.newsletter_input')" required="required" />
-                                                                            </div>
-
-                                                                            <div class="actions">
-                                                                                <input type="submit" value="Subscribe" />
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="mc4wp-response"></div>
-                                                                    </form>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!--END SUBSCRIBE -->
 
                                                 <!-- LASTEST DEAL -->
                                                 <div id="lastDealCountDown" class="sw-woo-container-slider responsive-slider countdown-style2" data-lg="1" data-md="1" data-sm="1" data-xs="1" data-mobile="1" data-speed="1000" data-scroll="1" data-interval="5000" data-autoplay="false" data-circle="false">
@@ -215,14 +179,6 @@
                                                     </div>
                                                 </div>
                                                 <!-- END LASTEST DEAL -->
-
-                                                <div class="wpb_single_image wpb_content_element vc_align_center margin-bottom-30">
-                                                    <figure class="wpb_wrapper vc_figure">
-                                                        <a href="" target="_self" class="vc_single_image-wrapper vc_box_border_grey">
-                                                            <img width="270" height="225" src="{{ asset('best/images/left-image-static.jpg') }}" class="vc_single_image-img attachment-full" alt="" />
-                                                        </a>
-                                                    </figure>
-                                                </div>
                                             </div>
                                         </div>
                                     </div>

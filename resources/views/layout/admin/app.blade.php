@@ -340,20 +340,20 @@
                                         <span class="sidebar-menu-text">Dashboard</span>
                                     </a>
                                  </li>
-                                 @include('layout.admin._menu',
+                                 {{-- @include('layout.admin._menu',
                                  ['menu_name' => 'Orders', 'number' => 'orders' , 'gate' => 'order' ,
                                  'icon' => 'fa-pencil-square-o','subMenu' => 'Not Sent Orders','secondSubMenu' => 'All Orders',
-                                 'route_create' => 'order.not_sent' ,'route_list' => 'order.index'])
+                                 'route_create' => 'order.not_sent' ,'route_list' => 'order.index']) --}}
 
-                              @include('layout.admin._menu',
+                              {{-- @include('layout.admin._menu',
                               ['menu_name' => 'Payments', 'number' => 'payments' ,'gate' => 'order-edit','icon' => 'fa-credit-card',
                               'subMenu' => 'Failed Payment','secondSubMenu' => 'All Payment',
-                              'route_create' => 'payment.failed' ,'route_list' => 'payment.index'])
+                              'route_create' => 'payment.failed' ,'route_list' => 'payment.index']) --}}
 
                               @include('layout.admin._menu',
                               ['menu_name' => 'Comments', 'number' => 'comments' ,'gate' => '-','icon' => 'fa-comment',
                               'subMenu' => 'All reviews','secondSubMenu' => 'Not Approved ',
-                              'route_create' => 'comments.index' ,'route_list' => 'comments.new'])
+                              'route_create' => 'comment.index'])
 
 
                               @include('layout.admin._menu',
@@ -373,22 +373,22 @@
                                  @include('layout.admin._menu',
                                  ['menu_name' => 'Products', 'number' => 'products' ,'gate' => 'product','icon' => 'fa-globe', 'route_create' => 'product.create' ,'route_list' => 'product.index'])
 
-                                 @include('layout.admin._menu',
+                                 {{-- @include('layout.admin._menu',
                                    ['menu_name' => 'Attributes', 'number0' => '' , 'gate' => '-' , 'icon' => 'fa-globe',
                                    'subMenu' => 'Create New','secondSubMenu' => 'Attach to product',
-                                   'route_create' => 'attribute.create' ])
+                                   'route_create' => 'attribute.create' ]) --}}
 
                                  @include('layout.admin._menu',
                                  ['menu_name' => 'Categories','gate' => 'product','icon' => 'fa-list', 'number' => 'categories_count' , 'route_create' => 'category.create' ,'route_list' => 'category.index'])
 
-                                 @include('layout.admin._menu',
-                                 ['menu_name' => 'Brands', 'number' => 'brands' ,'gate' => 'product' ,'icon' => 'fa-lemon-o', 'route_create' => 'brand.create' ,'route_list' => 'brand.index'])
+                                 {{-- @include('layout.admin._menu',
+                                 ['menu_name' => 'Brands', 'number' => 'brands' ,'gate' => 'product' ,'icon' => 'fa-lemon-o', 'route_create' => 'brand.create' ,'route_list' => 'brand.index']) --}}
 
                               @endcan
-                              @can('gift-list')
+                              {{-- @can('gift-list')
                                  @include('layout.admin._menu',
                                  ['menu_name' => 'Gift cards', 'number' => 'gift_cards','gate' => 'gift' ,'icon' => 'fa-gift', 'route_create' => 'giftCard.create' ,'route_list' => 'giftCard.index'])
-                              @endcan
+                              @endcan --}}
                               @can('role-list')
                               {{-- ======================================================== --}}
                               <li class="sidebar-menu-item ">

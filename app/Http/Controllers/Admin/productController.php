@@ -12,7 +12,9 @@ use App\Models\Category;
 use App\Models\category_produc;
 use App\Models\category_product;
 use App\Models\Color;
+use App\Models\Photo;
 use App\Models\Product;
+use App\Models\product_category;
 use App\Models\Tag;
 use App\Repositories\ProductRepository;
 use Illuminate\Contracts\View\Factory;
@@ -179,23 +181,25 @@ class productController extends AppBaseController
         //     'cover'     =>'required',
         // ]);
 
+
         $file_name = time() . '.' . request()->cover->getClientOriginalExtension();
         request()->cover->move(public_path('images'), $file_name);
 
+        $file_name1 = time() . '.' . request()->image1->getClientOriginalExtension();
+        request()->image1->move(public_path('images'), $file_name1);
+
+        $file_name2 = time() . '.' . request()->image2->getClientOriginalExtension();
+        request()->image2->move(public_path('images'), $file_name2);
+
         $product = new Product ;
         // dd($product->orderBy('product_id', 'DESC')->first());
-        $product_id = $product->orderBy('product_id', 'DESC')->first();
-        $id = $product_id['product_id'] + 1;
-        // dd($id);
         $product->product_name = $request->product_name;
         $product->brand_id = $request->brand_id;
         $product->product_slug = $request->product_slug;
         $product->sku = $request->sku;
         $product->product_type = $request->product_type;
-        // $product->status =1;
         $product->data_available = $request->data_available;
         $product->off_price = $request->off_price;
-        // $product->has_size = 1;
         $product->buy_price = $request->buy_price;
         $product->sale_price = $request->sale_price;
         $product->quantity = $request->quantity;
@@ -203,15 +207,25 @@ class productController extends AppBaseController
         $product->description = $request->description;
         $product->made_in = $request->made_in;
         $product->cover = $file_name;
-
-        $category_product = new category_product;
-        // dd($category_product);
-        $category_product->category_id = $id;
-        // dd($category_product->category_id);
-        // dd("yugu");
-        $category_product->product_id = $product->product_id;
-        $category_product->save();
+        $product->image1 = $file_name1;
+        $product->image2 = $file_name2;
         $product->save();
+
+        $product_id = $product->orderBy('product_id', 'DESC')->first();
+        $id = $product_id['product_id'];
+        $category_id = $request->category_id;
+        $category_product = new product_category();
+        // $category_product->category_id = $id;
+        // dd($category_product->category_id);
+        $category_product->product_id = $id;
+        $category_product->category_id = $category_id;
+        $attre = [
+            'product_id' => $id,
+            'category_id' => $category_id
+        ];
+        $post = product_category::create($attre);
+
+
         // return $this->index();
         return Redirect::back()->with('success','Operation Successful !');
     }
@@ -282,9 +296,18 @@ class productController extends AppBaseController
      */
     public function update(UpdateProductRequest $request, $id)
     {
+        // $lol = $request->cover;
+        // dd(request()->image1);
+        // dd("sdfydfvch");
+        $product = Product::findOrFail($id);
+        $product->fill(request()->all());
+        $product->save();
+        return redirect()->back();
 
-        $product = $this->productRepo->updateProduct($request, $id);
-        return $this->productRepo->passViewAfterUpdated($product, 'products', 'product.index');
+
+
+        // $product = $this->productRepo->updateProduct($request, $id);
+        // return $this->productRepo->passViewAfterUpdated($product, 'products', 'product.index');
     }
 
     /**

@@ -100,7 +100,9 @@
 																		<li class="res-dropdown menu-shop">
 																			<a class="item-link dropdown-toggle" href="{{ route('home') }}">@lang('auth.nan_link_home')</a>
 																		</li>
-
+																		<li class="res-dropdown menu-shop">
+																			<a class="item-link dropdown-toggle" href="{{ route('front.categories') }}">@lang('auth.nan_link_categories')</a>
+																		</li>
 																		<li class="res-dropdown menu-shop">
 																			<a class="item-link dropdown-toggle" href="/products">@lang('auth.nan_link_shop')</a>
 																		</li>
@@ -282,40 +284,6 @@
                                                     </div>
 												</nav>
 
-												<!-- HEADER CATEGORIES SEARCH -->
-												{{-- <div class="yt-searchpro">
-													<a class="btn-search-mobilev2 phone-icon-search icon-search" title="Search">
-														<i class="fa fa-search"></i>
-													</a>
-
-													<div id="sm_serachbox_pro" class="sm-serachbox-pro">
-														<div class="sm-searbox-content">
-															<form method="get" id="searchform_special">
-																<div class="form-search">
-																	<div class="cat-wrapper">
-																		<div class="selector" id="uniform-cat">
-																			<label class="label-search">
-																				<select name="search_category" class="s1_option">
-																					<option>All Categories</option>
-																					@foreach ($categories as $category)
-                                                                                    <option>{{ $category->category_name }}</option>
-                                                                                    @endforeach
-																				</select>
-																			</label>
-																		</div>
-																	</div>
-
-																	<div class="input-search">
-																		<input type="text" value="" placeholder="Search for products" />
-																	</div>
-
-																	<button type="submit" title="Search" class="fa fa-search button-search-pro form-button"></button>
-																</div>
-															</form>
-														</div>
-													</div>
-												</div> --}}
-												<!-- END HEADER CATEGORIES SEARCH -->
 
 												<!-- SHOPPING CART -->
 												<div class="mini-cart-header">
@@ -692,12 +660,11 @@
 		(function($){jQuery('.phone-icon-search').on('click',function(){jQuery('.sm-serachbox-pro').toggle("slide")});var sticky_navigation_offset=$(".yt-header-middle").offset();var sticky_navigation_offset_top=sticky_navigation_offset.top;var sticky_navigation=function(){var scroll_top=$(window).scrollTop();if(scroll_top>sticky_navigation_offset_top){$(".yt-header-middle").addClass("sticky-menu");$(".yt-header-middle").css({"position":"fixed","top":0,"left":0,"right":0,"z-index":800})}else{$(".yt-header-middle").removeClass("sticky-menu");$(".yt-header-middle").css({"position":"relative","z-index":30})}};sticky_navigation();$(window).scroll(function(){sticky_navigation()});$(document).ready(function(){$(".show-dropdown").each(function(){$(this).on("click",function(){$(this).toggleClass("show");$(this).parent().find("> ul").toggle(300)})})})}(jQuery))
 	</script>
     <script>
-        function onCahnge(name, image, description) {
+        function onCahnge(name , image , description) {
            console.log(name);
            console.log(image);
            console.log(description);
            const model = document.getElementById('exampleModalCenter');
-           console.log(model);
            let modelName = model.querySelector("h3.product_title");
            modelName.textContent = name;
            console.log(modelName);
@@ -716,7 +683,7 @@
         }
         path = subStr(image, 's','b');
         console.log(path);
-        qvImage.src = "/images/" + path;
+        qvImage.src = "{{ asset('images') }}" + '/' + path;
         console.log(qvImage);
     }
 

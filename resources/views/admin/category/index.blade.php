@@ -29,6 +29,7 @@
                         <th>Name</th>
                         <th>slug</th>
                         <th>Parent category</th>
+                        <th>sub category</th>
                         <th >Created at</th>
                         <th >Action</th>
                     </tr>
@@ -45,6 +46,7 @@
                             {{ $category->parent->category_name }}
                             @endif
                         </td>
+                        <td >{{ $category->sub_category }}</td>
                         <td >{{ $category->created_at->diffForHumans() }}</td>
                         <td>
                             <a href="{{ route('category.edit', $category->category_id) }}" class="btn  btn-dark mx-1">Edit</a>

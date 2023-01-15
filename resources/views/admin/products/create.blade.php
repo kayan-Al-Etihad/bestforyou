@@ -101,11 +101,6 @@
                             </select>
                          </div>
                       </div>
-                      <div class="form-group col-md-6 col-lg-6 col-xs-12">
-                         <div class="clearfix">
-                            <input type="hidden" name="product_id" value="">
-                         </div>
-                      </div>
                       <div class="form-group col-md-6 col-lg-6  col-xs-12">
                          <label class=" control-label no-padding-right" for="product_slug"> Product Slug </label>
                          <div class="clearfix">
@@ -167,6 +162,30 @@
                             <input type="file" name="cover" class="form-control" id="cover">
 
                             <span class="text-danger">{{ $errors->first('cover') }}</span>
+                         </div>
+                         <img id="show_image" src="" alt="" width="200" height="100"
+                            class="img-responsive img-thumbnail">
+                      </div>
+                      <div class="center col-xs-6 col-sm-6 col-lg-8 col-md-6">
+
+                         <div class="form-group {{ $errors->has('image1') ? 'has-error' : '' }}">
+                            <label class="bolder bigger-110 " for="brand_image">Image1</label>
+
+                            <input type="file" name="image1" class="form-control" id="image1">
+
+                            <span class="text-danger">{{ $errors->first('image1') }}</span>
+                         </div>
+                         <img id="show_image" src="" alt="" width="200" height="100"
+                            class="img-responsive img-thumbnail">
+                      </div>
+                      <div class="center col-xs-6 col-sm-6 col-lg-8 col-md-6">
+
+                         <div class="form-group {{ $errors->has('image2') ? 'has-error' : '' }}">
+                            <label class="bolder bigger-110 " for="brand_image">Image2</label>
+
+                            <input type="file" name="image2" class="form-control" id="image2">
+
+                            <span class="text-danger">{{ $errors->first('image2') }}</span>
                          </div>
                          <img id="show_image" src="" alt="" width="200" height="100"
                             class="img-responsive img-thumbnail">

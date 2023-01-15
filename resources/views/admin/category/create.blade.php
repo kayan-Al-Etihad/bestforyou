@@ -68,6 +68,15 @@
                      </select>
                     <span class="text-danger">{{ $errors->first('parent_id') }}</span>
                 </div>
+                <div class="form-group  {{ $errors->has('sub_category') ? 'has-error' : '' }} ">
+                    <label for="title">Sub Category</label>
+                    <select name="sub_category" class="form-control" id="">
+                        <option value="">Choose</option>
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                    </select>
+                    <span class="text-danger">{{ $errors->first('sub_category') }}</span>
+                </div>
                <div class="col-lg-4 card-body">
                  <div class="btn-group">
                 <button type="submit" class="btn btn-info ">SAVE</button>

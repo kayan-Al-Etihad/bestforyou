@@ -36,6 +36,8 @@ class CreateProductsTable extends Migration
             $table->decimal('weight')->nullable();
             $table->text('description');
             $table->string('cover',255);
+            $table->string('image1',255);
+            $table->string('image2',255);
             $table->string('product_type',255);
             $table->softDeletes();
             $table->timestamps();

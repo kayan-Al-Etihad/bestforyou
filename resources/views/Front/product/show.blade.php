@@ -6,26 +6,6 @@
 @if (app()->getLocale() == "ar")
 <!-- MAIN -->
 <div dir="rtl" id="main" style="margin-top:80px" class="theme-clearfix" role="document">
-    <div class="breadcrumbs theme-clearfix" style="display: block">
-        <div class="container">
-            <ul class="breadcrumb">
-                <li>
-                    <a id="home" href="home_style_2.html">Home</a>
-                    <span class="go-page"></span>
-                </li>
-
-                <li>
-                    <a id="shop" href="/products">Products</a>
-                    <span class="go-page"></span>
-                </li>
-
-                <li class="active">
-                    <span>{{ $product->product_name }}</span>
-                </li>
-            </ul>
-        </div>
-    </div>
-
     <div class="container">
         <div class="row">
             <div id="contents-detail" class="content col-lg-12 col-md-12 col-sm-12 col-xs-12" role="main">
@@ -48,37 +28,17 @@
                                                     <div class="item-thumbnail-product">
                                                         <div class="thumbnail-wrapper">
                                                             <img 	width="180" height="180" class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image" alt=""
-                                                                    src="{{ $product->cover }}"/>
+                                                                    src="/images/{{ $product->image1 }}"/>
                                                         </div>
                                                     </div>
 
                                                     <div class="item-thumbnail-product">
                                                         <div class="thumbnail-wrapper">
                                                             <img 	width="180" height="180" class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image" alt=""
-                                                                    src="{{ $product->cover }}" />
+                                                                    src="/images/{{ $product->image2 }}" />
                                                         </div>
                                                     </div>
 
-                                                    <div class="item-thumbnail-product">
-                                                        <div class="thumbnail-wrapper">
-                                                            <img 	width="180" height="180" class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image" alt=""
-                                                                    src="{{ $product->cover }}"/>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="item-thumbnail-product">
-                                                        <div class="thumbnail-wrapper">
-                                                            <img 	width="180" height="180" class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image" alt=""
-                                                                    src="{{ $product->cover }}"/>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="item-thumbnail-product">
-                                                        <div class="thumbnail-wrapper">
-                                                            <img 	width="180" height="180" class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image" alt=""
-                                                                    src="{{ $product->cover }}"/>
-                                                        </div>
-                                                    </div>
                                                 </div>
 
                                                 <!-- Image Slider -->
@@ -93,37 +53,17 @@
                                                     <div class="item-img-slider">
                                                         <div class="images">
                                                             <img 	width="600" height="600" class="attachment-shop_single size-shop_single  wp-post-image" alt=""
-                                                                        src="{{ $product->cover }}" />
+                                                                        src="./images/{{ $product->image1 }}" />
                                                         </div>
                                                     </div>
 
                                                     <div class="item-img-slider">
                                                         <div class="images">
                                                             <img 	width="600" height="600" class="attachment-shop_single size-shop_single  wp-post-image" alt=""
-                                                                        src="{{ $product->cover }}" />
+                                                                        src="/images/{{ $product->image2 }}" />
                                                         </div>
                                                     </div>
 
-                                                    <div class="item-img-slider">
-                                                        <div class="images">
-                                                            <img 	width="600" height="600" class="attachment-shop_single size-shop_single  wp-post-image" alt=""
-                                                                        src="{{ $product->cover }}" />
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="item-img-slider">
-                                                       <div class="images">
-                                                            <img 	width="600" height="600" class="attachment-shop_single size-shop_single  wp-post-image" alt=""
-                                                                        src="{{ $product->cover }}" />
-                                                       </div>
-                                                    </div>
-
-                                                    <div class="item-img-slider">
-                                                        <div class="images">
-                                                            <img 	width="600" height="600" class="attachment-shop_single size-shop_single  wp-post-image" alt=""
-                                                                        src="{{ $product->cover }}" />
-                                                        </div>
-                                                    </div>
                                                 </div>
                                                 <!-- Thumbnail Slider -->
                                             </div>
@@ -131,11 +71,8 @@
                                     </div>
 
                                     <div class="product-summary col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                        @if (app()->getLocale() == "en")
                                         <h1 class="product_title">{{ $product->product_name }}</h1>
-                                        @else
-                                        <h1 class="product_title">{{ $product->product_name_ar }}</h1>
-                                        @endif
+
 
                                         <div class="product-stock in-stock">
                                             @lang('auth.availability'):
@@ -150,11 +87,7 @@
 
                                         <div class="product-description">
                                             <h2 class="quick-overview">@lang('auth.quick_overview')</h2>
-                                            @if (app()->getLocale() == "en")
                                             <p>{{ $product->description }}.</p>
-                                            @else
-                                            <p>{{ $product->description_ar }}.</p>
-                                            @endif
                                         </div>
 
                                         <div>
@@ -188,9 +121,14 @@
 
                                         <div class="product_meta">
                                             <p class="posted_in">
-                                                <b>@lang('auth.categories') :</b>
-                                                @foreach ($categories as $category)
-                                                <a href="{{ route('front.subCategory', $category->category_slug) }}" rel="tag">{{ $category->category_name }}</a>,
+                                                <b>@lang('auth.categories'):</b>
+                                                <br>
+                                                @foreach ($product->categories as $category)
+                                                {{-- @if ($category->parent['category_name'])
+                                                    Category : <a href="{{ route('front.showCategory', $category->parent['category_slug']) }}">{{ $category->parent['category_name'] }}</a>
+                                                @endif --}}
+                                                <a href="{{ route('front.subCategory', $category->category_slug) }}">{{ $category->category_name }}</a>
+
                                                 @endforeach
                                             </p>
                                         </div>
@@ -386,25 +324,6 @@
 @if (app()->getLocale() == "en")
 <!-- MAIN -->
 <div id="main" style="margin-top:80px" class="theme-clearfix" role="document">
-    <div class="breadcrumbs theme-clearfix" style="display: block">
-        <div class="container">
-            <ul class="breadcrumb">
-                <li>
-                    <a id="home" href="{{ route('home') }}">Home</a>
-                    <span class="go-page"></span>
-                </li>
-
-                <li>
-                    <a id="shop" href="/products">Products</a>
-                    <span class="go-page"></span>
-                </li>
-
-                <li class="active">
-                    <span>{{ $product->product_name }}</span>
-                </li>
-            </ul>
-        </div>
-    </div>
 
     <div class="container">
         <div class="row">
@@ -418,92 +337,26 @@
                                         <div id="product_img_01" class="product-images" data-rtl="false" data-vertical="true">
                                             <div class="product-images-container clearfix thumbnail-left">
                                                 <div class="slider product-responsive-thumbnail" id="product_thumbnail_01">
+                                                    @foreach ($product->photos as $photos)
                                                     <div class="item-thumbnail-product">
                                                         <div class="thumbnail-wrapper">
                                                             <img 	width="180" height="180" class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image" alt=""
-                                                                    src="{{ $product->cover }}"/>
+                                                                    src="{{ $photos->src }}"/>
                                                         </div>
                                                     </div>
-
-                                                    <div class="item-thumbnail-product">
-                                                        <div class="thumbnail-wrapper">
-                                                            <img 	width="180" height="180" class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image" alt=""
-                                                                    src="{{ $product->cover }}"/>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="item-thumbnail-product">
-                                                        <div class="thumbnail-wrapper">
-                                                            <img 	width="180" height="180" class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image" alt=""
-                                                                    src="{{ $product->cover }}" />
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="item-thumbnail-product">
-                                                        <div class="thumbnail-wrapper">
-                                                            <img 	width="180" height="180" class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image" alt=""
-                                                                    src="{{ $product->cover }}"/>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="item-thumbnail-product">
-                                                        <div class="thumbnail-wrapper">
-                                                            <img 	width="180" height="180" class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image" alt=""
-                                                                    src="{{ $product->cover }}"/>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="item-thumbnail-product">
-                                                        <div class="thumbnail-wrapper">
-                                                            <img 	width="180" height="180" class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image" alt=""
-                                                                    src="{{ $product->cover }}"/>
-                                                        </div>
-                                                    </div>
+                                                    @endforeach
                                                 </div>
 
                                                 <!-- Image Slider -->
                                                 <div class="slider product-responsive">
+                                                    @foreach ($product->photos as $photos)
                                                     <div class="item-img-slider">
                                                        <div class="images">
                                                         <img 	width="600" height="600" class="attachment-shop_single size-shop_single wp-post-image" alt=""
-                                                        src="{{ $product->cover }}"/>
+                                                        src="{{ $photos->src }}"/>
                                                        </div>
                                                     </div>
-
-                                                    <div class="item-img-slider">
-                                                        <div class="images">
-                                                            <img 	width="600" height="600" class="attachment-shop_single size-shop_single  wp-post-image" alt=""
-                                                                        src="{{ $product->cover }}" />
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="item-img-slider">
-                                                        <div class="images">
-                                                            <img 	width="600" height="600" class="attachment-shop_single size-shop_single  wp-post-image" alt=""
-                                                                        src="{{ $product->cover }}" />
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="item-img-slider">
-                                                        <div class="images">
-                                                            <img 	width="600" height="600" class="attachment-shop_single size-shop_single  wp-post-image" alt=""
-                                                                        src="{{ $product->cover }}" />
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="item-img-slider">
-                                                       <div class="images">
-                                                            <img 	width="600" height="600" class="attachment-shop_single size-shop_single  wp-post-image" alt=""
-                                                                        src="{{ $product->cover }}" />
-                                                       </div>
-                                                    </div>
-
-                                                    <div class="item-img-slider">
-                                                        <div class="images">
-                                                            <img 	width="600" height="600" class="attachment-shop_single size-shop_single  wp-post-image" alt=""
-                                                                        src="{{ $product->cover }}" />
-                                                        </div>
-                                                    </div>
+                                                    @endforeach
                                                 </div>
                                                 <!-- Thumbnail Slider -->
                                             </div>

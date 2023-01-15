@@ -230,7 +230,8 @@ abstract class BaseRepository
                 ], 200);
             }
 
-            Flash::success(__("models/$modelLangKey.singular") . ' ' . __('messages.edited'));
+
+            // Flash::success(__("models/$modelLangKey.singular") . ' ' . __('messages.edited'));
             return redirect()->route($redirectRoute);
         }
 
@@ -240,7 +241,7 @@ abstract class BaseRepository
                 'message' => __("models/$modelLangKey.singular") . ' ' . __('messages.editedFailed')
             ], 501);
         }
-        Flash::error(__("models/$modelLangKey.singular") . ' ' . __('messages.editedFailed'));
+        // Flash::error(__("models/$modelLangKey.singular") . ' ' . __('messages.editedFailed'));
         return redirect()->route($redirectRoute);
     }
 
@@ -258,7 +259,7 @@ abstract class BaseRepository
                 'message' => __("models/$modelLangKey.singular") . ' ' . __('messages.saved')
             ], 200);
         }
-        Flash::success(__("models/$modelLangKey.singular") . ' ' . __('messages.saved'));
+        // Flash::success(__("models/$modelLangKey.singular") . ' ' . __('messages.saved'));
         return redirect()->route($route);
     }
 

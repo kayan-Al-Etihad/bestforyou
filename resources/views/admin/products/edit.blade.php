@@ -25,8 +25,7 @@
     <div class="card card-form">
         <div class="row no-gutters" style="padding: 2%">
          {{-- ========================edit Products=============================== --}}
-
-         <form method="post" action="{{ route('product.update',$product->product_id) }}" enctype="multipart/form-data"
+         <form method="post" action="{{ route('product.update', $product->product_id) }}" enctype="multipart/form-data"
             id="Uproduct_form">
          @csrf
          @if( ! env("APP_AJAX") )
@@ -133,61 +132,45 @@
                   </label>
                </div>
             </div>
-
          </div>
          <div class="form-group col-xs-12">
-            <div class="col-xs-6">
-               <!-- file input -->
-               <label for="photos">Photos</label>
-               <label class="ace-file-input">
-                  <input type="file" name="photos[]" id="gallery-photo-add" multiple>
-                  <span class="ace-file-container" data-title="Choose"><span class="ace-file-name"
-                                                                             data-title="No Photos ..."><i
-                                class=" ace-icon fa fa-upload"></i></span></span>
-               </label>
-            </div>
-            <div class="col-xs-6">
-               <!-- to show selected images -->
-               <div class="gallery"></div>
-               @foreach($product->photos as $photo)
-                  <div class="fileuploader-items div-show image-show">
-                     <ul class="fileuploader-items-list">
-                        <li class="fileuploader-item file-has-popup file-type-image file-ext-png">
-                           <div class="columns">
-                              <a href="{{ $photo->src }}" target="_blank">
-                                 <div class="column-thumbnail">
-                                    <div class="fileuploader-item-image fileuploader-no-thumbnail">
-                                       <div style="background-color: #1B6AAA " class="fileuploader-item-icon">
-                                          <img src="{{ $photo->thumbnail }}" alt="{{ $photo->photo_title }}">
-                                       </div>
-                                    </div>
-                                    <span class="fileuploader-action-popup">
-                                 </span>
-                                 </div>
-                              </a>
-                              <div class="column-title">
-                                 <div title="innostudio.de__setting-icnload.png">{{ $photo->photo_title }}</div>
-                                 <span>{{ $photo->photo_size }} KB </span>
-                              </div>
-                              <div class="column-actions">
-                                 <input type="radio" name="cover" value="{{ $photo->addr }}"
-                                        {{ $photo->addr == substr(strchr($product->cover,'\\'),1) ? 'checked' : '' }}  class="cover_cb fileuploader-action radio"
-                                        id="cover" title="Cover Photo">
-                                 <i class="icon ui-icon-asc"></i><a
-                                         class="fileuploader-action fileuploader-action-remove" title="remove"><i
-                                            data-id="{{ $photo->photo_id }}" class="destroy_image"></i></a></div>
-                           </div>
-                           <div class="progress-bar2">
-                              <div class="fileuploader-progressbar">
-                                 <div class="bar"></div>
-                              </div>
-                              <span></span>
-                           </div>
-                        </li>
-                     </ul>
-                  </div>
-               @endforeach
-            </div>
+            <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <div class="center col-xs-6 col-sm-6 col-lg-8 col-md-6">
+                    <input type="file" name="cover" class="form-control">
+                   {{-- <div class="form-group {{ $errors->has('cover') ? 'has-error' : '' }}">
+                      <label class="bolder bigger-110 " for="brand_image">Cover</label>
+
+                      <input type="file" name="cover" class="form-control" id="cover">
+
+                      <span class="text-danger">{{ $errors->first('cover') }}</span>
+                   </div> --}}
+                   <img id="show_image" src="{{ $product->cover }}" alt="" width="200" height="100"
+                      class="img-responsive img-thumbnail">
+                </div>
+                <div class="center col-xs-6 col-sm-6 col-lg-8 col-md-6">
+
+                   <div class="form-group {{ $errors->has('image1') ? 'has-error' : '' }}">
+                      <label class="bolder bigger-110 " for="brand_image">Image1</label>
+
+                      <input type="file" name="image1" class="form-control" id="image1">
+
+                      <span class="text-danger">{{ $errors->first('image1') }}</span>
+                   </div>
+                   <img id="show_image" src="{{ $product->image1 }}" alt="" width="200" height="100"
+                      class="img-responsive img-thumbnail">
+                </div>
+                <div class="center col-xs-6 col-sm-6 col-lg-8 col-md-6">
+
+                   <div class="form-group {{ $errors->has('image2') ? 'has-error' : '' }}">
+                      <label class="bolder bigger-110 " for="brand_image">Image2</label>
+
+                      <input type="file" name="image2" class="form-control" id="image2">
+
+                      <span class="text-danger">{{ $errors->first('image2') }}</span>
+                   </div>
+                   <img id="show_image" src="{{ $product->image2 }}" alt="" width="200" height="100"
+                      class="img-responsive img-thumbnail">
+                </div>
          </div>
 
          <div class="col-xs-12">
@@ -245,12 +228,12 @@
                <input type="submit" class="btn btn-success btn-block" id="submit" value="SAVE">
             </div>
             <div class="col-xs-6">
-               <a class="btn btn-danger btn-block" onclick="history.back()">Cancel</a>
+               <a class="btn btn-danger btn-block" onclick="history.back()" href="{{ route('product.index') }}">Cancel</a>
             </div>
          </div>
       </form>
          {{-- ======================== End edit Products=============================== --}}
-        
+
         </div>
     </div>
 
@@ -272,4 +255,4 @@
 </div>
 
 
-@endsection   
+@endsection

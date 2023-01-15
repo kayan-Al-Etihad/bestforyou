@@ -12,6 +12,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\FeedbackRequest;
 use App\Models\Discount;
 use App\Models\Feedback;
+use App\Models\product_category;
 use App\Models\Product_Feedback;
 use App\Models\Setting;
 use Illuminate\Support\Facades\Cache;
@@ -97,10 +98,17 @@ class homeController extends Controller
     }
 
 
+    public function Categories()
+    {
+        $AllCategories = Category::paginate(8);
+        return view('Front.categories.categories', compact('AllCategories'));
+    }
+
+
     public function showCategory(Request $request, $slug)
     {
         $this->validate($request, ['slug' => 'string']);
-        $category = Category::all()->where('category_slug', "$slug")->first();
+        $category = Category::all()->where('category_slug', '==', $slug)->first();
         return view('Front.categories.singleCategory', compact('category'));
     }
 
@@ -110,8 +118,15 @@ class homeController extends Controller
         $parent = Category::all()->where('category_slug', '==', $slug);
         foreach($parent as $p){
             $par = $p->category_id;
+            // dd($par);
+            $subCategory = product_category::all()->where('category_id', '==', $par);
+            dd($subCategory);
           };
-        $display = Category::all()->where('parent_id' , '==' , $par);
+          $kgbv = $par;
+        //   dd($kgbv);
+
+        $display = Category::all()->where('category_id' , '==' , $kgbv);
+        dd($display);
         $this->validate($request, ['slug' => 'string']);
         $category = Category::all()->where('category_slug', "$slug")->first();
         return view('Front.categories.subCategory', compact('category','display'));

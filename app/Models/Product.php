@@ -72,6 +72,8 @@ class Product extends Model
         'weight',
         'description',
         'cover',
+        'image1',
+        'image2',
         'product_type'
     ];
 
@@ -98,6 +100,8 @@ class Product extends Model
         'weight' => 'float',
         'description' => 'string',
         'cover' => 'string',
+        'image1' => 'string',
+        'image2' => 'string',
         'product_type' => 'string'
     ];
 
@@ -120,6 +124,8 @@ class Product extends Model
         'quantity' => 'required',
         'description' => 'required',
         'cover' => 'required',
+        'image1' => 'required',
+        'image2' => 'required',
         'product_type' => 'required'
     ];
 
@@ -129,6 +135,11 @@ class Product extends Model
     public function brands()
     {
         return $this->belongsTo(brand::class, 'brand_id');
+    }
+
+    public function product_category()
+    {
+        return $this->belongsToMany(product_category::class);
     }
 
     /**

@@ -69,7 +69,6 @@
 
                         <th>Comment</th>
                         <th >USER</th>
-                        <th >PRODUCT</th>
                         <th >Status</th>
                         <th >Created At</th>
                         <th >operatins</th>
@@ -92,21 +91,21 @@
                        id="products">
 
                     {{-- @forelse($comments as $key => $comment) --}}
-                    @foreach($productComments as $comment)
+                    @foreach($productComments as $co)
 
                     <tr>
 
                         <td>
-                            <div >{{ $comment->feedback }}</div>
+                            <div >{{ $co->feedback }}</div>
                         </td>
                         <td>
-                            <div >{{ $comment->name }}</div>
+                            <div >{{ $co->name }}</div>
                         </td>
-                        <td>@dd($comment->product_id)
-                            <div >{{ $comment->products }}</div>
+                        <td>
+                            <div >{{ $co->status }}</div>
                         </td>
                         {{-- <td>
-                            <img src="{{ $comment->comment }}"
+                            <img src="{{ $co->comment }}"
                                  alt="product"
                                  style="width:35px"
                                  class="rounded mr-2">
@@ -116,28 +115,28 @@
                             class="text-center">
                             10 items</td> --}}
 
-                        <td >{{ $comment->created_at }}</td>
+                        <td >{{ $co->created_at }}</td>
                         <td>
-
-
-
+                            {{-- @dd($co->id) --}}
                             <div class="btn-group">
-                                <form action="{{ route('comment.destroy', $comment->id) }}" method="POST">
+                                @if ($co->status == 0)
+                                <form action="{{ route('comment.update', $co->id) }}" method="post">
                                     @csrf
-                                    @method('delete')
-                                   <button class="btn btn-xs btn-danger delete_me" data-id="{{ $comment->id }}">
-                                      <i class="ace-icon fa fa-trash-o bigger-120">Delete</i></i>
-                                   </button>
+                                    @method('PATCH')
+                                    <input type="hidden" name="id" value="{{ $co->id }}" id="">
+                                    <input type="submit" value="Aprrove" class="btn btn-xs btn-success mx-2" name="submit">
                                 </form>
-                                @if($comment->status == 0)
-                                   <form action="{{ route('comment.approve', $comment->id) }}" method="POST">
-                                    @csrf
-                                    @method('update')
-                                      <button class="btn btn-success btn-xs approved_me" title="approved" data-id="{{ $comment->id }}">
-                                         <i class="ace-icon fa fa-thumbs-up bigger-120"></i>
-                                      </button>
-                                   </form>
+                                @else
                                 @endif
+                            <form action="{{ route('comment.destroy', $co->id) }}" method="POST">
+                                @csrf
+                                @method('delete')
+                                <input type="hidden" name="id" value="{{ $co->id }}" id="">
+                               <button class="btn btn-xs btn-danger delete_me" data-id="{{ $co->id }}">
+                                  Delete
+                               </button>
+                            </form>
+
                              </div>
 
                         </td>
@@ -149,10 +148,10 @@
             </table>
         </div>
 
-        <div class="card-body text-right">
+        {{-- <div class="card-body text-right">
             {{ $comments->links() }}
             {{-- 15 <span class="text-muted">of 25</span> <a href="#"class="text-muted-light"><i class="material-icons ml-1">arrow_forward</i></a> --}}
-        </div>
+        {{-- </div> --}}
 
     </div>
 </div>

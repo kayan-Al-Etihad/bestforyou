@@ -12,6 +12,7 @@
 */
 
 use App\Http\Controllers\Admin\categoryController;
+use App\Http\Controllers\Admin\CommentsController;
 use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\DiscountController;
 use App\Http\Controllers\Front\About;
@@ -41,6 +42,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::group(['middleware' => 'lang'], function () {
 
         Route::get('/', 'Front\homeController@home')->name('home');
+        Route::get('/categories', 'Front\homeController@Categories')->name('front.categories');
         Route::get('/home', 'Front\homeController@home');
         Route::get('/show/{slug}', 'Front\homeController@show')->name('front.show')
             ->where(['slug' => '[-A-Za-z0-9]+']);
@@ -68,9 +70,7 @@ Route::group(['middleware' => 'web'], function () {
         Route::get('/contact', 'Front\ContactFormController@index')->name('contact.index');
         Route::post('/contact', [ContactFormController::class, 'store'])->name('contact.store');
         /*---------------Categories------------------*/
-        Route::get('/categories', function() {
-            return view('Front.categories.categories');
-        });
+
         /*---------------Cart------------------*/
         Route::post('/', [App\Http\Controllers\Front\CartController::class, 'store'])->name('cart.store');
 
@@ -90,15 +90,15 @@ Route::group(['middleware' => 'web'], function () {
         Route::get('/category', function() {
             return view('Front.categories.singleCategory');
         });
+
         /*---------------LISTS------------------*/
         Route::match(['get', 'post'], '/products', 'Front\homeController@productsList')->name('front.productsList');
         Route::match(['get', 'post'], '/products/{list}/{slug}', 'Front\homeController@list')->where([
             'list' => '[A-za-z]+',
             'slug' => '[-A-Za-z0-9]+'
         ])->name('front.lists');
-    });
 
-    /*---------------CHECKOUT------------------*/
+            /*---------------CHECKOUT------------------*/
     Route::get('/inter-checkout', 'Front\checkOutController@interCheckOut')->name('front.inter.checkout');
     Route::get('/checkout', 'Front\checkOutController@index')->name('front.checkout');
     Route::post('/checkout', 'Front\checkOutController@store')->name('front.checkout.store');
@@ -137,6 +137,9 @@ Route::group(['middleware' => 'web'], function () {
     /*---------------GOOGLE------------------*/
     Route::get('auth/google', 'Auth\GoogleController@redirectToGoogle')->name('auth.google');
     Route::get('auth/google/callback', 'Auth\GoogleController@handleGoogleCallback');
+    });
+
+
 
 });
 
@@ -225,11 +228,12 @@ Route::group(['prefix' => 'admin', 'middleware' => 'checkRole'], function () {
 //    Route::post('orders','Admin\orderController@sent')->name('order.sent');
 
     /*---------------****COMMENTS****------------------*/
-    Route::get('/comments', 'Admin\myCommentController@index')->name('comments.index');
-    Route::get('/comments/new', 'Admin\myCommentController@newComments')->name('comments.new');
-    Route::post('/comments/{id}', 'Admin\myCommentController@approve')->name('comment.approve');
-    Route::delete('/comments/{id}', 'Admin\myCommentController@destroy')->name('comment.destroy');
+    // Route::get('/comments', 'Admin\myCommentController@index')->name('comments.index');
+    // Route::get('/comments/new', 'Admin\myCommentController@newComments')->name('comments.new');
+    // Route::post('/comments', 'Admin\myCommentController@approve')->name('comment.approve');
+    // Route::delete('/comments/{id}', 'Admin\myCommentController@destroy')->name('comment.destroy');
 //    Route::delete('/comments/{comment}', '\Laravelista\Comments\CommentController@destroy');
+Route::resource('comment', Admin\CommentsController::class);
 
     /*---------------PAYMENTS------------------*/
     Route::resource('/payment', 'Admin\PaymentController')->except(['edit', 'update', 'create', 'store']);
