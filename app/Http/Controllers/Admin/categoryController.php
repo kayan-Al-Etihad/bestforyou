@@ -81,6 +81,7 @@ class categoryController extends Controller
 
     public function storeParentCategory(Request $request)
     {
+        // dd(Request()->all());
         $valdated = $request->all();
         $parentCategory = Category::create($valdated);
         $parentCategory->save();

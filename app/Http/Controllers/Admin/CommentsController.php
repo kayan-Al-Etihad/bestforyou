@@ -15,7 +15,7 @@ class CommentsController extends Controller
      */
     public function index()
     {
-        $productComments = Product_Feedback::paginate(20);
+        $productComments = Product_Feedback::paginate(15);
         return view('admin.comments.index', compact('productComments'));
     }
 

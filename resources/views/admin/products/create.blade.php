@@ -48,13 +48,13 @@
                                </select>
                          </div>
                       </div>
-                      <div class="form-group col-md-6 col-lg-6 col-xs-12">
+                      {{-- <div class="form-group col-md-6 col-lg-6 col-xs-12">
                          <label class="control-label no-padding-right" for="made_in"> Made IN: </label>
                          <div class="clearfix">
                             <input placeholder="Made IN" name="made_in" value="{{ old('made_in') }}" id="made_in"
                                class="form-control" type="text">
                          </div>
-                      </div>
+                      </div> --}}
                       {{-- ===================== product ranking ======================= --}}
                       {{-- <div class="form-group col-md-6 col-lg-6 col-xs-12">
                          <label class=" control-label no-padding-right" for="brand_id">Choose your product ranking</label>
@@ -69,7 +69,7 @@
                          </div>
                       </div> --}}
                       {{-- =====================End product ranking ======================= --}}
-                      <div class="form-group col-md-6 col-lg-6 col-xs-12">
+                      {{-- <div class="form-group col-md-6 col-lg-6 col-xs-12">
                          <label class=" control-label no-padding-right" for="brand_id">Choose your brands</label>
                          <div class="clearfix">
                             <select name="brand_id" id="brand_id" class="form-control">
@@ -80,23 +80,14 @@
                                @endforeach
                             </select>
                          </div>
-                      </div>
+                      </div> --}}
                       <div class="form-group col-md-6 col-lg-6 col-xs-12">
                          <label class=" control-label no-padding-right" for="category_id">Choose your Category</label>
                          <div class="clearfix">
                             <select name="category_id" id="category_id" class="form-control">
                                <option value="" disabled selected>Choose your Category</option>
-                               @foreach ($categories as $category)
-                                     <optgroup label="{{ $category->category_name }}">
-                                        <option value="{{ $category->category_id }}">{{ $category->category_name }}</option>
-                                        <option>
-                                            @if ($category->parent_id != null)
-                                                <span>
-                                                    Parent: {{ !$category->parent_id ? '--'.$category->parent->category_name : $category->parent->category_name }}
-                                                </span>
-                                            @endif
-                                        </option>
-                                      </optgroup>
+                               @foreach ($categories->where('sub_category', '==', 1) as $category)
+                                <option value="{{ $category->category_id }}">{{ $category->category_name }}</option>
                                @endforeach
                             </select>
                          </div>
@@ -112,14 +103,14 @@
 
                    <div class="form-group col-xs-12 col-md-12 col-lg-12">
                       <div class="form-group col-xs-6 col-md-6 col-lg-3">
-                         <label class=" control-label no-padding-right" for="sale_price"> Sell Price </label>
+                         <label class=" control-label no-padding-right" for="sale_price"> Sale Price </label>
                          <div class="clearfix">
                             <input placeholder="Sell Price" name="sale_price" value="{{ old('sale_price') }}"
                                id="sale_price" class="form-control" min="0" type="number">
                          </div>
                       </div>
                       <div class="form-group col-xs-6 col-md-6 col-lg-3">
-                         <label class=" control-label no-padding-right" for="buy_price"> Buy Price </label>
+                         <label class=" control-label no-padding-right" for="buy_price"> Price </label>
                          <div class="clearfix">
                             <input placeholder="Buy Price" name="buy_price" value="{{ old('buy_price') }}" id="buy_price"
                                class="form-control" min="0" type="number">
@@ -137,6 +128,12 @@
                          <div class="clearfix">
                             <input placeholder="sku" type="number" value="{{ old('quantity') }}" min="0"
                                name="sku" class="form-control" id="sku">
+                         </div>
+                      </div>
+                      <div class="form-group col-xs-6 col-md-6 col-lg-3">
+                         <div class="clearfix">
+                            <input type="hidden" value="2" min="0"
+                               name="brand_id" class="form-control" id="brand_id">
                          </div>
                       </div>
                       <div class="form-group col-xs-6 col-md-6 col-lg-3">

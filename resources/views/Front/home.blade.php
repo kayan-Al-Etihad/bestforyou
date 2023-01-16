@@ -70,7 +70,7 @@
                                                         <ul id="menu-left-menu" class="nav vertical-megamenu">
                                                             @foreach ($categories->where('sub_category', '==', '0') as $category)
                                                                 <li class=" menu-smartphones-accessories ya-mega-menu level1" dir="auto">
-                                                                    <a href="{{ route('front.subCategory', $category->category_slug) }}" class="item-link dropdown-toggle">
+                                                                    <a href="{{ route('front.subCategory', $category->category_id) }}" class="item-link dropdown-toggle">
                                                                         <span class="have-title">
                                                                             <span class="menu-title">
                                                                                 {{ $category->category_name }}
@@ -158,17 +158,6 @@
                                                                                         </span>
                                                                                     </ins>
                                                                                 </div>
-                                                                                <!-- price -->
-                                                                                <div class="add-info">
-                                                                                    <form action="{{ route('cart.store') }}" method="POST">
-                                                                                        @csrf
-                                                                                        <input type="hidden" name="product_id" value="{{ $latestDeals->product_id }}">
-                                                                                        <input type="hidden" name="name" value="{{ $latestDeals->product_name }}">
-                                                                                        <input type="hidden" name="price" value="{{ $latestDeals->price }}">
-                                                                                        <input type="hidden" name="quantity" value="1">
-                                                                                        <input type="submit" class="" value="@lang('auth.add_to_cart')">
-                                                                                    </form>
-                                                                                </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -242,11 +231,6 @@
                                                                                                                         </span>
                                                                                                                     </ins>
                                                                                                                 </span>
-                                                                                                            </div>
-
-                                                                                                            <!-- add to cart, wishlist, compare -->
-                                                                                                            <div class="add-info">
-                                                                                                                <a rel="nofollow" href="#" class="button product_type_simple add_to_cart_button ajax_add_to_cart">@lang('auth.add_to_cart')</a>
                                                                                                             </div>
                                                                                                         </div>
                                                                                                     </div>
@@ -349,11 +333,6 @@
                                                                                                         </ins>
                                                                                                     </span>
                                                                                                 </div>
-
-                                                                                                <!-- add to cart, wishlist, compare -->
-                                                                                                <div class="add-info">
-                                                                                                    <a rel="nofollow" href="#" class="button product_type_simple add_to_cart_button ajax_add_to_cart">@lang('auth.add_to_cart')</a>
-                                                                                                </div>
                                                                                             </div>
                                                                                         </div>
                                                                                     </div>
@@ -385,11 +364,6 @@
                                                                                                             </span>
                                                                                                         </ins>
                                                                                                     </span>
-                                                                                                </div>
-
-                                                                                                <!-- add to cart, wishlist, compare -->
-                                                                                                <div class="add-info">
-                                                                                                    <a rel="nofollow" href="#" class="button product_type_simple add_to_cart_button ajax_add_to_cart">@lang('auth.add_to_cart')</a>
                                                                                                 </div>
                                                                                             </div>
                                                                                         </div>

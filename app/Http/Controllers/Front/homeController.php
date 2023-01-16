@@ -18,6 +18,7 @@ use App\Models\Setting;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Cookie;
 use PhpParser\Comment;
+use Illuminate\Support\Str;
 
 class homeController extends Controller
 {
@@ -75,8 +76,12 @@ class homeController extends Controller
         if (!$product){
             abort(404);
         }
+        // dd($product->category_id);
+        $cat = product_category::all()->where('product_id', '==', $product->product_id)->first();
+        // dd($cat->category_id);
         //GET RELATED TAGS
         $tag_slugs = $product->tags()->get(['tag_slug']);
+        $category = Category::all();
         //PUSH TAGS INTO ONE ARRAY
         $slugs = [];
         foreach ($tag_slugs as $tag_slug) {
@@ -94,7 +99,7 @@ class homeController extends Controller
         $has_commented = in_array(auth()->id(),$product->comments()->pluck('commenter_id','commenter_id')->toArray());
         $categories = Category::all();
         $relatedProducts = Product::all()->where("product_slug", "!=", $slug)->take(8);
-        return view('front.product.show', compact('product', 'related_products','has_commented', 'categories', 'relatedProducts', 'product_feedback'));
+        return view('front.product.show', compact('product', 'related_products','has_commented', 'categories', 'relatedProducts', 'product_feedback','category','cat'));
     }
 
 
@@ -105,31 +110,29 @@ class homeController extends Controller
     }
 
 
-    public function showCategory(Request $request, $slug)
+    public function showCategory(Request $request, $id)
     {
+        $category = Category::all()->where('category_id', '==', $id)->first();
+        // dd($category->category_id);
+        $productCat = product_category::all()->where('category_id', '==', $category->category_id);
+        // dd($productCat);
+        $product = Product::all();;
         $this->validate($request, ['slug' => 'string']);
-        $category = Category::all()->where('category_slug', '==', $slug)->first();
-        return view('Front.categories.singleCategory', compact('category'));
+        $category = Category::all()->where('category_id', '==', $id)->first();
+        return view('Front.categories.singleCategory', compact('category','productCat','product'));
     }
 
-    public function subCategory(Request $request, $slug)
+    public function subCategory(Request $request, $id)
     {
-
-        $parent = Category::all()->where('category_slug', '==', $slug);
-        foreach($parent as $p){
-            $par = $p->category_id;
-            // dd($par);
-            $subCategory = product_category::all()->where('category_id', '==', $par);
-            dd($subCategory);
-          };
-          $kgbv = $par;
-        //   dd($kgbv);
-
-        $display = Category::all()->where('category_id' , '==' , $kgbv);
-        dd($display);
-        $this->validate($request, ['slug' => 'string']);
-        $category = Category::all()->where('category_slug', "$slug")->first();
-        return view('Front.categories.subCategory', compact('category','display'));
+        $category = Category::all()->where('category_id', '==', $id)->first();
+        // dd($category->category_id);
+        $subCategory = Category::all()->where('parent_id', '==', $category->category_id);
+        // dd($subCategory);
+        $productCat = product_category::all()->where('category_id', '==', $category->category_id);
+        // dd($productCat);
+        $product = Product::all();;
+        // dd($product);
+        return view('Front.categories.subCategory', compact('category','subCategory','productCat','product'));
     }
 
 

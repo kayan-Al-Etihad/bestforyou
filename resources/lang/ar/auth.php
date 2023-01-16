@@ -18,7 +18,7 @@ return [
     'nan_link_home' => 'الصفحة الرئيسية',
     'nan_link_shop' => 'المتجر',
     'nan_link_about' => 'نبذة عنا',
-    'nan_link_franchise' => 'الامانة',
+    'nan_link_franchise' => 'حق الامتياز',
     'nan_link_join_us' => 'انضم الينا',
     'nan_link_contact_us' => 'تواصل معنا',
     'nan_link_categories' => 'الاصناف',

@@ -25,7 +25,7 @@
     <div class="card card-form">
         <div class="row no-gutters" style="padding: 2%">
          {{-- ========================edit Products=============================== --}}
-         <form method="post" action="{{ route('product.update', $product->product_id) }}" enctype="multipart/form-data"
+         <form method="post" action="{{ route('product.update', $product->product_id) }}"
             id="Uproduct_form">
          @csrf
          @if( ! env("APP_AJAX") )
@@ -148,26 +148,26 @@
                       class="img-responsive img-thumbnail">
                 </div>
                 <div class="center col-xs-6 col-sm-6 col-lg-8 col-md-6">
-
-                   <div class="form-group {{ $errors->has('image1') ? 'has-error' : '' }}">
+                    <input type="file" name="image1" class="form-control" id="image1">
+                   {{-- <div class="form-group {{ $errors->has('image1') ? 'has-error' : '' }}">
                       <label class="bolder bigger-110 " for="brand_image">Image1</label>
 
                       <input type="file" name="image1" class="form-control" id="image1">
 
                       <span class="text-danger">{{ $errors->first('image1') }}</span>
-                   </div>
+                   </div> --}}
                    <img id="show_image" src="{{ $product->image1 }}" alt="" width="200" height="100"
                       class="img-responsive img-thumbnail">
                 </div>
                 <div class="center col-xs-6 col-sm-6 col-lg-8 col-md-6">
-
-                   <div class="form-group {{ $errors->has('image2') ? 'has-error' : '' }}">
+                    <input type="file" name="image2" class="form-control" id="image2">
+                   {{-- <div class="form-group {{ $errors->has('image2') ? 'has-error' : '' }}">
                       <label class="bolder bigger-110 " for="brand_image">Image2</label>
 
                       <input type="file" name="image2" class="form-control" id="image2">
 
                       <span class="text-danger">{{ $errors->first('image2') }}</span>
-                   </div>
+                   </div> --}}
                    <img id="show_image" src="{{ $product->image2 }}" alt="" width="200" height="100"
                       class="img-responsive img-thumbnail">
                 </div>

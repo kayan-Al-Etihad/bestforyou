@@ -146,6 +146,11 @@
 
                 </tbody>
             </table>
+            <div class="card-body text-right">
+                {{ $productComments->links() }}
+                {{-- 15 <span class="text-muted">of 25</span> <a href="#"
+                   class="text-muted-light"><i class="material-icons ml-1">arrow_forward</i></a> --}}
+            </div>
         </div>
 
         {{-- <div class="card-body text-right">

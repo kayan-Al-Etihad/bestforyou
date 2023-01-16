@@ -181,7 +181,6 @@ class productController extends AppBaseController
         //     'cover'     =>'required',
         // ]);
 
-
         $file_name = time() . '.' . request()->cover->getClientOriginalExtension();
         request()->cover->move(public_path('images'), $file_name);
 
@@ -294,13 +293,21 @@ class productController extends AppBaseController
      * @param int $id
      * @return JsonResponse|RedirectResponse
      */
-    public function update(UpdateProductRequest $request, $id)
+    public function update(Request $request, $id)
     {
-        // $lol = $request->cover;
-        // dd(request()->image1);
-        // dd("sdfydfvch");
         $product = Product::findOrFail($id);
-        $product->fill(request()->all());
+        $product->product_name = $request->product_name;
+        $product->product_slug = $request->product_slug;
+        $product->cover = $request->cover;
+        $product->image1 = $request->image1;
+        $product->image2 = $request->image2;
+        $product->made_in = $request->made_in;
+        $product->description = $request->description;
+        $product->sale_price = $request->sale_price;
+        $product->buy_price = $request->buy_price;
+        $product->weight = $request->weight;
+        $product->quantity = $request->quantity;
+        // dd(Request()->image1);
         $product->save();
         return redirect()->back();
 

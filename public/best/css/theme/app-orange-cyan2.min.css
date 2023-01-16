@@ -2803,12 +2803,7 @@ ul.menu,
     top: 0;
     display: inline-block;
 }
-.yt-header-top .block-action-header ul li a:before {
-    content: "|";
-    position: absolute;
-    left: 0;
-    color: #dddddd;
-}
+
 .header-style6 .yt-header-top .block-action-header ul li a:before {
     display: none;
 }
