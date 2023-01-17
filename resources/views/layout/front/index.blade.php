@@ -52,6 +52,30 @@
         .lang_sel_sel.icl-en{
             color: #fff;
         }
+        .container .row.smallScreen{
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 50px !important;
+        }
+        .container .row.smallScreen ul{
+            display: flex !important;
+            flex-direction: column !important;
+            justify-content: center !important;
+            align-items: center !important;
+        }
+        .container .row.smallScreen ul.social{
+            display: flex !important;
+            flex-direction: column !important;
+            justify-content: center !important;
+            align-items: center !important;
+        }
+        .container .row.smallScreen .footer-border{
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 10px;
+            justify-content: center !important;
+            align-items: center !important;
+        }
         }
     </style>
     @if(app()->getLocale() == 'ar')
@@ -67,6 +91,7 @@
             top: 0 !important;
             left: 97% !important;
         }
+
 
     </style>
     @endif
@@ -84,10 +109,10 @@
 
 							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-12 logo-wrapper pull-right">
 								<!-- LOGO -->
-								<div class="logo-wrapperv2">
+								<div class="logo-wrapperv2" style="padding: 0 !important;background:none !important">
 									<h1>
 										<a href="home_style_2.html">
-											<img src="{{ asset('best/images/logo_v2.png') }}" alt="sw shoppy" width="140" height="57">
+											<img src="/images/{{ $settings->site_logo }}" alt="sw shoppy" width="140" height="57" style="width: 100px;height:100px;margin-top:5px">
 										</a>
 									</h1>
 								</div>
@@ -558,10 +583,10 @@
 
 							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-12 logo-wrapper pull-left">
 								<!-- LOGO -->
-								<div class="logo-wrapperv2">
-									<h1>
+								<div class="logo-wrapperv2" style="padding: 0 !important;background:none !important">
+                                    <h1>
 										<a href="home_style_2.html">
-											<img src="{{ asset('best/images/logo_v2.png') }}" alt="sw shoppy" width="140" height="57">
+											<img src="/images/{{ $settings->site_logo }}" alt="sw shoppy" width="140" height="57" style="width: 100px;height:100px;margin-top:5px">
 										</a>
 									</h1>
 								</div>
@@ -602,60 +627,113 @@
 				</div>
 
 				<div class="footer-middle">
-					<div class="container" style="display: flex;justify-content:center;gap:80px;align-items:center">
-                        <div class="footer-title">
-                            <h2>Contact Us</h2>
+                    @if (app()->getLocale() == "ar")
+                    <div class="container" dir="rtl">
+                        <div class="row smallScreen">
+                            <div class="col-lg-8">
+                                <div class="">
+                                    <div class="footer-border" style="display: flex;align-items:center;justify-content:center">
+                                        <h1 style="padding: 0 10px">@lang('auth.information') : </h1>
+                                        <div class="textwidget">
+                                            <div class="content-block-footer">
+                                                <ul style="display: flex;align-items:center;justify-content:center;gap:20px;list-style:none">
+                                                    <li>
+                                                         <span class="fa fa-map-marker" style="font-size: 15px">&nbsp;</span>{{ $settings->site_address }}
+                                                    </li>
+
+                                                    <li>
+                                                        <span class="fa fa-phone" style="font-size: 15px">&nbsp;</span>
+                                                        <span title="{{ $settings->site_phone }}">{{ $settings->site_phone }}</span>
+                                                    </li>
+
+                                                    <li>
+                                                        <span class="fa fa-envelope-o" style="font-size: 15px;">&nbsp;</span>
+                                                        <a target="_blank" title="{{ $settings->site_email }}" href="outlookmail:{{ $settings->site_email }}">{{ $settings->site_email }}</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="">
+                                    <div class="footer-border" style="display: flex;align-items:center;justify-content:center">
+                                        <h1 style="padding: 0 10px">@lang('auth.social-media') : </h1>
+                                        <div class="textwidget">
+                                            <div class="content-block-footer">
+                                                <ul class="social" style="display: flex;align-items:center;justify-content:center;gap:20px;list-style:none">
+                                                    <li>
+                                                        <span class="fa fa-facebook" style="font-size: 16px">&nbsp;</span>
+                                                        <a  target="_blank" title="Contact@gmail.com" href="https://www.facebook.com/profile.php?id=100085080882335">@lang('auth.facebook')</a>
+                                                    </li>
+
+                                                    <li>
+                                                        <span class="fa fa-instagram" style="font-size: 18px">&nbsp;</span>
+                                                        <a target="_blank" title="Contact@gmail.com" href="https://www.instagram.com/bestforyouegypt/">@lang('auth.instagram')</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-						<div class="">
-							<div class="footer-border">
+                    </div>
+                    @else
+                    <div class="container">
+                        <div class="row smallScreen">
+                            <div class="col-lg-8">
+                                <div class="">
+                                    <div class="footer-border" style="display: flex;align-items:center;justify-content:center">
+                                        <h1 style="padding: 0 10px">@lang('auth.information') : </h1>
+                                        <div class="textwidget">
+                                            <div class="content-block-footer">
+                                                <ul style="display: flex;align-items:center;justify-content:center;gap:20px;list-style:none">
+                                                    <li>
+                                                        <span class="fa fa-map-marker" style="font-size: 15px">&nbsp;</span>{{ $settings->site_address }}
+                                                    </li>
 
-								<div class="textwidget">
-									<div class="content-block-footer">
-										<ul>
-											<li>
-												<span class="fa fa-map-marker" style="font-size: 16px; position: relative; top: 1px;">&nbsp;</span>No 304, Sky Tower, New York, USA
-											</li>
+                                                    <li>
+                                                        <span class="fa fa-phone" style="font-size: 15px">&nbsp;</span>
+                                                        <span title="{{ $settings->site_phone }}">{{ $settings->site_phone }}</span>
+                                                    </li>
 
-											<li>
-												<span class="fa fa-phone" style="font-size: 18px; position: relative; top: 4px;">&nbsp;</span>Telephone:
-												<a title="Call:(801) 2345 - 6789" href="tel:+84123456789">(801) 2345 - 6789</a>
-											</li>
+                                                    <li>
+                                                        <span class="fa fa-envelope-o" style="font-size: 15px;">&nbsp;</span>
+                                                        <a target="_blank" title="{{ $settings->site_email }}" href="outlookmail:{{ $settings->site_email }}">{{ $settings->site_email }}</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="">
+                                    <div class="footer-border" style="display: flex;align-items:center;justify-content:center">
+                                        <h1 style="padding: 0 10px">@lang('auth.social-media') : </h1>
+                                        <div class="textwidget">
+                                            <div class="content-block-footer">
+                                                <ul class="social" style="display: flex;align-items:center;justify-content:center;gap:20px;list-style:none">
+                                                    <li>
+                                                        <span class="fa fa-facebook" style="font-size: 16px">&nbsp;</span>
+                                                        <a  target="_blank" title="Contact@gmail.com" href="https://www.facebook.com/profile.php?id=100085080882335">@lang('auth.facebook')</a>
+                                                    </li>
 
-											<li>
-												<span class="fa fa-envelope-o" style="font-size: 11px; position: relative;">&nbsp;</span>E-mail:
-												<a title="Contact@gmail.com" href="mailto:Contact@gmail.com">Contact@gmail.com</a>
-											</li>
-										</ul>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="">
-							<div class="footer-border">
-
-								<div class="textwidget">
-									<div class="content-block-footer">
-                                        <ul>
-											<li>
-												<span class="fa fa-facebook" style="font-size: 16px; position: relative; top: 1px;">&nbsp;</span>Facebook
-												<a title="Contact@gmail.com" href="mailto:Contact@gmail.com">Facebook</a>
-											</li>
-
-											<li>
-												<span class="fa fa-instagram" style="font-size: 18px; position: relative; top: 4px;">&nbsp;</span>
-												<a title="Contact@gmail.com" href="mailto:Contact@gmail.com">Instagram</a>
-											</li>
-
-											<li>
-												<span class="fa fa-twitter" style="font-size: 11px; position: relative;">&nbsp;</span>
-												<a title="Contact@gmail.com" href="mailto:Contact@gmail.com">Twitter</a>
-											</li>
-										</ul>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
+                                                    <li>
+                                                        <span class="fa fa-instagram" style="font-size: 18px">&nbsp;</span>
+                                                        <a target="_blank" title="Contact@gmail.com" href="https://www.instagram.com/bestforyouegypt/">@lang('auth.instagram')</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @endif
 				</div>
 
 				<!-- FOOTER TAGS -->
@@ -664,10 +742,15 @@
 					<!-- FOOTER BOTTOM -->
 					<div class="footer-bottom">
 						<div class="footer-bottom-content container clearfix">
-							<div class="copyright-footer text-center">
-                                copy right&#169;BestForYou | made by Kayan Al-Etihad
-
+                            @if (app()->getLocale() == "ar")
+							<div class="copyright-footer text-center" dir="rtl">
+                                @lang('auth.copy-right')
 							</div>
+                            @else
+                            <div class="copyright-footer text-center">
+                                @lang('auth.copy-right')
+							</div>
+                            @endif
 						</div>
 					</div>
 				</div>

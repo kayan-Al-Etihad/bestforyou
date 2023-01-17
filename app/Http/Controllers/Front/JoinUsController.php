@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Front;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\JoinUsRequest;
 use App\Models\JoinUs;
+use App\Models\Setting;
 use Illuminate\Http\Request;
 
 class JoinUsController extends Controller
@@ -16,7 +17,8 @@ class JoinUsController extends Controller
      */
     public function index()
     {
-        return view('Front.join_us.join_us');
+        $settings = Setting::all()->first();
+        return view('Front.join_us.join_us' , compact('settings'));
     }
 
     /**
@@ -37,7 +39,15 @@ class JoinUsController extends Controller
      */
     public function store(JoinUsRequest $request)
     {
-        $data = $request->all();
+        $cv = $request->cv->getClientOriginalName();
+        $request->cv->move(public_path('images'), $cv);
+        $data = [
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'city' => $request->city,
+            'cv' => $cv,
+        ];
         $join_us_form = JoinUs::create($data);
         $join_us_form->save();
         return redirect()->route('join-us.index')->with('status','تم تقديم طلبك بنجاح');

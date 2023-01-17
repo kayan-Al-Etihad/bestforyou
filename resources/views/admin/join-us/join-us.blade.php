@@ -52,7 +52,7 @@
                             <div >{{ $message->city }}</div>
                         </td>
                         <td>
-                            <div ><a href="{{ asset('best/images/2102/') }}" download="{{ $message->cv }}">{{ $message->cv }}</a></div>
+                            <div ><a href="{{ asset('images/') }}/{{ $message->cv }}" download="{{ $message->cv }}">{{ $message->cv }}</a></div>
                         </td>
                         <td >{{ $message->created_at->diffForHumans() }}</td>
                         <td>

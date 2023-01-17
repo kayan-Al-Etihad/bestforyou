@@ -88,4 +88,10 @@ return [
     'single_reviews' => 'التعليقات',
     'single_write_comment' => 'اكتب تعليقك',
     'single_related_products' => 'قد يعجبك ايضا',
+    // fotter localization
+    'information' => 'معلومات',
+    'social-media' => 'مواقع التواصل الاجتماعي',
+    'facebook' => 'فيسبوك',
+    'instagram' => 'انستجرام',
+    'copy-right' => 'حقوق النشر © BestForYou | صُنع بواسطة كيان الاتحاد',
 ];

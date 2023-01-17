@@ -91,4 +91,10 @@ return [
     'single_reviews' => 'reviews',
     'single_write_comment' => 'Write your comment',
     'single_related_products' => 'RELATED PRODUCTS',
+    // fotter localization
+    'information' => 'information',
+    'social-media' => 'social media',
+    'facebook' => 'facebook',
+    'instagram' => 'instagram',
+    'copy-right' => 'copy right©BestForYou | made by Kayan Al-Etihad'
 ];

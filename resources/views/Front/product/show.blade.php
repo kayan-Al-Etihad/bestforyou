@@ -95,7 +95,7 @@
 
                                                 <ins>
                                                     <span class="woocommerce-Price-amount amount">
-                                                        <span class="woocommerce-Price-currencySymbol">$</span>{{ $product->sale_price }}
+                                                        <span class="woocommerce-Price-currencySymbol">EGP  </span>{{ $product->sale_price }}
                                                     </span>
                                                 </ins>
                                             </p>
@@ -108,10 +108,11 @@
                                             <p class="posted_in">
                                                 <b>@lang('auth.categories'):</b>
                                                 <br>
-
+                                                @if ($cat != null)
                                                 @foreach ($category->where('category_id', '==', $cat->category_id) as $category)
                                                     <a href="{{ route('front.subCategory', $category->category_id) }}">{{ $category->category_name }}</a>
                                                 @endforeach
+                                                @endif
                                             </p>
                                         </div>
                                     </div>
@@ -129,7 +130,7 @@
                                                 </li>
 
                                                 <li class="reviews_tab active">
-                                                    <a href="#tab-reviews">@lang('auth.single_reviews') ({{ $product_feedback->count() }})</a>
+                                                    <a href="#tab-reviews">@lang('auth.single_reviews') ({{ $product_feedback->where('status', '==', 1)->count() }})</a>
                                                 </li>
                                             </ul>
 
@@ -213,7 +214,7 @@
                                                                     </p>
 
                                                                     <p class="form-submit">
-                                                                        <input name="submit" type="submit" id="submit" class="" value="@lang('auth.input_submit')" />
+                                                                        <input style="float: right" name="submit" type="submit" id="submit" class="button product_type_simple add_to_cart_button ajax_add_to_cart" value="@lang('auth.input_submit')" />
                                                                     </p>
                                                                 </form>
                                                             </div>
@@ -270,7 +271,7 @@
                                                                                 <span>
                                                                                     <ins>
                                                                                         <span class="woocommerce-Price-amount amount">
-                                                                                            <span class="woocommerce-Price-currencySymbol">$</span>{{ $product->price }}
+                                                                                            <span class="woocommerce-Price-currencySymbol">EGP </span>{{ $product->price }}
                                                                                         </span>
                                                                                     </ins>
                                                                                 </span>
@@ -390,7 +391,7 @@
 
                                                 <ins>
                                                     <span class="woocommerce-Price-amount amount">
-                                                        <span class="woocommerce-Price-currencySymbol">$</span>{{ $product->sale_price }}
+                                                        <span class="woocommerce-Price-currencySymbol">EGP </span>{{ $product->sale_price }}
                                                     </span>
                                                 </ins>
                                             </p>
@@ -403,9 +404,11 @@
                                             <p class="posted_in">
                                                 <b>Category:</b>
                                                 <br>
+                                                @if ($cat != null)
                                                 @foreach ($category->where('category_id', '==', $cat->category_id) as $category)
                                                     <a href="{{ route('front.subCategory', $category->category_id) }}">{{ $category->category_name }}</a>
                                                 @endforeach
+                                                @endif
                                             </p>
                                         </div>
                                     </div>
@@ -418,12 +421,9 @@
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 tab-col-12 description">
                                         <div class="woocommerce-tabs wc-tabs-wrapper">
                                             <ul class="tabs wc-tabs" style="display: flex;gap:15px;margin:0 !important">
-                                                <li class="description_tab">
-                                                    <a href="#tab-description">Description</a>
-                                                </li>
 
                                                 <li class="reviews_tab active">
-                                                    <a href="#tab-reviews">Reviews ({{ $product_feedback->count() }})</a>
+                                                    <a href="#tab-reviews">Reviews ({{ $product_feedback->where('status', '==', 1)->count() }})</a>
                                                 </li>
                                             </ul>
 
@@ -507,7 +507,7 @@
                                                                     </p>
 
                                                                     <p class="form-submit">
-                                                                        <input name="submit" type="submit" id="submit" class="" value="Submit" />
+                                                                        <input name="submit" type="submit" id="submit" class="button product_type_simple add_to_cart_button ajax_add_to_cart" value="Submit" />
                                                                     </p>
                                                                 </form>
                                                             </div>
@@ -558,7 +558,7 @@
                                                                                 <span>
                                                                                     <ins>
                                                                                         <span class="woocommerce-Price-amount amount">
-                                                                                            <span class="woocommerce-Price-currencySymbol">EGH</span>{{ $product->price }}
+                                                                                            <span class="woocommerce-Price-currencySymbol">EGP </span>{{ $product->price }}
                                                                                         </span>
                                                                                     </ins>
                                                                                 </span>

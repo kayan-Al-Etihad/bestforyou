@@ -52,7 +52,7 @@ class homeController extends Controller
         //see how many times home page loaded
         Cache::increment('homePage');
 
-        $settings = Setting::all();
+        $settings = Setting::all()->first();
 
         $discounts = Discount::all();
         $latestDeals = Product::orderBy('product_id', 'DESC')->get()->take(5);
@@ -77,7 +77,7 @@ class homeController extends Controller
             abort(404);
         }
         // dd($product->category_id);
-        $cat = product_category::all()->where('product_id', '==', $product->product_id)->first();
+        $cat = product_category::all()->where('category_id', '!=', 'null')->where('product_id', '==', $product->product_id)->first();
         // dd($cat->category_id);
         //GET RELATED TAGS
         $tag_slugs = $product->tags()->get(['tag_slug']);
@@ -94,24 +94,28 @@ class homeController extends Controller
             'data_available', 'is_off', 'off_price', 'cover', 'sale_price', 'created_at'])->take(6);
 
         //check if auth user has commented for this products
+        $settings = Setting::all()->first();
         $product_id = $product->product_id;
         $product_feedback = Product_Feedback::all()->where('product_id', '==', $product_id);
         $has_commented = in_array(auth()->id(),$product->comments()->pluck('commenter_id','commenter_id')->toArray());
         $categories = Category::all();
         $relatedProducts = Product::all()->where("product_slug", "!=", $slug)->take(8);
-        return view('front.product.show', compact('product', 'related_products','has_commented', 'categories', 'relatedProducts', 'product_feedback','category','cat'));
+        return view('front.product.show', compact('product', 'related_products','has_commented', 'categories', 'relatedProducts', 'product_feedback','category','cat','settings'));
     }
 
 
     public function Categories()
     {
+        $settings = Setting::all()->first();
         $AllCategories = Category::paginate(8);
-        return view('Front.categories.categories', compact('AllCategories'));
+        return view('Front.categories.categories', compact('AllCategories','settings'));
     }
 
 
     public function showCategory(Request $request, $id)
     {
+
+        $settings = Setting::all()->first();
         $category = Category::all()->where('category_id', '==', $id)->first();
         // dd($category->category_id);
         $productCat = product_category::all()->where('category_id', '==', $category->category_id);
@@ -119,11 +123,12 @@ class homeController extends Controller
         $product = Product::all();;
         $this->validate($request, ['slug' => 'string']);
         $category = Category::all()->where('category_id', '==', $id)->first();
-        return view('Front.categories.singleCategory', compact('category','productCat','product'));
+        return view('Front.categories.singleCategory', compact('category','productCat','product','settings'));
     }
 
     public function subCategory(Request $request, $id)
     {
+        $settings = Setting::all()->first();
         $category = Category::all()->where('category_id', '==', $id)->first();
         // dd($category->category_id);
         $subCategory = Category::all()->where('parent_id', '==', $category->category_id);
@@ -132,7 +137,7 @@ class homeController extends Controller
         // dd($productCat);
         $product = Product::all();;
         // dd($product);
-        return view('Front.categories.subCategory', compact('category','subCategory','productCat','product'));
+        return view('Front.categories.subCategory', compact('category','subCategory','productCat','product','settings'));
     }
 
 
@@ -168,6 +173,7 @@ class homeController extends Controller
      */
     public function productsList(Request $request)
     {
+        $settings = Setting::all()->first();
         $this->inputs($request);
         $products = $this->product->orderBy("$request->sort", "$request->dcs")
             ->whereBetween('sale_price', [$request->priceMin, $request->priceMax])
@@ -179,7 +185,7 @@ class homeController extends Controller
             $view = view('Front.listing._data', compact('products'))->render();
             return response()->json(['html' => $view]);
         }
-        return view('Front.listing.list', compact('products'));
+        return view('Front.listing.list', compact('products','settings'));
     }
 
     /**

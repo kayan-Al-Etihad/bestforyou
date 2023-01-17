@@ -66,7 +66,7 @@
                                 </nav>
                                 <style>
                                     .pagination .page-item.active sapn.page-link{
-                                        background-color: orangered !important;
+                                        background-color: #d40110 !important;
                                     }
                                 </style>
                             </div>

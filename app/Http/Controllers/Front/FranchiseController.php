@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\FranchiseRequest;
 use Illuminate\Http\Request;
 use App\Models\Franchise;
+use App\Models\Setting;
+
 class FranchiseController extends Controller
 {
     /**
@@ -15,7 +17,8 @@ class FranchiseController extends Controller
      */
     public function index()
     {
-        return view('Front.franchise.franchise');
+        $settings = Setting::all()->first();
+        return view('Front.franchise.franchise' , compact('settings'));
     }
 
     /**

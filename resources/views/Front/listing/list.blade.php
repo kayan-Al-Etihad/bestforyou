@@ -97,15 +97,6 @@
                                                         {{ session('success') }}
                                                     </div>
                                                     @endif
-                                                    <form action="{{ route('cart.store') }}" method="post">
-                                                        @csrf
-                                                        <input type="hidden" name="name" value="{{ $product->product_name }}">
-                                                        <input type="hidden" name="price" value="{{ $product->price }}">
-                                                        <input type="hidden" name="id" value="{{ $product->product_id }}">
-                                                        <input type="hidden" name="quantity" value="1">
-                                                        <input type="hidden" name="image" value="{{ $product->cover }}">
-                                                        <input type="submit" value="@lang('auth.add_to_cart')" class="button product_type_simple add_to_cart_button ajax_add_to_cart">
-                                                    </form>
 
                                                     <!-- <div class="woocommerce product compare-button">
                                                         <a href="javascript:void(0)" class="compare button" rel="nofollow">Compare</a>
@@ -127,7 +118,7 @@
                                 </nav>
                                 <style>
                                     .pagination .page-item.active sapn.page-link{
-                                        background-color: orangered !important;
+                                        background-color: #d40110 !important;
                                     }
                                 </style>
                             </div>
