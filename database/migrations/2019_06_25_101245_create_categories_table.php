@@ -17,7 +17,7 @@ class CreateCategoriesTable extends Migration
             $table->bigIncrements('category_id');
             $table->string('category_name');
             $table->string('category_slug')->unique();
-            $table->int('sub_category');
+            $table->integer('sub_category')->nullable();
             $table->nestedSet();
             $table->timestamps();
         });
@@ -31,10 +31,5 @@ class CreateCategoriesTable extends Migration
     public function down()
     {
         Schema::dropIfExists('categories');
-        // To drop columns
-//        Schema::table('table', function (Blueprint $table) {
-//            $table->dropNestedSet();
-//        });
-
     }
 }
