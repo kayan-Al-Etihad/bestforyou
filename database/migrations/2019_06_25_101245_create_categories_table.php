@@ -17,6 +17,7 @@ class CreateCategoriesTable extends Migration
             $table->bigIncrements('category_id');
             $table->string('category_name');
             $table->string('category_slug')->unique();
+            $table->int('sub_category');
             $table->nestedSet();
             $table->timestamps();
         });

@@ -23,8 +23,8 @@
     <div class="card">
 
         <div class="table-responsive">
-            
-{{-- 
+
+{{--
             <div class="m-3">
                 <div class="row">
                     <div class="col-md-4">
@@ -52,18 +52,24 @@
                     </div>
                 </div>
             </div> --}}
-
+            @if (\Session::has('message'))
+            <div class="alert alert-success">
+               <ul>
+                  <li>{!! \Session::get('message') !!}</li>
+               </ul>
+            </div>
+         @endif
             <table class="table mb-0 thead-border-top-0 table-striped">
                 <thead>
                     <tr>
 
-             
 
-                  
-                        
+
+
+
                         <th>Comment</th>
                         <th >USER</th>
-                        <th >PRODUCT</th>
+                        <th >Status</th>
                         <th >Created At</th>
                         <th >operatins</th>
                         {{-- <th style="width: 100px; text-align: right;">
@@ -85,15 +91,21 @@
                        id="products">
 
                     {{-- @forelse($comments as $key => $comment) --}}
-                    @foreach($comments as $comment)
+                    @foreach($productComments as $co)
 
                     <tr>
-                        
+
                         <td>
-                            <div >{{ $comment->comment }}</div>
+                            <div >{{ $co->feedback }}</div>
+                        </td>
+                        <td>
+                            <div >{{ $co->name }}</div>
+                        </td>
+                        <td>
+                            <div >{{ $co->status }}</div>
                         </td>
                         {{-- <td>
-                            <img src="{{ $comment->comment }}"
+                            <img src="{{ $co->comment }}"
                                  alt="product"
                                  style="width:35px"
                                  class="rounded mr-2">
@@ -102,34 +114,31 @@
                         {{-- <td style="width: 120px;"
                             class="text-center">
                             10 items</td> --}}
-                        <td >{{ $comment->commentable->product_name }}</td>
-                        <td >
 
-                           {{ $comment->commentable->product_name }}
-
-                        </td>
-
-                        <td >{{ $comment->created_at }}</td>
+                        <td >{{ $co->created_at }}</td>
                         <td>
-                            
-                            
-                            
+                            {{-- @dd($co->id) --}}
                             <div class="btn-group">
-                                <form>
-                                   <button class="btn btn-xs btn-danger delete_me" data-id="{{ $comment->id }}">
-                                      <i class="ace-icon fa fa-trash-o bigger-120">Delete</i></i>
-                                   </button>
+                                @if ($co->status == 0)
+                                <form action="{{ route('comment.update', $co->id) }}" method="post">
+                                    @csrf
+                                    @method('PATCH')
+                                    <input type="hidden" name="id" value="{{ $co->id }}" id="">
+                                    <input type="submit" value="Aprrove" class="btn btn-xs btn-success mx-2" name="submit">
                                 </form>
-                                @if(!$comment->approved)
-                                   <form>
-                                      <button class="btn btn-success btn-xs approved_me" title="approved"
-                                              data-route="{{ route('comment.approve',$comment->id) }}">
-                                         <i class="ace-icon fa fa-thumbs-up bigger-120"></i>
-                                      </button>
-                                   </form>
+                                @else
                                 @endif
+                            <form action="{{ route('comment.destroy', $co->id) }}" method="POST">
+                                @csrf
+                                @method('delete')
+                                <input type="hidden" name="id" value="{{ $co->id }}" id="">
+                               <button class="btn btn-xs btn-danger delete_me" data-id="{{ $co->id }}">
+                                  Delete
+                               </button>
+                            </form>
+
                              </div>
-           
+
                         </td>
                     </tr>
 
@@ -137,12 +146,17 @@
 
                 </tbody>
             </table>
+            <div class="card-body text-right">
+                {{ $productComments->links() }}
+                {{-- 15 <span class="text-muted">of 25</span> <a href="#"
+                   class="text-muted-light"><i class="material-icons ml-1">arrow_forward</i></a> --}}
+            </div>
         </div>
 
-        <div class="card-body text-right">
+        {{-- <div class="card-body text-right">
             {{ $comments->links() }}
             {{-- 15 <span class="text-muted">of 25</span> <a href="#"class="text-muted-light"><i class="material-icons ml-1">arrow_forward</i></a> --}}
-        </div>
+        {{-- </div> --}}
 
     </div>
 </div>
@@ -151,4 +165,4 @@
 
 
 
- @endsection   
+ @endsection

@@ -10,12 +10,15 @@ use App\Models\Tag;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\FeedbackRequest;
+use App\Models\Discount;
 use App\Models\Feedback;
+use App\Models\product_category;
 use App\Models\Product_Feedback;
 use App\Models\Setting;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Cookie;
 use PhpParser\Comment;
+use Illuminate\Support\Str;
 
 class homeController extends Controller
 {
@@ -49,12 +52,13 @@ class homeController extends Controller
         //see how many times home page loaded
         Cache::increment('homePage');
 
-        $settings = Setting::all();
+        $settings = Setting::all()->first();
 
+        $discounts = Discount::all();
         $latestDeals = Product::orderBy('product_id', 'DESC')->get()->take(5);
         $bestSeller = Product::all()->where('product_type', '==', 'best-seller');
         $specialProducts = Product::all()->where('product_type', '==', 'special-product');
-        return view('Front.home', compact('products','settings', 'latestDeals', 'bestSeller', 'specialProducts'));
+        return view('Front.home', compact('products','settings', 'latestDeals', 'bestSeller', 'specialProducts', 'discounts'));
     }
 
     /**
@@ -72,8 +76,12 @@ class homeController extends Controller
         if (!$product){
             abort(404);
         }
+        // dd($product->category_id);
+        $cat = product_category::all()->where('category_id', '!=', 'null')->where('product_id', '==', $product->product_id)->first();
+        // dd($cat->category_id);
         //GET RELATED TAGS
         $tag_slugs = $product->tags()->get(['tag_slug']);
+        $category = Category::all();
         //PUSH TAGS INTO ONE ARRAY
         $slugs = [];
         foreach ($tag_slugs as $tag_slug) {
@@ -86,20 +94,50 @@ class homeController extends Controller
             'data_available', 'is_off', 'off_price', 'cover', 'sale_price', 'created_at'])->take(6);
 
         //check if auth user has commented for this products
+        $settings = Setting::all()->first();
         $product_id = $product->product_id;
         $product_feedback = Product_Feedback::all()->where('product_id', '==', $product_id);
         $has_commented = in_array(auth()->id(),$product->comments()->pluck('commenter_id','commenter_id')->toArray());
         $categories = Category::all();
         $relatedProducts = Product::all()->where("product_slug", "!=", $slug)->take(8);
-        return view('front.product.show', compact('product', 'related_products','has_commented', 'categories', 'relatedProducts', 'product_feedback'));
+        return view('front.product.show', compact('product', 'related_products','has_commented', 'categories', 'relatedProducts', 'product_feedback','category','cat','settings'));
     }
 
 
-    public function showCategory(Request $request, $slug)
+    public function Categories()
     {
+        $settings = Setting::all()->first();
+        $AllCategories = Category::paginate(8);
+        return view('Front.categories.categories', compact('AllCategories','settings'));
+    }
+
+
+    public function showCategory(Request $request, $id)
+    {
+
+        $settings = Setting::all()->first();
+        $category = Category::all()->where('category_id', '==', $id)->first();
+        // dd($category->category_id);
+        $productCat = product_category::all()->where('category_id', '==', $category->category_id);
+        // dd($productCat);
+        $product = Product::all();;
         $this->validate($request, ['slug' => 'string']);
-        $category = Category::all()->where('category_slug', "$slug")->first();
-        return view('Front.categories.singleCategory', compact('category'));
+        $category = Category::all()->where('category_id', '==', $id)->first();
+        return view('Front.categories.singleCategory', compact('category','productCat','product','settings'));
+    }
+
+    public function subCategory(Request $request, $id)
+    {
+        $settings = Setting::all()->first();
+        $category = Category::all()->where('category_id', '==', $id)->first();
+        // dd($category->category_id);
+        $subCategory = Category::all()->where('parent_id', '==', $category->category_id);
+        // dd($subCategory);
+        $productCat = product_category::all()->where('category_id', '==', $category->category_id);
+        // dd($productCat);
+        $product = Product::all();;
+        // dd($product);
+        return view('Front.categories.subCategory', compact('category','subCategory','productCat','product','settings'));
     }
 
 
@@ -125,6 +163,8 @@ class homeController extends Controller
 
 
 
+
+
     /**
      * get all products with filters
      *
@@ -133,6 +173,7 @@ class homeController extends Controller
      */
     public function productsList(Request $request)
     {
+        $settings = Setting::all()->first();
         $this->inputs($request);
         $products = $this->product->orderBy("$request->sort", "$request->dcs")
             ->whereBetween('sale_price', [$request->priceMin, $request->priceMax])
@@ -144,7 +185,7 @@ class homeController extends Controller
             $view = view('Front.listing._data', compact('products'))->render();
             return response()->json(['html' => $view]);
         }
-        return view('Front.listing.list', compact('products'));
+        return view('Front.listing.list', compact('products','settings'));
     }
 
     /**

@@ -29,7 +29,7 @@ class frontComposer
         // $categories = Cache::rememberForever('categories', function () {
         //     return Category::whereIsRoot()->with('children')->get(['category_id', 'category_slug', 'category_name']);
         // });
-        $categories = Category::paginate(6);
+        $categories = Category::all();
         // $setting = Cache::rememberForever('setting', function () {
         //     return Setting::first();
         // });

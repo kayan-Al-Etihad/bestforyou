@@ -31,7 +31,8 @@ class Category extends Model
         'category_slug',
         '_lft',
         '_rgt',
-        'parent_id'
+        'parent_id',
+        'sub_category'
     ];
 
     /**
@@ -45,7 +46,8 @@ class Category extends Model
         'category_slug' => 'string',
         '_lft' => 'integer',
         '_rgt' => 'integer',
-        'parent_id' => 'integer'
+        'parent_id' => 'integer',
+        'sub_category' => 'integer'
     ];
 
     /**
@@ -56,6 +58,7 @@ class Category extends Model
     public static $rules = [
         'category_name' => 'required|string',
         'category_slug' => 'required|string|unique:categories,category_slug',
+        'sub_category' => 'required'
     ];
 
     /**
@@ -64,6 +67,10 @@ class Category extends Model
     public function products()
     {
         return $this->belongsToMany(Product::class, 'category_product', 'category_id', 'product_id');
+    }
+    public function product()
+    {
+        return $this->hasMany(Product::class);
     }
 
     /**

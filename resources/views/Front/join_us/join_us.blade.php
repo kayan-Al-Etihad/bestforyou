@@ -30,7 +30,7 @@ Join us
             </div>
         </div>
         <div class="col-lg-6" style="padding:50px">
-            <form action="{{ route('join-us.store') }}" method="post">
+            <form action="{{ route('join-us.store') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
                     <label for="">@lang('auth.input_name')</label>

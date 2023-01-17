@@ -21,7 +21,7 @@
         <div class="row no-gutters">
             <div class="col-lg-8 card-form__body card-body">
 
-            <form id="category_form" action="{{ route('category.store') }}" method="post">
+            <form id="category_form" action="{{ route('category.storeParentCategory') }}" method="post">
                 {{ csrf_field() }}
                 <div class="form-group  {{ $errors->has('category_name') ? 'has-error' : '' }} ">
                     <label for="title">Category Name</label>
@@ -55,25 +55,35 @@
                 <div class="form-group {{ $errors->has('parent_id') ? 'has-error' : '' }}">
                     <label class="bolder bigger-110" for="Category">Parent Category </label>
                     <select name="parent_id" id="Category" class="form-control">
-                       @if(count($allCategories) == 0)
-                          <option disabled="">NO CATEGORIES</option>
-                       @else
-                          <option value="">Parent Category</option>
-                          @foreach($allCategories as $Category)
-                             <option value="{{ old('category_id',$Category->category_id) }}">
-                                {{ !$Category->parent_id ? '--'.$Category->category_name : $Category->category_name }}
-                             </option>
-                          @endforeach
-                       @endif
-                    </select>
+                        @if(count($allCategories) == 0)
+                           <option disabled="">NO CATEGORIES</option>
+                        @else
+                        <option value="">Categories</option>
+                           @foreach($allCategories as $Category)
+                                 <option value="{{ $Category->category_id }}">
+                                     {{ $Category->category_name }}
+                                 </option>
+                           @endforeach
+                        @endif
+                     </select>
                     <span class="text-danger">{{ $errors->first('parent_id') }}</span>
-                 </div>
+                </div>
+                <div class="form-group  {{ $errors->has('sub_category') ? 'has-error' : '' }} ">
+                    <label for="title">Sub Category</label>
+                    <select name="sub_category" class="form-control" id="">
+                        <option value="">Choose</option>
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                    </select>
+                    <span class="text-danger">{{ $errors->first('sub_category') }}</span>
+                </div>
                <div class="col-lg-4 card-body">
                  <div class="btn-group">
                 <button type="submit" class="btn btn-info ">SAVE</button>
+                <a href="{{ route('category.index') }}" class="btn  btn-dark mx-1">Back</a>
              </div>
               </div>
-            
+
            </form>
             </div>
         </div>

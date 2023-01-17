@@ -3,90 +3,163 @@
    Log In
 @endsection
 @section('content')
-   <div class="container mt-5">
-    <div class="row p-5 m-5" style="margin-top: -3rem">
-        <div class="col-sm-12 col-md-6 col-lg-6" style="margin-top: -3.5rem">
-           <div class="login-form-box">
-              <h2>NEW CUSTOMERS</h2>
-              <div class="extra-indent-bottom">
-                 <p>By creating an account with our store, you will be able to move through the checkout process faster,
-                    store multiple shipping addresses, view and track your orders in your account and more.</p>
-              </div>
-              <div class="">
-                 <a href="{{ route('register') }}" class="btn btn-border color-default">CREATE AN ACCOUNT</a>
-              </div>
-           </div>
-        </div>
-        <div class="col-sm-12 col-md-6 col-lg-6" style="margin-top: -3.5rem">
-           <div class="login-form-box">
-              <h2>REGISTERED CUSTOMERS</h2>
-              <p>
-                 If you have an account with us, please log in.
-              </p>
-              <form method="POST" action="{{ route('login') }}">
-                 @csrf
-                 <!-- SET THIS EMPTY INPUT FORM MORE SECURITY  -->
-                    <input type="hidden" name="input" value="">
-                 <div class="form-group ">
-                    <div class="input-group @error('email') has-error @enderror">
-                       <span class="input-group-addon">
-                          <span class="icon icon-person_outline"></span>
-                       </span>
-                       <input id="email" type="email" class="form-control " name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="Email" autofocus>
-                       @error('email')
-                       <span class="form-control-hint" role="alert">
-                          <strong>{{ $message }}</strong></span>
-                       @enderror
-                    </div>
-                 </div>
-                 <div class="form-group @error('password') is-invalid @enderror">
-                    <div class="input-group">
-                       <span class="input-group-addon">
-                          <span class="icon icon-lock_outline"></span>
-                       </span>
+    @if (app()->getLocale() == "ar")
+    <div class="container login" style=";margin=50% !important;" dir="rtl">
+        <div class="row" style="margin=150px 0 !important;display:flex;align-items:center">
+            <div class="col-lg-6">
+                <div class="img">
+                    <img src="{{ asset('images/sample-pr.jpg') }}" alt="logo_v2.png">
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-6">
+               <div class="login-form-box">
+                  {{-- <p>
+                     If you have an account with us, please log in.
+                  </p> --}}
+                  <form method="POST" action="{{ route('login') }}">
+                     @csrf
+                     <!-- SET THIS EMPTY INPUT FORM MORE SECURITY  -->
+                        <input type="hidden" name="input" value="">
+                     <div class="form-group  w-100">
+                        <div class="input-group w-100 @error('email') has-error @enderror" style="width: 100%">
+                           {{-- <span class="input-group-addon">
+                              <span class="icon icon-person_outline"></span>
+                           </span> --}}
+                           <label for="">@lang('auth.input_email')</label>
+                           <input id="email" type="email" class="form-control w-100" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="Email" autofocus>
+                           @error('email')
+                           <span class="form-control-hint" role="alert">
+                              <strong>{{ $message }}</strong></span>
+                           @enderror
+                        </div>
+                     </div>
+                     <div class="form-group @error('password') is-invalid @enderror" style="width: 100%">
+                        <div class="input-group">
+                           {{-- <span class="input-group-addon">
+                              <span class="icon icon-lock_outline"></span>
+                           </span> --}}
+                           <label for="">@lang('auth.input_password')</label>
+                              <input id="password" type="password" class="form-control " name="password" placeholder="Password" required autocomplete="current-password">
 
-                          <input id="password" type="password" class="form-control " name="password" placeholder="Password" required autocomplete="current-password">
+                              @error('password')
+                              <span class="form-control-hint" role="alert">
+                                              <strong>{{ $message }}</strong>
+                                          </span>
+                              @enderror
 
-                          @error('password')
-                          <span class="form-control-hint" role="alert">
-                                          <strong>{{ $message }}</strong>
-                                      </span>
-                          @enderror
+                        </div>
+                     </div>
+                     <div class="row" style="margin-top:20px">
+                        <div class="col-md-12 col-lg-3" style="float:right">
+                           <button type="submit" class="btn" onclick="document.getElementById('form-returning').submit();">
+                              @lang('auth.input_signIn')
+                           </button>
+                           {{-- <div class="checkbox-group pull-right" style="margin-top:20px">
+                              <input type="checkbox" class="form-check" name="remember" id="checkBox2" {{ old('remember') ? 'checked' : '' }}>
+                              <label for="checkBox2"> --}}
+                                 {{-- <span class="check"></span>
+                                 <span class="box"></span> --}}
+                                 {{-- Remember me
+                              </label> --}}
+                           </div>
+                        </div>
+                        <div class="col-md-12 col-lg-9" style="float:right" dir="ltr">
+                           <ul class="additional-links">
+                              <li>
+                                 @if (Route::has('password.request'))
+                                    <a class="btn btn-link" href="{{ route('password.request') }}">
+                                       {{ __('Forgot Your Password?') }}
+                                    </a>
+                                 @endif
+                              </li>
 
-                    </div>
-                 </div>
-                 <div class="row">
-                    <div class="col-md-12 col-lg-3">
-                       <button type="submit" class="btn" onclick="document.getElementById('form-returning').submit();">
-                          SIGN IN
-                       </button>
-                       <div class="checkbox-group pull-right">
-                          <input type="checkbox" name="remember" id="checkBox2" {{ old('remember') ? 'checked' : '' }}>
-                          <label for="checkBox2">
-                             <span class="check"></span>
-                             <span class="box"></span>
-                             Remember me
-                          </label>
-                       </div>
-                    </div>
-                    <div class="col-md-12 col-lg-9">
-                       <ul class="additional-links">
-                          <li>
-                             @if (Route::has('password.request'))
-                                <a class="btn btn-link" href="{{ route('password.request') }}">
-                                   {{ __('Forgot Your Password?') }}
-                                </a>
-                             @endif
-                          </li>
+                           </ul>
 
-                       </ul>
-                       <a href="{{ route('auth.google') }}" class="btn btn-full bg-blue"><span class="fa fa-google"></span>log in with google!</a>
+                        </div>
+                     </div>
+                  </form>
+               </div>
+            </div>
+         </div>
+       </div>
+       @else
+       <div class="container login" style=";margin=50% !important;">
+        <div class="row" style="margin=150px 0 !important;display:flex;align-items:center">
+            <div class="col-lg-6">
+                <div class="img">
+                    <img src="{{ asset('images/sample-pr.jpg') }}" alt="logo_v2.png">
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-6">
+               <div class="login-form-box">
+                  {{-- <p>
+                     If you have an account with us, please log in.
+                  </p> --}}
+                  <form method="POST" action="{{ route('login') }}">
+                     @csrf
+                     <!-- SET THIS EMPTY INPUT FORM MORE SECURITY  -->
+                        <input type="hidden" name="input" value="">
+                     <div class="form-group  w-100">
+                        <div class="input-group w-100 @error('email') has-error @enderror" style="width: 100%">
+                           {{-- <span class="input-group-addon">
+                              <span class="icon icon-person_outline"></span>
+                           </span> --}}
+                           <label for="">@lang('auth.input_email')</label>
+                           <input id="email" type="email" class="form-control w-100" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="Email" autofocus>
+                           @error('email')
+                           <span class="form-control-hint" role="alert">
+                              <strong>{{ $message }}</strong></span>
+                           @enderror
+                        </div>
+                     </div>
+                     <div class="form-group @error('password') is-invalid @enderror" style="width: 100%">
+                        <div class="input-group">
+                           {{-- <span class="input-group-addon">
+                              <span class="icon icon-lock_outline"></span>
+                           </span> --}}
+                           <label for="">@lang('auth.input_password')</label>
+                              <input id="password" type="password" class="form-control " name="password" placeholder="Password" required autocomplete="current-password">
 
-                    </div>
-                 </div>
-              </form>
-           </div>
-        </div>
-     </div>
-   </div>
+                              @error('password')
+                              <span class="form-control-hint" role="alert">
+                                              <strong>{{ $message }}</strong>
+                                          </span>
+                              @enderror
+
+                        </div>
+                     </div>
+                     <div class="row" style="margin-top:20px">
+                        <div class="col-md-12 col-lg-3">
+                           <button type="submit" class="btn" onclick="document.getElementById('form-returning').submit();">
+                              @lang('auth.input_signIn')
+                           </button>
+                           {{-- <div class="checkbox-group pull-right" style="margin-top:20px">
+                              <input type="checkbox" class="form-check" name="remember" id="checkBox2" {{ old('remember') ? 'checked' : '' }}>
+                              <label for="checkBox2"> --}}
+                                 {{-- <span class="check"></span>
+                                 <span class="box"></span> --}}
+                                 {{-- Remember me
+                              </label>
+                           </div> --}}
+                        </div>
+                        <div class="col-md-12 col-lg-9">
+                           <ul class="additional-links">
+                              <li>
+                                 @if (Route::has('password.request'))
+                                    <a class="btn btn-link" href="{{ route('password.request') }}">
+                                       {{ __('Forgot Your Password?') }}
+                                    </a>
+                                 @endif
+                              </li>
+
+                           </ul>
+
+                        </div>
+                     </div>
+                  </form>
+               </div>
+            </div>
+         </div>
+       </div>
+    @endif
 @endsection

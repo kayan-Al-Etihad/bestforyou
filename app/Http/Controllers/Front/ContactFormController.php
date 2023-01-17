@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Front;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ContactFormRequest;
 use App\Models\ContactForm;
+use App\Models\Setting;
 use Illuminate\Http\Request;
 
 class ContactFormController extends Controller
@@ -16,7 +17,8 @@ class ContactFormController extends Controller
      */
     public function index()
     {
-        return view('Front.contact-us.contact-us');
+        $settings = Setting::all()->first();
+        return view('Front.contact-us.contact-us' , compact('settings'));
     }
 
     /**

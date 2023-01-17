@@ -6,26 +6,6 @@
 @if (app()->getLocale() == "ar")
 <!-- MAIN -->
 <div dir="rtl" id="main" style="margin-top:80px" class="theme-clearfix" role="document">
-    <div class="breadcrumbs theme-clearfix" style="display: block">
-        <div class="container">
-            <ul class="breadcrumb">
-                <li>
-                    <a id="home" href="home_style_2.html">Home</a>
-                    <span class="go-page"></span>
-                </li>
-
-                <li>
-                    <a id="shop" href="/products">Products</a>
-                    <span class="go-page"></span>
-                </li>
-
-                <li class="active">
-                    <span>{{ $product->product_name }}</span>
-                </li>
-            </ul>
-        </div>
-    </div>
-
     <div class="container">
         <div class="row">
             <div id="contents-detail" class="content col-lg-12 col-md-12 col-sm-12 col-xs-12" role="main">
@@ -48,37 +28,17 @@
                                                     <div class="item-thumbnail-product">
                                                         <div class="thumbnail-wrapper">
                                                             <img 	width="180" height="180" class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image" alt=""
-                                                                    src="{{ $product->cover }}"/>
+                                                                    src="{{ asset('images') }}/{{ $product->image1 }}"/>
                                                         </div>
                                                     </div>
 
                                                     <div class="item-thumbnail-product">
                                                         <div class="thumbnail-wrapper">
                                                             <img 	width="180" height="180" class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image" alt=""
-                                                                    src="{{ $product->cover }}" />
+                                                                    src="{{ asset('images') }}/{{ $product->image2 }}" />
                                                         </div>
                                                     </div>
 
-                                                    <div class="item-thumbnail-product">
-                                                        <div class="thumbnail-wrapper">
-                                                            <img 	width="180" height="180" class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image" alt=""
-                                                                    src="{{ $product->cover }}"/>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="item-thumbnail-product">
-                                                        <div class="thumbnail-wrapper">
-                                                            <img 	width="180" height="180" class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image" alt=""
-                                                                    src="{{ $product->cover }}"/>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="item-thumbnail-product">
-                                                        <div class="thumbnail-wrapper">
-                                                            <img 	width="180" height="180" class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image" alt=""
-                                                                    src="{{ $product->cover }}"/>
-                                                        </div>
-                                                    </div>
                                                 </div>
 
                                                 <!-- Image Slider -->
@@ -93,37 +53,17 @@
                                                     <div class="item-img-slider">
                                                         <div class="images">
                                                             <img 	width="600" height="600" class="attachment-shop_single size-shop_single  wp-post-image" alt=""
-                                                                        src="{{ $product->cover }}" />
+                                                                        src="{{ asset('images') }}/{{ $product->image1 }}" />
                                                         </div>
                                                     </div>
 
                                                     <div class="item-img-slider">
                                                         <div class="images">
                                                             <img 	width="600" height="600" class="attachment-shop_single size-shop_single  wp-post-image" alt=""
-                                                                        src="{{ $product->cover }}" />
+                                                                        src="{{ asset('images') }}/{{ $product->image2 }}" />
                                                         </div>
                                                     </div>
 
-                                                    <div class="item-img-slider">
-                                                        <div class="images">
-                                                            <img 	width="600" height="600" class="attachment-shop_single size-shop_single  wp-post-image" alt=""
-                                                                        src="{{ $product->cover }}" />
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="item-img-slider">
-                                                       <div class="images">
-                                                            <img 	width="600" height="600" class="attachment-shop_single size-shop_single  wp-post-image" alt=""
-                                                                        src="{{ $product->cover }}" />
-                                                       </div>
-                                                    </div>
-
-                                                    <div class="item-img-slider">
-                                                        <div class="images">
-                                                            <img 	width="600" height="600" class="attachment-shop_single size-shop_single  wp-post-image" alt=""
-                                                                        src="{{ $product->cover }}" />
-                                                        </div>
-                                                    </div>
                                                 </div>
                                                 <!-- Thumbnail Slider -->
                                             </div>
@@ -131,11 +71,8 @@
                                     </div>
 
                                     <div class="product-summary col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                        @if (app()->getLocale() == "en")
                                         <h1 class="product_title">{{ $product->product_name }}</h1>
-                                        @else
-                                        <h1 class="product_title">{{ $product->product_name_ar }}</h1>
-                                        @endif
+
 
                                         <div class="product-stock in-stock">
                                             @lang('auth.availability'):
@@ -150,11 +87,7 @@
 
                                         <div class="product-description">
                                             <h2 class="quick-overview">@lang('auth.quick_overview')</h2>
-                                            @if (app()->getLocale() == "en")
                                             <p>{{ $product->description }}.</p>
-                                            @else
-                                            <p>{{ $product->description_ar }}.</p>
-                                            @endif
                                         </div>
 
                                         <div>
@@ -162,36 +95,24 @@
 
                                                 <ins>
                                                     <span class="woocommerce-Price-amount amount">
-                                                        <span class="woocommerce-Price-currencySymbol">$</span>{{ $product->sale_price }}
+                                                        <span class="woocommerce-Price-currencySymbol">EGP  </span>{{ $product->sale_price }}
                                                     </span>
                                                 </ins>
                                             </p>
                                         </div>
 
                                         <div class="product-summary-bottom clearfix">
-                                            <form class="cart" method="post" enctype="multipart/form-data">
-
-                                                @if (app()->getLocale() == "ar")
-                                                <style>
-                                                    .single-product-top .product-summary .product-summary-bottom .cart .quantity:before{
-                                                        content: "العدد :" !important;
-                                                    }
-                                                </style>
-                                                @else
-                                                @endif
-                                                <div class="quantity">
-                                                    <input type="number" step="1" min="1" max="" name="quantity" value="1" title="Qty" class="input-text qty text" size="4" pattern="[0-9]*" inputmode="numeric" />
-                                                </div>
-                                                <button type="submit" class="single_add_to_cart_button button alt">@lang('auth.add_to_cart')</button>
-                                            </form>
                                         </div>
 
                                         <div class="product_meta">
                                             <p class="posted_in">
-                                                <b>@lang('auth.categories') :</b>
-                                                @foreach ($categories as $category)
-                                                <a href="" rel="tag">{{ $category->category_name }}</a>,
+                                                <b>@lang('auth.categories'):</b>
+                                                <br>
+                                                @if ($cat != null)
+                                                @foreach ($category->where('category_id', '==', $cat->category_id) as $category)
+                                                    <a href="{{ route('front.subCategory', $category->category_id) }}">{{ $category->category_name }}</a>
                                                 @endforeach
+                                                @endif
                                             </p>
                                         </div>
                                     </div>
@@ -209,7 +130,7 @@
                                                 </li>
 
                                                 <li class="reviews_tab active">
-                                                    <a href="#tab-reviews">@lang('auth.single_reviews') (0)</a>
+                                                    <a href="#tab-reviews">@lang('auth.single_reviews') ({{ $product_feedback->where('status', '==', 1)->count() }})</a>
                                                 </li>
                                             </ul>
 
@@ -228,7 +149,7 @@
                                                         @if ($product_feedback->status == 1)
                                                         <div class=" m-0 p-0" style="border-bottom: 1px solid #000;">
                                                             <div class="fix">
-                                                                <div class="floatleft mbl-center">
+                                                                <div class="floatleft mbl-center" style="display: flex;align-items:center;gap:15px">
                                                                     <h5 class="text-uppercase mb-0"><strong>{{ $product_feedback->name }}</strong></h5>
                                                                     <p class="reply-date">{{ $product_feedback->created_at->diffForHumans() }}</p>
                                                                 </div>
@@ -293,7 +214,7 @@
                                                                     </p>
 
                                                                     <p class="form-submit">
-                                                                        <input name="submit" type="submit" id="submit" class="" value="@lang('auth.input_submit')" />
+                                                                        <input style="float: right" name="submit" type="submit" id="submit" class="button product_type_simple add_to_cart_button ajax_add_to_cart" value="@lang('auth.input_submit')" />
                                                                     </p>
                                                                 </form>
                                                             </div>
@@ -350,15 +271,10 @@
                                                                                 <span>
                                                                                     <ins>
                                                                                         <span class="woocommerce-Price-amount amount">
-                                                                                            <span class="woocommerce-Price-currencySymbol">$</span>{{ $product->price }}
+                                                                                            <span class="woocommerce-Price-currencySymbol">EGP </span>{{ $product->price }}
                                                                                         </span>
                                                                                     </ins>
                                                                                 </span>
-                                                                            </div>
-
-                                                                            <!-- add to cart, wishlist, compare -->
-                                                                            <div class="add-info">
-                                                                                <a rel="nofollow" href="#" class="button product_type_simple add_to_cart_button ajax_add_to_cart">@lang('auth.add_to_cart')</a>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -386,25 +302,6 @@
 @if (app()->getLocale() == "en")
 <!-- MAIN -->
 <div id="main" style="margin-top:80px" class="theme-clearfix" role="document">
-    <div class="breadcrumbs theme-clearfix" style="display: block">
-        <div class="container">
-            <ul class="breadcrumb">
-                <li>
-                    <a id="home" href="home_style_2.html">Home</a>
-                    <span class="go-page"></span>
-                </li>
-
-                <li>
-                    <a id="shop" href="/products">Products</a>
-                    <span class="go-page"></span>
-                </li>
-
-                <li class="active">
-                    <span>{{ $product->product_name }}</span>
-                </li>
-            </ul>
-        </div>
-    </div>
 
     <div class="container">
         <div class="row">
@@ -428,37 +325,17 @@
                                                     <div class="item-thumbnail-product">
                                                         <div class="thumbnail-wrapper">
                                                             <img 	width="180" height="180" class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image" alt=""
-                                                                    src="{{ $product->cover }}"/>
+                                                                    src="{{ asset('images') }}/{{ $product->image1 }}"/>
                                                         </div>
                                                     </div>
 
                                                     <div class="item-thumbnail-product">
                                                         <div class="thumbnail-wrapper">
                                                             <img 	width="180" height="180" class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image" alt=""
-                                                                    src="{{ $product->cover }}" />
+                                                                    src="{{ asset('images') }}/{{ $product->image2 }}" />
                                                         </div>
                                                     </div>
 
-                                                    <div class="item-thumbnail-product">
-                                                        <div class="thumbnail-wrapper">
-                                                            <img 	width="180" height="180" class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image" alt=""
-                                                                    src="{{ $product->cover }}"/>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="item-thumbnail-product">
-                                                        <div class="thumbnail-wrapper">
-                                                            <img 	width="180" height="180" class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image" alt=""
-                                                                    src="{{ $product->cover }}"/>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="item-thumbnail-product">
-                                                        <div class="thumbnail-wrapper">
-                                                            <img 	width="180" height="180" class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image" alt=""
-                                                                    src="{{ $product->cover }}"/>
-                                                        </div>
-                                                    </div>
                                                 </div>
 
                                                 <!-- Image Slider -->
@@ -473,37 +350,17 @@
                                                     <div class="item-img-slider">
                                                         <div class="images">
                                                             <img 	width="600" height="600" class="attachment-shop_single size-shop_single  wp-post-image" alt=""
-                                                                        src="{{ $product->cover }}" />
+                                                                        src="{{ asset('images') }}/{{ $product->image1 }}" />
                                                         </div>
                                                     </div>
 
                                                     <div class="item-img-slider">
                                                         <div class="images">
                                                             <img 	width="600" height="600" class="attachment-shop_single size-shop_single  wp-post-image" alt=""
-                                                                        src="{{ $product->cover }}" />
+                                                                        src="{{ asset('images') }}/{{ $product->image2 }}" />
                                                         </div>
                                                     </div>
 
-                                                    <div class="item-img-slider">
-                                                        <div class="images">
-                                                            <img 	width="600" height="600" class="attachment-shop_single size-shop_single  wp-post-image" alt=""
-                                                                        src="{{ $product->cover }}" />
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="item-img-slider">
-                                                       <div class="images">
-                                                            <img 	width="600" height="600" class="attachment-shop_single size-shop_single  wp-post-image" alt=""
-                                                                        src="{{ $product->cover }}" />
-                                                       </div>
-                                                    </div>
-
-                                                    <div class="item-img-slider">
-                                                        <div class="images">
-                                                            <img 	width="600" height="600" class="attachment-shop_single size-shop_single  wp-post-image" alt=""
-                                                                        src="{{ $product->cover }}" />
-                                                        </div>
-                                                    </div>
                                                 </div>
                                                 <!-- Thumbnail Slider -->
                                             </div>
@@ -534,26 +391,24 @@
 
                                                 <ins>
                                                     <span class="woocommerce-Price-amount amount">
-                                                        <span class="woocommerce-Price-currencySymbol">$</span>{{ $product->sale_price }}
+                                                        <span class="woocommerce-Price-currencySymbol">EGP </span>{{ $product->sale_price }}
                                                     </span>
                                                 </ins>
                                             </p>
                                         </div>
 
                                         <div class="product-summary-bottom clearfix">
-                                            <form class="cart" method="post" enctype="multipart/form-data">
-                                                <div class="quantity">
-                                                    <input type="number" step="1" min="1" max="" name="quantity" value="1" title="Qty" class="input-text qty text" size="4" pattern="[0-9]*" inputmode="numeric" />
-                                                </div><button type="submit" class="single_add_to_cart_button button alt">Add to cart</button>
-                                            </form>
                                         </div>
 
                                         <div class="product_meta">
                                             <p class="posted_in">
                                                 <b>Category:</b>
-                                                @foreach ($categories as $category)
-                                                <a href="" rel="tag">{{ $category->category_name }}</a>,
+                                                <br>
+                                                @if ($cat != null)
+                                                @foreach ($category->where('category_id', '==', $cat->category_id) as $category)
+                                                    <a href="{{ route('front.subCategory', $category->category_id) }}">{{ $category->category_name }}</a>
                                                 @endforeach
+                                                @endif
                                             </p>
                                         </div>
                                     </div>
@@ -566,12 +421,9 @@
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 tab-col-12 description">
                                         <div class="woocommerce-tabs wc-tabs-wrapper">
                                             <ul class="tabs wc-tabs" style="display: flex;gap:15px;margin:0 !important">
-                                                <li class="description_tab">
-                                                    <a href="#tab-description">Description</a>
-                                                </li>
 
                                                 <li class="reviews_tab active">
-                                                    <a href="#tab-reviews">Reviews (0)</a>
+                                                    <a href="#tab-reviews">Reviews ({{ $product_feedback->where('status', '==', 1)->count() }})</a>
                                                 </li>
                                             </ul>
 
@@ -590,7 +442,7 @@
                                                         @if ($product_feedback->status == 1)
                                                         <div class=" m-0 p-0" style="border-bottom: 1px solid #000;">
                                                             <div class="fix">
-                                                                <div class="floatleft mbl-center">
+                                                                <div class="floatleft mbl-center" style="display: flex;align-items:center;gap:15px">
                                                                     <h5 class="text-uppercase mb-0"><strong>{{ $product_feedback->name }}</strong></h5>
                                                                     <p class="reply-date">{{ $product_feedback->created_at->diffForHumans() }}</p>
                                                                 </div>
@@ -655,7 +507,7 @@
                                                                     </p>
 
                                                                     <p class="form-submit">
-                                                                        <input name="submit" type="submit" id="submit" class="" value="Submit" />
+                                                                        <input name="submit" type="submit" id="submit" class="button product_type_simple add_to_cart_button ajax_add_to_cart" value="Submit" />
                                                                     </p>
                                                                 </form>
                                                             </div>
@@ -706,15 +558,10 @@
                                                                                 <span>
                                                                                     <ins>
                                                                                         <span class="woocommerce-Price-amount amount">
-                                                                                            <span class="woocommerce-Price-currencySymbol">$</span>{{ $product->price }}
+                                                                                            <span class="woocommerce-Price-currencySymbol">EGP </span>{{ $product->price }}
                                                                                         </span>
                                                                                     </ins>
                                                                                 </span>
-                                                                            </div>
-
-                                                                            <!-- add to cart, wishlist, compare -->
-                                                                            <div class="add-info">
-                                                                                <a rel="nofollow" href="#" class="button product_type_simple add_to_cart_button ajax_add_to_cart">Add to cart</a>
                                                                             </div>
                                                                         </div>
                                                                     </div>

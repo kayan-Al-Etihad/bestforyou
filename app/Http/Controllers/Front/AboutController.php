@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Setting;
 
 class AboutController extends Controller
 {
@@ -14,7 +15,8 @@ class AboutController extends Controller
      */
     public function index()
     {
-        return view('Front.about.about');
+        $settings = Setting::all()->first();
+        return view('Front.about.about', compact('settings'));
     }
 
     /**

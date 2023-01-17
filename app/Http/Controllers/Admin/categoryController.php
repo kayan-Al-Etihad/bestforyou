@@ -41,8 +41,9 @@ class categoryController extends Controller
      */
     public function index()
     {
+        $categories = Category::all();
         $main_categories = $this->category->with('children')->whereIsRoot()->paginate(10);
-        return view('admin.category.index', compact('main_categories'));
+        return view('admin.category.index', compact('main_categories','categories'));
     }
 
     /**
@@ -56,6 +57,12 @@ class categoryController extends Controller
         return view('admin.category.create', compact('allCategories'));
     }
 
+    public function edit($id)
+    {
+        $allCategories = $this->category->all();
+        $category = Category::findOrfail($id);
+        return response(view('admin.category.edit', compact(['category','allCategories'])));
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -71,6 +78,30 @@ class categoryController extends Controller
         return $this->categoryRepo->passViewAfterCreated( $category, 'categories', 'category.index');
     }
 
+
+    public function storeParentCategory(Request $request)
+    {
+        // dd(Request()->all());
+        $valdated = $request->all();
+        $parentCategory = Category::create($valdated);
+        $parentCategory->save();
+        return redirect()->route('category.index')->with('message' ,'Operation successfully');
+
+    }
+
+    public function update(Request $request)
+    {
+
+        $category = Category::findOrfail(request()->input('category_id'));
+
+        $validated = request()->all();
+
+        $category->fill($validated);
+        $category->save();
+
+        $request->session()->flash('status','Your post has been updated');
+        return redirect()->back()->with('message','Opiration Success');
+    }
     /**
      * Remove the specified resource from storage.
      *
@@ -81,6 +112,8 @@ class categoryController extends Controller
     public function destroy($id)
     {
         $category = $this->categoryRepo->destroy($id);
-        return $this->categoryRepo->passViewAfterDeleted($category,'categories');
+        // return $this->categoryRepo->passViewAfterDeleted($category,'categories');
+        return redirect()->back()->with('message','Opiration Success');
+
     }
 }

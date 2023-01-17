@@ -16,48 +16,66 @@
     </div>
 </div>
 
+
+
 <div class="container-fluid page__container">
+    <div class="card">
 
-    <div class="card card-form">
-        <div class="row no-gutters">
-         
-            <div class="col-lg-8 card-form__body border-left">
+        <div class="table-responsive">
 
-                <div data-toggle="lists"
-                     data-lists-values='["js-lists-values-employee-name", "js-lists-values-employee-title"]'
-                     class="table-responsive border-bottom">
-                    <table class="table mb-0 thead-border-top-0">
-                        <thead class="bg-white">
-                            <tr>
-                                <th colspan="2">Category name</th>
-                            </tr>
-                        </thead>
-                        <tbody class="list">
-                          
+            <table class="table mb-0 thead-border-top-0 table-striped">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>slug</th>
+                        <th>Parent category</th>
+                        <th>sub category</th>
+                        <th >Created at</th>
+                        <th >Action</th>
+                    </tr>
+                </thead>
+                <tbody class="list"
+                       id="products">
+                    @foreach($categories as $category)
 
+                    <tr>
+                        <td >{{ $category->category_name }}</td>
+                        <td >{{ $category->category_slug }}</td>
+                        <td >
+                            @if ($category->parent_id != null)
+                            {{ $category->parent->category_name }}
+                            @endif
+                        </td>
+                        <td >{{ $category->sub_category }}</td>
+                        <td >{{ $category->created_at->diffForHumans() }}</td>
+                        <td>
+                            <a href="{{ route('category.edit', $category->category_id) }}" class="btn  btn-dark mx-1">Edit</a>
+                            <div class="btn-group">
+                                <form action="{{ route('category.destroy', $category->category_id) }}" method="POST">
+                                    @csrf
+                                    @method('delete')
+                                   <button class="btn btn-xs btn-danger delete_me" data-id="{{ $category->category_id }}">
+                                      <i class="ace-icon fa fa-trash-o bigger-120">Delete</i></i>
+                                   </button>
+                                </form>
+                             </div>
+                        </td>
+                    </tr>
 
-                            @foreach($main_categories as $category)
-                                <th data-id="{{ $category->category_id }}"><b>{{ $category->category_name }}</b>
-                                   @if($category->children->count())
-                                      @include('admin.category._indexSub', ['subs' => $category->children])
-                                   @endif
-                                </th>
-                             @endforeach
-                             
-                     
+                    @endforeach
 
-                   
-
-                     
-                       
-                        
-
-                        </tbody>
-                    </table>
-                </div>
-
-            </div>
+                </tbody>
+            </table>
         </div>
+
+        @if (\Session::has('message'))
+        <div class="alert alert-success">
+           <ul>
+              <li>{!! \Session::get('message') !!}</li>
+           </ul>
+        </div>
+     @endif
+
     </div>
 </div>
 

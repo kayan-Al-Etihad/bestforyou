@@ -36,7 +36,9 @@ class UpdateProductRequest extends FormRequest
             'quantity' => 'required|numeric',
             'made_in' => 'required|string',
             'description' => 'required|string',
-            'cover' => 'string'
+            'cover' => 'required',
+            'image1' => 'required',
+            'image2' => 'required'
         ];
     }
 }

@@ -43,6 +43,40 @@
                 display: block !important;
             }
         }
+        @media screen and (max-width:800px){
+        #primary-menu .top-links-action{
+            margin-left: 80px;
+            color: #fff !important;
+        }
+
+        .lang_sel_sel.icl-en{
+            color: #fff;
+        }
+        .container .row.smallScreen{
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 50px !important;
+        }
+        .container .row.smallScreen ul{
+            display: flex !important;
+            flex-direction: column !important;
+            justify-content: center !important;
+            align-items: center !important;
+        }
+        .container .row.smallScreen ul.social{
+            display: flex !important;
+            flex-direction: column !important;
+            justify-content: center !important;
+            align-items: center !important;
+        }
+        .container .row.smallScreen .footer-border{
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 10px;
+            justify-content: center !important;
+            align-items: center !important;
+        }
+        }
     </style>
     @if(app()->getLocale() == 'ar')
     <style>
@@ -57,88 +91,93 @@
             top: 0 !important;
             left: 97% !important;
         }
+
+
     </style>
     @endif
 </head>
 <body id="body_wrapper" class="page-template-page-home vc_responsive">
 
 	<div class="body-wrapper theme-clearfix">
+        @if(app()->getLocale() == 'ar')
 		<!-- HEADER -->
 		<div id="yt_header" class="yt-header wrap">
 			<div class="header-style2">
 				<div class="yt-header-top">
 					<div class="container">
 						<div class="row">
-							<div class="col-lg-10 col-md-10 col-sm-9 col-xs-12 pull-right">
-								<!-- INFORMATION -->
-								<div class="yt-header-topv2">
-									<div class="row">
 
-										<!-- LANGUAGE -->
-										<div class="col-lg-6 col-md-6 text-left col-sm-12 col-xs-12 top-links-action" style="display:flex">
-											<div class="block-action-header language-switcher pull-right">
-												<div class="textwidget">
-													<div id="lang_sel">
-														<ul class="nav">
-															<li>
-                                                                @if(app()->getLocale() == 'ar')
-                                                                <a style="cursor: pointer" class="lang_sel_sel icl-en">
-																	<img class="iclflag" title="Arabic" alt="ar" src="{{ asset('best/images/en.png') }}" width="18" height="12">&nbsp;AR
-																</a>
-                                                                @else
-                                                                <a style="cursor: pointer" class="lang_sel_sel icl-en">
-                                                                    <img class="iclflag" title="English" alt="en" src="{{ asset('best/images/en.png') }}" width="18" height="12">&nbsp;ENG
-                                                                </a>
-                                                                @endif
-																<ul>
-																	<li class="icl-ar">
-                                                                        @if(app()->getLocale() == 'ar')
-                                                                        <a class="btn btn-default lv1" href="/lang/en">
-                                                                            <img class="iclflag" title="English" alt="en" src="{{ asset('best/images/en.png') }}" width="18" height="12">&nbsp;EN
-                                                                        </a>
-                                                                        @else
-                                                                        <a class="btn btn-default lv1" href="/lang/ar">
-                                                                            <img class="iclflag" title="Arabic" alt="ar" src="{{ asset('best/images/en.png') }}" width="18" height="12">&nbsp;AR
-                                                                        </a>
-                                                                        @endif
-																	</li>
-																</ul>
-															</li>
-														</ul>
-													</div>
-												</div>
-											</div>
-											<!-- END LANGUAGE -->
-
-										</div>
-									</div>
+							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-12 logo-wrapper pull-right">
+								<!-- LOGO -->
+								<div class="logo-wrapperv2" style="padding: 0 !important;background:none !important">
+									<h1>
+										<a href="home_style_2.html">
+											<img src="/images/{{ $settings->site_logo }}" alt="sw shoppy" width="140" height="57" style="width: 100px;height:100px;margin-top:5px">
+										</a>
+									</h1>
 								</div>
+								<!-- END LOGO -->
+							</div>
+							<div class="col-lg-10 col-md-10 col-sm-9 col-xs-12 pull-left">
 								<!-- END INFORMATION -->
 								<!-- HEADER MENU -->
 								<div class="yt-header-middle" style="position: relative; z-index: 30; top: 0px; left: 0px; right: 0px;">
 									<div class="row">
 										<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 yt-megamenu">
 											<div class="yt-header-under">
-												<nav id="primary-menu" class="primary-menu">
+												<nav id="primary-menu" class="primary-menu" style="float: right">
+
+                                                    <!-- LANGUAGE -->
+                                                    <div class="col-lg-6 col-md-6 text-left col-sm-12 col-xs-12 top-links-action" style="display:flex;width:110px !important;margin-top: 8px;">
+                                                        <div class="block-action-header language-switcher pull-right">
+                                                            <div class="textwidget">
+                                                                <div id="lang_sel">
+                                                                    <ul class="nav">
+                                                                        <li>
+                                                                            @if(app()->getLocale() == 'ar')
+                                                                            <a style="cursor: pointer" class="lang_sel_sel icl-en">
+                                                                                <img class="iclflag" title="Arabic" alt="ar" src="{{ asset('best/images/en.png') }}" width="18" height="12">&nbsp;AR
+                                                                            </a>
+                                                                            @else
+                                                                            <a style="cursor: pointer" class="lang_sel_sel icl-en">
+                                                                                <img class="iclflag" title="English" alt="en" src="{{ asset('best/images/en.png') }}" width="18" height="12">&nbsp;ENG
+                                                                            </a>
+                                                                            @endif
+                                                                            <ul>
+                                                                                <li class="icl-ar">
+                                                                                    @if(app()->getLocale() == 'ar')
+                                                                                    <a class="btn btn-default lv1" href="/lang/en">
+                                                                                        <img class="iclflag" title="English" alt="en" src="{{ asset('best/images/en.png') }}" width="18" height="12">&nbsp;EN
+                                                                                    </a>
+                                                                                    @else
+                                                                                    <a class="btn btn-default lv1" href="/lang/ar">
+                                                                                        <img class="iclflag" title="Arabic" alt="ar" src="{{ asset('best/images/en.png') }}" width="18" height="12">&nbsp;AR
+                                                                                    </a>
+                                                                                    @endif
+                                                                                </li>
+                                                                            </ul>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- END LANGUAGE -->
+
+                                                    </div>
 													<div class="yt-menu">
 														<div class="navbar-inner navbar-inverse">
 															<div class="resmenu-container">
-																<!-- LIST MOBILE MENU ITEMS -->
-																<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#ResMenuprimary_menu">
-																	<span class="sr-only">Categories</span>
-																	<span class="icon-bar"></span>
-																	<span class="icon-bar"></span>
-																	<span class="icon-bar"></span>
-																</button>
 
 																<div id="ResMenuprimary_menu" class="collapse menu-responsive-wrapper">
 																	<ul id="menu-primary-menu" class="flytheme_resmenu">
 																		<li class="res-dropdown menu-shop">
 																			<a class="item-link dropdown-toggle" href="{{ route('home') }}">@lang('auth.nan_link_home')</a>
 																		</li>
-
 																		<li class="res-dropdown menu-shop">
 																			<a class="item-link dropdown-toggle" href="/products">@lang('auth.nan_link_shop')</a>
+																		</li>
+																		<li class="res-dropdown menu-shop">
+																			<a class="item-link dropdown-toggle" href="{{ route('front.categories') }}">@lang('auth.nan_link_categories')</a>
 																		</li>
 																		<li class="res-dropdown menu-shop">
 																			<a class="item-link dropdown-toggle" href="{{ route('about.index') }}">@lang('auth.nan_link_about')</a>
@@ -156,36 +195,20 @@
 
 																	</ul>
 																</div>
+
+																<!-- LIST MOBILE MENU ITEMS -->
+																<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#ResMenuprimary_menu">
+																	<span class="sr-only">Categories</span>
+																	<span class="icon-bar"></span>
+																	<span class="icon-bar"></span>
+																	<span class="icon-bar"></span>
+																</button>
 																<!-- END LIST MOBILE MENU ITEMS -->
 															</div>
 
 															<!-- LIST NORMAL MENU ITEMS -->
 															<ul id="menu-primary-menu-1" class="nav nav-pills nav-mega flytheme-menures">
-																<li class="active menu-portfolios ya-menu-custom level1">
-																	<a href="{{ route('home') }}" class="item-link">
-																		<span class="have-title">
-																			<span class="menu-title">@lang('auth.nan_link_home')</span>
-																		</span>
-																	</a>
-																</li>
-
-																<li class=" menu-shop ya-mega-menu level1">
-																	<a href="/products" class="item-link">
-																		<span class="have-title">
-																			<span class="menu-title">@lang('auth.nan_link_shop')</span>
-																		</span>
-																	</a>
-																</li>
-																<li class=" menu-shop ya-mega-menu level1">
-																	<a href="{{ route('about.index') }}" class="item-link">
-																		<span class="have-title">
-																			<span class="menu-title">@lang('auth.nan_link_about')</span>
-																		</span>
-																	</a>
-																</li>
-
-
-																<li class="style3 dropdown menu-daily-deals ya-mega-menu level1">
+																{{-- <li class="style3 dropdown menu-daily-deals ya-mega-menu level1">
 																	<a href="#" class="item-link dropdown-toggle">
 																		<span class="have-title">
 																			<span class="menu-title">@lang('auth.nan_link_daily_deals')</span>
@@ -253,7 +276,236 @@
 																			</div>
 																		</li>
 																	</ul>
+																</li> --}}
+																<li class=" menu-shop ya-mega-menu level1">
+																	<a href="{{ route('join-us.index') }}" class="item-link">
+																		<span class="have-title">
+																			<span class="menu-title">@lang('auth.nan_link_join_us')</span>
+																		</span>
+																	</a>
 																</li>
+																<li class=" menu-shop ya-mega-menu level1">
+																	<a href="{{ route('franchise.index') }}" class="item-link">
+																		<span class="have-title">
+																			<span class="menu-title">@lang('auth.nan_link_franchise')</span>
+																		</span>
+																	</a>
+																</li>
+																<li class=" menu-shop ya-mega-menu level1">
+																	<a href="{{ route('contact.index') }}" class="item-link">
+																		<span class="have-title">
+																			<span class="menu-title">@lang('auth.nan_link_contact_us')</span>
+																		</span>
+																	</a>
+																</li>
+																<li class=" menu-shop ya-mega-menu level1">
+																	<a href="{{ route('about.index') }}" class="item-link">
+																		<span class="have-title">
+																			<span class="menu-title">@lang('auth.nan_link_about')</span>
+																		</span>
+																	</a>
+																</li>
+																<li class=" menu-shop ya-mega-menu level1">
+																	<a href="{{ route('front.categories') }}" class="item-link">
+																		<span class="have-title">
+																			<span class="menu-title">@lang('auth.categories')</span>
+																		</span>
+																	</a>
+																</li>
+																<li class=" menu-shop ya-mega-menu level1">
+																	<a href="/products" class="item-link">
+																		<span class="have-title">
+																			<span class="menu-title">@lang('auth.nan_link_shop')</span>
+																		</span>
+																	</a>
+																</li>
+																<li class="menu-portfolios ya-menu-custom level1">
+																	<a href="{{ route('home') }}" class="item-link">
+																		<span class="have-title">
+																			<span class="menu-title">@lang('auth.nan_link_home')</span>
+																		</span>
+																	</a>
+																</li>
+
+															</ul>
+														</div>
+													</div>
+												</nav>
+
+
+
+
+											</div>
+										</div>
+									</div>
+								</div>
+								<!-- END HEADER MENU -->
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- END HEADER -->
+        @else
+        <!-- HEADER -->
+		<div id="yt_header" class="yt-header wrap">
+			<div class="header-style2">
+				<div class="yt-header-top">
+					<div class="container">
+						<div class="row">
+							<div class="col-lg-10 col-md-10 col-sm-9 col-xs-12 pull-right">
+								<!-- END INFORMATION -->
+								<!-- HEADER MENU -->
+								<div class="yt-header-middle" style="position: relative; z-index: 30; top: 0px; left: 0px; right: 0px;">
+									<div class="row">
+										<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 yt-megamenu">
+											<div class="yt-header-under">
+												<nav id="primary-menu" class="primary-menu">
+													<div class="yt-menu">
+														<div class="navbar-inner navbar-inverse">
+															<div class="resmenu-container">
+																<!-- LIST MOBILE MENU ITEMS -->
+																<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#ResMenuprimary_menu">
+																	<span class="sr-only">Categories</span>
+																	<span class="icon-bar"></span>
+																	<span class="icon-bar"></span>
+																	<span class="icon-bar"></span>
+																</button>
+
+																<div id="ResMenuprimary_menu" class="collapse menu-responsive-wrapper">
+																	<ul id="menu-primary-menu" class="flytheme_resmenu">
+																		<li class="res-dropdown menu-shop">
+																			<a class="item-link dropdown-toggle" href="{{ route('home') }}">@lang('auth.nan_link_home')</a>
+																		</li>
+																		<li class="res-dropdown menu-shop">
+																			<a class="item-link dropdown-toggle" href="/products">@lang('auth.nan_link_shop')</a>
+																		</li>
+																		<li class="res-dropdown menu-shop">
+																			<a class="item-link dropdown-toggle" href="{{ route('front.categories') }}">@lang('auth.nan_link_categories')</a>
+																		</li>
+																		<li class="res-dropdown menu-shop">
+																			<a class="item-link dropdown-toggle" href="{{ route('about.index') }}">@lang('auth.nan_link_about')</a>
+																		</li>
+																		<li class="res-dropdown menu-shop">
+																			<a class="item-link dropdown-toggle" href="{{ route('contact.index') }}">@lang('auth.nan_link_contact_us')</a>
+																		</li>
+																		<li class="res-dropdown menu-shop">
+																			<a class="item-link dropdown-toggle" href="{{ route('franchise.index') }}">@lang('auth.nan_link_franchise')</a>
+																		</li>
+																		<li class="res-dropdown menu-shop">
+																			<a class="item-link dropdown-toggle" href="{{ route('join-us.index') }}">@lang('auth.nan_link_join_us')</a>
+																		</li>
+
+
+																	</ul>
+																</div>
+																<!-- END LIST MOBILE MENU ITEMS -->
+															</div>
+
+															<!-- LIST NORMAL MENU ITEMS -->
+															<ul id="menu-primary-menu-1" class="nav nav-pills nav-mega flytheme-menures">
+																<li class="menu-portfolios ya-menu-custom level1">
+																	<a href="{{ route('home') }}" class="item-link">
+																		<span class="have-title">
+																			<span class="menu-title">@lang('auth.nan_link_home')</span>
+																		</span>
+																	</a>
+																</li>
+
+																<li class=" menu-shop ya-mega-menu level1">
+																	<a href="/products" class="item-link">
+																		<span class="have-title">
+																			<span class="menu-title">@lang('auth.nan_link_shop')</span>
+																		</span>
+																	</a>
+																</li>
+																<li class=" menu-shop ya-mega-menu level1">
+																	<a href="{{ route('front.categories') }}" class="item-link">
+																		<span class="have-title">
+																			<span class="menu-title">@lang('auth.categories')</span>
+																		</span>
+																	</a>
+																</li>
+																<li class=" menu-shop ya-mega-menu level1">
+																	<a href="{{ route('about.index') }}" class="item-link">
+																		<span class="have-title">
+																			<span class="menu-title">@lang('auth.nan_link_about')</span>
+																		</span>
+																	</a>
+																</li>
+
+
+																{{-- <li class="style3 dropdown menu-daily-deals ya-mega-menu level1">
+																	<a href="#" class="item-link dropdown-toggle">
+																		<span class="have-title">
+																			<span class="menu-title">@lang('auth.nan_link_daily_deals')</span>
+																		</span>
+																	</a>
+
+																	<ul class="dropdown-menu nav-level1 four-column ">
+																		<li class="four-column menu-product-tab">
+																			<div class="listing-tab-shortcode">
+																				<div class="tabbable tabs">
+																					<ul class="nav nav-tabs">
+                                                                                        @foreach ($categories->take(9) as $category)
+																						<li class="active">
+																							<a href="#listing_category_0{{ $category->category_id }}" data-toggle="tabs">{{ $category->category_name }}</a>
+																						</li>
+                                                                                        @endforeach
+																					</ul>
+
+																					<div class="tab-content">
+
+                                                                                        @foreach ($categories as $category)
+                                                                                        <div id="listing_category_0{{ $category->category_id }}" class="tab-pane clearfix active">
+																							@foreach ($category->products->take(3) as $products)
+                                                                                            <div class="item">
+																								<div class="item-wrap">
+																									<div class="item-detail">
+																										<div class="item-img products-thumb">
+																											<a href="{{ route('front.show',$products->product_slug) }}">
+																												<div class="product-thumb-hover">
+																													<img 	width="300" height="300" src="{{ $products->cover }}" class="attachment-shop_catalog size-shop_catalog wp-post-image" alt="12"
+																															src="{{ $products->cover }}"/>
+																													<img 	width="300" height="300" class="hover-image back"
+																															src="{{ $products->cover }}" alt="11">
+																												</div>
+																											</a>
+																										</div>
+
+																										<div class="item-content">
+																											<div class="reviews-content">
+																												<span style="width:0px"></span>
+																											</div>
+
+																											<h4>
+																												<a href="{{ route('front.show',$products->product_slug) }}" title="{{ $products->product_name }}">{{ $products->product_name }}</a>
+																											</h4>
+
+																											<div class="item-price">
+																												<span>
+																													<ins>
+																														<span class="woocommerce-Price-amount amount">
+																															<span class="woocommerce-Price-currencySymbol">$</span>{{ $products->price }}
+																														</span>
+																													</ins>
+																												</span>
+																											</div>
+																										</div>
+																									</div>
+																								</div>
+																							</div>
+                                                                                            @endforeach
+																						</div>
+                                                                                        @endforeach
+																					</div>
+																				</div>
+																			</div>
+																		</li>
+																	</ul>
+																</li> --}}
 																<li class=" menu-shop ya-mega-menu level1">
 																	<a href="{{ route('contact.index') }}" class="item-link">
 																		<span class="have-title">
@@ -275,57 +527,52 @@
 																		</span>
 																	</a>
 																</li>
+
 															</ul>
 														</div>
 													</div>
+                                                    <!-- LANGUAGE -->
+                                                    <div class="col-lg-6 col-md-6 text-left col-sm-12 col-xs-12 top-links-action" style="display:flex;width:110px !important;margin-top: 8px;">
+                                                        <div class="block-action-header language-switcher pull-right">
+                                                            <div class="textwidget">
+                                                                <div id="lang_sel">
+                                                                    <ul class="nav">
+                                                                        <li>
+                                                                            @if(app()->getLocale() == 'ar')
+                                                                            <a style="cursor: pointer" class="lang_sel_sel icl-en">
+                                                                                <img class="iclflag" title="Arabic" alt="ar" src="{{ asset('best/images/en.png') }}" width="18" height="12">&nbsp;AR
+                                                                            </a>
+                                                                            @else
+                                                                            <a style="cursor: pointer" class="lang_sel_sel icl-en">
+                                                                                <img class="iclflag" title="English" alt="en" src="{{ asset('best/images/en.png') }}" width="18" height="12">&nbsp;ENG
+                                                                            </a>
+                                                                            @endif
+                                                                            <ul>
+                                                                                <li class="icl-ar">
+                                                                                    @if(app()->getLocale() == 'ar')
+                                                                                    <a class="btn btn-default lv1" href="/lang/en">
+                                                                                        <img class="iclflag" title="English" alt="en" src="{{ asset('best/images/en.png') }}" width="18" height="12">&nbsp;EN
+                                                                                    </a>
+                                                                                    @else
+                                                                                    <a class="btn btn-default lv1" href="/lang/ar">
+                                                                                        <img class="iclflag" title="Arabic" alt="ar" src="{{ asset('best/images/en.png') }}" width="18" height="12">&nbsp;AR
+                                                                                    </a>
+                                                                                    @endif
+                                                                                </li>
+                                                                            </ul>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- END LANGUAGE -->
+
+                                                    </div>
 												</nav>
 
-												<!-- HEADER CATEGORIES SEARCH -->
-												{{-- <div class="yt-searchpro">
-													<a class="btn-search-mobilev2 phone-icon-search icon-search" title="Search">
-														<i class="fa fa-search"></i>
-													</a>
 
-													<div id="sm_serachbox_pro" class="sm-serachbox-pro">
-														<div class="sm-searbox-content">
-															<form method="get" id="searchform_special">
-																<div class="form-search">
-																	<div class="cat-wrapper">
-																		<div class="selector" id="uniform-cat">
-																			<label class="label-search">
-																				<select name="search_category" class="s1_option">
-																					<option>All Categories</option>
-																					@foreach ($categories as $category)
-                                                                                    <option>{{ $category->category_name }}</option>
-                                                                                    @endforeach
-																				</select>
-																			</label>
-																		</div>
-																	</div>
 
-																	<div class="input-search">
-																		<input type="text" value="" placeholder="Search for products" />
-																	</div>
 
-																	<button type="submit" title="Search" class="fa fa-search button-search-pro form-button"></button>
-																</div>
-															</form>
-														</div>
-													</div>
-												</div> --}}
-												<!-- END HEADER CATEGORIES SEARCH -->
-
-												<!-- SHOPPING CART -->
-												<div class="mini-cart-header">
-													<div class="top-form top-form-minicart minicart-product-style pull-right">
-														<div class="top-minicart pull-right">
-															<a class="cart-contents" href="#" title="View your shopping cart">
-																<span class="minicart-number">0</span> @lang('auth.nav_item')
-															</a>
-														</div>
-													</div>
-												</div>
-												<!-- END SHOPPING CART -->
 											</div>
 										</div>
 									</div>
@@ -336,10 +583,10 @@
 
 							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-12 logo-wrapper pull-left">
 								<!-- LOGO -->
-								<div class="logo-wrapperv2">
-									<h1>
+								<div class="logo-wrapperv2" style="padding: 0 !important;background:none !important">
+                                    <h1>
 										<a href="home_style_2.html">
-											<img src="{{ asset('best/images/logo_v2.png') }}" alt="sw shoppy" width="140" height="57">
+											<img src="/images/{{ $settings->site_logo }}" alt="sw shoppy" width="140" height="57" style="width: 100px;height:100px;margin-top:5px">
 										</a>
 									</h1>
 								</div>
@@ -351,7 +598,7 @@
 			</div>
 		</div>
 		<!-- END HEADER -->
-
+        @endif
         @yield('content')
 
 		<!-- FOOTER -->
@@ -380,237 +627,113 @@
 				</div>
 
 				<div class="footer-middle">
-					<div class="container">
-						<div class="footer-column">
-							<div class="footer-border">
-								<div class="footer-title">
-									<h2>My Account</h2>
-								</div>
+                    @if (app()->getLocale() == "ar")
+                    <div class="container" dir="rtl">
+                        <div class="row smallScreen">
+                            <div class="col-lg-8">
+                                <div class="">
+                                    <div class="footer-border" style="display: flex;align-items:center;justify-content:center">
+                                        <h1 style="padding: 0 10px">@lang('auth.information') : </h1>
+                                        <div class="textwidget">
+                                            <div class="content-block-footer">
+                                                <ul style="display: flex;align-items:center;justify-content:center;gap:20px;list-style:none">
+                                                    <li>
+                                                         <span class="fa fa-map-marker" style="font-size: 15px">&nbsp;</span>{{ $settings->site_address }}
+                                                    </li>
 
-								<ul id="menu-my-account-footer" class="menu">
-									<li class="menu-sitemap ya-menu-custom level1">
-										<a href="#" class="item-link">
-											<span class="have-title">
-												<span class="menu-title">Sitemap</span>
-											</span>
-										</a>
-									</li>
+                                                    <li>
+                                                        <span class="fa fa-phone" style="font-size: 15px">&nbsp;</span>
+                                                        <span title="{{ $settings->site_phone }}">{{ $settings->site_phone }}</span>
+                                                    </li>
 
-									<li class="menu-privacy-policy ya-menu-custom level1">
-										<a href="#" class="item-link">
-											<span class="have-title">
-												<span class="menu-title">Privacy Policy</span>
-											</span>
-										</a>
-									</li>
+                                                    <li>
+                                                        <span class="fa fa-envelope-o" style="font-size: 15px;">&nbsp;</span>
+                                                        <a target="_blank" title="{{ $settings->site_email }}" href="outlookmail:{{ $settings->site_email }}">{{ $settings->site_email }}</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="">
+                                    <div class="footer-border" style="display: flex;align-items:center;justify-content:center">
+                                        <h1 style="padding: 0 10px">@lang('auth.social-media') : </h1>
+                                        <div class="textwidget">
+                                            <div class="content-block-footer">
+                                                <ul class="social" style="display: flex;align-items:center;justify-content:center;gap:20px;list-style:none">
+                                                    <li>
+                                                        <span class="fa fa-facebook" style="font-size: 16px">&nbsp;</span>
+                                                        <a  target="_blank" title="Contact@gmail.com" href="https://www.facebook.com/profile.php?id=100085080882335">@lang('auth.facebook')</a>
+                                                    </li>
 
-									<li class="menu-your-account ya-menu-custom level1">
-										<a href="#" class="item-link">
-											<span class="have-title">
-												<span class="menu-title">Your Account</span>
-											</span>
-										</a>
-									</li>
+                                                    <li>
+                                                        <span class="fa fa-instagram" style="font-size: 18px">&nbsp;</span>
+                                                        <a target="_blank" title="Contact@gmail.com" href="https://www.instagram.com/bestforyouegypt/">@lang('auth.instagram')</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @else
+                    <div class="container">
+                        <div class="row smallScreen">
+                            <div class="col-lg-8">
+                                <div class="">
+                                    <div class="footer-border" style="display: flex;align-items:center;justify-content:center">
+                                        <h1 style="padding: 0 10px">@lang('auth.information') : </h1>
+                                        <div class="textwidget">
+                                            <div class="content-block-footer">
+                                                <ul style="display: flex;align-items:center;justify-content:center;gap:20px;list-style:none">
+                                                    <li>
+                                                        <span class="fa fa-map-marker" style="font-size: 15px">&nbsp;</span>{{ $settings->site_address }}
+                                                    </li>
 
-									<li class="menu-advanced-search ya-menu-custom level1">
-										<a href="#" class="item-link">
-											<span class="have-title">
-												<span class="menu-title">Advanced Search</span>
-											</span>
-										</a>
-									</li>
+                                                    <li>
+                                                        <span class="fa fa-phone" style="font-size: 15px">&nbsp;</span>
+                                                        <span title="{{ $settings->site_phone }}">{{ $settings->site_phone }}</span>
+                                                    </li>
 
-									<li class="menu-contact-us ya-menu-custom level1">
-										<a href="#" class="item-link">
-											<span class="have-title">
-												<span class="menu-title">Contact Us</span>
-											</span>
-										</a>
-									</li>
-								</ul>
-							</div>
-						</div>
+                                                    <li>
+                                                        <span class="fa fa-envelope-o" style="font-size: 15px;">&nbsp;</span>
+                                                        <a target="_blank" title="{{ $settings->site_email }}" href="outlookmail:{{ $settings->site_email }}">{{ $settings->site_email }}</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="">
+                                    <div class="footer-border" style="display: flex;align-items:center;justify-content:center">
+                                        <h1 style="padding: 0 10px">@lang('auth.social-media') : </h1>
+                                        <div class="textwidget">
+                                            <div class="content-block-footer">
+                                                <ul class="social" style="display: flex;align-items:center;justify-content:center;gap:20px;list-style:none">
+                                                    <li>
+                                                        <span class="fa fa-facebook" style="font-size: 16px">&nbsp;</span>
+                                                        <a  target="_blank" title="Contact@gmail.com" href="https://www.facebook.com/profile.php?id=100085080882335">@lang('auth.facebook')</a>
+                                                    </li>
 
-						<div class="footer-column">
-							<div class="footer-border">
-								<div class="footer-title">
-									<h2>Information</h2>
-								</div>
-
-								<ul id="menu-information" class="menu">
-									<li class="menu-my-account ya-menu-custom level1">
-										<a href="#" class="item-link">
-											<span class="have-title">
-												<span class="menu-title">My Account</span>
-											</span>
-										</a>
-									</li>
-
-									<li class="menu-order-history ya-menu-custom level1">
-										<a href="#" class="item-link">
-											<span class="have-title">
-												<span class="menu-title">Order History</span>
-											</span>
-										</a>
-									</li>
-
-									<li class="menu-returns ya-menu-custom level1">
-										<a href="#" class="item-link">
-											<span class="have-title">
-												<span class="menu-title">Returns</span>
-											</span>
-										</a>
-									</li>
-
-									<li class="menu-specials ya-menu-custom level1">
-										<a href="#" class="item-link">
-											<span class="have-title">
-												<span class="menu-title">Specials</span>
-											</span>
-										</a>
-									</li>
-
-									<li class="menu-site-map ya-menu-custom level1">
-										<a href="#" class="item-link">
-											<span class="have-title">
-												<span class="menu-title">Site Map</span>
-											</span>
-										</a>
-									</li>
-								</ul>
-							</div>
-						</div>
-
-						<div class="footer-column">
-							<div class="footer-border">
-								<div class="footer-title">
-									<h2>Corporation</h2>
-								</div>
-
-								<ul id="menu-corporation" class="menu">
-									<li class="menu-about-us ya-menu-custom level1">
-										<a href="#" class="item-link">
-											<span class="have-title">
-												<span class="menu-title">About us</span>
-											</span>
-										</a>
-									</li>
-
-									<li class="menu-customer-service ya-menu-custom level1">
-										<a href="#" class="item-link">
-											<span class="have-title">
-												<span class="menu-title">Customer Service</span>
-											</span>
-										</a>
-									</li>
-
-									<li class="menu-company ya-menu-custom level1">
-										<a href="#" class="item-link">
-											<span class="have-title">
-												<span class="menu-title">Company</span>
-											</span>
-										</a>
-									</li>
-
-									<li class="menu-investor-relations ya-menu-custom level1">
-										<a href="#" class="item-link">
-											<span class="have-title">
-												<span class="menu-title">Investor Relations</span>
-											</span>
-										</a>
-									</li>
-
-									<li class="menu-typography ya-menu-custom level1">
-										<a href="#" class="item-link">
-											<span class="have-title">
-												<span class="menu-title">Typography</span>
-											</span>
-										</a>
-									</li>
-								</ul>
-							</div>
-						</div>
-
-						<div class="footer-column">
-							<div class="footer-border">
-								<div class="footer-title">
-									<h2>Why choose Us</h2>
-								</div>
-
-								<ul id="menu-why-choose-us-1" class="menu">
-									<li class="menu-about-us ya-menu-custom level1">
-										<a href="#" class="item-link">
-											<span class="have-title">
-												<span class="menu-title">About Us</span>
-											</span>
-										</a>
-									</li>
-
-									<li class="menu-blog ya-menu-custom level1">
-										<a href="#" class="item-link">
-											<span class="have-title">
-												<span class="menu-title">Blog</span>
-											</span>
-										</a>
-									</li>
-
-									<li class="menu-company ya-menu-custom level1">
-										<a href="#" class="item-link">
-											<span class="have-title">
-												<span class="menu-title">Company</span>
-											</span>
-										</a>
-									</li>
-
-									<li class="menu-investor-relations ya-menu-custom level1">
-										<a href="#" class="item-link">
-											<span class="have-title">
-												<span class="menu-title">Investor Relations</span>
-											</span>
-										</a>
-									</li>
-
-									<li class="menu-typography ya-menu-custom level1">
-										<a href="#" class="item-link">
-											<span class="have-title">
-												<span class="menu-title">Typography</span>
-											</span>
-										</a>
-									</li>
-								</ul>
-							</div>
-						</div>
-
-						<div class="footer-column">
-							<div class="footer-border">
-								<div class="footer-title">
-									<h2>Contact Us</h2>
-								</div>
-
-								<div class="textwidget">
-									<div class="content-block-footer">
-										<span style="display:inline-block; padding-bottom:10px;">Maecenas euismod felis et purus consectetur, quis fermentum velition. Aenean egestas quis turpis vehicula.</span>
-
-										<ul>
-											<li>
-												<span class="fa fa-map-marker" style="font-size: 16px; position: relative; top: 1px;">&nbsp;</span>No 304, Sky Tower, New York, USA
-											</li>
-
-											<li>
-												<span class="fa fa-mobile-phone" style="font-size: 18px; position: relative; top: 4px;">&nbsp;</span>Telephone:
-												<a title="Call:(801) 2345 - 6789" href="tel:+84123456789">(801) 2345 - 6789</a>
-											</li>
-
-											<li>
-												<span class="fa fa-envelope" style="font-size: 11px; position: relative;">&nbsp;</span>E-mail:
-												<a title="Contact@gmail.com" href="mailto:Contact@gmail.com">Contact@gmail.com</a>
-											</li>
-										</ul>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
+                                                    <li>
+                                                        <span class="fa fa-instagram" style="font-size: 18px">&nbsp;</span>
+                                                        <a target="_blank" title="Contact@gmail.com" href="https://www.instagram.com/bestforyouegypt/">@lang('auth.instagram')</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @endif
 				</div>
 
 				<!-- FOOTER TAGS -->
@@ -619,9 +742,15 @@
 					<!-- FOOTER BOTTOM -->
 					<div class="footer-bottom">
 						<div class="footer-bottom-content container clearfix">
-							<div class="copyright-footer text-center">
-                                copy right&#169;BestForYou
+                            @if (app()->getLocale() == "ar")
+							<div class="copyright-footer text-center" dir="rtl">
+                                @lang('auth.copy-right')
 							</div>
+                            @else
+                            <div class="copyright-footer text-center">
+                                @lang('auth.copy-right')
+							</div>
+                            @endif
 						</div>
 					</div>
 				</div>
@@ -689,12 +818,11 @@
 		(function($){jQuery('.phone-icon-search').on('click',function(){jQuery('.sm-serachbox-pro').toggle("slide")});var sticky_navigation_offset=$(".yt-header-middle").offset();var sticky_navigation_offset_top=sticky_navigation_offset.top;var sticky_navigation=function(){var scroll_top=$(window).scrollTop();if(scroll_top>sticky_navigation_offset_top){$(".yt-header-middle").addClass("sticky-menu");$(".yt-header-middle").css({"position":"fixed","top":0,"left":0,"right":0,"z-index":800})}else{$(".yt-header-middle").removeClass("sticky-menu");$(".yt-header-middle").css({"position":"relative","z-index":30})}};sticky_navigation();$(window).scroll(function(){sticky_navigation()});$(document).ready(function(){$(".show-dropdown").each(function(){$(this).on("click",function(){$(this).toggleClass("show");$(this).parent().find("> ul").toggle(300)})})})}(jQuery))
 	</script>
     <script>
-        function onCahnge(name, image, description) {
+        function onCahnge(name , image , description) {
            console.log(name);
            console.log(image);
            console.log(description);
            const model = document.getElementById('exampleModalCenter');
-           console.log(model);
            let modelName = model.querySelector("h3.product_title");
            modelName.textContent = name;
            console.log(modelName);
@@ -713,7 +841,7 @@
         }
         path = subStr(image, 's','b');
         console.log(path);
-        qvImage.src = "/images/" + path;
+        qvImage.src = "{{ asset('images') }}" + '/' + path;
         console.log(qvImage);
     }
 
