@@ -128,7 +128,7 @@
                                 <div class="logo-wrapperv2" style="padding: 0 !important;background:none !important">
                                     <h1>
                                         <a href="{{ route('home') }}">
-                                            <img src="/images/{{ $settings->site_logo }}" alt="sw shoppy" width="140"
+                                            <img src="{{ 'images/logos/best.png' }}" alt="sw shoppy" width="140"
                                                 height="57" style="width: 100px;height:100px;margin-top:5px">
                                         </a>
                                     </h1>
@@ -353,7 +353,7 @@
                                                 <div class="logo-wrapperv2" style="padding: 0 !important;background:none !important">
                                                     <h1>
                                                         <a href="{{ route('home') }}">
-                                                            <img src="/images/{{ $settings->site_logo }}" alt="sw shoppy" width="140"
+                                                            <img src="{{ 'images/logos/best.png' }}" alt="sw shoppy" width="140"
                                                                 height="57" style="width: 65px;height:65px;margin-top:50%">
                                                         </a>
                                                     </h1>
@@ -492,7 +492,7 @@
                                                                                 class="lang_sel_sel icl-en">
                                                                                 <img class="iclflag" title="Arabic"
                                                                                     alt="ar"
-                                                                                    src="{{ asset('best/images/en.png') }}"
+                                                                                    src="{{ 'images/posts/login.png' }}"
                                                                                     width="18" height="12">&nbsp;AR
                                                                             </a>
                                                                             @else
@@ -597,22 +597,19 @@
                                                     style="display: flex;align-items:center;justify-content:center;gap:20px;list-style:none">
                                                     <li>
                                                         <span class="fa fa-map-marker"
-                                                            style="font-size: 15px">&nbsp;</span>{{
-                                                        $settings->site_address }}
+                                                            style="font-size: 15px">&nbsp;</span>Egypt
                                                     </li>
 
                                                     <li>
                                                         <span class="fa fa-phone" style="font-size: 15px">&nbsp;</span>
-                                                        <span title="{{ $settings->site_phone }}">{{
-                                                            $settings->site_phone }}</span>
+                                                        <span title="0796003627">0796003627</span>
                                                     </li>
 
                                                     <li>
                                                         <span class="fa fa-envelope-o"
                                                             style="font-size: 15px;">&nbsp;</span>
-                                                        <a target="_blank" title="{{ $settings->site_email }}"
-                                                            href="outlookmail:{{ $settings->site_email }}">{{
-                                                            $settings->site_email }}</a>
+                                                        <a target="_blank"
+                                                            href="outlookmail:info@bestforyou.com">info@bestforyou.com</a>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -664,22 +661,19 @@
                                                     style="display: flex;align-items:center;justify-content:center;gap:20px;list-style:none">
                                                     <li>
                                                         <span class="fa fa-map-marker"
-                                                            style="font-size: 15px">&nbsp;</span>{{
-                                                        $settings->site_address }}
+                                                            style="font-size: 15px">&nbsp;</span>Egypt
                                                     </li>
 
                                                     <li>
                                                         <span class="fa fa-phone" style="font-size: 15px">&nbsp;</span>
-                                                        <span title="{{ $settings->site_phone }}">{{
-                                                            $settings->site_phone }}</span>
+                                                        <span >0796003627</span>
                                                     </li>
 
                                                     <li>
                                                         <span class="fa fa-envelope-o"
                                                             style="font-size: 15px;">&nbsp;</span>
-                                                        <a target="_blank" title="{{ $settings->site_email }}"
-                                                            href="outlookmail:{{ $settings->site_email }}">{{
-                                                            $settings->site_email }}</a>
+                                                        <a target="_blank" title="info@bestforyou.com"
+                                                            href="outlookmail:info@bestforyou.com">info@bestforyou.com</a>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -758,7 +752,7 @@
                     <div class="modal-body">
                         <div class="d-flex" style="display: flex;align-items:center;gap:10px">
                             <div class="img">
-                                <img id="qv-img" width="400" height="400" src="" alt="">
+                                <img id="qv-img" width="400" height="400" src="{{ 'images/posts/login.png' }}" alt="">
                             </div>
                             <div>
                                 <h3 class="product_title"></h3>

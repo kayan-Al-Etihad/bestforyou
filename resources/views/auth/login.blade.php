@@ -8,7 +8,7 @@
         <div class="row" style="margin=150px 0 !important;display:flex;align-items:center">
             <div class="col-lg-6">
                 <div class="img">
-                    <img src="{{ asset('images/sample-pr.jpg') }}" alt="logo_v2.png">
+                    <img src="{{ 'images/posts/login.png' }}"alt="logo_v2.png">
                 </div>
             </div>
             <div class="col-sm-12 col-md-6 col-lg-6">
@@ -87,7 +87,7 @@
         <div class="row" style="margin=150px 0 !important;display:flex;align-items:center">
             <div class="col-lg-6">
                 <div class="img">
-                    <img src="{{ asset('images/sample-pr.jpg') }}" alt="logo_v2.png">
+                    <img src="{{ 'images/posts/login.jpg' }}" alt="test.png">
                 </div>
             </div>
             <div class="col-sm-12 col-md-6 col-lg-6">

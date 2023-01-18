@@ -51,7 +51,7 @@ class LoginController extends Controller
     protected function authenticated(\Illuminate\Http\Request $request, $user)
     {
         if (auth()->user()->getRoleNames()->count()) {
-            return redirect()->route('user.index');
+            return redirect()->route('admin.dashboard');
         }
         if ($request->has('before_checkout_form')){
            return redirect()->route('front.checkout');

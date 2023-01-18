@@ -175,9 +175,9 @@ Route::group(['prefix' => 'account', 'middleware' => 'auth'], function () {
 Route::group(['prefix' => 'admin', 'middleware' => 'checkRole'], function () {
 
     /*---------------USERS------------------*/
-    Route::resource('/user', 'Admin\userController');
-    Route::get('/user-address/{id}', 'Admin\userController@editAddress')->name('admin.address.edit');
-    Route::put('/user-address/{id}', 'Admin\userController@updateAddress')->name('admin.address.update');
+    // Route::resource('/user', 'Admin\userController');
+    // Route::get('/user-address/{id}', 'Admin\userController@editAddress')->name('admin.address.edit');
+    // Route::put('/user-address/{id}', 'Admin\userController@updateAddress')->name('admin.address.update');
 
     /*---------------ROLES------------------*/
     Route::resource('roles', 'Admin\roleController');
