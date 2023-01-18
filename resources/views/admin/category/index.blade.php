@@ -27,6 +27,7 @@
                 <thead>
                     <tr>
                         <th>Name</th>
+                        <th>Image</th>
                         <th>slug</th>
                         <th>Parent category</th>
                         <th>sub category</th>
@@ -40,6 +41,7 @@
 
                     <tr>
                         <td >{{ $category->category_name }}</td>
+                        <td ><img width="50" height="50" src="{{ asset('images') }}/{{ $category->image }}" alt=""></td>
                         <td >{{ $category->category_slug }}</td>
                         <td >
                             @if ($category->parent_id != null)

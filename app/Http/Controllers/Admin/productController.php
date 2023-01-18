@@ -180,15 +180,23 @@ class productController extends AppBaseController
         //     'description'     =>'required',
         //     'cover'     =>'required',
         // ]);
+        $file_name = $request->cover;
+        $file_name->move(public_path('images'), $file_name->getClientOriginalExtension());
 
-        $file_name = time() . '.' . request()->cover->getClientOriginalExtension();
-        request()->cover->move(public_path('images'), $file_name);
+        $file_name1 = $request->image1;
+        $file_name1->move(public_path('images'), $file_name1->getClientOriginalExtension());
 
-        $file_name1 = time() . '.' . request()->image1->getClientOriginalExtension();
-        request()->image1->move(public_path('images'), $file_name1);
+        $file_name2 = $request->image2;
+        $file_name2->move(public_path('images'), $file_name2->getClientOriginalExtension());
 
-        $file_name2 = time() . '.' . request()->image2->getClientOriginalExtension();
-        request()->image2->move(public_path('images'), $file_name2);
+        // $file_name = time() . '.' . request()->cover->getClientOriginalExtension();
+        // request()->cover->move(public_path('images'), $file_name);
+
+        // $file_name1 = time() . '.' . request()->image1->getClientOriginalExtension();
+        // request()->image1->move(public_path('images'), $file_name1);
+
+        // $file_name2 = time() . '.' . request()->image2->getClientOriginalExtension();
+        // request()->image2->move(public_path('images'), $file_name2);
 
         $product = new Product ;
         // dd($product->orderBy('product_id', 'DESC')->first());
@@ -226,7 +234,7 @@ class productController extends AppBaseController
 
 
         // return $this->index();
-        return Redirect::back()->with('success','Operation Successful !');
+        return redirect()->route('product.index')->with('success','Operation Successful !');
     }
 
     /**
@@ -298,6 +306,7 @@ class productController extends AppBaseController
         $product = Product::findOrFail($id);
         $product->product_name = $request->product_name;
         $product->product_slug = $request->product_slug;
+        $product->product_type = $request->product_type;
         $product->cover = $request->cover;
         $product->image1 = $request->image1;
         $product->image2 = $request->image2;
@@ -309,7 +318,7 @@ class productController extends AppBaseController
         $product->quantity = $request->quantity;
         // dd(Request()->image1);
         $product->save();
-        return redirect()->back();
+        return redirect()->route('product.index')->with('success','Operation Successful !');
 
 
 

@@ -19,13 +19,13 @@
                                         <div class="module slideshow no-margin">
                                             @foreach ($setting as $setting)
                                             <div class="item">
-                                                <a><img src="{{ asset('best/images') }}/{{ $setting->slider_image1 }}" alt="slider1" class="img-responsive" height="559"></a>
+                                                <a><img src="{{ asset('best/images/slider-3-800x308.jpg') }}" alt="slider1" class="img-responsive" height="559"></a>
                                             </div>
                                             <div class="item">
-                                                <a><img src="{{ asset('best/images') }}/{{ $setting->slider_image2 }}" alt="slider2" class="img-responsive" height="559"></a>
+                                                <a><img src="{{ asset('best/images/slider-3-800x308.jpg') }}" alt="slider2" class="img-responsive" height="559"></a>
                                             </div>
                                             <div class="item">
-                                                <a><img src="{{ asset('best/images') }}/{{ $setting->slider_image3 }}" alt="slider3" class="img-responsive" height="559"></a>
+                                                <a><img src="{{ asset('best/images/slider-3-800x308.jpg') }}" alt="slider3" class="img-responsive" height="559"></a>
                                             </div>
                                             @endforeach
                                         </div>
@@ -313,38 +313,6 @@
                                                                                                     <div class="product-thumb-hover">
                                                                                                         <img 	width="300" height="300" class="attachment-shop_catalog size-shop_catalog wp-post-image " alt="J10"
                                                                                                                 src="{{ $product->cover }}">
-                                                                                                    </div>
-                                                                                                </a>
-
-                                                                                                <a onclick="onCahnge('{{ $product->product_name }}', '{{ $product->cover }}', '{{ $product->description }}')" class="sm_quickview_handler-list"  href="" data-toggle="modal" data-target="#exampleModalCenter">Quick View </a>
-                                                                                            </div>
-
-                                                                                            <div class="item-content">
-                                                                                                <h4>
-                                                                                                    <a href="{{ route('front.show', $product->product_slug) }}" title="{{ $product->product_name }}">{{ $product->product_name }}</a>
-                                                                                                </h4>
-
-                                                                                                <div class="item-price">
-                                                                                                    <span>
-                                                                                                        <ins>
-                                                                                                            <span class="woocommerce-Price-amount amount">
-                                                                                                                <span class="woocommerce-Price-currencySymbol">$</span>{{ $product->price }}
-                                                                                                            </span>
-                                                                                                        </ins>
-                                                                                                    </span>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-
-                                                                                    <div class="item-wrap">
-                                                                                        <div class="item-detail">
-                                                                                            <div class="item-img products-thumb">
-
-                                                                                                <a href="{{ route('front.show', $product->product_slug) }}">
-                                                                                                    <div class="product-thumb-hover">
-                                                                                                        <img 	width="300" height="300" class="attachment-shop_catalog size-shop_catalog wp-post-image " alt="J10"
-                                                                                                        src="{{ $product->cover }}"/>
                                                                                                     </div>
                                                                                                 </a>
 

@@ -56,6 +56,10 @@
                 color: #fff;
             }
 
+            .logo-wrapperv2{
+                display: none !important;
+            }
+
             .container .row.smallScreen {
                 display: flex !important;
                 flex-direction: column !important;
@@ -85,6 +89,9 @@
             }
         }
 
+        img.attachment-shop_catalog {
+            height: 322px !important;
+        }
     </style>
     @if(app()->getLocale() == 'ar')
     <style>
@@ -101,7 +108,6 @@
             top: 0 !important;
             left: 97% !important;
         }
-
     </style>
     @endif
 </head>
@@ -121,7 +127,7 @@
                                 <!-- LOGO -->
                                 <div class="logo-wrapperv2" style="padding: 0 !important;background:none !important">
                                     <h1>
-                                        <a href="home_style_2.html">
+                                        <a href="{{ route('home') }}">
                                             <img src="/images/{{ $settings->site_logo }}" alt="sw shoppy" width="140"
                                                 height="57" style="width: 100px;height:100px;margin-top:5px">
                                         </a>
@@ -315,10 +321,6 @@
                                                         </div>
                                                     </div>
                                                 </nav>
-
-
-
-
                                             </div>
                                         </div>
                                     </div>
@@ -346,7 +348,17 @@
                                     style="position: relative; z-index: 30; top: 0px; left: 0px; right: 0px;">
                                     <div class="row">
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 yt-megamenu">
-                                            <div class="yt-header-under">
+                                            <div class="yt-header-under" style="display: flex;align-items:center;justify-content:space-between;height:70px;">
+                                                <!-- LOGO -->
+                                                <div class="logo-wrapperv2" style="padding: 0 !important;background:none !important">
+                                                    <h1>
+                                                        <a href="{{ route('home') }}">
+                                                            <img src="/images/{{ $settings->site_logo }}" alt="sw shoppy" width="140"
+                                                                height="57" style="width: 65px;height:65px;margin-top:50%">
+                                                        </a>
+                                                    </h1>
+                                                </div>
+                                                <!-- END LOGO -->
                                                 <nav id="primary-menu" class="primary-menu">
                                                     <div class="yt-menu">
                                                         <div class="navbar-inner navbar-inverse">
@@ -437,325 +449,326 @@
                                                                         </span>
                                                                     </a>
                                                                 </li>
-                                                    <li class=" menu-shop ya-mega-menu level1">
-                                                        <a href="{{ route('contact.index') }}" class="item-link">
-                                                            <span class="have-title">
-                                                                <span
-                                                                    class="menu-title">@lang('auth.nan_link_contact_us')</span>
-                                                            </span>
-                                                        </a>
-                                                    </li>
-                                                    <li class=" menu-shop ya-mega-menu level1">
-                                                        <a href="{{ route('franchise.index') }}" class="item-link">
-                                                            <span class="have-title">
-                                                                <span
-                                                                    class="menu-title">@lang('auth.nan_link_franchise')</span>
-                                                            </span>
-                                                        </a>
-                                                    </li>
-                                                    <li class=" menu-shop ya-mega-menu level1">
-                                                        <a href="{{ route('join-us.index') }}" class="item-link">
-                                                            <span class="have-title">
-                                                                <span
-                                                                    class="menu-title">@lang('auth.nan_link_join_us')</span>
-                                                            </span>
-                                                        </a>
-                                                    </li>
-
-                                                    </ul>
-                                            </div>
-                                        </div>
-                                        <!-- LANGUAGE -->
-                                        <div class="col-lg-6 col-md-6 text-left col-sm-12 col-xs-12 top-links-action"
-                                            style="display:flex;width:110px !important;margin-top: 8px;">
-                                            <div class="block-action-header language-switcher pull-right">
-                                                <div class="textwidget">
-                                                    <div id="lang_sel">
-                                                        <ul class="nav">
-                                                            <li>
-                                                                @if(app()->getLocale() == 'ar')
-                                                                <a style="cursor: pointer" class="lang_sel_sel icl-en">
-                                                                    <img class="iclflag" title="Arabic" alt="ar"
-                                                                        src="{{ asset('best/images/en.png') }}"
-                                                                        width="18" height="12">&nbsp;AR
-                                                                </a>
-                                                                @else
-                                                                <a style="cursor: pointer" class="lang_sel_sel icl-en">
-                                                                    <img class="iclflag" title="English" alt="en"
-                                                                        src="{{ asset('best/images/en.png') }}"
-                                                                        width="18" height="12">&nbsp;ENG
-                                                                </a>
-                                                                @endif
-                                                                <ul>
-                                                                    <li class="icl-ar">
-                                                                        @if(app()->getLocale() == 'ar')
-                                                                        <a class="btn btn-default lv1" href="/lang/en">
-                                                                            <img class="iclflag" title="English"
-                                                                                alt="en"
-                                                                                src="{{ asset('best/images/en.png') }}"
-                                                                                width="18" height="12">&nbsp;EN
-                                                                        </a>
-                                                                        @else
-                                                                        <a class="btn btn-default lv1" href="/lang/ar">
-                                                                            <img class="iclflag" title="Arabic" alt="ar"
-                                                                                src="{{ asset('best/images/en.png') }}"
-                                                                                width="18" height="12">&nbsp;AR
-                                                                        </a>
-                                                                        @endif
-                                                                    </li>
-                                                                </ul>
-                                                            </li>
-                                                        </ul>
+                                                                <li class=" menu-shop ya-mega-menu level1">
+                                                                    <a href="{{ route('contact.index') }}"
+                                                                        class="item-link">
+                                                                        <span class="have-title">
+                                                                            <span
+                                                                                class="menu-title">@lang('auth.nan_link_contact_us')</span>
+                                                                        </span>
+                                                                    </a>
+                                                                </li>
+                                                                <li class=" menu-shop ya-mega-menu level1">
+                                                                    <a href="{{ route('franchise.index') }}"
+                                                                        class="item-link">
+                                                                        <span class="have-title">
+                                                                            <span
+                                                                                class="menu-title">@lang('auth.nan_link_franchise')</span>
+                                                                        </span>
+                                                                    </a>
+                                                                </li>
+                                                                <li class=" menu-shop ya-mega-menu level1">
+                                                                    <a href="{{ route('join-us.index') }}"
+                                                                        class="item-link">
+                                                                        <span class="have-title">
+                                                                            <span
+                                                                                class="menu-title">@lang('auth.nan_link_join_us')</span>
+                                                                        </span>
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
                                                     </div>
-                                                </div>
+                                                    <!-- LANGUAGE -->
+                                                    <div class="col-lg-6 col-md-6 text-left col-sm-12 col-xs-12 top-links-action"
+                                                        style="display:flex;width:110px !important;margin-top: 8px;">
+                                                        <div class="block-action-header language-switcher pull-right">
+                                                            <div class="textwidget">
+                                                                <div id="lang_sel">
+                                                                    <ul class="nav">
+                                                                        <li>
+                                                                            @if(app()->getLocale() == 'ar')
+                                                                            <a style="cursor: pointer"
+                                                                                class="lang_sel_sel icl-en">
+                                                                                <img class="iclflag" title="Arabic"
+                                                                                    alt="ar"
+                                                                                    src="{{ asset('best/images/en.png') }}"
+                                                                                    width="18" height="12">&nbsp;AR
+                                                                            </a>
+                                                                            @else
+                                                                            <a style="cursor: pointer"
+                                                                                class="lang_sel_sel icl-en">
+                                                                                <img class="iclflag" title="English"
+                                                                                    alt="en"
+                                                                                    src="{{ asset('best/images/en.png') }}"
+                                                                                    width="18" height="12">&nbsp;ENG
+                                                                            </a>
+                                                                            @endif
+                                                                            <ul>
+                                                                                <li class="icl-ar">
+                                                                                    @if(app()->getLocale() == 'ar')
+                                                                                    <a class="btn btn-default lv1"
+                                                                                        href="/lang/en">
+                                                                                        <img class="iclflag"
+                                                                                            title="English" alt="en"
+                                                                                            src="{{ asset('best/images/en.png') }}"
+                                                                                            width="18"
+                                                                                            height="12">&nbsp;EN
+                                                                                    </a>
+                                                                                    @else
+                                                                                    <a class="btn btn-default lv1"
+                                                                                        href="/lang/ar">
+                                                                                        <img class="iclflag"
+                                                                                            title="Arabic" alt="ar"
+                                                                                            src="{{ asset('best/images/en.png') }}"
+                                                                                            width="18"
+                                                                                            height="12">&nbsp;AR
+                                                                                    </a>
+                                                                                    @endif
+                                                                                </li>
+                                                                            </ul>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- END LANGUAGE -->
+                                                    </div>
+                                                </nav>
                                             </div>
-                                            <!-- END LANGUAGE -->
-
                                         </div>
-                                        </nav>
-
-
-
-
                                     </div>
                                 </div>
+                                <!-- END HEADER MENU -->
+
+                            </div>
+
+                            <div class="col-lg-2 col-md-2 col-sm-3 col-xs-12 logo-wrapper pull-left">
                             </div>
                         </div>
-                        <!-- END HEADER MENU -->
-
-                    </div>
-
-                    <div class="col-lg-2 col-md-2 col-sm-3 col-xs-12 logo-wrapper pull-left">
-                        <!-- LOGO -->
-                        <div class="logo-wrapperv2" style="padding: 0 !important;background:none !important">
-                            <h1>
-								@php
-									// dd($settings);
-								@endphp
-                                <a href="home_style_2.html">
-                                    <img src="/images/{{ $settings->site_logo }}" alt="sw shoppy" width="140"
-                                        height="57" style="width: 100px;height:100px;margin-top:5px">
-                                </a>
-                            </h1>
-                        </div>
-                        <!-- END LOGO -->
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    </div>
-    <!-- END HEADER -->
-    @endif
-    @yield('content')
+        <!-- END HEADER -->
+        @endif
+        @yield('content')
 
-    <!-- FOOTER -->
-    <div id="yt_footer" class="yt-footer wrap">
-        <div class="yt-footer-wrap-style2">
-            <div class="footer-top">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <div class="footer2">
-                                <div class="footer-title">
-                                    <h2>footer:style2</h2>
-                                </div>
-
-                                <div id="sw_partner_footer"
-                                    class="responsive-slider sw-partner-container-slider clearfix" data-lg="6"
-                                    data-md="4" data-sm="3" data-xs="2" data-mobile="1" data-speed="1000"
-                                    data-scroll="1" data-interval="5000" data-autoplay="true">
-                                    <div class="title-home">
+        <!-- FOOTER -->
+        <div id="yt_footer" class="yt-footer wrap">
+            <div class="yt-footer-wrap-style2">
+                <div class="footer-top">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="footer2">
+                                    <div class="footer-title">
                                         <h2>footer:style2</h2>
                                     </div>
 
+                                    <div id="sw_partner_footer"
+                                        class="responsive-slider sw-partner-container-slider clearfix" data-lg="6"
+                                        data-md="4" data-sm="3" data-xs="2" data-mobile="1" data-speed="1000"
+                                        data-scroll="1" data-interval="5000" data-autoplay="true">
+                                        <div class="title-home">
+                                            <h2>footer:style2</h2>
+                                        </div>
 
+
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
+                <div class="footer-middle">
+                    @if (app()->getLocale() == "ar")
+                    <div class="container" dir="rtl">
+                        <div class="row smallScreen">
+                            <div class="col-lg-8">
+                                <div class="">
+                                    <div class="footer-border"
+                                        style="display: flex;align-items:center;justify-content:center">
+                                        <h1 style="padding: 0 10px">@lang('auth.information') : </h1>
+                                        <div class="textwidget">
+                                            <div class="content-block-footer">
+                                                <ul
+                                                    style="display: flex;align-items:center;justify-content:center;gap:20px;list-style:none">
+                                                    <li>
+                                                        <span class="fa fa-map-marker"
+                                                            style="font-size: 15px">&nbsp;</span>{{
+                                                        $settings->site_address }}
+                                                    </li>
+
+                                                    <li>
+                                                        <span class="fa fa-phone" style="font-size: 15px">&nbsp;</span>
+                                                        <span title="{{ $settings->site_phone }}">{{
+                                                            $settings->site_phone }}</span>
+                                                    </li>
+
+                                                    <li>
+                                                        <span class="fa fa-envelope-o"
+                                                            style="font-size: 15px;">&nbsp;</span>
+                                                        <a target="_blank" title="{{ $settings->site_email }}"
+                                                            href="outlookmail:{{ $settings->site_email }}">{{
+                                                            $settings->site_email }}</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="">
+                                    <div class="footer-border"
+                                        style="display: flex;align-items:center;justify-content:center">
+                                        <h1 style="padding: 0 10px">@lang('auth.social-media') : </h1>
+                                        <div class="textwidget">
+                                            <div class="content-block-footer">
+                                                <ul class="social"
+                                                    style="display: flex;align-items:center;justify-content:center;gap:20px;list-style:none">
+                                                    <li>
+                                                        <span class="fa fa-facebook"
+                                                            style="font-size: 16px">&nbsp;</span>
+                                                        <a target="_blank" title="Contact@gmail.com"
+                                                            href="https://www.facebook.com/profile.php?id=100085080882335">@lang('auth.facebook')</a>
+                                                    </li>
+
+                                                    <li>
+                                                        <span class="fa fa-instagram"
+                                                            style="font-size: 18px">&nbsp;</span>
+                                                        <a target="_blank" title="Contact@gmail.com"
+                                                            href="https://www.instagram.com/bestforyouegypt/">@lang('auth.instagram')</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @else
+                    <div class="container">
+                        <div class="row smallScreen">
+                            <div class="col-lg-8">
+                                <div class="">
+                                    <div class="footer-border"
+                                        style="display: flex;align-items:center;justify-content:center">
+                                        <h1 style="padding: 0 10px">@lang('auth.information') : </h1>
+                                        <div class="textwidget">
+                                            <div class="content-block-footer">
+                                                <ul
+                                                    style="display: flex;align-items:center;justify-content:center;gap:20px;list-style:none">
+                                                    <li>
+                                                        <span class="fa fa-map-marker"
+                                                            style="font-size: 15px">&nbsp;</span>{{
+                                                        $settings->site_address }}
+                                                    </li>
+
+                                                    <li>
+                                                        <span class="fa fa-phone" style="font-size: 15px">&nbsp;</span>
+                                                        <span title="{{ $settings->site_phone }}">{{
+                                                            $settings->site_phone }}</span>
+                                                    </li>
+
+                                                    <li>
+                                                        <span class="fa fa-envelope-o"
+                                                            style="font-size: 15px;">&nbsp;</span>
+                                                        <a target="_blank" title="{{ $settings->site_email }}"
+                                                            href="outlookmail:{{ $settings->site_email }}">{{
+                                                            $settings->site_email }}</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="">
+                                    <div class="footer-border"
+                                        style="display: flex;align-items:center;justify-content:center">
+                                        <h1 style="padding: 0 10px">@lang('auth.social-media') : </h1>
+                                        <div class="textwidget">
+                                            <div class="content-block-footer">
+                                                <ul class="social"
+                                                    style="display: flex;align-items:center;justify-content:center;gap:20px;list-style:none">
+                                                    <li>
+                                                        <span class="fa fa-facebook"
+                                                            style="font-size: 16px">&nbsp;</span>
+                                                        <a target="_blank" title="Contact@gmail.com"
+                                                            href="https://www.facebook.com/profile.php?id=100085080882335">@lang('auth.facebook')</a>
+                                                    </li>
+
+                                                    <li>
+                                                        <span class="fa fa-instagram"
+                                                            style="font-size: 18px">&nbsp;</span>
+                                                        <a target="_blank" title="Contact@gmail.com"
+                                                            href="https://www.instagram.com/bestforyouegypt/">@lang('auth.instagram')</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @endif
+                </div>
+
+                <!-- FOOTER TAGS -->
+                <div class="footer-bottom-tag">
+
+                    <!-- FOOTER BOTTOM -->
+                    <div class="footer-bottom">
+                        <div class="footer-bottom-content container clearfix">
+                            @if (app()->getLocale() == "ar")
+                            <div class="copyright-footer text-center" dir="rtl">
+                                @lang('auth.copy-right')
+                            </div>
+                            @else
+                            <div class="copyright-footer text-center">
+                                @lang('auth.copy-right')
+                            </div>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+                <!--end: FOOTER TAGS -->
             </div>
-
-            <div class="footer-middle">
-                @if (app()->getLocale() == "ar")
-                <div class="container" dir="rtl">
-                    <div class="row smallScreen">
-                        <div class="col-lg-8">
-                            <div class="">
-                                <div class="footer-border"
-                                    style="display: flex;align-items:center;justify-content:center">
-                                    <h1 style="padding: 0 10px">@lang('auth.information') : </h1>
-                                    <div class="textwidget">
-                                        <div class="content-block-footer">
-                                            <ul
-                                                style="display: flex;align-items:center;justify-content:center;gap:20px;list-style:none">
-                                                <li>
-                                                    <span class="fa fa-map-marker"
-                                                        style="font-size: 15px">&nbsp;</span>{{ $settings->site_address }}
-                                                </li>
-
-                                                <li>
-                                                    <span class="fa fa-phone" style="font-size: 15px">&nbsp;</span>
-                                                    <span
-                                                        title="{{ $settings->site_phone }}">{{ $settings->site_phone }}</span>
-                                                </li>
-
-                                                <li>
-                                                    <span class="fa fa-envelope-o"
-                                                        style="font-size: 15px;">&nbsp;</span>
-                                                    <a target="_blank" title="{{ $settings->site_email }}"
-                                                        href="outlookmail:{{ $settings->site_email }}">{{ $settings->site_email }}</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4">
-                            <div class="">
-                                <div class="footer-border"
-                                    style="display: flex;align-items:center;justify-content:center">
-                                    <h1 style="padding: 0 10px">@lang('auth.social-media') : </h1>
-                                    <div class="textwidget">
-                                        <div class="content-block-footer">
-                                            <ul class="social"
-                                                style="display: flex;align-items:center;justify-content:center;gap:20px;list-style:none">
-                                                <li>
-                                                    <span class="fa fa-facebook" style="font-size: 16px">&nbsp;</span>
-                                                    <a target="_blank" title="Contact@gmail.com"
-                                                        href="https://www.facebook.com/profile.php?id=100085080882335">@lang('auth.facebook')</a>
-                                                </li>
-
-                                                <li>
-                                                    <span class="fa fa-instagram" style="font-size: 18px">&nbsp;</span>
-                                                    <a target="_blank" title="Contact@gmail.com"
-                                                        href="https://www.instagram.com/bestforyouegypt/">@lang('auth.instagram')</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                @else
-                <div class="container">
-                    <div class="row smallScreen">
-                        <div class="col-lg-8">
-                            <div class="">
-                                <div class="footer-border"
-                                    style="display: flex;align-items:center;justify-content:center">
-                                    <h1 style="padding: 0 10px">@lang('auth.information') : </h1>
-                                    <div class="textwidget">
-                                        <div class="content-block-footer">
-                                            <ul
-                                                style="display: flex;align-items:center;justify-content:center;gap:20px;list-style:none">
-                                                <li>
-                                                    <span class="fa fa-map-marker"
-                                                        style="font-size: 15px">&nbsp;</span>{{ $settings->site_address }}
-                                                </li>
-
-                                                <li>
-                                                    <span class="fa fa-phone" style="font-size: 15px">&nbsp;</span>
-                                                    <span
-                                                        title="{{ $settings->site_phone }}">{{ $settings->site_phone }}</span>
-                                                </li>
-
-                                                <li>
-                                                    <span class="fa fa-envelope-o"
-                                                        style="font-size: 15px;">&nbsp;</span>
-                                                    <a target="_blank" title="{{ $settings->site_email }}"
-                                                        href="outlookmail:{{ $settings->site_email }}">{{ $settings->site_email }}</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4">
-                            <div class="">
-                                <div class="footer-border"
-                                    style="display: flex;align-items:center;justify-content:center">
-                                    <h1 style="padding: 0 10px">@lang('auth.social-media') : </h1>
-                                    <div class="textwidget">
-                                        <div class="content-block-footer">
-                                            <ul class="social"
-                                                style="display: flex;align-items:center;justify-content:center;gap:20px;list-style:none">
-                                                <li>
-                                                    <span class="fa fa-facebook" style="font-size: 16px">&nbsp;</span>
-                                                    <a target="_blank" title="Contact@gmail.com"
-                                                        href="https://www.facebook.com/profile.php?id=100085080882335">@lang('auth.facebook')</a>
-                                                </li>
-
-                                                <li>
-                                                    <span class="fa fa-instagram" style="font-size: 18px">&nbsp;</span>
-                                                    <a target="_blank" title="Contact@gmail.com"
-                                                        href="https://www.instagram.com/bestforyouegypt/">@lang('auth.instagram')</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                @endif
-            </div>
-
-            <!-- FOOTER TAGS -->
-            <div class="footer-bottom-tag">
-
-                <!-- FOOTER BOTTOM -->
-                <div class="footer-bottom">
-                    <div class="footer-bottom-content container clearfix">
-                        @if (app()->getLocale() == "ar")
-                        <div class="copyright-footer text-center" dir="rtl">
-                            @lang('auth.copy-right')
-                        </div>
-                        @else
-                        <div class="copyright-footer text-center">
-                            @lang('auth.copy-right')
-                        </div>
-                        @endif
-                    </div>
-                </div>
-            </div>
-            <!--end: FOOTER TAGS -->
+            <!-- end : footer wrap-->
         </div>
-        <!-- end : footer wrap-->
-    </div>
-    <!-- END FOOTER -->
-    <!-- Button trigger modal -->
+        <!-- END FOOTER -->
+        <!-- Button trigger modal -->
 
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
-        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="d-flex" style="display: flex;align-items:center;gap:10px">
-                        <div class="img">
-                            <img id="qv-img" width="400" height="400" src="" alt="">
-                        </div>
-                        <div>
-                            <h3 class="product_title"></h3>
-                            <p class="quick-desc"></p>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="d-flex" style="display: flex;align-items:center;gap:10px">
+                            <div class="img">
+                                <img id="qv-img" width="400" height="400" src="" alt="">
+                            </div>
+                            <div>
+                                <h3 class="product_title"></h3>
+                                <p class="quick-desc"></p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
     </div>
     <a id="ya-totop" href="#" style="display: none;"></a>
 

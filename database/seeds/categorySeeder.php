@@ -35,6 +35,8 @@ class categorySeeder extends Seeder
             $node = \App\Models\Category::create([
                 'category_name' => $names[$index],
                 'category_slug' => Str::slug(($i + 5).($names[$index])) ,
+                'sub_category' => rand(0,1),
+                'image' => 'sample-pr.jpg',
                 'children' => [
                     [
                         'category_name' => $i .'ch'.$names[$index],

@@ -59,9 +59,6 @@ class settingController extends Controller
             , 'site_phone' => 'required|string',
             'site_email' => 'required|string',
             'site_fax' => 'required|string',
-            'slider_image1' => 'image|mimes:jpeg,png,jpg',
-            'slider_image2' => 'image|mimes:jpeg,png,jpg',
-            'slider_image3' => 'image|mimes:jpeg,png,jpg',
         ]);
         $input = $request->except('_token');
         $setting = $this->setting->findOrFail($id);
@@ -70,15 +67,6 @@ class settingController extends Controller
         }
         if ($img = $request->file('site_icon')) {
             $input['site_icon'] = $this->saveImage($setting->site_image, $img);
-        }
-        if ($img = $request->file('slider_image1')) {
-            $input['slider_image1'] = $this->saveImage($setting->site_image, $img);
-        }
-        if ($img = $request->file('slider_image2')) {
-            $input['slider_image2'] = $this->saveImage($setting->site_image, $img);
-        }
-        if ($img = $request->file('slider_image3')) {
-            $input['slider_image3'] = $this->saveImage($setting->site_image, $img);
         }
         $setting->fill($input);
 

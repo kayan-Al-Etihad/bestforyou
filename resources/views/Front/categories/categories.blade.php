@@ -40,8 +40,11 @@
                                             <a href="" class="woocommerce-LoopProduct-link"></a>
                                             <a href="{{ route('front.subCategory', $category->category_slug) }}">
                                                 <div class="product-thumb-hover">
-                                                    <img 	width="300" height="300" class="attachment-shop_catalog size-shop_catalog wp-post-image" alt=""
-                                                            src="{{ asset('images/sample-pr.jpg') }}" />
+                                                    @php
+                                                        $image = $category->image;
+                                                    @endphp
+                                                    <img width="300" height="300" class="attachment-shop_catalog size-shop_catalog wp-post-image" alt=""
+                                                            src="images/{{ $image }}" />
                                                 </div>
                                             </a>
                                         </div>

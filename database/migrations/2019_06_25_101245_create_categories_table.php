@@ -18,6 +18,7 @@ class CreateCategoriesTable extends Migration
             $table->string('category_name');
             $table->string('category_slug')->unique();
             $table->integer('sub_category')->nullable();
+            $table->string('image',255)->nullable();
             $table->nestedSet();
             $table->timestamps();
         });

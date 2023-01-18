@@ -23,9 +23,6 @@ class CreateSettingsTable extends Migration
             $table->string('site_phone');
             $table->string('site_email');
             $table->string('site_fax');
-            $table->string('slider_image1')->nullable();
-            $table->string('slider_image2')->nullable();
-            $table->string('slider_image3')->nullable();
         });
     }
 

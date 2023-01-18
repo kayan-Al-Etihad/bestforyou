@@ -23,41 +23,11 @@
     <div class="card">
 
         <div class="table-responsive">
-            
-{{-- 
-            <div class="m-3">
-                <div class="row">
-                    <div class="col-md-4">
-
-                        <select name="#"
-                                class="form-control">
-                            <option value="-1">All</option>
-                            <option value="1">Hats</option>
-                            <option value="2">Coats</option>
-                            <option value="3">Jeans</option>
-                            <option value="4">T-Shirt</option>
-                            <option value="5">Other</option>
-                        </select>
-                    </div>
-                    <div class="col-md-8">
-                        <div class="search-form search-form--light">
-                            <input type="text"
-                                   class="form-control search"
-                                   placeholder="Search">
-                            <button class="btn"
-                                    type="button"
-                                    role="button"><i class="material-icons">search</i></button>
-
-                        </div>
-                    </div>
-                </div>
-            </div> --}}
-
             <table class="table mb-0 thead-border-top-0 table-striped">
                 <thead>
                     <tr>
 
-             
+
 
                         <th style="width: 30px;"
                         class="text-center">#ID</th>
@@ -66,6 +36,7 @@
                         {{-- <th class="text-center">Stock</th> --}}
                         <th class="">Category</th>
                         <th class="text-right">Price</th>
+                        <th class="text-right">Product Type</th>
                         <th class="text-right">operatins</th>
                         {{-- <th style="width: 100px; text-align: right;">
                             <div class="dropdown pull-right">
@@ -86,11 +57,11 @@
                        id="products">
 
                  @foreach ($products as $product )
-                     
-                
+
+
 
                     <tr>
-                        
+
                         <td>
                             <div class="badge badge-soft-dark">{{ $product->product_id }}</div>
                         </td>
@@ -112,6 +83,7 @@
                         </td>
 
                         <td class="text-right">{{ $product->buy_price }}</td>
+                        <td class="text-right">{{ $product->product_type }}</td>
                         <td class="text-right"><a href="{{route('product.edit',$product->product_id)}}"
                                class="btn btn-sm btn-primary">EDIT</td>
                     </tr>
@@ -135,4 +107,4 @@
 
 
 
- @endsection   
+ @endsection

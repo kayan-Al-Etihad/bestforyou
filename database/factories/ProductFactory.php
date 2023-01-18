@@ -7,6 +7,10 @@ use Illuminate\Support\Str;
 
 $factory->define(\App\Models\Product::class, function (Faker $faker){
     $brands = \App\Models\brand::pluck('brand_id','brand_id')->toArray();
+    $product_type = ['none', 'best-seller', 'special-product'];
+    foreach ($product_type as $type) {
+        $productType = $type;
+    }
     return [
         'product_name' => $name = ($faker->name),
         'product_slug' => Str::slug($name),
@@ -23,6 +27,9 @@ $factory->define(\App\Models\Product::class, function (Faker $faker){
         'quantity' => $faker->numberBetween(1,100),
         'weight' => $faker->numberBetween(1,10),
         'description' => $faker->text,
-        'cover' => 'sample-pr.jpg'
+        'cover' => 'sample-pr.jpg',
+        'image1' => 'sample-pr.jpg',
+        'image2' => 'sample-pr.jpg',
+        'product_type' => $product_type[array_rand($product_type)],
     ];
 });

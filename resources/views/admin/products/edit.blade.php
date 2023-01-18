@@ -39,6 +39,15 @@
                       type="text">
             </div>
             <div class="form-group col-xs-3">
+               <label class="control-label no-padding-right" for="product_type"> Product Type </label>
+               <select name="product_type" class="form-control"  id="">
+                <option value="{{ old('product_type',$product->product_type) }}">{{ old('product_type',$product->product_type) }}</option>
+                <option value="best-seller">best-seller</option>
+                <option value="special-product">special-product</option>
+                <option value="none">none</option>
+               </select>
+            </div>
+            <div class="form-group col-xs-3">
                <label class="control-label no-padding-right" for="made_in"> Made IN: </label>
                <input placeholder="Made IN" name="made_in" value="{{ old('made_in',$product->made_in) }}" id="made_in"
                       class="form-control" type="text">

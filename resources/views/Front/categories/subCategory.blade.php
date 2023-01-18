@@ -37,9 +37,7 @@
                                                 <a href="{{ route('front.showCategory', $category->category_id) }}">
                                                     <div class="product-thumb-hover">
                                                         <img 	width="300" height="300" class="attachment-shop_catalog size-shop_catalog wp-post-image" alt=""
-                                                                src="{{ asset('images/sample-pr.jpg') }}"
-                                                                {{-- srcset="images/post14.png 300w, images/2-3-260x260.jpg 260w, images/2-3.jpg 600w, images/2-3-180x180.jpg 180w"  --}}
-                                                                sizes="(max-width: 300px) 100vw, 300px" />
+                                                                src="{{ asset('images') }}/{{ $category->image }}" />
                                                     </div>
                                                 </a>
                                             </div>

@@ -95,7 +95,7 @@ class categoryController extends Controller
         $category = Category::findOrfail(request()->input('category_id'));
 
         $validated = request()->all();
-
+        // dd($validated);
         $category->fill($validated);
         $category->save();
 

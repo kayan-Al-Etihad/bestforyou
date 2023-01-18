@@ -88,6 +88,11 @@
                     </select>
                     <span class="text-danger">{{ $errors->first('sub_category') }}</span>
                 </div>
+                <div class="form-group  {{ $errors->has('image') ? 'has-error' : '' }} ">
+                    <input type="file" class="form-control" name="image">
+                    <img width="75" height="75" src="{{ asset('images') }}/{{ old('image', optional($category ?? null)->image) }}" alt="">
+                    <span class="text-danger">{{ $errors->first('image') }}</span>
+                </div>
                <div class="col-lg-4 card-body">
                  <div class="btn-group">
                 <button type="submit" class="btn btn-info ">SAVE</button>

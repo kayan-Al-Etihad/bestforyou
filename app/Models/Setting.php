@@ -60,9 +60,6 @@ class Setting extends Model
         'site_phone' => 'string',
         'site_email' => 'string',
         'site_fax' => 'string',
-        'slider_image1' => 'string',
-        'slider_image2' => 'string',
-        'slider_image3' => 'string',
     ];
 
     /**
@@ -79,9 +76,6 @@ class Setting extends Model
         'site_phone' => 'required',
         'site_email' => 'required',
         'site_fax' => 'required',
-        'slider_image1' => 'required',
-        'slider_image2' => 'required',
-        'slider_image3' => 'required'
     ];
 
     /**

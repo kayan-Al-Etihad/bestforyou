@@ -32,6 +32,7 @@ class Category extends Model
         '_lft',
         '_rgt',
         'parent_id',
+        'image',
         'sub_category'
     ];
 
@@ -47,6 +48,7 @@ class Category extends Model
         '_lft' => 'integer',
         '_rgt' => 'integer',
         'parent_id' => 'integer',
+        'image' => 'string',
         'sub_category' => 'integer'
     ];
 
@@ -58,7 +60,8 @@ class Category extends Model
     public static $rules = [
         'category_name' => 'required|string',
         'category_slug' => 'required|string|unique:categories,category_slug',
-        'sub_category' => 'required'
+        'sub_category' => 'required',
+        'image' => 'required',
     ];
 
     /**
