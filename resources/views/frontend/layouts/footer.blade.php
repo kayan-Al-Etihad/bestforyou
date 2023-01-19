@@ -121,6 +121,8 @@
 	<!-- Active JS -->
 	<script src="{{asset('frontend/js/active.js')}}"></script>
 
+    
+
 
 	@stack('scripts')
 	<script>
