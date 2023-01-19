@@ -207,6 +207,11 @@
           <i class="fas fa-table"></i>
           <span>Join Form Messages</span></a>
     </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{{route('contact.AdminHomePage')}}">
+          <i class="fas fa-table"></i>
+          <span>Contact Form Messages</span></a>
+    </li>
      <!-- Users -->
      <li class="nav-item">
         <a class="nav-link" href="{{route('users.index')}}">

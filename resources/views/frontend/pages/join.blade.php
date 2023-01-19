@@ -22,12 +22,6 @@
 	<section id="join-us" class="contact-us section">
 		<div class="container">
 				<div class="join-head">
-                    @if ($message = Session::get('success'))
-                    <div class="alert alert-success alert-block">
-                        <button type="button" class="close" data-dismiss="alert">×</button>
-                        <strong>{{ $message }}</strong>
-                    </div>
-                    @endif
 					<div class="row">
 						<div class="col-lg-8 col-12">
 							<div class="form-main">

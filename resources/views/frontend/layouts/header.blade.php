@@ -195,7 +195,7 @@
                                                 {{Helper::getHeaderCategory()}}
                                             <li class="{{Request::path()=='blog' ? 'active' : ''}}"><a href="{{route('blog')}}">Blog</a></li>
 
-                                            <li class="{{Request::path()=='contact' ? 'active' : ''}}"><a href="{{route('contact')}}">Contact Us</a></li>
+                                            <li class="{{Request::path()=='contact' ? 'active' : ''}}"><a href="{{route('contact.home')}}">Contact Us</a></li>
                                             <li class="{{Request::path()=='join' ? 'active' : ''}}"><a href="{{route('join.home')}}">Join Us</a></li>
                                         </ul>
                                     </div>

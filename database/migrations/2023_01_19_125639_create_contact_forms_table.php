@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateJoinFormsTable extends Migration
+class CreateContactFormsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class CreateJoinFormsTable extends Migration
      */
     public function up()
     {
-        Schema::create('join_forms', function (Blueprint $table) {
+        Schema::create('contact_forms', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('email');
             $table->integer('phone');
-            $table->string('city');
-            $table->string('cv');
+            $table->string('subject');
+            $table->longText('message');
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ class CreateJoinFormsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('join_forms');
+        Schema::dropIfExists('contact_forms');
     }
 }

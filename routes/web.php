@@ -34,11 +34,17 @@ Route::get('/join', 'JoinFormController@index')->name('join.home');
 Route::post('/join', 'JoinFormController@store')->name('join.store');
 // join back
 Route::get('/admi-join', 'JoinFormController@AdminHomePage')->name('join.AdminHomePage');
-Route::delete('/join/{id}', 'JoinFormController@destroy')->name('join.destroy');
+Route::delete('/admi-join/{id}', 'JoinFormController@destroy')->name('join.destroy');
+// contact front
+Route::get('/contact', 'ContactFormController@index')->name('contact.home');
+Route::post('/contact', 'ContactFormController@store')->name('contactForm.store');
+// contact back
+Route::get('/admi-contact', 'ContactFormController@AdminHomePage')->name('contact.AdminHomePage');
+Route::delete('/admi-contact/{id}', 'ContactFormController@destroy')->name('contact.destroy');
+
 // Frontend Routes
 Route::get('/home', 'FrontendController@index');
 Route::get('/about-us','FrontendController@aboutUs')->name('about-us');
-Route::get('/contact','FrontendController@contact')->name('contact');
 Route::post('/contact/message','MessageController@store')->name('contact.store');
 Route::get('product-detail/{slug}','FrontendController@productDetail')->name('product-detail');
 Route::post('/product/search','FrontendController@productSearch')->name('product.search');
