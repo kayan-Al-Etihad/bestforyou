@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\JoinFormController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,12 +29,16 @@ Route::get('login/{provider}/', 'Auth\LoginController@redirect')->name('login.re
 Route::get('login/{provider}/callback/', 'Auth\LoginController@Callback')->name('login.callback');
 
 Route::get('/','FrontendController@home')->name('home');
-
+// join front
+Route::get('/join', 'JoinFormController@index')->name('join.home');
+Route::post('/join', 'JoinFormController@store')->name('join.store');
+// join back
+Route::get('/admi-join', 'JoinFormController@AdminHomePage')->name('join.AdminHomePage');
+Route::delete('/join/{id}', 'JoinFormController@destroy')->name('join.destroy');
 // Frontend Routes
 Route::get('/home', 'FrontendController@index');
 Route::get('/about-us','FrontendController@aboutUs')->name('about-us');
 Route::get('/contact','FrontendController@contact')->name('contact');
-Route::get('/join','FrontendController@join')->name('join');
 Route::post('/contact/message','MessageController@store')->name('contact.store');
 Route::get('product-detail/{slug}','FrontendController@productDetail')->name('product-detail');
 Route::post('/product/search','FrontendController@productSearch')->name('product.search');

@@ -19,54 +19,75 @@
 	<!-- End Breadcrumbs -->
 
 	<!-- Start Contact -->
-	<section id="contact-us" class="contact-us section">
+	<section id="join-us" class="contact-us section">
 		<div class="container">
-				<div class="contact-head">
+				<div class="join-head">
+                    @if ($message = Session::get('success'))
+                    <div class="alert alert-success alert-block">
+                        <button type="button" class="close" data-dismiss="alert">×</button>
+                        <strong>{{ $message }}</strong>
+                    </div>
+                    @endif
 					<div class="row">
 						<div class="col-lg-8 col-12">
 							<div class="form-main">
 								<div class="title">
 								</div>
-								<form class=" form" method="post" action="{{route('contact.store')}}" id="contactForm" novalidate="novalidate">
+								<form enctype="multipart/form-data" method="post" class="form border p-5" action="{{route('join.store')}}" id="joinForm" novalidate="novalidate">
 									@csrf
 									<div class="row">
 										<div class="col-lg-6 col-12">
 											<div class="form-group">
 												<label>Your Name<span>*</span></label>
-												<input name="name" id="name" type="text" placeholder="Enter your name">
+												<input class="w-100" required name="name" id="name" type="text" value="{{old('name')}}" placeholder="Enter your name">
+                                                @error('name')
+                                                <span class="text-danger">{{$message}}</span>
+                                                @enderror
 											</div>
 										</div>
 										<div class="col-lg-6 col-12">
 											<div class="form-group">
 												<label>Your Email<span>*</span></label>
-												<input name="email" type="email" id="email" placeholder="Enter email address">
+												<input class="w-100" required name="email" type="email" value="{{old('email')}}" id="email" placeholder="Enter email address">
+                                                @error('email')
+                                                <span class="text-danger">{{$message}}</span>
+                                                @enderror
 											</div>
 										</div>
 										<div class="col-lg-6 col-12">
 											<div class="form-group">
 												<label>Your Phone<span>*</span></label>
-												<input id="phone" name="phone" type="number" placeholder="Enter your phone">
+												<input class="w-100" required id="phone" name="phone" value="{{old('phone')}}" type="number" placeholder="Enter your phone">
+                                                @error('phone')
+                                                <span class="text-danger">{{$message}}</span>
+                                                @enderror
 											</div>
 										</div>
 										<div class="col-lg-6 col-12">
 											<div class="form-group">
 												<label for="City">City<span>*</span></label>
-                                                <select name="city" id="City" class="w-100">
+                                                <select name="city" id="City" class="w-100" value="{{old('city')}}">
                                                     <option value="">Select your city</option>
                                                     <option value="Cairo">Cairo</option>
                                                     <option value="Sharm">Sharm</option>
                                                 </select>
+                                                @error('city')
+                                                <span class="text-danger mx-2">{{$message}}</span>
+                                                @enderror
 											</div>
 										</div>
 										<div class="col-12">
 											<div class="form-group">
 												<label>your CV<span>*</span></label>
-												<input class="p-0 h-100 lh-base" name="cv" type="file">
+												<input required class="p-0 h-100 lh-base" name="cv" type="file" value="{{old('cv')}}">
+                                                @error('cv')
+                                                <span class="text-danger">{{$message}}</span>
+                                                @enderror
 											</div>
 										</div>
 										<div class="col-12">
 											<div class="form-group button">
-												<button type="submit" class="btn ">Send</button>
+												<input type="submit" class="btn" name="submit" id="" value="Send">
 											</div>
 										</div>
 									</div>
@@ -96,39 +117,6 @@
 			</div>
 	</section>
 	<!--/ End Contact -->
-	<!--================Contact Success  =================-->
-	<div class="modal fade" id="success" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-		  <div class="modal-content">
-			<div class="modal-header">
-				<h2 class="text-success">Thank you!</h2>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-			</div>
-			<div class="modal-body">
-				<p class="text-success">Your message is successfully sent...</p>
-			</div>
-		  </div>
-		</div>
-	</div>
-
-	<!-- Modals error -->
-	<div class="modal fade" id="error" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-		  <div class="modal-content">
-			<div class="modal-header">
-				<h2 class="text-warning">Sorry!</h2>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-			</div>
-			<div class="modal-body">
-				<p class="text-warning">Something went wrong.</p>
-			</div>
-		  </div>
-		</div>
-	</div>
 @endsection
 
 @push('styles')
