@@ -57,6 +57,10 @@
     margin-left: 0px;
     }
 
+    .st-sticky-share-buttons.st-right.st-toggleable.st-has-labels.st-show-total{
+        display: none !important;
+    }
+
     /*
 </style>
 @stack('styles')

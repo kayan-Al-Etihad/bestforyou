@@ -72,14 +72,9 @@
 			<div class="container">
 				<div class="inner">
 					<div class="row">
-						<div class="col-lg-6 col-12">
-							<div class="left">
+						<div class="col-lg-12 col-12">
+							<div class="centr text-center">
 								<p>Copyright © {{date('Y')}} <a href="https://kayanaletihad.com/" target="_blank">Kayan Al Etihad</a>  -  All Rights Reserved.</p>
-							</div>
-						</div>
-						<div class="col-lg-6 col-12">
-							<div class="right">
-								<img src="{{asset('backend/img/payments.png')}}" alt="#">
 							</div>
 						</div>
 					</div>
@@ -88,7 +83,7 @@
 		</div>
 	</footer>
 	<!-- /End Footer Area -->
- 
+
 	<!-- Jquery -->
     <script src="{{asset('frontend/js/jquery.min.js')}}"></script>
     <script src="{{asset('frontend/js/jquery-migrate-3.0.0.js')}}"></script>
@@ -125,7 +120,7 @@
 	<!-- Active JS -->
 	<script src="{{asset('frontend/js/active.js')}}"></script>
 
-	
+
 	@stack('scripts')
 	<script>
 		setTimeout(function(){

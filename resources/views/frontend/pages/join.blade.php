@@ -9,7 +9,7 @@
 					<div class="bread-inner">
 						<ul class="bread-list">
 							<li><a href="{{route('home')}}">Home<i class="ti-arrow-right"></i></a></li>
-							<li class="active"><a href="javascript:void(0);">Contact</a></li>
+							<li class="active"><a href="javascript:void(0);">Join us</a></li>
 						</ul>
 					</div>
 				</div>
@@ -26,25 +26,14 @@
 						<div class="col-lg-8 col-12">
 							<div class="form-main">
 								<div class="title">
-									@php
-										$settings=DB::table('settings')->get();
-									@endphp
-									<h4>Get in touch</h4>
-									<h3>Write us a message @auth @else<span style="font-size:12px;" class="text-danger">[You need to login first]</span>@endauth</h3>
 								</div>
-								<form class="form-contact form contact_form" method="post" action="{{route('contact.store')}}" id="contactForm" novalidate="novalidate">
+								<form class=" form" method="post" action="{{route('contact.store')}}" id="contactForm" novalidate="novalidate">
 									@csrf
 									<div class="row">
 										<div class="col-lg-6 col-12">
 											<div class="form-group">
 												<label>Your Name<span>*</span></label>
 												<input name="name" id="name" type="text" placeholder="Enter your name">
-											</div>
-										</div>
-										<div class="col-lg-6 col-12">
-											<div class="form-group">
-												<label>Your Subjects<span>*</span></label>
-												<input name="subject" type="text" id="subject" placeholder="Enter Subject">
 											</div>
 										</div>
 										<div class="col-lg-6 col-12">
@@ -59,15 +48,25 @@
 												<input id="phone" name="phone" type="number" placeholder="Enter your phone">
 											</div>
 										</div>
+										<div class="col-lg-6 col-12">
+											<div class="form-group">
+												<label for="City">City<span>*</span></label>
+                                                <select name="city" id="City" class="w-100">
+                                                    <option value="">Select your city</option>
+                                                    <option value="Cairo">Cairo</option>
+                                                    <option value="Sharm">Sharm</option>
+                                                </select>
+											</div>
+										</div>
 										<div class="col-12">
-											<div class="form-group message">
-												<label>your message<span>*</span></label>
-												<textarea name="message" id="message" cols="30" rows="9" placeholder="Enter Message"></textarea>
+											<div class="form-group">
+												<label>your CV<span>*</span></label>
+												<input class="p-0 h-100 lh-base" name="cv" type="file">
 											</div>
 										</div>
 										<div class="col-12">
 											<div class="form-group button">
-												<button type="submit" class="btn ">Send Message</button>
+												<button type="submit" class="btn ">Send</button>
 											</div>
 										</div>
 									</div>
@@ -75,27 +74,20 @@
 							</div>
 						</div>
 						<div class="col-lg-4 col-12">
-							<div class="single-head">
+                            <div class="single-head p-5">
+                                @php
+                                    $settings=DB::table('settings')->get()->first();
+                                @endphp
 								<div class="single-info">
-									<i class="fa fa-phone"></i>
-									<h4 class="title">Call us Now:</h4>
-									<ul>
-										<li>@foreach($settings as $data) {{$data->phone}} @endforeach</li>
-									</ul>
+                                    <div class="title">
+                                    	<img src="{{ $settings->logo }}" alt="">
+								    </div>
 								</div>
 								<div class="single-info">
-									<i class="fa fa-envelope-open"></i>
-									<h4 class="title">Email:</h4>
-									<ul>
-										<li><a href="mailto:info@yourwebsite.com">@foreach($settings as $data) {{$data->email}} @endforeach</a></li>
-									</ul>
-								</div>
-								<div class="single-info">
-									<i class="fa fa-location-arrow"></i>
-									<h4 class="title">Our Address:</h4>
-									<ul>
-										<li>@foreach($settings as $data) {{$data->address}} @endforeach</li>
-									</ul>
+                                    <div class="title">
+                                    	<h3>Join us</h3>
+									    <h4>Join our team and become a Part of our big organization @auth @else<span style="font-size:12px;" class="text-danger">[You need to login first]</span>@endauth</h4>
+								    </div>
 								</div>
 							</div>
 						</div>
@@ -104,18 +96,6 @@
 			</div>
 	</section>
 	<!--/ End Contact -->
-
-	<!-- Map Section -->
-	<div class="map-section">
-		<div id="myMap">
-			<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3456.2497102830366!2d31.0135262154994!3d29.972252828933442!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x145851ee0be1eec3%3A0xa5b302adfcac13d1!2sMall%20of%20Egypt!5e0!3m2!1sen!2sjo!4v1674118640302!5m2!1sen!2sjo" width="100%" height="100%" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
-		</div>
-	</div>
-	<!--/ End Map Section -->
-
-	<!-- Start Shop Newsletter  -->
-	@include('frontend.layouts.newsletter')
-	<!-- End Shop Newsletter -->
 	<!--================Contact Success  =================-->
 	<div class="modal fade" id="success" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
