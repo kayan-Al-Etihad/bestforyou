@@ -44,13 +44,7 @@ class FrontendController extends Controller
         return view('frontend.pages.about-us');
     }
 
-    public function contact(){
-        return view('frontend.pages.contact');
-    }
 
-    public function join(){
-        return view('frontend.pages.join');
-    }
 
     public function productDetail($slug){
         $product_detail= Product::getProductBySlug($slug);

@@ -1,4 +1,4 @@
-@extends('user.layouts.master')
+@extends('backend.layouts.master')
 
 @section('main-content')
  <!-- DataTales Example -->
@@ -9,77 +9,63 @@
          </div>
      </div>
     <div class="card-header py-3">
-      <h6 class="m-0 font-weight-bold text-primary float-left">Review Lists</h6>
+      <h6 class="m-0 font-weight-bold text-primary float-left">Join Messages Lists</h6>
     </div>
     <div class="card-body">
       <div class="table-responsive">
-        @if(count($reviews)>0)
-        <table class="table table-bordered" id="order-dataTable" width="100%" cellspacing="0">
+        @if(count($messages)>0)
+        <table class="table table-bordered" id="banner-dataTable" width="100%" cellspacing="0">
           <thead>
             <tr>
               <th>S.N.</th>
-              <th>Review By</th>
-              <th>Product Title</th>
-              <th>Review</th>
-              <th>Rate</th>
-              <th>Date</th>
-              <th>Status</th>
+              <th>Name</th>
+              <th>email</th>
+              <th>Phone</th>
+              <th>city</th>
+              <th>cv</th>
+              <th>created at</th>
               <th>Action</th>
             </tr>
           </thead>
           <tfoot>
             <tr>
               <th>S.N.</th>
-              <th>Review By</th>
-              <th>Product Title</th>
-              <th>Review</th>
-              <th>Rate</th>
-              <th>Date</th>
-              <th>Status</th>
+              <th>Name</th>
+              <th>email</th>
+              <th>Phone</th>
+              <th>city</th>
+              <th>cv</th>
+              <th>created at</th>
               <th>Action</th>
-              </tr>
+            </tr>
           </tfoot>
           <tbody>
-            @foreach($reviews as $review)
+
+            @foreach($messages as $message)
+              @php
+              @endphp
                 <tr>
-                    <td>{{$review->id}}</td>
-                    <td>{{$review->user_info['name']}}</td>
-                    <td>{{$review->product->title}}</td>
-                    <td>{{$review->review}}</td>
+                    <td>{{$message->id}}</td>
+                    <td>{{$message->name}}</td>
+                    <td>{{$message->email}}</td>
+                    <td>{{$message->phone}}</td>
+                    <td>{{$message->city}}</td>
+                    <td><a href="{{ asset('cv') }}/{{$message->cv}}" download="{{$message->cv}}">{{$message->cv}}</a></td>
+                    <td>{{$message->created_at}}</td>
                     <td>
-                     <ul style="list-style:none" class="d-flex">
-                          @for($i=1; $i<=5;$i++)
-                          @if($review->rate >=$i)
-                            <li style="float:left;color:#d60d13;"><i class="fa fa-star"></i></li>
-                          @else
-                            <li style="float:left;color:#d60d13;"><i class="far fa-star"></i></li>
-                          @endif
-                        @endfor
-                     </ul>
-                    </td>
-                    <td>{{$review->created_at->format('M d D, Y g: i a')}}</td>
-                    <td>
-                        @if($review->status=='active')
-                          <span class="badge badge-success">{{$review->status}}</span>
-                        @else
-                          <span class="badge badge-warning">{{$review->status}}</span>
-                        @endif
-                    </td>
-                    <td>
-                        <a href="{{route('user.productreview.edit',$review->id)}}" class="btn btn-primary btn-sm float-left mr-1" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" title="edit" data-placement="bottom"><i class="fas fa-edit"></i></a>
-                        <form method="POST" action="{{route('user.productreview.delete',[$review->id])}}">
-                          @csrf
-                          @method('delete')
-                              <button class="btn btn-danger btn-sm dltBtn" data-id={{$review->id}} style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" data-placement="bottom" title="Delete"><i class="fas fa-trash-alt"></i></button>
+                        <form method="POST" action="{{route('join.destroy',$message->id)}}">
+                            @csrf
+                            @method('delete')
+                            <button class="btn btn-danger btn-sm dltBtn" data-id={{$message->id}} style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" data-placement="bottom" title="Delete"><i class="fas fa-trash-alt"></i></button>
                         </form>
                     </td>
                 </tr>
             @endforeach
           </tbody>
         </table>
-        <span style="float:right">{{$reviews->links()}}</span>
+        <span style="float:right">{{$messages->links()}}</span>
         @else
-          <h6 class="text-center">No reviews found!!!</h6>
+          <h6 class="text-center">No Messages Yet!!!</h6>
         @endif
       </div>
     </div>
@@ -107,11 +93,11 @@
   <script src="{{asset('backend/js/demo/datatables-demo.js')}}"></script>
   <script>
 
-      $('#order-dataTable').DataTable( {
+      $('#banner-dataTable').DataTable( {
             "columnDefs":[
                 {
                     "orderable":false,
-                    "targets":[5,6]
+                    "targets":[3,4,5]
                 }
             ]
         } );
