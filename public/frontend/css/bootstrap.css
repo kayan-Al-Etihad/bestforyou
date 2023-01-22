@@ -2582,7 +2582,7 @@ fieldset[disabled] a.btn {
 .btn-danger:hover {
     color: #fff;
     background-color: #c82333;
-    border-color: #bd2130
+    border-color: #f40011 
 }
 
 .btn-danger.focus,
@@ -2600,7 +2600,7 @@ fieldset[disabled] a.btn {
 .btn-danger:not([disabled]):not(.disabled):active,
 .show>.btn-danger.dropdown-toggle {
     color: #fff;
-    background-color: #bd2130;
+    background-color: #f40011 ;
     border-color: #b21f2d;
     box-shadow: 0 0 0 .2rem rgba(220, 53, 69, .5)
 }
@@ -4664,7 +4664,7 @@ tbody.collapse.show {
 .badge-danger[href]:hover {
     color: #fff;
     text-decoration: none;
-    background-color: #bd2130
+    background-color: #f40011 
 }
 
 .badge-light {
@@ -5956,7 +5956,7 @@ a.bg-warning:hover {
 
 a.bg-danger:focus,
 a.bg-danger:hover {
-    background-color: #bd2130!important
+    background-color: #f40011 !important
 }
 
 .bg-light {
@@ -8589,7 +8589,7 @@ a.text-warning:hover {
 
 a.text-danger:focus,
 a.text-danger:hover {
-    color: #bd2130!important
+    color: #f40011 !important
 }
 
 .text-light {

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\JoinFormController;
+use App\Http\Controllers\LangController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,8 +14,9 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Auth::routes(['register'=>false]);
+Route::get('lang/{lang}', [LangController::class, 'lang']);
+Route::group(['middleware' => 'lang'], function(){
+    Auth::routes(['register'=>false]);
 
 Route::get('user/login','FrontendController@login')->name('login.form');
 Route::post('user/login','FrontendController@loginSubmit')->name('login.submit');
@@ -75,15 +77,15 @@ Route::get('/product-grids','FrontendController@productGrids')->name('product-gr
 Route::get('/product-lists','FrontendController@productLists')->name('product-lists');
 Route::match(['get','post'],'/filter','FrontendController@productFilter')->name('shop.filter');
 // Order Track
-Route::get('/product/track','OrderController@orderTrack')->name('order.track');
-Route::post('product/track/order','OrderController@productTrackOrder')->name('product.track.order');
+// Route::get('/product/track','OrderController@orderTrack')->name('order.track');
+// Route::post('product/track/order','OrderController@productTrackOrder')->name('product.track.order');
 // Blog
-Route::get('/blog','FrontendController@blog')->name('blog');
-Route::get('/blog-detail/{slug}','FrontendController@blogDetail')->name('blog.detail');
-Route::get('/blog/search','FrontendController@blogSearch')->name('blog.search');
-Route::post('/blog/filter','FrontendController@blogFilter')->name('blog.filter');
-Route::get('blog-cat/{slug}','FrontendController@blogByCategory')->name('blog.category');
-Route::get('blog-tag/{slug}','FrontendController@blogByTag')->name('blog.tag');
+// Route::get('/blog','FrontendController@blog')->name('blog');
+// Route::get('/blog-detail/{slug}','FrontendController@blogDetail')->name('blog.detail');
+// Route::get('/blog/search','FrontendController@blogSearch')->name('blog.search');
+// Route::post('/blog/filter','FrontendController@blogFilter')->name('blog.filter');
+// Route::get('blog-cat/{slug}','FrontendController@blogByCategory')->name('blog.category');
+// Route::get('blog-tag/{slug}','FrontendController@blogByTag')->name('blog.tag');
 
 // NewsLetter
 Route::post('/subscribe','FrontendController@subscribe')->name('subscribe');
@@ -194,4 +196,6 @@ Route::group(['prefix'=>'/user','middleware'=>['user']],function(){
 
 Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
     \UniSharp\LaravelFilemanager\Lfm::routes();
+});
+
 });
