@@ -50,8 +50,10 @@ Route::get('/about-us','FrontendController@aboutUs')->name('about-us');
 Route::post('/contact/message','MessageController@store')->name('contact.store');
 Route::get('product-detail/{slug}','FrontendController@productDetail')->name('product-detail');
 Route::post('/product/search','FrontendController@productSearch')->name('product.search');
-Route::get('/product-cat/{slug}','FrontendController@productCat')->name('product-cat');
-Route::get('/product-sub-cat/{slug}/{sub_slug}','FrontendController@productSubCat')->name('product-sub-cat');
+Route::get('/product-list/{slug}','FrontendController@productCat')->name('product-list');
+Route::get('/product-grids/{slug}','FrontendController@productCatGrid')->name('product-grid');
+Route::get('/product-sub-list/{slug}/{sub_slug}','FrontendController@productSubCat')->name('product-sub-list');
+Route::get('/product-sub-grid/{slug}/{sub_slug}','FrontendController@productSubCatGrid')->name('product-sub-grid');
 Route::get('/product-brand/{slug}','FrontendController@productBrand')->name('product-brand');
 // Cart section
 Route::get('/add-to-cart/{slug}','CartController@addToCart')->name('add-to-cart')->middleware('user');

@@ -171,4 +171,10 @@ return [
     to you on your receipt and in the confirmation email you should have received',
     'track_description' => 'Enter your order number',
 
+
+    'qot_question' => 'Got Question? Call us 24/7',
+    'information' => 'Information',
+    'copyright' => "Copyright",
+    'company_name' => "kayan Al Etihad",
+    'right' => "All Rights Reserved.",
 ];

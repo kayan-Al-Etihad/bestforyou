@@ -141,9 +141,9 @@
                                                         </div>
                                                     </form>
 
-                                                    <p class="cat">@lang('auth.category') :<a href="{{route('product-cat',$product_detail->cat_info['slug'])}}">{{$product_detail->cat_info['title']}}</a></p>
+                                                    <p class="cat">@lang('auth.category') :<a href="{{route('product-list',$product_detail->cat_info['slug'])}}">{{$product_detail->cat_info['title_ar']}}</a></p>
                                                     @if($product_detail->sub_cat_info)
-                                                    <p class="cat mt-1">@lang('auth.sub_category') :<a href="{{route('product-sub-cat',[$product_detail->cat_info['slug'],$product_detail->sub_cat_info['slug']])}}">{{$product_detail->sub_cat_info['title']}}</a></p>
+                                                    <p class="cat mt-1">@lang('auth.sub_category') :<a href="{{route('product-sub-cat',[$product_detail->cat_info['slug'],$product_detail->sub_cat_info['slug']])}}">{{$product_detail->sub_cat_info['title_ar']}}</a></p>
                                                     @endif
                                                     <p class="availability">@lang('auth.Stock') : @if($product_detail->stock>0)<span class="badge badge-success">{{$product_detail->stock}}</span>@else <span class="badge badge-danger">{{$product_detail->stock}}</span>  @endif</p>
                                                 </div>
@@ -396,12 +396,12 @@
                                                         <!--/ End Input Order -->
                                                         </div>
                                                         <div class="add-to-cart mt-4">
-                                                            <button type="submit" class="btn">Add to cart</button>
+                                                            <button type="submit" class="btn">@lang('auth.Add_to_cart ')</button>
                                                             <a href="{{route('add-to-wishlist',$product_detail->slug)}}" class="btn min"><i class="ti-heart"></i></a>
                                                         </div>
                                                     </form>
 
-                                                    <p class="cat">Category :<a href="{{route('product-cat',$product_detail->cat_info['slug'])}}">{{$product_detail->cat_info['title']}}</a></p>
+                                                    <p class="cat">Category :<a href="{{route('product-list',$product_detail->cat_info['slug'])}}">{{$product_detail->cat_info['title']}}</a></p>
                                                     @if($product_detail->sub_cat_info)
                                                     <p class="cat mt-1">Sub Category :<a href="{{route('product-sub-cat',[$product_detail->cat_info['slug'],$product_detail->sub_cat_info['slug']])}}">{{$product_detail->sub_cat_info['title']}}</a></p>
                                                     @endif
@@ -608,8 +608,8 @@
                                             @endif
                                         </div>
                                     </div>
-                                    <div class="product-content">
-                                        <h3><a href="{{route('product-detail',$data->slug)}}">{{$data->title}}</a></h3>
+                                    <div class="product-content text-right">
+                                        <h3><a href="{{route('product-detail',$data->slug)}}">{{$data->title_ar}}</a></h3>
                                         <div class="product-price">
                                             @php
                                                 $after_discount=($data->price-(($data->discount*$data->price)/100));
@@ -640,6 +640,89 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="ti-close" aria-hidden="true"></span></button>
             </div>
+            @if (app()->getLocale() == "ar")
+            <div class="modal-body text-right" dir="rtl">
+                <div class="row no-gutters">
+                    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                        <!-- Product Slider -->
+                        <div class="product-gallery">
+                            <div class="quickview-slider-active">
+                                @php
+                                    $photo=explode(',',$data->photo);
+                                // dd($photo);
+                                @endphp
+                                @foreach($photo as $img)
+                                    <div class="single-slider">
+                                        <img src="{{$img}}" alt="{{$img}}">
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                        <!-- End Product slider -->
+                    </div>
+                    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                        <div class="quickview-content">
+                            <h2>{{ $data->title_ar }}</h2>
+                            <div class="quickview-ratting-review">
+                                <div class="">
+                                    @if($data->stock >0)
+									<span><i class="fa fa-check-circle-o"></i> {{$data->stock}} في المخزن</span>
+									@else
+									<span><i class="fa fa-times-circle-o text-danger"></i> {{$data->stock}} من المخزون</span>
+									@endif
+                                </div>
+                            </div>
+                            @php
+								$after_discount=($data->price-($data->price*$data->discount)/100);
+							@endphp
+							<h3><small><del class="text-muted">${{number_format($data->price,2)}}</del></small>    ${{number_format($after_discount,2)}}  </h3>
+							<div class="quickview-peragraph">
+                            <p>{{ $data->description_ar }}.</p>
+                            </div>
+                            @if($data->size)
+								<div class="size">
+									<h4>@lang('auth.Size')</h4>
+									<ul>
+										@php
+											$sizes=explode(',',$data->size);
+											// dd($sizes);
+										@endphp
+										@foreach($sizes as $size)
+										<li><a href="#" class="one">{{$size}}</a></li>
+										@endforeach
+									</ul>
+								</div>
+							@endif
+                            <form action="{{route('single-add-to-cart')}}" method="POST">
+                                @csrf
+                                <div class="quantity">
+                                    <!-- Input Order -->
+                                    <div class="input-group">
+                                        <div class="button minus">
+                                            <button type="button" class="btn btn-primary btn-number" disabled="disabled" data-type="minus" data-field="quant[1]">
+                                                <i class="ti-minus"></i>
+                                            </button>
+                                        </div>
+                                        <input type="hidden" name="slug" value="{{$data->slug}}">
+                                        <input type="text" name="quant[1]" class="input-number"  data-min="1" data-max="1000" value="1">
+                                        <div class="button plus">
+                                            <button type="button" class="btn btn-primary btn-number" data-type="plus" data-field="quant[1]">
+                                                <i class="ti-plus"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <!--/ End Input Order -->
+                                </div>
+                                <div class="add-to-cart">
+                                    <button type="submit" class="btn">@lang('auth.Add_to_cart')</button>
+                                    <a href="{{route('add-to-wishlist',$data->slug)}}" class="btn min"><i class="ti-heart"></i></a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @else
             <div class="modal-body">
                 <div class="row no-gutters">
                     <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
@@ -713,7 +796,7 @@
                                     <!--/ End Input Order -->
                                 </div>
                                 <div class="add-to-cart">
-                                    <button type="submit" class="btn">Add to cart</button>
+                                    <button type="submit" class="btn">@lang('auth.Add_to_cart ')</button>
                                     <a href="{{route('add-to-wishlist',$data->slug)}}" class="btn min"><i class="ti-heart"></i></a>
                                 </div>
                             </form>
@@ -721,6 +804,7 @@
                     </div>
                 </div>
             </div>
+            @endif
         </div>
     </div>
 </div>

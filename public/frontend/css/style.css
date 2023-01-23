@@ -1807,6 +1807,8 @@ Version:1.0
   position: relative;
   overflow: hidden;
   cursor:pointer;
+  width: 263px;
+  height: 263px;
 }
 .single-product .product-img a {
   display: block;
@@ -2898,6 +2900,7 @@ Version:1.0
 	margin-top: 30px;
 	border: 1px solid #eee;
 	padding: 10px;
+    height: 163px;
 }
 .shop-home-list .single-list .list-image{
 	position:relative;

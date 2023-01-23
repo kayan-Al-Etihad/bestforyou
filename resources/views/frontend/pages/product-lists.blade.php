@@ -12,15 +12,27 @@
                         @if (app()->getLocale() == "ar")
                             <div class="bread-inner text-right" dir="rtl">
                                 <ul class="bread-list">
+                                    @if($category->is_parent == 1)
                                     <li><a href="{{route('home')}}">@lang('auth.home')<i class="ti-arrow-left"></i></a></li>
-                                    <li class="active"><a href="javascript:void(0);">@lang('auth.category')</a></li>
+                                    <li class="active"><a href="{{route('product-grid', $category->slug)}}">{{ $category->title_ar }}</a></li>
+                                    @else
+                                    <li><a href="{{route('home')}}">@lang('auth.home')<i class="ti-arrow-left"></i></a></li>
+                                    <li class="active"><a href="{{route('product-grid', $category->slug)}}">{{ $category->title_ar }}</a><i class="ti-arrow-left"></i></li>
+                                    <li class="active"><a href="javascript:void(0);">{{ $sub->title_ar }}</a></li>
+                                    @endif
                                 </ul>
                             </div>
                         @else
                             <div class="bread-inner">
                                 <ul class="bread-list">
-                                    <li><a href="{{route('home')}}">@lang('auth.home')<i class="ti-arrow-left"></i></a></li>
-                                    <li class="active"><a href="javascript:void(0);">@lang('auth.category')</a></li>
+                                    @if($category->is_parent == 1)
+                                    <li><a href="{{route('home')}}">@lang('auth.home')<i class="ti-arrow-right"></i></a></li>
+                                    <li class="active"><a href="{{route('product-grid', $category->slug)}}">{{ $category->title }}</a></li>
+                                    @else
+                                    <li><a href="{{route('home')}}">@lang('auth.home')<i class="ti-arrow-right"></i></a></li>
+                                    <li class="active"><a href="{{route('product-grid', $category->slug)}}">{{ $category->title }}</a><i class="ti-arrow-right"></i></li>
+                                    <li class="active"><a href="javascript:void(0);">{{ $sub->title }}</a></li>
+                                    @endif
                                 </ul>
                             </div>
                         @endif
@@ -50,22 +62,22 @@
                                                 <li>
                                                     @foreach($menu as $cat_info)
                                                             @if($cat_info->child_cat->count()>0)
-                                                                <li><a href="{{route('product-cat',$cat_info->slug)}}">{{$cat_info->title}}</a>
+                                                                <li><a href="{{route('product-list',$cat_info->slug)}}">{{$cat_info->title_ar}}</a>
                                                                     <ul>
                                                                         @foreach($cat_info->child_cat as $sub_menu)
-                                                                            <li><a href="{{route('product-sub-cat',[$cat_info->slug,$sub_menu->slug])}}">{{$sub_menu->title}}</a></li>
+                                                                            <li><a href="{{route('product-sub-list',[$cat_info->slug,$sub_menu->slug])}}">{{$sub_menu->title_ar}}</a></li>
                                                                         @endforeach
                                                                     </ul>
                                                                 </li>
                                                             @else
-                                                                <li><a href="{{route('product-cat',$cat_info->slug)}}">{{$cat_info->title}}</a></li>
+                                                                <li><a href="{{route('product-list',$cat_info->slug)}}">{{$cat_info->title_ar}}</a></li>
                                                             @endif
                                                     @endforeach
                                                 </li>
                                                 @endif
                                                 {{-- @foreach(Helper::productCategoryList('products') as $cat)
                                                     @if($cat->is_parent==1)
-                                                        <li><a href="{{route('product-cat',$cat->slug)}}">{{$cat->title}}</a></li>
+                                                        <li><a href="{{route('product-list',$cat->slug)}}">{{$cat->title}}</a></li>
                                                     @endif
                                                 @endforeach --}}
                                             </ul>
@@ -108,7 +120,7 @@
                                                         <img src="{{$photo[0]}}" alt="{{$photo[0]}}">
                                                     </div>
                                                     <div class="content">
-                                                        <h5><a href="{{route('product-detail',$product->slug)}}">{{$product->title}}</a></h5>
+                                                        <h5><a href="{{route('product-detail',$product->slug)}}">{{$product->title_ar}}</a></h5>
                                                         @php
                                                             $org=($product->price-($product->price*$product->discount)/100);
                                                         @endphp
@@ -158,8 +170,15 @@
                                             </div>
                                         </div>
                                         <ul class="view-mode">
-                                            <li><a href="{{route('product-grids')}}"><i class="fa fa-th-large"></i></a></li>
-                                            <li class="active"><a href="{{route('product-lists')}}"><i class="fa fa-th-list"></i></a></li>
+                                            <ul class="bread-list">
+                                                @if($category->is_parent == 0)
+                                                    <li><a href="{{route('product-sub-grid', [ $category->slug,$sub->slug])}}"><i class="fa fa-th-large"></i></a></li>
+                                                    <li class="active"><a href="{{route('product-sub-list', [ $category->slug,$sub->slug])}}"><i class="fa fa-th-list"></i></a></li>
+                                                @else
+                                                    <li><a href="{{route('product-grid', $category->slug)}}"><i class="fa fa-th-large"></i></a></li>
+                                                    <li class="active"><a href="{{route('product-list', $category->slug)}}"><i class="fa fa-th-list"></i></a></li>
+                                                @endif
+                                            </ul>
                                         </ul>
                                     </div>
                                     <!--/ End Shop Top -->
@@ -183,23 +202,13 @@
                                                                 <img class="hover-img" src="{{$photo[0]}}" alt="{{$photo[0]}}">
                                                                 </a>
                                                                 <div class="button-head">
-                                                                    @if (app()->getLocale() == "ar")
-                                                                        <div class="product-action" style="right: auto;left:60%">
-                                                                            <a data-toggle="modal" data-target="#{{$product->id}}" title="Quick View" href="#"><i class=" ti-eye"></i><span>Quick Shop</span></a>
-                                                                            <a title="Wishlist" href="{{route('add-to-wishlist',$product->slug)}}" ><i class=" ti-heart "></i><span>Add to Wishlist</span></a>
-                                                                        </div>
-                                                                        <div class="product-action-2" style="right: 0;left:auto">
-                                                                            <a href="{{route('add-to-cart',$product->slug)}}">@lang('auth.Add_to_cart')</a>
-                                                                        </div>
-                                                                    @else
-                                                                        <div class="product-action">
-                                                                            <a data-toggle="modal" data-target="#{{$product->id}}" title="Quick View" href="#"><i class=" ti-eye"></i><span>Quick Shop</span></a>
-                                                                            <a title="Wishlist" href="{{route('add-to-wishlist',$product->slug)}}" ><i class=" ti-heart "></i><span>Add to Wishlist</span></a>
-                                                                        </div>
-                                                                        <div class="product-action-2">
-                                                                            <a href="{{route('add-to-cart',$product->slug)}}">@lang('auth.Add_to_cart')</a>
-                                                                        </div>
-                                                                    @endif
+                                                                    <div class="product-action" style="right: auto;left:60%">
+                                                                        <a data-toggle="modal" data-target="#{{$product->id}}" title="Quick View" href="#"><i class=" ti-eye"></i><span>Quick Shop</span></a>
+                                                                        <a title="Wishlist" href="{{route('add-to-wishlist',$product->slug)}}" ><i class=" ti-heart "></i><span>Add to Wishlist</span></a>
+                                                                    </div>
+                                                                    <div class="product-action-2" style="right: 0;left:auto">
+                                                                        <a href="{{route('add-to-cart',$product->slug)}}">@lang('auth.Add_to_cart')</a>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -211,13 +220,13 @@
                                                                     @php
                                                                         $after_discount=($product->price-($product->price*$product->discount)/100);
                                                                     @endphp
-                                                                    <span>${{number_format($after_discount,2)}}</span>
-                                                                    <del>${{number_format($product->price,2)}}</del>
+                                                                    <span>EGP{{number_format($after_discount,2)}}</span>
+                                                                    <del>EGP{{number_format($product->price,2)}}</del>
                                                                 </div>
-                                                                <h3 class="title"><a href="{{route('product-detail',$product->slug)}}">{{$product->title}}</a></h3>
+                                                                <h3 class="title"><a href="{{route('product-detail',$product->slug)}}">{{$product->title_ar}}</a></h3>
                                                             {{-- <p>{!! html_entity_decode($product->summary) !!}</p> --}}
                                                             </div>
-                                                            <p class="des pt-2">{!! html_entity_decode($product->summary) !!}</p>
+                                                            <p class="des pt-2">{!! html_entity_decode($product->summary_ar) !!}</p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -225,7 +234,7 @@
                                             <!-- End Single List -->
                                         @endforeach
                                     @else
-                                        <h4 class="text-warning" style="margin:100px auto;">There are no products.</h4>
+                                        <h4 class="text-warning" style="margin:100px auto;">لا يوجد منتجلت.</h4>
                                     @endif
                                 </div>
                                 <div class="row">
@@ -251,22 +260,22 @@
                                             <li>
                                                 @foreach($menu as $cat_info)
                                                         @if($cat_info->child_cat->count()>0)
-                                                            <li><a href="{{route('product-cat',$cat_info->slug)}}">{{$cat_info->title}}</a>
+                                                            <li><a href="{{route('product-list',$cat_info->slug)}}">{{$cat_info->title}}</a>
                                                                 <ul>
                                                                     @foreach($cat_info->child_cat as $sub_menu)
-                                                                        <li><a href="{{route('product-sub-cat',[$cat_info->slug,$sub_menu->slug])}}">{{$sub_menu->title}}</a></li>
+                                                                        <li><a href="{{route('product-sub-list',[$cat_info->slug,$sub_menu->slug])}}">{{$sub_menu->title}}</a></li>
                                                                     @endforeach
                                                                 </ul>
                                                             </li>
                                                         @else
-                                                            <li><a href="{{route('product-cat',$cat_info->slug)}}">{{$cat_info->title}}</a></li>
+                                                            <li><a href="{{route('product-list',$cat_info->slug)}}">{{$cat_info->title}}</a></li>
                                                         @endif
                                                 @endforeach
                                             </li>
                                             @endif
                                             {{-- @foreach(Helper::productCategoryList('products') as $cat)
                                                 @if($cat->is_parent==1)
-                                                    <li><a href="{{route('product-cat',$cat->slug)}}">{{$cat->title}}</a></li>
+                                                    <li><a href="{{route('product-list',$cat->slug)}}">{{$cat->title}}</a></li>
                                                 @endif
                                             @endforeach --}}
                                         </ul>
@@ -379,9 +388,14 @@
                                                     </select>
                                                 </div>
                                             </div>
-                                            <ul class="view-mode">
-                                                <li><a href="{{route('product-grids')}}"><i class="fa fa-th-large"></i></a></li>
-                                                <li class="active"><a href="javascript:void(0)"><i class="fa fa-th-list"></i></a></li>
+                                            <ul class="bread-list">
+                                                @if($sub)
+                                                    <li><a href="{{route('product-sub-grid', [ $category->slug,$sub->slug])}}"><i class="fa fa-th-large"></i></a></li>
+                                                    <li class="active"><a href="{{route('product-sub-list', [ $category->slug,$sub->slug])}}"><i class="fa fa-th-list"></i></a></li>
+                                                @else
+                                                    <li><a href="{{route('product-grid', $category->slug)}}"><i class="fa fa-th-large"></i></a></li>
+                                                    <li class="active"><a href="{{route('product-list', $category->slug)}}"><i class="fa fa-th-list"></i></a></li>
+                                                @endif
                                             </ul>
                                         </div>
                                         <!--/ End Shop Top -->
@@ -410,7 +424,7 @@
                                                                         <a title="Wishlist" href="{{route('add-to-wishlist',$product->slug)}}" class="wishlist" data-id="{{$product->id}}"><i class=" ti-heart "></i><span>Add to Wishlist</span></a>
                                                                     </div>
                                                                     <div class="product-action-2">
-                                                                        <a title="Add to cart" href="{{route('add-to-cart',$product->slug)}}">Add to cart</a>
+                                                                        <a title="@lang('auth.Add_to_cart')" href="{{route('add-to-cart',$product->slug)}}">@lang('auth.Add_to_cart')</a>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -461,7 +475,93 @@
 								<div class="modal-header">
 									<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="ti-close" aria-hidden="true"></span></button>
 								</div>
-								<div class="modal-body">
+                                @if (app()->getLocale() == "ar")
+								<div class="modal-body text-right" dir="rtl">
+									<div class="row no-gutters">
+										<div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+											<!-- Product Slider -->
+												<div class="product-gallery">
+													<div class="quickview-slider-active">
+														@php
+															$photo=explode(',',$product->photo);
+														// dd($photo);
+														@endphp
+														@foreach($photo as $data)
+															<div class="single-slider">
+																<img src="{{$data}}" alt="{{$data}}">
+															</div>
+														@endforeach
+													</div>
+												</div>
+											<!-- End Product slider -->
+										</div>
+										<div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+											<div class="quickview-content">
+												<h2>{{$product->title_ar}}</h2>
+												<div class="quickview-ratting-review">
+													<div class="quickview-stock">
+														@if($product->stock >0)
+														<span><i class="fa fa-check-circle-o"></i> {{$product->stock}} في المخزن</span>
+														@else
+														<span><i class="fa fa-times-circle-o text-danger"></i> {{$product->stock}} غير متوفر</span>
+														@endif
+													</div>
+												</div>
+												@php
+													$after_discount=($product->price-($product->price*$product->discount)/100);
+												@endphp
+												<h3><small><del class="text-muted">${{number_format($product->price,2)}}</del></small>    EGP{{number_format($after_discount,2)}}  </h3>
+												<div class="quickview-peragraph">
+													<p>{!! html_entity_decode($product->summary_ar) !!}</p>
+												</div>
+												@if($product->size)
+													<div class="size">
+														<h4>@lang('auth.Size')</h4>
+														<ul>
+															@php
+																$sizes=explode(',',$product->size);
+																// dd($sizes);
+															@endphp
+															@foreach($sizes as $size)
+															<li><a href="#" class="one">{{$size}}</a></li>
+															@endforeach
+														</ul>
+													</div>
+												@endif
+												<form action="{{route('single-add-to-cart')}}" method="POST">
+													@csrf
+													<div class="quantity">
+														<!-- Input Order -->
+														<div class="input-group">
+															<div class="button minus">
+																<button type="button" class="btn btn-primary btn-number" disabled="disabled" data-type="minus" data-field="quant[1]">
+																	<i class="ti-minus"></i>
+																</button>
+															</div>
+															<input type="hidden" name="slug" value="{{$product->slug}}">
+															<input type="text" name="quant[1]" class="input-number"  data-min="1" data-max="1000" value="1">
+															<div class="button plus">
+																<button type="button" class="btn btn-primary btn-number" data-type="plus" data-field="quant[1]">
+																	<i class="ti-plus"></i>
+																</button>
+															</div>
+														</div>
+														<!--/ End Input Order -->
+													</div>
+													<div class="add-to-cart">
+														<button type="submit" class="btn">@lang('auth.Add_to_cart')</button>
+														<a href="{{route('add-to-wishlist',$product->slug)}}" class="btn min"><i class="ti-heart"></i></a>
+													</div>
+												</form>
+												{{-- <div class="default-social">
+												<!-- ShareThis BEGIN --><div class="sharethis-inline-share-buttons"></div><!-- ShareThis END -->
+												</div> --}}
+											</div>
+										</div>
+									</div>
+								</div>
+                                @else
+                                <div class="modal-body">
 									<div class="row no-gutters">
 										<div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
 											<!-- Product Slider -->
@@ -555,17 +655,18 @@
 														<!--/ End Input Order -->
 													</div>
 													<div class="add-to-cart">
-														<button type="submit" class="btn">Add to cart</button>
+														<button type="submit" class="btn">@lang('auth.Add_to_cart')</button>
 														<a href="{{route('add-to-wishlist',$product->slug)}}" class="btn min"><i class="ti-heart"></i></a>
 													</div>
 												</form>
-												<div class="default-social">
+												{{-- <div class="default-social">
 												<!-- ShareThis BEGIN --><div class="sharethis-inline-share-buttons"></div><!-- ShareThis END -->
-												</div>
+												</div> --}}
 											</div>
 										</div>
 									</div>
 								</div>
+                                @endif
 							</div>
 						</div>
 				</div>

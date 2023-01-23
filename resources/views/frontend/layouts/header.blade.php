@@ -97,7 +97,7 @@
                             <select>
                                 <option >@lang('auth.all_category')</option>
                                 @foreach(Helper::getAllCategory() as $cat)
-                                    <option>{{$cat->title}}</option>
+                                    <option>{{$cat->title_ar}}</option>
                                 @endforeach
                             </select>
                             <form method="POST" action="{{route('product.search')}}">

@@ -16,8 +16,8 @@
                     <img class="first-slide" src="{{$banner->photo}}" alt="First slide">
                     @if (app()->getLocale() == "ar")
                         <div class="carousel-caption d-none d-md-block text-right">
-                            <h1 class="wow fadeInDown">{{$banner->title}}</h1>
-                            <p>{!! html_entity_decode($banner->description) !!}</p>
+                            <h1 class="wow fadeInDown">{{$banner->title_ar}}</h1>
+                            <p>{!! html_entity_decode($banner->description_ar) !!}</p>
                             <a class="btn btn-lg ws-btn wow fadeInUpBig" href="{{route('product-grids')}}" role="button">@lang('auth.shop_now')<i class="far fa-arrow-alt-circle-right"></i></i></a>
                         </div>
                     @else
@@ -151,7 +151,7 @@
                                     @foreach($categories as $key=>$cat)
 
                                     <button class="btn" style="background:none;color:black;"data-filter=".{{$cat->id}}">
-                                        {{$cat->title}}
+                                        {{$cat->title_ar}}
                                     </button>
                                     @endforeach
                                 @endif
@@ -186,7 +186,7 @@
                                             </a>
                                             <div class="button-head">
                                                 @if (app()->getLocale() == "ar")
-                                                    <div class="product-action" style="right: auto;left:0">
+                                                    <div class="product-action" style="right: auto;left:45%">
                                                         <a data-toggle="modal" data-target="#{{$product->id}}" title="Quick View" href="#"><i class=" ti-eye"></i><span>Quick Shop</span></a>
                                                         <a title="Wishlist" href="{{route('add-to-wishlist',$product->slug)}}" ><i class=" ti-heart "></i><span>Add to Wishlist</span></a>
                                                     </div>
@@ -204,8 +204,8 @@
                                                 @endif
                                             </div>
                                         </div>
-                                        <div class="product-content">
-                                            <h3><a href="{{route('product-detail',$product->slug)}}">{{$product->title}}</a></h3>
+                                        <div class="product-content text-right">
+                                            <h3><a href="{{route('product-detail',$product->slug)}}">{{$product->title_ar}}</a></h3>
                                             <div class="product-price">
                                                 @php
                                                     $after_discount=($product->price-($product->price*$product->discount)/100);
@@ -248,9 +248,9 @@
                                     $photo=explode(',',$data->photo);
                                     @endphp
                                 <img src="{{$photo[0]}}" alt="{{$photo[0]}}">
-                                <div class="content" style="left: auto;right:0">
-                                    <p>{{$data->cat_info['title']}}</p>
-                                    <h3>{{$data->title}} <br>@lang('auth.discount')<span> {{$data->discount}}%</span></h3>
+                                <div class="content text-right" style="left: auto;right:0">
+                                    <p>{{$data->cat_info['title_ar']}}</p>
+                                    <h3>{{$data->title_ar}} <br>@lang('auth.discount')<span> {{$data->discount}}%</span></h3>
                                     <a href="{{route('product-detail',$data->slug)}}">@lang('auth.shop_now')</a>
                                 </div>
                             </div>
@@ -264,7 +264,7 @@
                                 <img src="{{$photo[0]}}" alt="{{$photo[0]}}">
                                 <div class="content">
                                     <p>{{$data->cat_info['title']}}</p>
-                                    <h3>{{$data->title}} <br>@lang('auth.discount')<span> {{$data->discount}}%</span></h3>
+                                    <h3>{{$data->title_ar}} <br>@lang('auth.discount')<span> {{$data->discount}}%</span></h3>
                                     <a href="{{route('product-detail',$data->slug)}}">@lang('auth.shop_now')</a>
                                 </div>
                             </div>
@@ -307,7 +307,7 @@
                                 </a>
                                 <div class="button-head">
                                     @if (app()->getLocale() == "ar")
-                                        <div class="product-action" style="right: auto;left:0">
+                                        <div class="product-action" style="right: auto;left:45%">
                                             <a data-toggle="modal" data-target="#{{$product->id}}" title="Quick View" href="#"><i class=" ti-eye"></i><span>Quick Shop</span></a>
                                             <a title="Wishlist" href="{{route('add-to-wishlist',$product->slug)}}" ><i class=" ti-heart "></i><span>Add to Wishlist</span></a>
                                         </div>
@@ -325,8 +325,8 @@
                                     @endif
                                 </div>
                             </div>
-                            <div class="product-content">
-                                <h3><a href="{{route('product-detail',$product->slug)}}">{{$product->title}}</a></h3>
+                            <div class="product-content text-right">
+                                <h3><a href="{{route('product-detail',$product->slug)}}">{{$product->title_ar}}</a></h3>
                                 <div class="product-price">
                                     <span class="old">${{number_format($product->price,2)}}</span>
                                     @php
@@ -390,8 +390,8 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-12 no-padding">
-                                    <div class="content">
-                                        <h4 class="title"><a href="#">{{$product->title}}</a></h4>
+                                    <div class="content text-right">
+                                        <h4 class="title"><a href="{{route('product-detail',$product->slug)}}">{{$product->title_ar}}</a></h4>
                                         <p class="price with-discount">${{number_format($product->discount,2)}}</p>
                                     </div>
                                 </div>

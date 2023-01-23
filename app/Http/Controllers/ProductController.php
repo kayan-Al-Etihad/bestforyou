@@ -44,11 +44,15 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+
         // return $request->all();
         $this->validate($request,[
             'title'=>'string|required',
+            'title_ar'=>'string|required',
             'summary'=>'string|required',
+            'summary_ar'=>'string|required',
             'description'=>'string|nullable',
+            'description_ar'=>'string|nullable',
             'photo'=>'string|required',
             'size'=>'nullable',
             'stock'=>"required|numeric",
@@ -61,8 +65,8 @@ class ProductController extends Controller
             'price'=>'required|numeric',
             'discount'=>'nullable|numeric'
         ]);
-
-        $data=$request->all();
+        // dd(Request()->all());
+        $data=Request()->all();
         $slug=Str::slug($request->title);
         $count=Product::where('slug',$slug)->count();
         if($count>0){
@@ -128,22 +132,27 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+
         $product=Product::findOrFail($id);
         $this->validate($request,[
-            'title'=>'string|required',
-            'summary'=>'string|required',
-            'description'=>'string|nullable',
-            'photo'=>'string|required',
-            'size'=>'nullable',
-            'stock'=>"required|numeric",
-            'cat_id'=>'required|exists:categories,id',
-            'child_cat_id'=>'nullable|exists:categories,id',
-            'is_featured'=>'sometimes|in:1',
-            'brand_id'=>'nullable|exists:brands,id',
-            'status'=>'required|in:active,inactive',
-            'condition'=>'required|in:default,new,hot',
-            'price'=>'required|numeric',
-            'discount'=>'nullable|numeric'
+            'title' => 'string|required',
+            'title_ar' => 'string|required',
+            'summary' => 'string|required',
+            'summary_ar' => 'string|required',
+            'description' => 'string|nullable',
+            'description_ar' => 'string|nullable',
+            'photo' => 'string|required',
+            'size' => 'nullable',
+            'stock' => "required|numeric",
+            'cat_id' => 'required|exists:categories,id',
+            'child_cat_id' => 'nullable|exists:categories,id',
+            'is_featured' => 'sometimes|in:1',
+            'brand_id' => 'nullable|exists:brands,id',
+            'status' => 'required|in:active,inactive',
+            'condition' => 'required|in:default,new,hot',
+            'price' => 'required|numeric',
+            'discount' => 'nullable|numeric'
         ]);
 
         $data=$request->all();
@@ -176,7 +185,7 @@ class ProductController extends Controller
     {
         $product=Product::findOrFail($id);
         $status=$product->delete();
-        
+
         if($status){
             request()->session()->flash('success','Product successfully deleted');
         }
