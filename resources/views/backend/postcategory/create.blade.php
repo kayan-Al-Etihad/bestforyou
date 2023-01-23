@@ -9,7 +9,7 @@
         {{csrf_field()}}
         <div class="form-group">
           <label for="inputTitle" class="col-form-label">Title</label>
-          <input id="inputTitle" type="text" name="title" placeholder="Enter title"  value="{{old('title')}}" class="form-control">
+          <input required id="inputTitle" type="text" name="title" placeholder="Enter title"  value="{{old('title')}}" class="form-control">
           @error('title')
           <span class="text-danger">{{$message}}</span>
           @enderror
@@ -17,7 +17,7 @@
 
         <div class="form-group">
           <label for="status" class="col-form-label">Status</label>
-          <select name="status" class="form-control">
+          <select required name="status" class="form-control">
               <option value="active">Active</option>
               <option value="inactive">Inactive</option>
           </select>

@@ -11,15 +11,15 @@
       @method('PATCH')
       <div class="form-group">
         <label for="name">By:</label>
-        <input type="text" disabled class="form-control" value="{{$comment->user_info->name}}">
+        <input required type="text" disabled class="form-control" value="{{$comment->user_info->name}}">
       </div>
       <div class="form-group">
         <label for="comment">comment</label>
-      <textarea name="comment" id="" cols="20" rows="10" class="form-control">{{$comment->comment}}</textarea>
+      <textarea required name="comment" id="" cols="20" rows="10" class="form-control">{{$comment->comment}}</textarea>
       </div>
       <div class="form-group">
         <label for="status">Status :</label>
-        <select name="status" id="" class="form-control">
+        <select required name="status" id="" class="form-control">
           <option value="">--Select Status--</option>
           <option value="active" {{(($comment->status=='active')? 'selected' : '')}}>Active</option>
           <option value="inactive" {{(($comment->status=='inactive')? 'selected' : '')}}>Inactive</option>

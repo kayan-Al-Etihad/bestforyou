@@ -11,7 +11,7 @@
       @method('PATCH')
       <div class="form-group">
         <label for="name">Review By:</label>
-        <input type="text" disabled class="form-control" value="{{$review->user_info->name}}">
+        <input required type="text" disabled class="form-control" value="{{$review->user_info->name}}">
       </div>
       <div class="form-group">
         <label for="review">Review</label>
@@ -19,7 +19,7 @@
       </div>
       <div class="form-group">
         <label for="status">Status :</label>
-        <select name="status" id="" class="form-control">
+        <select required name="status" id="" class="form-control">
           <option value="">--Select Status--</option>
           <option value="active" {{(($review->status=='active')? 'selected' : '')}}>Active</option>
           <option value="inactive" {{(($review->status=='inactive')? 'selected' : '')}}>Inactive</option>

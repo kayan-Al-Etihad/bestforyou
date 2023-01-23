@@ -36,7 +36,7 @@
                                 @endauth
                                 @if (app()->getLocale() == 'ar')
                                 <li class="lang">
-                                    <a id="lang" href="/lang/ar">AR</a>
+                                    <a id="lang" href="#">AR</a>
                                         <ul class="lang dropdown border-0 shadow">
                                             <li>
                                                 <a href="/lang/en">EN</a>
@@ -46,7 +46,7 @@
                                 </li>
                                 @else
                                 <li class="lang">
-                                    <a id="lang" href="/lang/en">En</a>
+                                    <a id="lang" href="#">En</a>
                                         <ul class="lang dropdown border-0 shadow">
                                             <li>
                                                 <a href="/lang/ar">AR</a>

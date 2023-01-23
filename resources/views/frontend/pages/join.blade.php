@@ -37,7 +37,7 @@
 							<div class="form-main">
 								<div class="title">
 								</div>
-								<form enctype="multipart/form-data" method="post" class="form border p-5" action="{{route('join.store')}}" id="joinForm" novalidate="novalidate">
+								<form method="post" class="form border p-5" action="{{route('join.store')}}" id="joinForm" novalidate="novalidate" enctype="multipart/form-data" >
 									@csrf
 									<div class="row text-right">
                                         <div class="col-lg-6 col-12">

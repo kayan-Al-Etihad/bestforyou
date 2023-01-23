@@ -48,7 +48,15 @@ class JoinFormController extends Controller
             'phone'=>'required|min:10',
             'cv'=>'required',
         ]);
-        $data=$request->all();
+        $data = $request->all();
+        if($request->hasFile('cv')){
+            $cv = $request->file('cv');
+            $cv_name = $cv->getClientOriginalName();
+            $filepath = public_path('images/');
+            move_uploaded_file($_FILES['cv']['tmp_name'], $filepath.$cv_name);
+            $path = $cv_name;
+            $data['cv'] = $path;
+        }
         $join=JoinForm::create($data);
         // dd($join);
         return redirect()->back()->with('success','Your Application have been submitted successfully');

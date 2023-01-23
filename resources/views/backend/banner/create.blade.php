@@ -27,7 +27,7 @@
 
         <div class="form-group">
           <label for="inputDesc" class="col-form-label">Description</label>
-          <textarea class="form-control" id="description" name="description">{{old('description')}}</textarea>
+          <textarea required class="form-control" id="description" name="description">{{old('description')}}</textarea>
           @error('description')
           <span class="text-danger">{{$message}}</span>
           @enderror
@@ -35,7 +35,7 @@
 
         <div class="form-group">
           <label for="inputDesc" class="col-form-label">Arabic Description</label>
-          <textarea class="form-control" id="description_ar" name="description_ar">{{old('description_ar')}}</textarea>
+          <textarea required class="form-control" id="description_ar" name="description_ar">{{old('description_ar')}}</textarea>
           @error('description_ar')
           <span class="text-danger">{{$message}}</span>
           @enderror
