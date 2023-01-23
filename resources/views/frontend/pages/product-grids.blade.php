@@ -13,14 +13,14 @@
                             <div class="bread-inner text-right" dir="rtl">
                                 <ul class="bread-list text-right" dir="rtl">
                                     <li><a href="{{route('home')}}">@lang('auth.home')<i class="ti-arrow-left"></i></a></li>
-                                    <li class="active"><a href="/product-grids">@lang('auth.product')</a></li>
+                                    <li class="active"><a href="/product-grids">@lang('auth.products')</a></li>
                                 </ul>
                             </div>
                                 @else
                                 <div class="bread-inner text-right" dir="rtl">
                                 <ul class="bread-list">
                                     <li><a href="{{route('home')}}">@lang('auth.home')<i class="ti-arrow-left"></i></a></li>
-                                    <li class="active"><a href="/product-grids">@lang('auth.product')</a></li>
+                                    <li class="active"><a href="/product-grids">@lang('auth.products')</a></li>
                                 </ul>
                                 </div>
                             @endif
@@ -102,8 +102,18 @@
                                             </div>
                                         </div>
                                         <ul class="view-mode">
-                                            <li class="active"><a href="{{route('product-grid', $category->title)}}"><i class="fa fa-th-large"></i></a></li>
-                                            <li><a href="{{route('product-list', $category->title)}}"><i class="fa fa-th-list"></i></a></li>
+                                            @if (url()->current() == "http://127.0.0.1:8000/product-grids")
+                                            <li class="active"><a href="/product-grids"><i class="fa fa-th-large"></i></a></li>
+                                            <li><a href="/product-lists"><i class="fa fa-th-list"></i></a></li>
+                                            @else
+                                            @if($category->is_parent == 0)
+                                                <li><a href="{{route('product-sub-grid', [ $category->slug,$sub->slug])}}"><i class="fa fa-th-large"></i></a></li>
+                                                <li class="active"><a href="{{route('product-sub-list', [ $category->slug,$sub->slug])}}"><i class="fa fa-th-list"></i></a></li>
+                                            @else
+                                                <li><a href="{{route('product-grid', $category->slug)}}"><i class="fa fa-th-large"></i></a></li>
+                                                <li class="active"><a href="{{route('product-list', $category->slug)}}"><i class="fa fa-th-list"></i></a></li>
+                                            @endif
+                                            @endif
                                         </ul>
                                     </div>
                                     <!--/ End Shop Top -->
@@ -382,8 +392,18 @@
                                             </div>
                                         </div>
                                         <ul class="view-mode">
-                                            <li class="active"><a href="{{route('product-grid', $category->title)}}"><i class="fa fa-th-large"></i></a></li>
-                                            <li><a href="{{route('product-list', $category->title)}}"><i class="fa fa-th-list"></i></a></li>
+                                            @if (url()->current() == "http://127.0.0.1:8000/product-grids")
+                                            <li class="active"><a href="/product-grids"><i class="fa fa-th-large"></i></a></li>
+                                            <li><a href="/product-lists"><i class="fa fa-th-list"></i></a></li>
+                                            @else
+                                            @if($category->is_parent == 0)
+                                                <li><a href="{{route('product-sub-grid', [ $category->slug,$sub->slug])}}"><i class="fa fa-th-large"></i></a></li>
+                                                <li class="active"><a href="{{route('product-sub-list', [ $category->slug,$sub->slug])}}"><i class="fa fa-th-list"></i></a></li>
+                                            @else
+                                                <li><a href="{{route('product-grid', $category->slug)}}"><i class="fa fa-th-large"></i></a></li>
+                                                <li class="active"><a href="{{route('product-list', $category->slug)}}"><i class="fa fa-th-list"></i></a></li>
+                                            @endif
+                                            @endif
                                         </ul>
                                     </div>
                                     <!--/ End Shop Top -->
