@@ -50,7 +50,7 @@
                     <td>{{$message->email}}</td>
                     <td>{{$message->phone}}</td>
                     <td>{{$message->city}}</td>
-                    <td><a href="{{ asset('cv') }}/{{$message->cv}}" download="{{$message->cv}}">{{$message->cv}}</a></td>
+                    <td><a href="{{ asset('images') }}/{{$message->cv}}" download="{{$message->cv}}">{{$message->cv}}</a></td>
                     <td>{{$message->created_at}}</td>
                     <td>
                         <form method="POST" action="{{route('join.destroy',$message->id)}}">

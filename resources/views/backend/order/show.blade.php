@@ -4,8 +4,8 @@
 
 @section('main-content')
 <div class="card">
-<h5 class="card-header">Order       <a href="{{route('order.pdf',$order->id)}}" class=" btn btn-sm btn-primary shadow-sm float-right"><i class="fas fa-download fa-sm text-white-50"></i> Generate PDF</a>
-  </h5>
+{{-- <h5 class="card-header">Order       <a href="{{route('order.pdf',$order->id)}}" class=" btn btn-sm btn-primary shadow-sm float-right"><i class="fas fa-download fa-sm text-white-50"></i> Generate PDF</a>
+  </h5> --}}
   <div class="card-body">
     @if($order)
     <table class="table table-striped table-hover">
@@ -16,7 +16,6 @@
             <th>Name</th>
             <th>Email</th>
             <th>Quantity</th>
-            <th>Charge</th>
             <th>Total Amount</th>
             <th>Status</th>
             <th>Action</th>
@@ -29,7 +28,6 @@
             <td>{{$order->first_name}} {{$order->last_name}}</td>
             <td>{{$order->email}}</td>
             <td>{{$order->quantity}}</td>
-            <td>${{$order->shipping->price}}</td>
             <td>${{number_format($order->total_amount,2)}}</td>
             <td>
                 @if($order->status=='new')
@@ -77,10 +75,6 @@
                     <tr>
                         <td>Order Status</td>
                         <td> : {{$order->status}}</td>
-                    </tr>
-                    <tr>
-                        <td>Shipping Charge</td>
-                        <td> : $ {{$order->shipping->price}}</td>
                     </tr>
                     <tr>
                       <td>Coupon</td>
