@@ -58,6 +58,8 @@ return [
     'price' => 'Best Price',
     'price_sub' => 'Guaranteed price',
     'Add_to_cart' => 'Add to cart',
+    'wishlist' => 'wishlist',
+    'no_wishlist' => 'There are no any wishlist available',
 
     // about page localization
     'about_title' => 'Welcome To <span>BestForYou</span>',
@@ -81,7 +83,7 @@ return [
     'Size' => 'Size',
     'Quantity' => 'Quantity',
     'sub_category' => 'sub category',
-    'Stock' => 'Stock',
+    'Stock' => 'In Stock',
     'Description' => 'Description',
     'Reviews' => 'Reviews',
     'add_a_review' => 'Add A Review',
