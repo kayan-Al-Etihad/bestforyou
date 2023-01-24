@@ -96,8 +96,8 @@ Route::post('/subscribe','FrontendController@subscribe')->name('subscribe');
 Route::resource('/review','ProductReviewController');
 Route::post('product/{slug}/review','ProductReviewController@store')->name('review.store');
 
-// Post Comment
-Route::post('post/{slug}/comment','PostCommentController@store')->name('post-comment.store');
+// // Post Comment
+// Route::post('post/{slug}/comment','PostCommentController@store')->name('post-comment.store');
 Route::resource('/comment','PostCommentController');
 // Coupon
 Route::post('/coupon-store','CouponController@couponStore')->name('coupon-store');
@@ -134,8 +134,8 @@ Route::group(['prefix'=>'/admin','middleware'=>['auth','admin']],function(){
     Route::resource('/post-category','PostCategoryController');
     // Post tag
     Route::resource('/post-tag','PostTagController');
-    // Post
-    Route::resource('/post','PostController');
+    // // Post
+    // Route::resource('/post','PostController');
     // Message
     Route::resource('/message','MessageController');
     Route::get('/message/five','MessageController@messageFive')->name('messages.five');
@@ -184,11 +184,11 @@ Route::group(['prefix'=>'/user','middleware'=>['user']],function(){
     Route::get('/user-review/edit/{id}','HomeController@productReviewEdit')->name('user.productreview.edit');
     Route::patch('/user-review/update/{id}','HomeController@productReviewUpdate')->name('user.productreview.update');
 
-    // Post comment
-    Route::get('user-post/comment','HomeController@userComment')->name('user.post-comment.index');
-    Route::delete('user-post/comment/delete/{id}','HomeController@userCommentDelete')->name('user.post-comment.delete');
-    Route::get('user-post/comment/edit/{id}','HomeController@userCommentEdit')->name('user.post-comment.edit');
-    Route::patch('user-post/comment/udpate/{id}','HomeController@userCommentUpdate')->name('user.post-comment.update');
+    // // Post comment
+    // Route::get('user-post/comment','HomeController@userComment')->name('user.post-comment.index');
+    // Route::delete('user-post/comment/delete/{id}','HomeController@userCommentDelete')->name('user.post-comment.delete');
+    // Route::get('user-post/comment/edit/{id}','HomeController@userCommentEdit')->name('user.post-comment.edit');
+    // Route::patch('user-post/comment/udpate/{id}','HomeController@userCommentUpdate')->name('user.post-comment.update');
 
     // Password Change
     Route::get('change-password', 'HomeController@changePassword')->name('user.change.password.form');

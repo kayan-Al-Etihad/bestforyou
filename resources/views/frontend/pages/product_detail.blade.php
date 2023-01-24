@@ -26,16 +26,16 @@
                             <div class="bread-inner text-right" dir="rtl">
                                 <ul class="bread-list">
                                     <li><a href="{{ route('home') }}">@lang('auth.home')<i class="ti-arrow-left"></i></a></li>
-                                    <li class="active"><a href="{{ route('product-grids') }}">@lang('auth.products')</a></li>
-                                    <li><a href="{{ route('home') }}">{{$product_detail->title}}<i class="ti-arrow-left"></i></a></li>
+                                    <li class="active"><a href="{{ route('product-grids') }}">@lang('auth.products')<i class="ti-arrow-right"></i></a></li>
+                                    <li><a href="#">{{$product_detail->title}}<i class="ti-arrow-left"></i></a></li>
                                 </ul>
                             </div>
                         @else
                             <div class="bread-inner">
                                 <ul class="bread-list">
                                     <li><a href="{{ route('home') }}">@lang('auth.home')<i class="ti-arrow-right"></i></a></li>
-                                    <li class="active"><a href="{{ route('product-grids') }}">@lang('auth.products')</a></li>
-                                    <li><a href="{{ route('home') }}">{{$product_detail->title}}<i class="ti-arrow-right"></i></a></li>
+                                    <li class="active"><a href="{{ route('product-grids') }}">@lang('auth.products')<i class="ti-arrow-right"></i></a></li>
+                                    <li><a href="#">{{$product_detail->title}}</a></li>
                                 </ul>
                             </div>
                         @endif
@@ -323,21 +323,6 @@
                                                 <!-- Description -->
                                                 <div class="short">
                                                     <h4>{{$product_detail->title}}</h4>
-                                                    <div class="rating-main">
-                                                        <ul class="rating">
-                                                            @php
-                                                                $rate=ceil($product_detail->getReview->avg('rate'))
-                                                            @endphp
-                                                                @for($i=1; $i<=5; $i++)
-                                                                    @if($rate>=$i)
-                                                                        <li><i class="fa fa-star"></i></li>
-                                                                    @else
-                                                                        <li><i class="fa fa-star-o"></i></li>
-                                                                    @endif
-                                                                @endfor
-                                                        </ul>
-                                                        <a href="#" class="total-review">({{$product_detail['getReview']->count()}}) Review</a>
-                                                    </div>
                                                     @php
                                                         $after_discount=($product_detail->price-(($product_detail->price*$product_detail->discount)/100));
                                                     @endphp
@@ -608,17 +593,29 @@
                                             @endif
                                         </div>
                                     </div>
-                                    <div class="product-content text-right">
-                                        <h3><a href="{{route('product-detail',$data->slug)}}">{{$data->title_ar}}</a></h3>
-                                        <div class="product-price">
-                                            @php
-                                                $after_discount=($data->price-(($data->discount*$data->price)/100));
-                                            @endphp
-                                            <span class="old">${{number_format($data->price,2)}}</span>
-                                            <span>${{number_format($after_discount,2)}}</span>
+                                    @if (app()->getLocale() == "ar")
+                                        <div class="product-content text-right">
+                                            <h3><a href="{{route('product-detail',$data->slug)}}">{{$data->title_ar}}</a></h3>
+                                            <div class="product-price">
+                                                @php
+                                                    $after_discount=($data->price-(($data->discount*$data->price)/100));
+                                                @endphp
+                                                <span class="old">${{number_format($data->price,2)}}</span>
+                                                <span>${{number_format($after_discount,2)}}</span>
+                                            </div>
                                         </div>
-
-                                    </div>
+                                        @else
+                                        <div class="product-content">
+                                            <h3><a href="{{route('product-detail',$data->slug)}}">{{$data->title}}</a></h3>
+                                            <div class="product-price">
+                                                @php
+                                                    $after_discount=($data->price-(($data->discount*$data->price)/100));
+                                                @endphp
+                                                <span class="old">${{number_format($data->price,2)}}</span>
+                                                <span>${{number_format($after_discount,2)}}</span>
+                                            </div>
+                                        </div>
+                                    @endif
                                 </div>
                                 <!-- End Single Product -->
 

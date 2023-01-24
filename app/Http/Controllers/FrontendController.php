@@ -148,8 +148,9 @@ class FrontendController extends Controller
         }
         // Sort by name , price, category
 
-
-        return view('frontend.pages.product-lists')->with('products',$products)->with('recent_products',$recent_products)->with('catego',$catego);
+        $category = Category::all()->where("id", "==", 2)->first();
+        $sub=Category::all()->where("parent_id", "==", $category->id)->first();
+        return view('frontend.pages.product-lists')->with('products',$products)->with('recent_products',$recent_products)->with('category',$category)->with('sub',$sub);
     }
     public function productFilter(Request $request){
             $data= $request->all();
