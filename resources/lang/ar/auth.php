@@ -80,7 +80,6 @@ return [
     // product single page localization
     'Size' => 'الاحجام',
     'Quantity' => 'العدد',
-    'Stock' => 'المخزون',
     'sub_category' => 'الصنف الفرعي',
     'Description' => 'وصف',
     'Reviews' => 'التعليقات',
@@ -170,4 +169,6 @@ return [
     'copyright' => "حقوق النشر",
     'company_name' => "كيان الاتحاد",
     'right' => "كل الحقوق محفوظة.",
+    'wishlist' => 'المفضلة',
+    'no_wishlist' => 'لا توجد أي قائمة أمنيات متاحة',
 ];
