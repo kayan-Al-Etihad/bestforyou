@@ -6,7 +6,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>E-SHOP || DASHBOARD</title>
+    <title>Best For You Dashboard</title>
   <!-- Favicon -->
 @php
 $settings=DB::table('settings')->get();

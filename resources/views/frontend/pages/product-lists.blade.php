@@ -1,64 +1,87 @@
 @extends('frontend.layouts.master')
 
-@section('title','E-SHOP || PRODUCT PAGE')
+
+@section('title','Best For You')
 
 @section('main-content')
 
-		<!-- Breadcrumbs -->
-		<div class="breadcrumbs">
-			<div class="container">
-				<div class="row">
-                    <div class="col-12">
-                        @if (url()->current() == "http://127.0.0.1:8000/product-lists")
-                            @if (app()->getLocale() == "ar")
-                            <div class="bread-inner text-right" dir="rtl">
-                                <ul class="bread-list text-right" dir="rtl">
-                                    <li><a href="{{route('home')}}">@lang('auth.home')<i class="ti-arrow-left"></i></a></li>
-                                    <li class="active"><a href="/product-grids">@lang('auth.products')</a></li>
-                                </ul>
-                            </div>
-                                @else
-                                <div class="bread-inner text-right" dir="rtl">
-                                <ul class="bread-list">
-                                    <li><a href="{{route('home')}}">@lang('auth.home')<i class="ti-arrow-left"></i></a></li>
-                                    <li class="active"><a href="/product-grids">@lang('auth.products')</a></li>
-                                </ul>
-                                </div>
-                            @endif
-                            @else
-                            @if (app()->getLocale() == "ar")
-                                <div class="bread-inner text-right" dir="rtl">
-                                    <ul class="bread-list">
-                                        @if($category->is_parent == 1)
-                                        <li><a href="{{route('home')}}">@lang('auth.home')<i class="ti-arrow-left"></i></a></li>
-                                        <li class="active"><a href="{{route('product-grid', $category->slug)}}">{{ $category->title_ar }}</a></li>
-                                        @else
-                                        <li><a href="{{route('home')}}">@lang('auth.home')<i class="ti-arrow-left"></i></a></li>
-                                        <li class="active"><a href="{{route('product-grid', $category->slug)}}">{{ $category->title_ar }}</a><i class="ti-arrow-left"></i></li>
-                                        <li class="active"><a href="javascript:void(0);">{{ $sub->title_ar }}</a></li>
-                                        @endif
-                                    </ul>
-                                </div>
-                            @else
-                                <div class="bread-inner">
-                                    <ul class="bread-list">
-                                        @if($category->is_parent == 1)
-                                        <li><a href="{{route('home')}}">@lang('auth.home')<i class="ti-arrow-right"></i></a></li>
-                                        <li class="active"><a href="{{route('product-grid', $category->slug)}}">{{ $category->title }}</a></li>
-                                        @else
-                                        <li><a href="{{route('home')}}">@lang('auth.home')<i class="ti-arrow-right"></i></a></li>
-                                        <li class="active"><a href="{{route('product-grid', $category->slug)}}">{{ $category->title }}</a><i class="ti-arrow-right"></i></li>
-                                        <li class="active"><a href="javascript:void(0);">{{ $sub->title }}</a></li>
-                                        @endif
-                                    </ul>
-                                </div>
-                            @endif
+<!-- Breadcrumbs -->
+<div class="breadcrumbs">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                @if (Request::path() == "product-lists")
+                @if (app()->getLocale() == "ar")
+                <div class="bread-inner text-right" dir="rtl">
+                    <ul class="bread-list text-right" dir="rtl">
+                        <li><a href="{{route('home')}}">@lang('auth.home')<i class="ti-arrow-left"></i></a></li>
+                        <li class="active"><a href="/product-grids">@lang('auth.products')</a></li>
+                    </ul>
+                </div>
+                @else
+                <div class="bread-inner text-left">
+                    <ul class="bread-list">
+                        <li><a href="{{route('home')}}">@lang('auth.home')<i class="ti-arrow-right"></i></a></li>
+                        <li class="active"><a href="/product-grids">@lang('auth.products')</a></li>
+                    </ul>
+                </div>
+                @endif
+                @endif
+                @if ($category != null)
+                    @if (Request::path() == "product-list/$category->slug")
+                        @if (app()->getLocale() == "ar")
+                        <div class="bread-inner text-right" dir="rtl">
+                            <ul class="bread-list">
+                                <li><a href="{{route('home')}}">@lang('auth.home')<i class="ti-arrow-left"></i></a></li>
+                                <li class="active"><a href="{{route('product-grid', $category->slug)}}">{{
+                                        $category->title_ar}}</a></li>
+                            </ul>
+                        </div>
+                        @else
+                        <div class="bread-inner text-left">
+                            <ul class="bread-list">
+                                <li><a href="{{route('home')}}">@lang('auth.home')<i class="ti-arrow-right"></i></a></li>
+                                <li class="active"><a href="{{route('product-grid', $category->slug)}}">{{
+                                        $category->title}}</a></li>
+                            </ul>
+                        </div>
                         @endif
-                    </div>
-				</div>
-			</div>
-		</div>
-		<!-- End Breadcrumbs -->
+                    @endif
+                @endif
+
+                @php
+                if($category != null){
+                    $sub = DB::table('categories')->where('parent_id', $category->id)->get()->first();
+                }
+                @endphp
+                @if ($category != null && $sub != null)
+                    @if (Request::path() == "product-sub-list/$category->slug/$sub->slug")
+                        @if (app()->getLocale() == "ar")
+                        <div class="bread-inner text-right" dir="rtl">
+                            <ul class="bread-list">
+                                <li><a href="{{route('home')}}">@lang('auth.home')<i class="ti-arrow-left"></i></a></li>
+                                <li class="active"><a href="{{route('product-grid', $category->slug)}}">{{
+                                        $category->title_ar}}<i class="ti-arrow-left"></i></a></li>
+                                <li class="active"><a href="#">{{ $sub->title_ar}}</a></li>
+                            </ul>
+                        </div>
+                        @else
+                        <div class="bread-inner text-left">
+                            <ul class="bread-list">
+                                <li><a href="{{route('home')}}">@lang('auth.home')<i class="ti-arrow-right"></i></a></li>
+                                <li class="active"><a href="{{route('product-grid', $category->slug)}}">{{ $category->title}}<i
+                                            class="ti-arrow-right"></i></a></li>
+                                <li class="active"><a href="#">{{ $sub->title}}</a></li>
+                            </ul>
+                        </div>
+                        @endif
+                    @endif
+                @endif
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Breadcrumbs -->
 		<form action="{{route('shop.filter')}}" method="POST">
 		@csrf
 			<!-- Product Style 1 -->
@@ -188,18 +211,32 @@
                                             </div>
                                         </div>
                                         <ul class="view-mode">
-                                                @if (url()->current() == "http://127.0.0.1:8000/product-lists")
-                                                <li><a href="/product-grids"><i class="fa fa-th-large"></i></a></li>
-                                                <li class="active"><a href="/product-lists"><i class="fa fa-th-list"></i></a></li>
-                                                @else
-                                                @if($category->is_parent == 0)
-                                                    <li><a href="{{route('product-sub-grid', [ $category->slug,$sub->slug])}}"><i class="fa fa-th-large"></i></a></li>
-                                                    <li class="active"><a href="{{route('product-sub-list', [ $category->slug,$sub->slug])}}"><i class="fa fa-th-list"></i></a></li>
-                                                @else
-                                                    <li><a href="{{route('product-grid', $category->slug)}}"><i class="fa fa-th-large"></i></a></li>
-                                                    <li class="active"><a href="{{route('product-list', $category->slug)}}"><i class="fa fa-th-list"></i></a></li>
+                                            @if (Request::path() == "product-lists")
+                                            <li><a href="/product-grids"><i class="fa fa-th-large"></i></a></li>
+                                            <li class="active"><a href="/product-lists"><i class="fa fa-th-list"></i></a></li>
+                                            @endif
+                                            @if ($category != null)
+                                                @if (Request::path() == "product-list/$category->slug")
+                                                <li><a href="{{ route('product-grid',$category->slug) }}"><i
+                                                            class="fa fa-th-large"></i></a></li>
+                                                <li class="active"><a href="{{ route('product-list',$category->slug) }}"><i
+                                                            class="fa fa-th-list"></i></a></li>
                                                 @endif
+                                            @endif
+                                            @php
+                                            if($category != null){
+                                                $sub = DB::table('categories')->where('parent_id', $category->id)->get()->first();
+                                            }
+                                            @endphp
+                                            @if ($category != null && $sub != null)
+                                                @if (Request::path() == "product-sub-list/$category->slug/$sub->slug")
+                                                <li><a href="{{ route('product-sub-list',[$category->slug,$sub->slug]) }}"><i
+                                                            class="fa fa-th-large"></i></a></li>
+                                                <li class="active"><a
+                                                        href="{{ route('product-sub-list',[$category->slug,$sub->slug]) }}"><i
+                                                            class="fa fa-th-list"></i></a></li>
                                                 @endif
+                                            @endif
                                         </ul>
                                     </div>
                                     <!--/ End Shop Top -->
@@ -397,19 +434,33 @@
                                                 </div>
                                             </div>
                                             <ul class="view-mode">
-                                                @if (url()->current() == "http://127.0.0.1:8000/product-lists")
+                                                @if (Request::path() == "product-lists")
                                                 <li><a href="/product-grids"><i class="fa fa-th-large"></i></a></li>
                                                 <li class="active"><a href="/product-lists"><i class="fa fa-th-list"></i></a></li>
-                                                @else
-                                                @if($category->is_parent == 0)
-                                                    <li><a href="{{route('product-sub-grid', [ $category->slug,$sub->slug])}}"><i class="fa fa-th-large"></i></a></li>
-                                                    <li class="active"><a href="{{route('product-sub-list', [ $category->slug,$sub->slug])}}"><i class="fa fa-th-list"></i></a></li>
-                                                @else
-                                                    <li><a href="{{route('product-grid', $category->slug)}}"><i class="fa fa-th-large"></i></a></li>
-                                                    <li class="active"><a href="{{route('product-list', $category->slug)}}"><i class="fa fa-th-list"></i></a></li>
                                                 @endif
+                                                @if ($category != null)
+                                                    @if (Request::path() == "product-list/$category->slug")
+                                                    <li><a href="{{ route('product-grid',$category->slug) }}"><i
+                                                                class="fa fa-th-large"></i></a></li>
+                                                    <li class="active"><a href="{{ route('product-list',$category->slug) }}"><i
+                                                                class="fa fa-th-list"></i></a></li>
+                                                    @endif
                                                 @endif
-                                        </ul>
+                                                @php
+                                                if($category != null){
+                                                    $sub = DB::table('categories')->where('parent_id', $category->id)->get()->first();
+                                                }
+                                                @endphp
+                                                @if ($category != null && $sub != null)
+                                                    @if (Request::path() == "product-sub-list/$category->slug/$sub->slug")
+                                                    <li><a href="{{ route('product-sub-list',[$category->slug,$sub->slug]) }}"><i
+                                                                class="fa fa-th-large"></i></a></li>
+                                                    <li class="active"><a
+                                                            href="{{ route('product-sub-list',[$category->slug,$sub->slug]) }}"><i
+                                                                class="fa fa-th-list"></i></a></li>
+                                                    @endif
+                                                @endif
+                                            </ul>
                                         </div>
                                         <!--/ End Shop Top -->
                                     </div>
@@ -477,213 +528,237 @@
 			</section>
 			<!--/ End Product Style 1  -->
 		</form>
-		<!-- Modal -->
-		@if($products)
-			@foreach($products as $key=>$product)
-				<div class="modal fade" id="{{$product->id}}" tabindex="-1" role="dialog">
-						<div class="modal-dialog" role="document">
-							<div class="modal-content">
-								<div class="modal-header">
-									<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="ti-close" aria-hidden="true"></span></button>
-								</div>
-                                @if (app()->getLocale() == "ar")
-								<div class="modal-body text-right" dir="rtl">
-									<div class="row no-gutters">
-										<div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
-											<!-- Product Slider -->
-												<div class="product-gallery">
-													<div class="quickview-slider-active">
-														@php
-															$photo=explode(',',$product->photo);
-														// dd($photo);
-														@endphp
-														@foreach($photo as $data)
-															<div class="single-slider">
-																<img src="{{$data}}" alt="{{$data}}">
-															</div>
-														@endforeach
-													</div>
-												</div>
-											<!-- End Product slider -->
-										</div>
-										<div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
-											<div class="quickview-content">
-												<h2>{{$product->title_ar}}</h2>
-												<div class="quickview-ratting-review">
-													<div class="quickview-stock">
-														@if($product->stock >0)
-														<span><i class="fa fa-check-circle-o"></i> {{$product->stock}} في المخزن</span>
-														@else
-														<span><i class="fa fa-times-circle-o text-danger"></i> {{$product->stock}} غير متوفر</span>
-														@endif
-													</div>
-												</div>
-												@php
-													$after_discount=($product->price-($product->price*$product->discount)/100);
-												@endphp
-												<h3><small><del class="text-muted">${{number_format($product->price,2)}}</del></small>    EGP{{number_format($after_discount,2)}}  </h3>
-												<div class="quickview-peragraph">
-													<p>{!! html_entity_decode($product->summary_ar) !!}</p>
-												</div>
-												@if($product->size)
-													<div class="size">
-														<h4>@lang('auth.Size')</h4>
-														<ul>
-															@php
-																$sizes=explode(',',$product->size);
-																// dd($sizes);
-															@endphp
-															@foreach($sizes as $size)
-															<li><a href="#" class="one">{{$size}}</a></li>
-															@endforeach
-														</ul>
-													</div>
-												@endif
-												<form action="{{route('single-add-to-cart')}}" method="POST">
-													@csrf
-													<div class="quantity">
-														<!-- Input Order -->
-														<div class="input-group">
-															<div class="button minus">
-																<button type="button" class="btn btn-primary btn-number" disabled="disabled" data-type="minus" data-field="quant[1]">
-																	<i class="ti-minus"></i>
-																</button>
-															</div>
-															<input type="hidden" name="slug" value="{{$product->slug}}">
-															<input type="text" name="quant[1]" class="input-number"  data-min="1" data-max="1000" value="1">
-															<div class="button plus">
-																<button type="button" class="btn btn-primary btn-number" data-type="plus" data-field="quant[1]">
-																	<i class="ti-plus"></i>
-																</button>
-															</div>
-														</div>
-														<!--/ End Input Order -->
-													</div>
-													<div class="add-to-cart">
-														<button type="submit" class="btn">@lang('auth.Add_to_cart')</button>
-														<a href="{{route('add-to-wishlist',$product->slug)}}" class="btn min"><i class="ti-heart"></i></a>
-													</div>
-												</form>
-												{{-- <div class="default-social">
-												<!-- ShareThis BEGIN --><div class="sharethis-inline-share-buttons"></div><!-- ShareThis END -->
-												</div> --}}
-											</div>
-										</div>
-									</div>
-								</div>
-                                @else
-                                <div class="modal-body">
-									<div class="row no-gutters">
-										<div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
-											<!-- Product Slider -->
-												<div class="product-gallery">
-													<div class="quickview-slider-active">
-														@php
-															$photo=explode(',',$product->photo);
-														// dd($photo);
-														@endphp
-														@foreach($photo as $data)
-															<div class="single-slider">
-																<img src="{{$data}}" alt="{{$data}}">
-															</div>
-														@endforeach
-													</div>
-												</div>
-											<!-- End Product slider -->
-										</div>
-										<div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
-											<div class="quickview-content">
-												<h2>{{$product->title}}</h2>
-												<div class="quickview-ratting-review">
-													<div class="quickview-ratting-wrap">
-														<div class="quickview-ratting">
-															{{-- <i class="yellow fa fa-star"></i>
-															<i class="yellow fa fa-star"></i>
-															<i class="yellow fa fa-star"></i>
-															<i class="yellow fa fa-star"></i>
-															<i class="fa fa-star"></i> --}}
-															@php
-																$rate=DB::table('product_reviews')->where('product_id',$product->id)->avg('rate');
-																$rate_count=DB::table('product_reviews')->where('product_id',$product->id)->count();
-															@endphp
-															@for($i=1; $i<=5; $i++)
-																@if($rate>=$i)
-																	<i class="yellow fa fa-star"></i>
-																@else
-																<i class="fa fa-star"></i>
-																@endif
-															@endfor
-														</div>
-														<a href="#"> ({{$rate_count}} customer review)</a>
-													</div>
-													<div class="quickview-stock">
-														@if($product->stock >0)
-														<span><i class="fa fa-check-circle-o"></i> {{$product->stock}} in stock</span>
-														@else
-														<span><i class="fa fa-times-circle-o text-danger"></i> {{$product->stock}} out stock</span>
-														@endif
-													</div>
-												</div>
-												@php
-													$after_discount=($product->price-($product->price*$product->discount)/100);
-												@endphp
-												<h3><small><del class="text-muted">${{number_format($product->price,2)}}</del></small>    ${{number_format($after_discount,2)}}  </h3>
-												<div class="quickview-peragraph">
-													<p>{!! html_entity_decode($product->summary) !!}</p>
-												</div>
-												@if($product->size)
-													<div class="size">
-														<h4>Size</h4>
-														<ul>
-															@php
-																$sizes=explode(',',$product->size);
-																// dd($sizes);
-															@endphp
-															@foreach($sizes as $size)
-															<li><a href="#" class="one">{{$size}}</a></li>
-															@endforeach
-														</ul>
-													</div>
-												@endif
-												<form action="{{route('single-add-to-cart')}}" method="POST">
-													@csrf
-													<div class="quantity">
-														<!-- Input Order -->
-														<div class="input-group">
-															<div class="button minus">
-																<button type="button" class="btn btn-primary btn-number" disabled="disabled" data-type="minus" data-field="quant[1]">
-																	<i class="ti-minus"></i>
-																</button>
-															</div>
-															<input type="hidden" name="slug" value="{{$product->slug}}">
-															<input type="text" name="quant[1]" class="input-number"  data-min="1" data-max="1000" value="1">
-															<div class="button plus">
-																<button type="button" class="btn btn-primary btn-number" data-type="plus" data-field="quant[1]">
-																	<i class="ti-plus"></i>
-																</button>
-															</div>
-														</div>
-														<!--/ End Input Order -->
-													</div>
-													<div class="add-to-cart">
-														<button type="submit" class="btn">@lang('auth.Add_to_cart')</button>
-														<a href="{{route('add-to-wishlist',$product->slug)}}" class="btn min"><i class="ti-heart"></i></a>
-													</div>
-												</form>
-												{{-- <div class="default-social">
-												<!-- ShareThis BEGIN --><div class="sharethis-inline-share-buttons"></div><!-- ShareThis END -->
-												</div> --}}
-											</div>
-										</div>
-									</div>
-								</div>
-                                @endif
-							</div>
-						</div>
-				</div>
-			@endforeach
-		@endif
-			<!-- Modal end -->
+<!-- Modal -->
+@if($products)
+@foreach($products as $key=>$product)
+<div class="modal fade" id="{{$product->id}}" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" style="border-radius: 15px !important;overflow:hidden">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="ti-close"
+                        aria-hidden="true"></span></button>
+            </div>
+            @if (app()->getLocale() == "ar")
+            <div style="max-height: 550px;overflow:hidden" class="modal-body text-right" dir="rtl">
+                <div class="row no-gutters">
+                    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                        <!-- Product Slider -->
+                        <div class="product-gallery">
+                            <div class="quickview-slider-active">
+                                @php
+                                $photo=explode(',',$product->photo);
+                                // dd($photo);
+                                @endphp
+                                @foreach($photo as $data)
+                                <div class="single-slider" style="padding: 10px">
+                                    <img src="{{$data}}" alt="{{$data}}">
+                                </div>
+                                @endforeach
+                            </div>
+                        </div>
+                        <!-- End Product slider -->
+                    </div>
+                    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                        <div class="quickview-content">
+                            <h2>{{$product->title_ar}}</h2>
+                            <div class="quickview-ratting-review">
+                                <div class="quickview-stock">
+                                    @if($product->stock >0)
+                                    <span><i class="fa fa-check-circle-o"></i> {{$product->stock}} في المخزن</span>
+                                    @else
+                                    <span><i class="fa fa-times-circle-o text-danger"></i> {{$product->stock}} غير
+                                        متوفر</span>
+                                    @endif
+                                </div>
+                            </div>
+                            {{-- @php
+                            $after_discount=($product->price-($product->price*$product->discount)/100);
+                            @endphp
+                            <h3><small><del class="text-muted">${{number_format($product->price,2)}}</del></small>
+                                EGP{{number_format($after_discount,2)}} </h3> --}}
+                            <div class="quickview-peragraph">
+                                <p>{!! html_entity_decode($product->summary_ar) !!}</p>
+                            </div>
+                            @if($product->size)
+                            <div class="size">
+                                <div class="row">
+                                    <div class="col-lg-6 col-12">
+                                        <h5 class="title">@lang('auth.Size')</h5>
+                                        <select>
+                                            @php
+                                            $sizes=explode(',',$product->size);
+                                            // dd($sizes);
+                                            @endphp
+                                            @foreach($sizes as $size)
+                                            <option>{{$size}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    {{-- <div class="col-lg-6 col-12">
+                                        <h5 class="title">Color</h5>
+                                        <select>
+                                            <option selected="selected">orange</option>
+                                            <option>purple</option>
+                                            <option>black</option>
+                                            <option>pink</option>
+                                        </select>
+                                    </div> --}}
+                                </div>
+                            </div>
+                            @endif
+                            <form action="{{route('single-add-to-cart')}}" method="POST">
+                                @csrf
+                                {{-- <div class="quantity">
+                                    <!-- Input Order -->
+                                    <div class="input-group">
+                                        <div class="button minus">
+                                            <button type="button" class="btn btn-primary btn-number" disabled="disabled"
+                                                data-type="minus" data-field="quant[1]">
+                                                <i class="ti-minus"></i>
+                                            </button>
+                                        </div>
+                                        <input type="hidden" name="slug" value="{{$data->slug}}">
+                                        <input type="text" name="quant[1]" class="input-number" data-min="1"
+                                            data-max="1000" value="1">
+                                        <div class="button plus">
+                                            <button type="button" class="btn btn-primary btn-number" data-type="plus"
+                                                data-field="quant[1]">
+                                                <i class="ti-plus"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <!--/ End Input Order -->
+                                </div> --}}
+                                <input type="hidden" name="quant[1]" class="input-number" data-min="1" data-max="1000"
+                                    value="1">
+                                <div class="add-to-cart">
+                                    <button type="submit" class="btn">@lang('auth.Add_to_cart')</button>
+                                    <a href="{{route('add-to-wishlist',$product->slug)}}" class="btn min"><i
+                                            class="ti-heart"></i></a>
+                                </div>
+                            </form>
+                            {{-- <div class="default-social">
+                                <!-- ShareThis BEGIN -->
+                                <div class="sharethis-inline-share-buttons"></div><!-- ShareThis END -->
+                            </div> --}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @else
+            <div style="max-height: 550px;overflow:hidden" class="modal-body">
+                <div class="row no-gutters">
+                    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                        <!-- Product Slider -->
+                        <div class="product-gallery">
+                            <div class="quickview-slider-active">
+                                @php
+                                $photo=explode(',',$product->photo);
+                                // dd($photo);
+                                @endphp
+                                @foreach($photo as $data)
+                                <div class="single-slider" style="padding: 10px">
+                                    <img src="{{$data}}" alt="{{$data}}">
+                                </div>
+                                @endforeach
+                            </div>
+                        </div>
+                        <!-- End Product slider -->
+                    </div>
+                    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                        <div class="quickview-content">
+                            <h2>{{$product->title}}</h2>
+                            <div class="quickview-ratting-review">
+                                <div class="quickview-stock">
+                                    @if($product->stock >0)
+                                    <span><i class="fa fa-check-circle-o"></i> {{$product->stock}} in stock</span>
+                                    @else
+                                    <span><i class="fa fa-times-circle-o text-danger"></i> {{$product->stock}} out
+                                        stock</span>
+                                    @endif
+                                </div>
+                            </div>
+                            {{-- @php
+                            $after_discount=($product->price-($product->price*$product->discount)/100);
+                            @endphp
+                            <h3><small><del class="text-muted">${{number_format($product->price,2)}}</del></small>
+                                ${{number_format($after_discount,2)}} </h3> --}}
+                            <div class="quickview-peragraph">
+                                <p>{!! html_entity_decode($product->summary) !!}</p>
+                            </div>
+                            @if($product->size)
+                            <div class="size">
+                                <div class="row">
+                                    <div class="col-lg-6 col-12">
+                                        <h5 class="title">@lang('auth.Size')</h5>
+                                        <select>
+                                            @php
+                                            $sizes=explode(',',$product->size);
+                                            // dd($sizes);
+                                            @endphp
+                                            @foreach($sizes as $size)
+                                            <option>{{$size}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    {{-- <div class="col-lg-6 col-12">
+                                        <h5 class="title">Color</h5>
+                                        <select>
+                                            <option selected="selected">orange</option>
+                                            <option>purple</option>
+                                            <option>black</option>
+                                            <option>pink</option>
+                                        </select>
+                                    </div> --}}
+                                </div>
+                            </div>
+                            @endif
+                            <form action="{{route('single-add-to-cart')}}" method="POST">
+                                @csrf
+                                {{-- <div class="quantity">
+                                    <!-- Input Order -->
+                                    <div class="input-group">
+                                        <div class="button minus">
+                                            <button type="button" class="btn btn-primary btn-number" disabled="disabled"
+                                                data-type="minus" data-field="quant[1]">
+                                                <i class="ti-minus"></i>
+                                            </button>
+                                        </div>
+                                        <input type="hidden" name="slug" value="{{$product->slug}}">
+                                        <input type="text" name="quant[1]" class="input-number" data-min="1"
+                                            data-max="1000" value="1">
+                                        <div class="button plus">
+                                            <button type="button" class="btn btn-primary btn-number" data-type="plus"
+                                                data-field="quant[1]">
+                                                <i class="ti-plus"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <!--/ End Input Order -->
+                                </div> --}}
+                                <input type="hidden" name="quant[1]" class="input-number" data-min="1" data-max="1000"
+                                    value="1">
+                                <div class="add-to-cart">
+                                    <button type="submit" class="btn">@lang('auth.Add_to_cart')</button>
+                                    <a href="{{route('add-to-wishlist',$product->slug)}}" class="btn min"><i
+                                            class="ti-heart"></i></a>
+                                </div>
+                            </form>
+                            {{-- <div class="default-social">
+                                <!-- ShareThis BEGIN -->
+                                <div class="sharethis-inline-share-buttons"></div><!-- ShareThis END -->
+                            </div> --}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @endif
+        </div>
+    </div>
+</div>
+@endforeach
+@endif
+<!-- Modal end -->
 @endsection
 @push ('styles')
 <style>
