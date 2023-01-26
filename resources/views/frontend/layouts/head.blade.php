@@ -89,7 +89,14 @@ $settings=DB::table('settings')->get();
         left: auto;
         right: 30px;
     }
-
+    span.current {
+        margin-right: 30px;
+    }
+    .quickview-content .nice-select::after {
+        border-color: #666;
+        left: 20px;
+        right: auto;
+    }
     /*
 </style>
 @stack('styles')

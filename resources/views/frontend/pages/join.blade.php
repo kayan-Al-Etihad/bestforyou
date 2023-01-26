@@ -1,5 +1,7 @@
 @extends('frontend.layouts.master')
 
+@section('title','Best For You')
+
 @section('main-content')
 	<!-- Breadcrumbs -->
 	<div class="breadcrumbs">

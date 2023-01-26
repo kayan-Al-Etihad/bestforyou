@@ -1,6 +1,7 @@
 @extends('frontend.layouts.master')
 
-@section('title','E-Shop || Login Page')
+
+@section('title','Best For You')
 
 @section('main-content')
     <!-- Breadcrumbs -->
@@ -28,11 +29,11 @@
         </div>
     </div>
     <!-- End Breadcrumbs -->
-            
+
     <!-- Shop Login -->
     <section class="shop login section">
         <div class="container">
-            <div class="row"> 
+            <div class="row">
             @if (app()->getLocale() == "ar")
                 <div class="col-lg-6 offset-lg-3 col-12 text-right" dir="rtl">
                     <div class="login-form">
@@ -83,7 +84,7 @@
                         </form>
                         <!--/ End Form -->
                     </div>
-                </div>     
+                </div>
             @else
                 <div class="col-lg-6 offset-lg-3 col-12">
                     <div class="login-form">
@@ -134,7 +135,7 @@
                         </form>
                         <!--/ End Form -->
                     </div>
-                </div>          
+                </div>
             @endif
             </div>
         </div>

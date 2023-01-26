@@ -1,5 +1,5 @@
 @extends('backend.layouts.master')
-
+@section('title','Best For You')
 @section('main-content')
 
 <div class="card">
@@ -14,10 +14,9 @@
           <span class="text-danger">{{$message}}</span>
           @enderror
         </div>
-
         <div class="form-group">
-          <label for="inputTitle" class="col-form-label">Arabic Title <span class="text-danger">*</span></label>
-          <input required id="inputTitle" type="text" name="title_ar" placeholder="أدخل العنوان باللغة العربية"  value="{{old('title_ar')}}" class="form-control text-right">
+          <label for="inputTitleArabic" class="col-form-label">Arabic Title <span class="text-danger">*</span></label>
+          <input required id="inputTitleArabic" type="text" name="title_ar" placeholder="Enter Arabic title"  value="{{old('title_ar')}}" class="form-control text-right">
           @error('title_ar')
           <span class="text-danger">{{$message}}</span>
           @enderror
@@ -47,7 +46,7 @@
 
         <div class="form-group d-none" id='parent_cat_div'>
           <label for="parent_id">Parent Category</label>
-          <select required name="parent_id" class="form-control">
+          <select name="parent_id" class="form-control">
               <option value="">--Select any category--</option>
               @foreach($parent_cats as $key=>$parent_cat)
                   <option value='{{$parent_cat->id}}'>{{$parent_cat->title}}</option>
@@ -74,7 +73,7 @@
 
         <div class="form-group">
           <label for="status" class="col-form-label">Status <span class="text-danger">*</span></label>
-          <select required name="status" class="form-control">
+          <select name="status" class="form-control">
               <option value="active">Active</option>
               <option value="inactive">Inactive</option>
           </select>

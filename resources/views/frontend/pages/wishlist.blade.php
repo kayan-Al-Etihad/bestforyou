@@ -1,5 +1,6 @@
 @extends('frontend.layouts.master')
-@section('title','Wishlist Page')
+
+@section('title','Best For You')
 @section('main-content')
     <!-- Breadcrumbs -->
     <div class="breadcrumbs">

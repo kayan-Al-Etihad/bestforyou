@@ -129,7 +129,7 @@
     </li>
 
 
-    <!-- Divider -->
+    {{-- <!-- Divider -->
     <hr class="sidebar-divider">
 
     <!-- Heading -->
@@ -173,7 +173,7 @@
             <i class="fas fa-comments fa-chart-area"></i>
             <span>Comments</span>
         </a>
-      </li>
+      </li> --}}
 
 
     <!-- Divider -->
