@@ -65,20 +65,15 @@
                                     <div class="form-group login-btn">
                                         <button class="btn" type="submit">@lang('auth.login')</button>
                                         <a href="{{route('register.form')}}" class="btn">@lang('auth.register')</a>
-                                        @lang('auth.or')
-                                        <a href="{{route('login.redirect','facebook')}}" class="btn btn-facebook"><i class="ti-facebook"></i></a>
-                                        <a href="{{route('login.redirect','github')}}" class="btn btn-github"><i class="ti-github"></i></a>
-                                        <a href="{{route('login.redirect','google')}}" class="btn btn-google"><i class="ti-google"></i></a>
-
                                     </div>
                                     <div class="checkbox">
                                         <label class="checkbox-inline" for="2"><input name="news" id="2" type="checkbox">@lang('auth.remmber_me')</label>
                                     </div>
-                                    @if (Route::has('password.request'))
+                                    {{-- @if (Route::has('password.request'))
                                         <a class="lost-pass" href="{{ route('password.reset') }}">
                                             @lang('auth.lost_password')
                                         </a>
-                                    @endif
+                                    @endif --}}
                                 </div>
                             </div>
                         </form>
@@ -116,20 +111,15 @@
                                     <div class="form-group login-btn">
                                         <button class="btn" type="submit">Login</button>
                                         <a href="{{route('register.form')}}" class="btn">Register</a>
-                                        OR
-                                        <a href="{{route('login.redirect','facebook')}}" class="btn btn-facebook"><i class="ti-facebook"></i></a>
-                                        <a href="{{route('login.redirect','github')}}" class="btn btn-github"><i class="ti-github"></i></a>
-                                        <a href="{{route('login.redirect','google')}}" class="btn btn-google"><i class="ti-google"></i></a>
-
                                     </div>
                                     <div class="checkbox">
                                         <label class="checkbox-inline" for="2"><input name="news" id="2" type="checkbox">Remember me</label>
                                     </div>
-                                    @if (Route::has('password.request'))
+                                    {{-- @if (Route::has('password.request'))
                                         <a class="lost-pass" href="{{ route('password.reset') }}">
                                             Lost your password?
                                         </a>
-                                    @endif
+                                    @endif --}}
                                 </div>
                             </div>
                         </form>

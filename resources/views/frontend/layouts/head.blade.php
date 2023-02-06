@@ -90,7 +90,7 @@ $settings=DB::table('settings')->get();
         right: 30px;
     }
     span.current {
-        margin-right: 30px;
+        margin-right: 15px;
     }
     .quickview-content .nice-select::after {
         border-color: #666;
