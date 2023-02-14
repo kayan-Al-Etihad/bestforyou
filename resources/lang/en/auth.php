@@ -177,6 +177,6 @@ return [
     'qot_question' => 'Got Question? Call us 24/7',
     'information' => 'Information',
     'copyright' => "Copyright",
-    'company_name' => "kayan Al Etihad",
+    'company_name' => "OHG",
     'right' => "All Rights Reserved.",
 ];
