@@ -723,7 +723,7 @@
         }
 
         #Gslider .carousel-inner .carousel-caption {
-        bottom: 40%;
+        bottom: 30%;
         }
 
         #Gslider .carousel-inner .carousel-caption h1 {
