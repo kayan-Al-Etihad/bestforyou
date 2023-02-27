@@ -57,7 +57,7 @@
                                 <h3>@lang('auth.about_title')</h3>
                                 <p>@foreach($settings as $data) {{$data->description}} @endforeach</p>
                                 <div class="button">
-                                    <a href="{{route('contact.home')}}" class="btn primary">@lang('auth.about_contsct')</a>
+                                    <a href="{{route('contact.home')}}" class="btn primary">@lang('auth.about_contact')</a>
                                 </div>
                             </div>
                         </div>

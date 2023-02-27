@@ -65,7 +65,7 @@ return [
     'about_title' => 'Welcome To <span>BestForYou</span>',
     'about_description' => 'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. sed ut perspiciatis unde sunt in culpa qui officia deserunt mollit anim id est laborum. sed ut perspiciatis unde omnis iste natus error sit voluptatem Excepteu sunt in culpa qui officia deserunt mollit anim id est laborum. sed ut perspiciatis Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. sed ut perspi deserunt mollit anim id est laborum. sed ut perspi.',
     'about_blog' => 'our blog',
-    'about_contsct' => 'contsct us',
+    'about_contact' => 'contact us',
 
     // products page localization
     'shop_by_price' => 'Shop By Price',

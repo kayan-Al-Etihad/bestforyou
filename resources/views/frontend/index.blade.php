@@ -117,12 +117,16 @@
                                             </div>
                                             <div class="product-content">
                                                 <h3><a href="{{route('product-detail',$product->slug)}}">{{$product->title}}</a></h3>
-                                                <div class="product-price">
+                                                <div class="product-price">                                                
                                                     @php
                                                         $after_discount=($product->price-($product->price*$product->discount)/100);
                                                     @endphp
-                                                    <span>${{number_format($after_discount,2)}}</span>
-                                                    <del style="padding-left:4%;">${{number_format($product->price,2)}}</del>
+                                                    @if($product->discount == 0)
+                                                    <span>E£{{number_format($after_discount,2)}}</span>
+                                                    @else
+                                                    <span>E£{{number_format($after_discount,2)}}</span>
+                                                    <del style="padding-left:4%;">E£{{number_format($product->price,2)}}</del>
+                                                    @endif
                                                 </div>
                                             </div>
                                         </div>
@@ -211,8 +215,8 @@
                                                 @php
                                                     $after_discount=($product->price-($product->price*$product->discount)/100);
                                                 @endphp
-                                                <span>${{number_format($after_discount,2)}}</span>
-                                                <del style="padding-left:4%;">${{number_format($product->price,2)}}</del>
+                                                <span>E£{{number_format($after_discount,2)}}</span>
+                                                <del style="padding-left:4%;">E£{{number_format($product->price,2)}}</del>
                                             </div>
                                         </div>
                                     </div>
@@ -329,11 +333,11 @@
                             <div class="product-content text-right">
                                 <h3><a href="{{route('product-detail',$product->slug)}}">{{$product->title_ar}}</a></h3>
                                 <div class="product-price">
-                                    <span class="old">${{number_format($product->price,2)}}</span>
+                                    <span class="old">E£{{number_format($product->price,2)}}</span>
                                     @php
                                     $after_discount=($product->price-($product->price*$product->discount)/100)
                                     @endphp
-                                    <span>${{number_format($after_discount,2)}}</span>
+                                    <span>E£{{number_format($after_discount,2)}}</span>
                                 </div>
                             </div>
                         </div>
@@ -392,7 +396,7 @@
                                 <div class="col-lg-6 col-md-6 col-12 no-padding">
                                     <div class="content text-right">
                                         <h4 class="title"><a href="{{route('product-detail',$product->slug)}}">{{$product->title}}</a></h4>
-                                        <p class="price with-discount">${{number_format($product->discount,2)}}</p>
+                                        <p class="price with-discount">${{number_format(($product->price-($product->price*$product->discount)/100),2)}}</p>
                                     </div>
                                 </div>
                                 </div>
