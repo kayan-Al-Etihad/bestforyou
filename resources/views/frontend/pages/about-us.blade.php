@@ -88,7 +88,55 @@
 	</section>
 	<!-- End About Us -->
 
-
+    <section class="shop-services section home">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-2 col-md-6 col-12">
+                    <!-- Start Single Service -->
+                    <div class="single-service">
+                        <img style="height: 60px" src="{{url('/images/uae.png')}}" alt="Jordan Image Flag"/>
+                    </div>
+                    <!-- End Single Service -->
+                </div>
+                <div class="col-lg-2 col-md-6 col-12">
+                    <!-- Start Single Service -->
+                    <div class="single-service">
+                        <img style="height: 60px" src="{{url('/images/Jordan.png')}}" alt="Jordan Image Flag"/>
+                    </div>
+                    <!-- End Single Service -->
+                </div>
+                <div class="col-lg-2 col-md-6 col-12">
+                    <!-- Start Single Service -->
+                    <div class="single-service">
+                        <img style="height: 60px" src="{{url('/images/Egypt.png')}}" alt="Image"/>
+                    </div>
+                    <!-- End Single Service -->
+                </div>
+                <div class="col-lg-2 col-md-6 col-12">
+                    <!-- Start Single Service -->
+                    <div class="single-service">
+                        <img style="height: 60px" src="{{url('/images/Kuwait.png')}}" alt="Image"/>
+                    </div>
+                    <!-- End Single Service -->
+                </div>
+                <div class="col-lg-2 col-md-6 col-12">
+                    <!-- Start Single Service -->
+                    <div class="single-service">
+                        <img style="height: 60px" src="{{url('/images/Qatar.png')}}" alt="Image"/>
+                    </div>
+                    <!-- End Single Service -->
+                </div>
+                <div class="col-lg-2 col-md-6 col-12">
+                    <!-- Start Single Service -->
+                    <div class="single-service">
+                        <img style="height: 60px" src="{{url('/images/ksa.png')}}" alt="Image"/>
+                    </div>
+                    <!-- End Single Service -->
+                </div>
+                
+            </div>
+        </div>
+    </section>
 <!-- Start Shop Services Area -->
 <section class="shop-services section home">
     <div class="container">
